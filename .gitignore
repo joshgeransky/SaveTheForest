@@ -1,1 +1,7 @@
-# Ignore stuff here
+# Git Ignore
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
