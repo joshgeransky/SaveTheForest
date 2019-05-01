@@ -1,4 +1,4 @@
-# SaveTheForest
+# Save the Forest
 Team 19's project for COMP2930 at BCIT.
 
 Created by:
