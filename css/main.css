@@ -53,7 +53,7 @@ body {
 }
 
 .page-title {
-    font-size: 30pt;
+    font-size: 40pt;
     
 }
 
@@ -62,23 +62,49 @@ body {
 }
 
 .learn-links a {
-    font-size: 20pt;
+    font-size: 30pt;
     text-decoration: underline;
     color: white;
 }
 
 .learn-links a:hover {
     background-color: #4c4c4c;
+    border-radius: 5px;
 }
 
 .learn-image {
     padding-top: 5px;
 }
+
+.about-image {
+    padding-top: 5px;
+}
+
 .learn-image img {
     height: 400px;
     width: 100%;
     object-fit: cover;
     
+}
+
+.about-image img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 100%;
+    
+}
+
+.about-content {
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 30pt;
+}
+
+.footer {
+    font-size: 20pt;
 }
 
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */ 
