@@ -3,15 +3,23 @@
 /* Style the entire header */
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: #0f0f0f;
     padding: 20px 10px;
+    border-radius: 25px;
+    
+}
+
+body {
+    background-color: #262626;
+    color: white;
+    font-family: 'Teko', sans-serif;
 }
 
 /* Styling for the header links */
 .header a {
     font-family: 'Teko', sans-serif;
     float: left;
-    color: black;
+    color: white;
     text-align: center;
     padding: 12px;
     text-decoration: none;
@@ -23,12 +31,13 @@
     font-family: 'VT323', sans-serif;
     font-size: 40pt;
     font-weight: bold;
+    color: white;
 }
 
 /* Change the background color on mouse-over */
 .header a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: #4c4c4c;
+  color: white;
 }
 
 /* Style the active/current link*/
