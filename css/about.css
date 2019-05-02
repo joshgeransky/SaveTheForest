@@ -1,0 +1,26 @@
+/* Import Google fonts */
+@import url('https://fonts.googleapis.com/css?family=Teko|VT323');
+
+/* Style the about-image class */
+.about-image {
+    padding-top: 5px;
+}
+
+/* Style the image within the about-image div */
+.about-image img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 100%;
+    
+}
+
+/* Style the about content */
+.about-content {
+    text-align: center;
+}
+
+/* Style the paragraphs in the content */
+.about-content p {
+    font-size: 30pt;
+}

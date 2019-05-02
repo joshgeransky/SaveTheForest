@@ -1,0 +1,33 @@
+/* Import Google fonts */
+@import url('https://fonts.googleapis.com/css?family=Teko|VT323');
+
+/* Style the content of the learn page */
+.learn-content {
+    text-align: center;
+}
+
+/* Style the learn-links */
+.learn-links a {
+    font-size: 30pt;
+    text-decoration: underline;
+    color: white;
+}
+
+/* On hover, change the background color of links */
+.learn-links a:hover {
+    background-color: #4c4c4c;
+    border-radius: 5px;
+}
+
+/* Style the learn-image class */
+.learn-image {
+    padding-top: 5px;
+}
+
+/* Style the image within the learn-image div */
+.learn-image img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    
+}
