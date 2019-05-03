@@ -85,7 +85,7 @@
 
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
-	            tree = this.add.image(randX, randY, 'tree1');
+	            tree = this.add.image(randX, randY, 'tree1').setInteractive();
     		
 	            treeArr[i] = tree;
 
@@ -110,13 +110,17 @@
     //set fires to trees randomly
     function update () {
     	for(i = 0; i < arrLength; i++){
-    		var randValue = Math.floor(Math.random() * (5 - +1)) + 1;
+    		var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
     		
     		if(randValue > 3){
     		 this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire'); 
     		}	
     	}
     }
+
+function saveTree(){
+console.log("Tree is here");
+}
 
 //removes all titles, start button, trees when start button is clicked    
 function startGame() {
