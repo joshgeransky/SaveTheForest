@@ -21,6 +21,7 @@ var config = {
 	var value = Phaser.Math.Between(4, 10);
 	var i = 0;
 	var hsv = [];
+    var score = 0;
     //Preloading function
     function preload () {
         this.load.image('background', '../assets/splash/800x600-grass-background.png');
@@ -87,5 +88,13 @@ var config = {
             backgroundColor: 'blue',
             
         });
+        
+        var scoreString = "Score: ";
+        var scoreText = this.add.text(10, 10, scoreString + score, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
+      
+        function addScore () {
+          score += 1;
+          scoreText.text = scroreString + score;
+        }
 
     }
