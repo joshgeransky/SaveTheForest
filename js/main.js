@@ -6,34 +6,60 @@ var config = {
         parent: 'game',
         
         scene: {
-            preload: preload,
-            create: create
+        preload: preload,
+        create: create,
+        extend: {
+            minimap: null
         }
+       }
     };
 
     //Create the game variable
     var game = new Phaser.Game(config);
-    
+    var width = 40;
+	var height = 38;
+	var value = Phaser.Math.Between(4, 10);
+	var i = 0;
+	var hsv = [];
     //Preloading function
     function preload () {
         this.load.image('background', '../assets/splash/800x600-grass-background.png');
         this.load.image('logo', '../assets/splash/title-text.png');
         this.load.image('tree1', '../assets/sprites/tree1.png');
+        this.load.image('tiles', 'assets/sprites/grass1.jpg');
     }
 
     //Creation function
     function create () {
         
         //Add the preset grass background (800x600)
-        background = this.add.image(400, 300, 'background');
-                
-        //For loop to randomly generate trees around the map
-        for (let i = 0; i < (Math.floor(Math.random() * 2000) + 500); i++) {
-            var randX = Math.floor(Math.random() * 800);
-            var randY = Math.floor(Math.random() * 600);
-            
-            tree = this.add.image(randX, randY, 'tree1');
-        }
+        //background = this.add.image(400, 300, 'background');
+        //Add tiled background
+         var level = [];
+		    for (var y = 0; y < height; y++)
+		    {
+		        var row = [];
+		        for (var x = 0; x < width; x++)
+		        {
+		            var tileIndex = Phaser.Math.RND.integerInRange(0, 6);
+		            row.push(tileIndex);
+		        }
+		        level.push(row);
+		    }
+		
+		    var map = this.make.tilemap({ data: level, tileWidth: 32, tileHeight: 32});
+		    var tileset = map.addTilesetImage('tiles');
+		    var layer = map.createStaticLayer(0, tileset, 0, 0);
+			
+		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
+	                
+	        //For loop to randomly generate trees around the map
+	        for (let i = 0; i < (Math.floor(Math.random() * 2000) + 500); i++) {
+	            var randX = Math.floor(Math.random() * 800);
+	            var randY = Math.floor(Math.random() * 600);
+	            
+	            tree = this.add.image(randX, randY, 'tree1');
+	        }
         
         //Create title text
         this.titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
@@ -46,6 +72,5 @@ var config = {
             backgroundColor: 'blue',
             
         });
-        
-        
+
     }
