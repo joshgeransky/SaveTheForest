@@ -25,7 +25,7 @@
 
 	var treeArr = [];
 	var arrLength = Math.floor(Math.random() * 200) + 100;
-
+	
 	var startBtn;
 	var titleText;
 	var subText
@@ -77,14 +77,15 @@
 		    var tileset = map.addTilesetImage('tiles');
 		    var layer = map.createStaticLayer(0, tileset, 0, 0);
 			
+		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);    
+
 		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
         
          //   for (let i = 0; i < tileset.size(); i++) {
            //     tree.add.image(xValues[i], yValues[i], 'tree1')
         //    }
-	                
-	               
-	               
+	     
+	              
 	        //For loop to randomly generate trees around the map
 
 	        for (let i = 0; i < arrLength; i++) {
@@ -105,21 +106,14 @@
         //Create subtext
         subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
      
-      /**  
-        //Create play button text --- Not Functional, should be actual button
-        let playButton = this.add.text(300, 300, 'PLAY', {
-            fontSize: '100pt',
-            fill: 'white',
-            fontFamily: 'VT323',
-            backgroundColor: 'blue',
-            
-        });
-        */
-        
         startBtn = this.add.sprite(420, 400, 'startBtn').setInteractive();
         
         startBtn.on('pointerdown', startGame);
-    }
+       	startBtn.on('pointerover', changeColor);
+       	startBtn.on('pointerout', revertColor);
+       	
+      
+       }
 
     function update () {
     	for(i = 0; i < arrLength; i++){
@@ -127,27 +121,30 @@
     		
     		if(randValue > 3){
     		 this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire'); 
-    		}
-    		
-    		
+    		}	
     	}
-    
-    
     }
     
-
-    
-
 function startGame() {
    titleText.visible = false;
    subText.visible = false;
    startBtn.visible = false;
 	  
 	  //Removing all trees and planting new ones to "start game"
-	  for (let i = 0; i < length; i++){
+	  for (let i = 0; i < arrLength; i++){
 	  	destroySprite(treeArr[i]);
 	  }
 }
+
+function changeColor() {
+    startBtn.setAlpha(0.7);
+
+}
+
+function revertColor() {
+ 	startBtn.setAlpha(1);
+ }
+
 
 //should destroy the sprites
 function destroySprite(sprite) {
