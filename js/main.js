@@ -63,9 +63,7 @@ var config = {
 		    var tileset = map.addTilesetImage('tiles');
 		    var layer = map.createStaticLayer(0, tileset, 0, 0);
 			
-		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
-	                
-	               
+		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);    
 	               
 	        //For loop to randomly generate trees around the map
 	        for (let i = 0; i < length; i++) {
@@ -97,7 +95,6 @@ var config = {
         startBtn.on('pointerdown', startGame);
     }
     
-
 function startGame() {
    titleText.visible = false;
    subText.visible = false;
@@ -113,3 +110,4 @@ function startGame() {
 function destroySprite(sprite) {
 	sprite.destroy();
 }
+
