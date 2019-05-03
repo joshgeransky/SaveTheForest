@@ -93,6 +93,7 @@
 	            tree = this.add.image(randX, randY, 'tree1').setInteractive();
               
                 tree.on("pointerdown", saveTree);
+                tree.on("pointerdown", extinguishFire);
     		
 	            treeArr[i] = tree;
 
@@ -132,6 +133,11 @@ function saveTree(){
   console.log("Extinguish fire!");
   playerScore++;
   scoreCounter.setText(scoreTitle + playerScore);
+}
+
+function extinguishFire(){
+  this.visible = false;
+  destroySprite(this);
 }
 
 //removes all titles, start button, trees when start button is clicked    
