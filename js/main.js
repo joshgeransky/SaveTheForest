@@ -35,14 +35,20 @@ var config = {
         //Add the preset grass background (800x600)
         //background = this.add.image(400, 300, 'background');
         
+        var xValues = [];
+        var yValues = [];
+        
         
         //Add tiled background
          var level = [];
 		    for (var y = 0; y < height; y++)
 		    {
 		        var row = [];
+                yValues[y] += y;
 		        for (var x = 0; x < width; x++)
 		        {
+                    xValues[x] += x;
+                    
 		            //var tileIndex = Phaser.Math.RND.integerInRange(0, 0);
 		            row.push(0);
 		        }
@@ -54,6 +60,10 @@ var config = {
 		    var layer = map.createStaticLayer(0, tileset, 0, 0);
 			
 		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
+        
+         //   for (let i = 0; i < tileset.size(); i++) {
+           //     tree.add.image(xValues[i], yValues[i], 'tree1')
+        //    }
 	                
 	        //For loop to randomly generate trees around the map
 	        for (let i = 0; i < (Math.floor(Math.random() * 200) + 100); i++) {
