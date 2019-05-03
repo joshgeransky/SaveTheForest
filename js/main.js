@@ -91,6 +91,8 @@
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
 	            tree = this.add.image(randX, randY, 'tree1').setInteractive();
+              
+                tree.on("pointerdown", saveTree);
     		
 	            treeArr[i] = tree;
 
@@ -127,7 +129,9 @@
     }
 
 function saveTree(){
-console.log("Tree is here");
+  console.log("Extinguish fire!");
+  playerScore++;
+  scoreCounter.setText(scoreTitle + playerScore);
 }
 
 //removes all titles, start button, trees when start button is clicked    
