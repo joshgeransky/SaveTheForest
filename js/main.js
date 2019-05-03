@@ -37,7 +37,7 @@
         this.load.image('logo', '../assets/splash/title-text.png');
         this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
         this.load.image('tiles', 'assets/sprites/grassTile2.png');
-        this.load.image('fire', 'assets/sprites/fire2.jpeg');
+        this.load.image('fire', 'assets/sprites/flame2.png');
         this.load.image('startBtn', '../assets/sprites/startBtn.png');
 
     }
