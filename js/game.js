@@ -17,10 +17,12 @@ function preload () {
 	this.load.image('tree','../assets/sprites/Tree_1.png');
   
     this.load.image('flame', '../assets/sprites/Flame.png');
+  
+    this.load.image('grass_field', "../assets/sprites/Grass_Field.png");
 }
 
 function create () {
-    this.add.image(400, 300, 'grass');
+    this.add.image(400, 300, 'grass_field');
 	
 	this.add.image(300,300,'tree');
 	this.add.image(500,200,'tree');
