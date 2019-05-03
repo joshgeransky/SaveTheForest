@@ -25,8 +25,8 @@ var config = {
     function preload () {
         this.load.image('background', '../assets/splash/800x600-grass-background.png');
         this.load.image('logo', '../assets/splash/title-text.png');
-        this.load.image('tree1', '../assets/sprites/tree1.png');
-        this.load.image('tiles', 'assets/sprites/grass1.jpg');
+        this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
+        this.load.image('tiles', 'assets/sprites/grassTile2.png');
     }
 
     //Creation function
@@ -34,6 +34,8 @@ var config = {
         
         //Add the preset grass background (800x600)
         //background = this.add.image(400, 300, 'background');
+        
+        
         //Add tiled background
          var level = [];
 		    for (var y = 0; y < height; y++)
@@ -41,20 +43,20 @@ var config = {
 		        var row = [];
 		        for (var x = 0; x < width; x++)
 		        {
-		            var tileIndex = Phaser.Math.RND.integerInRange(0, 6);
-		            row.push(tileIndex);
+		            //var tileIndex = Phaser.Math.RND.integerInRange(0, 0);
+		            row.push(0);
 		        }
 		        level.push(row);
 		    }
 		
-		    var map = this.make.tilemap({ data: level, tileWidth: 32, tileHeight: 32});
+		    var map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64});
 		    var tileset = map.addTilesetImage('tiles');
 		    var layer = map.createStaticLayer(0, tileset, 0, 0);
 			
 		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
 	                
 	        //For loop to randomly generate trees around the map
-	        for (let i = 0; i < (Math.floor(Math.random() * 2000) + 500); i++) {
+	        for (let i = 0; i < (Math.floor(Math.random() * 200) + 100); i++) {
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
 	            
@@ -63,6 +65,9 @@ var config = {
         
         //Create title text
         this.titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
+        
+        //Create subtext
+        this.subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
         
         //Create play button text --- Not Functional, should be actual button
         this.playButton = this.add.text(300, 300, 'PLAY', {
