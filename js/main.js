@@ -92,7 +92,9 @@
 
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
-	            tree = this.add.image(randX, randY, 'tree1');
+	            tree = this.add.image(randX, randY, 'tree1').setInteractive();
+              
+                tree.on('pointerdown', saveTree);
 
 	            var randValue = Math.floor(Math.random() * (5 - +1)) + 1;
     		
@@ -141,6 +143,10 @@
     
     
     }
+
+function saveTree() {
+  console.log("Hi");
+}
 
 function startGame() {
    titleText.visible = false;
