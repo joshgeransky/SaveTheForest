@@ -10,8 +10,7 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
-let numOfTrees = Math.floor(Math.Random() * 49 + 1);
-console.log(numOfTrees);
+
 function preload () {
     this.load.image('grass', '../assets/sprites/grassSprite1.png');
 	this.load.image('tree','../assets/sprites/Tree_1.png');
