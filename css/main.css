@@ -71,6 +71,12 @@ body {
     
 }
 
+.score {
+    text-align: center;
+    font-size: 36pt;
+}
+
+
 #game {
     text-align: center;
 }
