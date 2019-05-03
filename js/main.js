@@ -28,7 +28,7 @@ var config = {
         background = this.add.image(400, 300, 'background');
                 
         //For loop to randomly generate trees around the map
-        for (let i = 0; i < 1000; i++) {
+        for (let i = 0; i < (Math.floor(Math.random() * 2000) + 500); i++) {
             var randX = Math.floor(Math.random() * 800);
             var randY = Math.floor(Math.random() * 600);
             
