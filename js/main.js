@@ -15,7 +15,7 @@
 	       }
 	    };
 
-    //Create the game variable
+    //Game variables
     var game = new Phaser.Game(config);
     var width = 40;
 	var height = 38;
@@ -33,7 +33,6 @@
 	var titleText;
 	var subText
 
-
     //Preloading function
     function preload () {
         this.load.image('background', '../assets/splash/800x600-grass-background.png');
@@ -45,16 +44,13 @@
 
     }
 
-	function start() {
-	console.log("Hello");
-	}
     //Creation function
     function create () {
         
         //Add the preset grass background (800x600)
         background = this.add.image(400, 300, 'background');
-        
 
+	//x and y coordinates stored in arrays
         var xValues = [];
         var yValues = [];
         
@@ -76,29 +72,31 @@
 		        level.push(row);
 		    }
 		
+		//start-up
 		    var map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64});
 		    var tileset = map.addTilesetImage('tiles');
 		    var layer = map.createStaticLayer(0, tileset, 0, 0);
-			
 		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);    
-
 		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
+		    
+		    
         
             //for (let i = 0; i < tileset.size(); i++) {
                 //tree.add.image(xValues[i], yValues[i], 'tree1')
             //}
       
 	        //For loop to randomly generate trees around the map
-
 	        for (let i = 0; i < arrLength; i++) {
 
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
 	            tree = this.add.image(randX, randY, 'tree1').setInteractive();
               
-                tree.on('pointerdown', saveTree);
+          
 
 	            var randValue = Math.floor(Math.random() * (5 - +1)) + 1;
+
+	            tree = this.add.image(randX, randY, 'tree1');
     		
 	            treeArr[i] = tree;
 
@@ -109,18 +107,20 @@
         
         //Create subtext
         subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
-        
         var scoreText = this.add.text(10, 10, scoreString + score, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
-        
+    
+     	
+     	//Create start buttons
         startBtn = this.add.sprite(420, 400, 'startBtn').setInteractive();
         
+        //start button functionality
         startBtn.on('pointerdown', startGame);
        	startBtn.on('pointerover', changeColor);
        	startBtn.on('pointerout', revertColor);
-       	
       
        }
-
+   
+    //set fires to trees randomly
     function update () {
     	for(i = 0; i < arrLength; i++){
     		var randValue = Math.floor(Math.random() * (5 - +1)) + 1;
@@ -134,7 +134,8 @@
 function saveTree() {
   console.log("Hi");
 }
-    
+
+//removes all titles, start button, trees when start button is clicked    
 function startGame() {
    titleText.visible = false;
    subText.visible = false;
@@ -146,11 +147,13 @@ function startGame() {
 	  }
 }
 
+//changes color of start button on hover
 function changeColor() {
     startBtn.setAlpha(0.7);
 
 }
 
+//changes color of start button back to normal
 function revertColor() {
  	startBtn.setAlpha(1);
  }
@@ -160,4 +163,3 @@ function revertColor() {
 function destroySprite(sprite) {
 	sprite.destroy();
 }
-
