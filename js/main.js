@@ -47,7 +47,7 @@ var config = {
 		        level.push(row);
 		    }
 		
-		    var map = this.make.tilemap({ data: level, tileWidth: 32, tileHeight: 32});
+		    var map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64});
 		    var tileset = map.addTilesetImage('tiles');
 		    var layer = map.createStaticLayer(0, tileset, 0, 0);
 			
