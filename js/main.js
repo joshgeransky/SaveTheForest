@@ -90,6 +90,13 @@
 	            treeArr[i] = tree;
 
 	        }
+	        for(i = 0; i < arrLength; i++){
+    		var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
+    		
+    		if(randValue > 3){
+    		 this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire'); 
+    		}	
+    	}
         	
         //Create title text
         titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
@@ -111,13 +118,7 @@
    
     //set fires to trees randomly
     function update () {
-    	for(i = 0; i < arrLength; i++){
-    		var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
-    		
-    		if(randValue > 3){
-    		 this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire'); 
-    		}	
-    	}
+    	
     }
 
 function saveTree(){
