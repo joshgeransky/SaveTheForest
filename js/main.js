@@ -84,10 +84,8 @@
          //   for (let i = 0; i < tileset.size(); i++) {
            //     tree.add.image(xValues[i], yValues[i], 'tree1')
         //    }
-	                
-	               
-
-	               
+	     
+	              
 	        //For loop to randomly generate trees around the map
 
 	        for (let i = 0; i < arrLength; i++) {
@@ -111,7 +109,11 @@
         startBtn = this.add.sprite(420, 400, 'startBtn').setInteractive();
         
         startBtn.on('pointerdown', startGame);
-    }
+       	startBtn.on('pointerover', changeColor);
+       	startBtn.on('pointerout', revertColor);
+       	
+      
+       }
 
     function update () {
     	for(i = 0; i < arrLength; i++){
@@ -119,15 +121,10 @@
     		
     		if(randValue > 3){
     		 this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire'); 
-    		}
-    		
-    		
+    		}	
     	}
-    
-    
     }
     
-
 function startGame() {
    titleText.visible = false;
    subText.visible = false;
@@ -138,6 +135,16 @@ function startGame() {
 	  	destroySprite(treeArr[i]);
 	  }
 }
+
+function changeColor() {
+    startBtn.setAlpha(0.7);
+
+}
+
+function revertColor() {
+ 	startBtn.setAlpha(1);
+ }
+
 
 //should destroy the sprites
 function destroySprite(sprite) {
