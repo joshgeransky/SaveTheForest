@@ -1,18 +1,19 @@
-//Variable holding configuration
-var config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        parent: 'game',
-        
-        scene: {
-        preload: preload,
-        create: create,
-        extend: {
-            minimap: null
-        }
-       }
-    };
+	//Variable holding configuration
+	var config = {
+	        type: Phaser.AUTO,
+	        width: 800,
+	        height: 600,
+	        parent: 'game',
+	        
+	        scene: {
+	        preload: preload,
+	        create: create,
+	        update: update,
+	        extend: {
+	            minimap: null
+	        }
+	       }
+	    };
 
     //Create the game variable
     var game = new Phaser.Game(config);
@@ -21,12 +22,15 @@ var config = {
 	var value = Phaser.Math.Between(4, 10);
 	var i = 0;
 	var hsv = [];
+	var treeArr = [];
+	var arrLength = Math.floor(Math.random() * 200) + 100;
     //Preloading function
     function preload () {
         this.load.image('background', '../assets/splash/800x600-grass-background.png');
         this.load.image('logo', '../assets/splash/title-text.png');
         this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
         this.load.image('tiles', 'assets/sprites/grassTile2.png');
+        this.load.image('fire', 'assets/sprites/fire2.jpeg');
     }
 
     //Creation function
@@ -56,13 +60,17 @@ var config = {
 		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
 	                
 	        //For loop to randomly generate trees around the map
-	        for (let i = 0; i < (Math.floor(Math.random() * 200) + 100); i++) {
+	        for (let i = 0; i < arrLength; i++) {
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
 	            
 	            tree = this.add.image(randX, randY, 'tree1');
+	            var randValue = Math.floor(Math.random() * (5 - +1)) + 1;
+    		
+	            treeArr[i] = tree;
+	            
 	        }
-        
+        	
         //Create title text
         this.titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
         
@@ -79,3 +87,24 @@ var config = {
         });
 
     }
+    function update () {
+    	for(i = 0; i < arrLength; i++){
+    		var randValue = Math.floor(Math.random() * (5 - +1)) + 1;
+    		
+    		if(randValue > 3){
+    		 this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire'); 
+    		}
+    		
+    		
+    	}
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+ 
