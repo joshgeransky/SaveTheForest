@@ -84,20 +84,10 @@
 
 		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
         
-<<<<<<< HEAD
             //for (let i = 0; i < tileset.size(); i++) {
                 //tree.add.image(xValues[i], yValues[i], 'tree1')
             //}
-	                
-	               
-	               
-=======
-         //   for (let i = 0; i < tileset.size(); i++) {
-           //     tree.add.image(xValues[i], yValues[i], 'tree1')
-        //    }
-	     
-	              
->>>>>>> 1b297028e7a3daca91f323b0e084de64b708cc24
+      
 	        //For loop to randomly generate trees around the map
 
 	        for (let i = 0; i < arrLength; i++) {
@@ -119,13 +109,9 @@
         
         //Create subtext
         subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
-<<<<<<< HEAD
         
         var scoreText = this.add.text(10, 10, scoreString + score, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
         
-=======
-     
->>>>>>> 1b297028e7a3daca91f323b0e084de64b708cc24
         startBtn = this.add.sprite(420, 400, 'startBtn').setInteractive();
         
         startBtn.on('pointerdown', startGame);
@@ -144,15 +130,11 @@
     		}	
     	}
     }
-<<<<<<< HEAD
 
 function saveTree() {
   console.log("Hi");
 }
-
-=======
     
->>>>>>> 1b297028e7a3daca91f323b0e084de64b708cc24
 function startGame() {
    titleText.visible = false;
    subText.visible = false;
