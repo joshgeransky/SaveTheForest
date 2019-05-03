@@ -25,11 +25,12 @@
 
 	var treeArr = [];
 	var arrLength = Math.floor(Math.random() * 200) + 100;
+	var fireArr = [arrLength];
 
 	var startBtn;
 	var titleText;
 	var subText
-
+	//var hasFire = false;
 
     //Preloading function
     function preload () {
@@ -66,9 +67,7 @@
 		        for (var x = 0; x < width; x++)
 		        {
                     xValues[x] += x;
-                    
-		            //var tileIndex = Phaser.Math.RND.integerInRange(0, 0);
-		            row.push(0);
+                    row.push(0);
 		        }
 		        level.push(row);
 		    }
@@ -78,13 +77,7 @@
 		    var layer = map.createStaticLayer(0, tileset, 0, 0);
 			
 		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
-        
-         //   for (let i = 0; i < tileset.size(); i++) {
-           //     tree.add.image(xValues[i], yValues[i], 'tree1')
-        //    }
-	                
-	               
-	               
+              
 	        //For loop to randomly generate trees around the map
 
 	        for (let i = 0; i < arrLength; i++) {
@@ -92,29 +85,39 @@
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
 	            tree = this.add.image(randX, randY, 'tree1');
-
-	            var randValue = Math.floor(Math.random() * (5 - +1)) + 1;
-    		
 	            treeArr[i] = tree;
+	            treeArr[i].setInteractive();
+	            var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
+        		 if(randValue = 1){
+		    		 hasFire = true;
+		    	  }
 
 	        }
+
+        	
+        	
+        	for(i = 0; i < arrLength; i++){
+
+    		
+    		if(hasFire){
+    		
+    			this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire');
+    		}
+    		
+    		
+    	}	
+			var hasFire = false;
+			
+			
+    		
+    
+        	
         	
         //Create title text
         titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
         
         //Create subtext
         subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
-     
-      /**  
-        //Create play button text --- Not Functional, should be actual button
-        let playButton = this.add.text(300, 300, 'PLAY', {
-            fontSize: '100pt',
-            fill: 'white',
-            fontFamily: 'VT323',
-            backgroundColor: 'blue',
-            
-        });
-        */
         
         startBtn = this.add.sprite(420, 400, 'startBtn').setInteractive();
         
@@ -122,16 +125,7 @@
     }
 
     function update () {
-    	for(i = 0; i < arrLength; i++){
-    		var randValue = Math.floor(Math.random() * (5 - +1)) + 1;
-    		
-    		if(randValue > 3){
-    		 this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire'); 
-    		}
-    		
-    		
-    	}
-    
+
     
     }
     
@@ -144,7 +138,7 @@ function startGame() {
    startBtn.visible = false;
 	  
 	  //Removing all trees and planting new ones to "start game"
-	  for (let i = 0; i < length; i++){
+	  for (let i = 0; i < arrLength; i++){
 	  	destroySprite(treeArr[i]);
 	  }
 }
@@ -153,4 +147,5 @@ function startGame() {
 function destroySprite(sprite) {
 	sprite.destroy();
 }
+
 
