@@ -25,15 +25,18 @@
 
 	var treeArr = [];
 	var arrLength = Math.floor(Math.random() * 200) + 100;
-	
+
+	var fireArr = [arrLength];
+
 	var startBtn;
 	var titleText;
-	var subText;
 
+	var subText
     var scoreCounter;
     var scoreTitle = "Score: ";
     var playerScore = 0;
     
+
 
     //Preloading function
     function preload () {
@@ -64,9 +67,7 @@
 		        for (var x = 0; x < width; x++)
 		        {
                     xValues[x] += x;
-                    
-		            //var tileIndex = Phaser.Math.RND.integerInRange(0, 0);
-		            row.push(0);
+                    row.push(0);
 		        }
 		        level.push(row);
 		    }
@@ -77,27 +78,37 @@
 		    var layer = map.createStaticLayer(0, tileset, 0, 0);
 		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);    
 		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
-		    
+ 
 		    
         
          //   for (let i = 0; i < tileset.size(); i++) {
            //     tree.add.image(xValues[i], yValues[i], 'tree1')
         //    }
 	     
-	              
+
 	        //For loop to randomly generate trees around the map
-	        for (let i = 0; i < arrLength; i++) {
+	  /*      for (let i = 0; i < arrLength; i++) {
 
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
+
 	            tree = this.add.image(randX, randY, 'tree1').setInteractive();
+
+
+
               
                 tree.on("pointerdown", saveTree);
                 tree.on("pointerdown", extinguishFire);
-    		
+
 	            treeArr[i] = tree;
+	            treeArr[i].setInteractive();
+	            var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
+        		 if(randValue = 1){
+		    		 hasFire = true;
+		    	  }
 
 	        }
+
 	        for(i = 0; i < arrLength; i++){
     		var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
     		
@@ -105,17 +116,66 @@
     		 this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire'); 
     		}	
     	}
+
+        */	
         	
+            var bounds = new Phaser.Geom.Rectangle(0, 0, 800, 600);
+		   	var containers = [];
+		
+		    var container = this.add.container(0, 0).setName('Container1');
+		
+		    containers.push(container);
+		
+		    window['Container1'] = container;
+		
+		    var containerNum = 1;
+
+	    for (var i = 0; i < 128; i++)
+	    {
+	        var x = Phaser.Math.Between(bounds.left, bounds.right);
+	        var y = Phaser.Math.Between(bounds.top, bounds.bottom);
+			
+	        var tree = this.add.sprite(x, y, 'tree1').setName('Sprite' + i);
+	        
+	        fire = this.add.sprite(x, y, 'fire');
+	        window['Sprite' + i] = tree;
+			tree.setDepth(600 - y);
+
+	        tree.setInteractive();
+	        fire.setInteractive();
+	
+	        if (i > 0 && i % 8 === 0)
+	        {
+	            container = this.add.container(0, 0).setName('Container' + containerNum);
+	
+	            if (containerNum > 1)
+	            {
+	                var p = Phaser.Utils.Array.GetRandom(containers).add(container);
+	                console.log(container.name, 'child of', p.name);
+	                console.log(600 - y)
+	            }
+	
+	            containers.push(container);
+	
+	            window['Container' + containerNum] = container;
+	
+	            containerNum++;
+	        }
+	
+	        Phaser.Utils.Array.GetRandom(containers).add(tree);
+	    }
+	    
         //Create title text
         titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
         
         //Create subtext
         subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
+
+           //Create score counter
+        //scoreCounter = this.add.text(10, 10, scoreString + score, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
       
-        //Create score counter
-        scoreCounter = this.add.text(10, 10, scoreTitle + playerScore, { fontSize: "24pt", fill: "white", fontFamily: "VT323"});
-    
      	//Create start buttons
+
         startBtn = this.add.sprite(420, 400, 'startBtn').setInteractive();
         
         //start button functionality
@@ -127,6 +187,10 @@
    
     //set fires to trees randomly
     function update () {
+		this.input.on('gameobjectdown', function(pointer, fire){
+
+        fire.setVisible(false);
+    	});
     	
     }
 
@@ -169,4 +233,5 @@ function revertColor() {
 function destroySprite(sprite) {
 	sprite.destroy();
 }
+
 
