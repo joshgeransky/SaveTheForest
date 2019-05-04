@@ -30,8 +30,12 @@
 
 	var startBtn;
 	var titleText;
+
 	var subText
-	//var hasFire = false;
+    var scoreCounter;
+    var scoreTitle = "Score: ";
+    var playerScore = 0;
+    
 
 
     //Preloading function
@@ -89,6 +93,12 @@
 	            var randY = Math.floor(Math.random() * 600);
 
 	            tree = this.add.image(randX, randY, 'tree1').setInteractive();
+
+
+
+              
+                tree.on("pointerdown", saveTree);
+                tree.on("pointerdown", extinguishFire);
 
 	            treeArr[i] = tree;
 	            treeArr[i].setInteractive();
@@ -171,8 +181,9 @@
         //Create subtext
         subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
 
+           //Create score counter
         //scoreCounter = this.add.text(10, 10, scoreString + score, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
-    
+      
      	//Create start buttons
 
         startBtn = this.add.sprite(420, 400, 'startBtn').setInteractive();
@@ -195,7 +206,14 @@
     }
 
 function saveTree(){
-console.log("Tree is here");
+  console.log("Extinguish fire!");
+  playerScore++;
+  scoreCounter.setText(scoreTitle + playerScore);
+}
+
+function extinguishFire(){
+  this.visible = false;
+  destroySprite(this);
 }
 
 //removes all titles, start button, trees when start button is clicked    
