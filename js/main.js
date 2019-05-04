@@ -87,14 +87,17 @@
 	     
 
 	        //For loop to randomly generate trees around the map
-	  /*      for (let i = 0; i < arrLength; i++) {
+	       for (let i = 0; i < arrLength; i++) {
 
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
 
 	            tree = this.add.image(randX, randY, 'tree1').setInteractive();
 
+	            treeArr[i] = tree;
 
+	        }
+        	/**
 
               
                 tree.on("pointerdown", saveTree);
@@ -219,13 +222,13 @@ function startGame() {
 
 //changes color of start button on hover
 function changeColor() {
-    startBtn.setAlpha(0.7);
+    startBtn.setTint(0xa09f9f);
 
 }
 
 //changes color of start button back to normal
 function revertColor() {
- 	startBtn.setAlpha(1);
+ 	startBtn.clearTint();
  }
 
 
