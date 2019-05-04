@@ -124,15 +124,21 @@
 	    {
 	        var x = Phaser.Math.Between(bounds.left, bounds.right);
 	        var y = Phaser.Math.Between(bounds.top, bounds.bottom);
-			
+			var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
 	        var tree = this.add.sprite(x, y, 'tree1').setName('Sprite' + i);
+	        if(randValue > 3){
+    		  fire = this.add.sprite(x, y, 'fire'); 
+    		  fire.setInteractive();
+    		}	
 	        
-	        fire = this.add.sprite(x, y, 'fire');
 	        window['Sprite' + i] = tree;
 			tree.setDepth(600 - y);
 
 	        tree.setInteractive();
-	        fire.setInteractive();
+	       
+
+    		
+	        
 	
 	        if (i > 0 && i % 8 === 0)
 	        {
@@ -155,6 +161,10 @@
 	        Phaser.Utils.Array.GetRandom(containers).add(tree);
 	    }
 	    
+	     
+    		
+    		
+    		
         //Create title text
         titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
         
@@ -176,6 +186,7 @@
    
     //set fires to trees randomly
     function update () {
+		
 		this.input.on('gameobjectdown', function(pointer, fire){
 
         fire.setVisible(false);
