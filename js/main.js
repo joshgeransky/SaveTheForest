@@ -82,14 +82,14 @@
            //     tree.add.image(xValues[i], yValues[i], 'tree1')
         //    }
 	     
-
+		//*************first way of randomly generating trees don't delete for now**************
 	        //For loop to randomly generate trees around the map
 	       for (let i = 0; i < arrLength; i++) {
 
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
 
-	            tree = this.add.image(randX, randY, 'tree1').setInteractive();
+	          //  tree = this.add.image(randX, randY, 'tree1').setInteractive();
 
 	            treeArr[i] = tree;
 
@@ -210,7 +210,8 @@ function startGame() {
 	  
 	  //Removing all trees and planting new ones to "start game"
 	  for (let i = 0; i < arrLength; i++){
-	  	destroySprite(treeArr[i]); 	
+	  //*******************deletes all trees that were generated using the first way, don't delete***********
+	  //	destroySprite(treeArr[i]); 	
 	  }
 }
 
@@ -228,6 +229,5 @@ function revertColor() {
 
 //should destroy the sprites
 function destroySprite(sprite) {
-
 	sprite.destroy();
 }
