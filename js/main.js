@@ -1,3 +1,4 @@
+	    
 	//Variable holding configuration
 	var config = {
 	        type: Phaser.AUTO,
@@ -22,20 +23,16 @@
 	var value = Phaser.Math.Between(4, 10);
 	var i = 0;
 	var hsv = [];
-
 	var treeArr = [];
 	var arrLength = Math.floor(Math.random() * 200) + 100;
-
 	var fireArr = [arrLength];
-
 	var startBtn;
 	var titleText;
-
 	var subText
     var scoreCounter;
     var scoreTitle = "Score: ";
     var playerScore = 0;
-    
+    var start = false;
 
 
     //Preloading function
@@ -98,20 +95,16 @@
 
 	        }
         	/**
-
               
                 tree.on("pointerdown", saveTree);
                 tree.on("pointerdown", extinguishFire);
-
 	            treeArr[i] = tree;
 	            treeArr[i].setInteractive();
 	            var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
         		 if(randValue = 1){
 		    		 hasFire = true;
 		    	  }
-
 	        }
-
 	        for(i = 0; i < arrLength; i++){
     		var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
     		
@@ -119,7 +112,6 @@
     		 this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire'); 
     		}	
     	}
-
         */	
         	
             var bounds = new Phaser.Geom.Rectangle(0, 0, 800, 600);
@@ -144,7 +136,7 @@
 	        window['Sprite' + i] = tree;
 			tree.setDepth(600 - y);
 
-	        tree.setInteractive();
+	        //tree.setInteractive();
 	        fire.setInteractive();
 	
 	        if (i > 0 && i % 8 === 0)
@@ -190,11 +182,12 @@
    
     //set fires to trees randomly
     function update () {
+    if(start) { //only remove fires when the game has officially started
 		this.input.on('gameobjectdown', function(pointer, fire){
 
         fire.setVisible(false);
     	});
-    	
+    	}
     }
 
 function saveTree(){
@@ -213,10 +206,11 @@ function startGame() {
    titleText.visible = false;
    subText.visible = false;
    startBtn.visible = false;
+   start = true;
 	  
 	  //Removing all trees and planting new ones to "start game"
 	  for (let i = 0; i < arrLength; i++){
-	  	destroySprite(treeArr[i]);
+	  	destroySprite(treeArr[i]); 	
 	  }
 }
 
@@ -234,7 +228,6 @@ function revertColor() {
 
 //should destroy the sprites
 function destroySprite(sprite) {
+
 	sprite.destroy();
 }
-
-
