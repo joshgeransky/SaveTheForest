@@ -83,7 +83,7 @@
 	     
 
 	        //For loop to randomly generate trees around the map
-	        for (let i = 0; i < arrLength; i++) {
+	  /*      for (let i = 0; i < arrLength; i++) {
 
 	            var randX = Math.floor(Math.random() * 800);
 	            var randY = Math.floor(Math.random() * 600);
@@ -107,14 +107,61 @@
     		}	
     	}
 
+        */	
         	
+            var bounds = new Phaser.Geom.Rectangle(0, 0, 800, 600);
+		   	var containers = [];
+		
+		    var container = this.add.container(0, 0).setName('Container1');
+		
+		    containers.push(container);
+		
+		    window['Container1'] = container;
+		
+		    var containerNum = 1;
+
+	    for (var i = 0; i < 128; i++)
+	    {
+	        var x = Phaser.Math.Between(bounds.left, bounds.right);
+	        var y = Phaser.Math.Between(bounds.top, bounds.bottom);
+			
+	        var tree = this.add.sprite(x, y, 'tree1').setName('Sprite' + i);
+	        
+	        fire = this.add.sprite(x, y, 'fire');
+	        window['Sprite' + i] = tree;
+			tree.setDepth(600 - y);
+
+	        tree.setInteractive();
+	        fire.setInteractive();
+	
+	        if (i > 0 && i % 8 === 0)
+	        {
+	            container = this.add.container(0, 0).setName('Container' + containerNum);
+	
+	            if (containerNum > 1)
+	            {
+	                var p = Phaser.Utils.Array.GetRandom(containers).add(container);
+	                console.log(container.name, 'child of', p.name);
+	                console.log(600 - y)
+	            }
+	
+	            containers.push(container);
+	
+	            window['Container' + containerNum] = container;
+	
+	            containerNum++;
+	        }
+	
+	        Phaser.Utils.Array.GetRandom(containers).add(tree);
+	    }
+	    
         //Create title text
         titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
         
         //Create subtext
         subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
 
-        scoreCounter = this.add.text(10, 10, scoreString + score, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
+        //scoreCounter = this.add.text(10, 10, scoreString + score, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
     
      	//Create start buttons
 
@@ -129,7 +176,11 @@
    
     //set fires to trees randomly
     function update () {
+		this.input.on('gameobjectdown', function(pointer, fire){
 
+        fire.setVisible(false);
+    	});
+    	
     }
 
 function saveTree(){
