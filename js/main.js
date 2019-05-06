@@ -1,121 +1,91 @@
-	    
-	//Variable holding configuration
-	var config = {
-	        type: Phaser.AUTO,
-	        width: 800,
-	        height: 600,
-	        parent: 'game',
-	        
-	        scene: {
-	        preload: preload,
-	        create: create,
-	        update: update,
-	        extend: {
-	            minimap: null
-	        }
-	       }
-	    };
-
-    //Game variables
-    var game = new Phaser.Game(config);
-    var width = 40;
-	var height = 38;
-	var value = Phaser.Math.Between(4, 10);
-	var i = 0;
-	var hsv = [];
-	var treeArr = [];
-	var arrLength = Math.floor(Math.random() * 200) + 100;
-	var fireArr = [arrLength];
-	var startBtn;
-	var titleText;
-	var subText
-    var scoreCounter;
-    var scoreTitle = "Score: ";
-    var playerScore = 0;
-    var start = false;
-
-
-    //Preloading function
-    function preload () {
-        this.load.image('background', '../assets/splash/800x600-grass-background.png');
-        this.load.image('logo', '../assets/splash/title-text.png');
-        this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
-        this.load.image('tiles', 'assets/sprites/grassTile2.png');
-        this.load.image('fire', 'assets/sprites/flame2.png');
-        this.load.image('startBtn', '../assets/sprites/startBtn.png');
-
+// Variable holding configuration
+var config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    parent: 'game',
+    scene: {
+        preload: preload,
+        create: create,
+        update: update,
+        extend: {
+	       minimap: null
+        }
     }
+};
 
-    //Creation function
-    function create () {
+// Game variables
+var game = new Phaser.Game(config);
+var width = 40;
+var height = 38;
+var value = Phaser.Math.Between(4, 10);
+var i = 0;
+var hsv = [];
+var treeArr = [];
+var arrLength = Math.floor(Math.random() * 200) + 100;
+var fireArr = [arrLength];
+var startBtn;
+var titleText;
+var subText
+var scoreCounter;
+var scoreTitle = "Score: ";
+var playerScore = 0;
+var start = false;
 
-	//x and y coordinates stored in arrays
-        var xValues = [];
-        var yValues = [];
-        
-        
 
-        //Add tiled background
-         var level = [];
-		    for (var y = 0; y < height; y++)
-		    {
-		        var row = [];
-                yValues[y] += y;
-		        for (var x = 0; x < width; x++)
-		        {
-                    xValues[x] += x;
-                    row.push(0);
-		        }
-		        level.push(row);
-		    }
+// Preloading function
+function preload () {
+    this.load.image('background', '../assets/splash/800x600-grass-background.png');
+    this.load.image('logo', '../assets/splash/title-text.png');
+    this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
+    this.load.image('tiles', 'assets/sprites/grassTile2.png');
+    this.load.image('fire', 'assets/sprites/flame2.png');
+    this.load.image('startBtn', '../assets/sprites/startBtn.png');
+}
+
+// Creation function
+function create () {
+    
+// x and y coordinates stored in arrays
+    var xValues = [];
+    var yValues = [];        
+
+// Add tiled background
+    var level = [];
+    for (var y = 0; y < height; y++) {
+        var row = [];
+        yValues[y] += y;
+        for (var x = 0; x < width; x++) {
+            xValues[x] += x;
+            row.push(0);
+        }
+        level.push(row);
+    }
 		
-		//start-up
-		    var map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64});
-		    var tileset = map.addTilesetImage('tiles');
-		    var layer = map.createStaticLayer(0, tileset, 0, 0);
-		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);    
-		    this.cameras.main.setBounds(0, 0, layer.width, layer.height);
- 
-		    
+    // Startup
+    var map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64});
+    var tileset = map.addTilesetImage('tiles');
+    var layer = map.createStaticLayer(0, tileset, 0, 0);
+    this.cameras.main.setBounds(0, 0, layer.width, layer.height);    
+    this.cameras.main.setBounds(0, 0, layer.width, layer.height);		    
+    
+    //*************first way of randomly generating trees don't delete for now**************
+    // for loop to randomly generate trees around the map
+    for (let i = 0; i < arrLength; i++) {
+        var randX = Math.floor(Math.random() * 800);
+        var randY = Math.floor(Math.random() * 600);
         
-         //   for (let i = 0; i < tileset.size(); i++) {
-           //     tree.add.image(xValues[i], yValues[i], 'tree1')
-        //    }
-	     
-		//*************first way of randomly generating trees don't delete for now**************
-	        //For loop to randomly generate trees around the map
-	       for (let i = 0; i < arrLength; i++) {
-
-	            var randX = Math.floor(Math.random() * 800);
-	            var randY = Math.floor(Math.random() * 600);
-
-	          //  tree = this.add.image(randX, randY, 'tree1').setInteractive();
-
-	            treeArr[i] = tree;
-
-	        }
-        	/**
-              
-                tree.on("pointerdown", saveTree);
-                tree.on("pointerdown", extinguishFire);
-	            treeArr[i] = tree;
-	            treeArr[i].setInteractive();
-	            var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
-        		 if(randValue = 1){
-		    		 hasFire = true;
-		    	  }
-	        }
-	        for(i = 0; i < arrLength; i++){
-    		var randValue = Math.floor(Math.random() * (5 - 1)) + 1;
-    		
-    		if(randValue > 3){
-    		 this.tree = this.add.image(treeArr[i].x, treeArr[i].y, 'fire'); 
-    		}	
-    	}
-        */	
-        	
-            var bounds = new Phaser.Geom.Rectangle(0, 0, 800, 600);
-		   	var containers = [];
+        // Push the tree coordinates to the array
+        treeArr.push({
+            x: randX,
+            y: randY
+        });
+    }
+        
+    sortTrees(treeArr[0], treeArr[i]);
+                
+    var bounds = new Phaser.Geom.Rectangle(0, 0, 800, 600);
+    var containers = [];
 		
 		    var container = this.add.container(0, 0).setName('Container1');
 		
@@ -125,8 +95,7 @@
 		
 		    var containerNum = 1;
 
-	    for (var i = 0; i < 128; i++)
-	    {
+	    for (var i = 0; i < 128; i++) {
 	        var x = Phaser.Math.Between(bounds.left, bounds.right);
 	        var y = Phaser.Math.Between(bounds.top, bounds.bottom);
 			
@@ -213,6 +182,10 @@ function startGame() {
 	  //*******************deletes all trees that were generated using the first way, don't delete***********
 	  //	destroySprite(treeArr[i]); 	
 	  }
+}
+
+function sortTrees(a, b) {
+    treeArr.sort((a, b) => (a.y > b.y) ? 1 : -1);
 }
 
 //changes color of start button on hover
