@@ -41,13 +41,24 @@
         this.load.image('logo', '../assets/splash/title-text.png');
         this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
         this.load.image('tiles', 'assets/sprites/grassTile2.png');
-        this.load.image('fire', 'assets/sprites/flame2.png');
+		this.load.image('fire', 'assets/sprites/flame2.png');
+		this.load.spritesheet("fireAnim", "assets/sprites/fireAnimation64.png", 
+			{frameWidth: 64, frameHeight: 64, endFrame: 24});
         this.load.image('startBtn', '../assets/sprites/startBtn.png');
 
     }
 
     //Creation function
     function create () {
+
+	//config for fireAnime
+	var configFire = {
+		key: "burn",
+		frames: this.anims.generateFrameNumbers("fireAnim",
+		{start:0, end:23, first:23}),
+		frameRate: 12,
+		repeat: -1,
+	}
 
 	//x and y coordinates stored in arrays
         var xValues = [];
@@ -123,7 +134,9 @@
 		
 		    window['Container1'] = container;
 		
-		    var containerNum = 1;
+			var containerNum = 1;
+			
+			this.anims.create(configFire);
 
 	    for (var i = 0; i < 128; i++)
 	    {
@@ -132,7 +145,8 @@
 			
 	        var tree = this.add.sprite(x, y, 'tree1').setName('Sprite' + i);
 	        
-	        fire = this.add.sprite(x, y, 'fire');
+			fire = this.add.sprite(x, y, 'fireAnim');
+			fire.anims.play("burn");
 	        window['Sprite' + i] = tree;
 			tree.setDepth(600 - y);
 
