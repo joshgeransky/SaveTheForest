@@ -10,8 +10,12 @@
 	        preload: preload,
 	        create: create,
 	        update: update,
+	        
 	        extend: {
 	            minimap: null
+	        },
+	        audio: {
+	        displayWebAudio: true
 	        }
 	       }
 	    };
@@ -33,10 +37,54 @@
     var scoreTitle = "Score: ";
     var playerScore = 0;
     var start = false;
+    var fireCounter = 0;
+    
+    //title screen music
+    var titleMusic;
+    
+    //gameplay music
+    var gameMusic;
+    
+    //water effect when dousing fire
+    var waterSound;
+    
+    var fireSound;
 
-
+	//configuration for audio
+	var config = {
+	mute: false,
+    volume: 0.5,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: 0
+	}
+	
+	
+	var fireConfig = {
+	mute: false,
+    volume: 1,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: 0
+	}
+	
+	var waterConfig = {
+	mute: false,
+    volume: 1,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: false,
+    delay: 0
+	}
+	
     //Preloading function
     function preload () {
+   		 //images, sprites
         this.load.image('background', '../assets/splash/800x600-grass-background.png');
         this.load.image('logo', '../assets/splash/title-text.png');
         this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
@@ -45,7 +93,13 @@
 		this.load.spritesheet("fireAnim", "assets/sprites/fireAnimation64.png", 
 			{frameWidth: 64, frameHeight: 64, endFrame: 24});
         this.load.image('startBtn', '../assets/sprites/startBtn.png');
-
+        
+        //audio
+        this.load.audio('bg', ['assets/sounds/Title_Screen_1.mp3']);
+        this.load.audio('water', ['assets/sounds/water_editted.mp3']);
+        this.load.audio('fire', ['assets/sounds/fire.mp3']);
+        this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);
+       
     }
 
     //Creation function
@@ -60,10 +114,16 @@
 		repeat: -1,
 	}
 
+	titleMusic = this.sound.add('bg', config);
+	titleMusic.play(config);
+	gameMusic = this.sound.add('game', config);
+	fireSound = this.sound.add('fire', fireConfig);
+	waterSound = this.sound.add('water', waterConfig);
+
+
 	//x and y coordinates stored in arrays
         var xValues = [];
         var yValues = [];
-        
         
 
         //Add tiled background
@@ -146,6 +206,8 @@
 	        var tree = this.add.sprite(x, y, 'tree1').setName('Sprite' + i);
 	        
 			fire = this.add.sprite(x, y, 'fireAnim');
+			fireCounter++;
+			console.log(fireCounter + " is the number of fires");
 			fire.anims.play("burn");
 	        window['Sprite' + i] = tree;
 			tree.setDepth(600 - y);
@@ -160,8 +222,8 @@
 	            if (containerNum > 1)
 	            {
 	                var p = Phaser.Utils.Array.GetRandom(containers).add(container);
-	                console.log(container.name, 'child of', p.name);
-	                console.log(600 - y)
+	             //   console.log(container.name, 'child of', p.name);
+	              //  console.log(600 - y)
 	            }
 	
 	            containers.push(container);
@@ -194,12 +256,17 @@
       
        }
    
-    //set fires to trees randomly
+    //after the start button is clicked
     function update () {
     if(start) { //only remove fires when the game has officially started
+  	titleMusic.play(config);
+  
 		this.input.on('gameobjectdown', function(pointer, fire){
-
+		waterSound.play(waterConfig);
+	
         fire.setVisible(false);
+   
+        	
     	});
     	}
     }
@@ -221,7 +288,11 @@ function startGame() {
    subText.visible = false;
    startBtn.visible = false;
    start = true;
-	  
+   titleMusic.stop();
+   gameMusic.play();
+
+   	fireSound.play(fireConfig);
+	
 	  //Removing all trees and planting new ones to "start game"
 	  for (let i = 0; i < arrLength; i++){
 	  //*******************deletes all trees that were generated using the first way, don't delete***********
