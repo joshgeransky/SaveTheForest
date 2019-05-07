@@ -39,18 +39,19 @@ function preload () {
         this.load.image('logo', '../assets/splash/title-text.png');
         this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
         this.load.image('tiles', 'assets/sprites/grassTile2.png');
-		this.load.image('fire', 'assets/sprites/flame2.png');
-		this.load.spritesheet("fireAnim", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11});
+        this.load.image('fire', 'assets/sprites/flame2.png');
+        this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11});
+        this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24});
         this.load.image('startBtn', '../assets/sprites/startBtn.png');
 }
 
 // Creation function
 function create () {
 
-	// config for fireAnime
-	var configFire = {
+	// config for fireAnim1
+	var configFire1 = {
 		key: "burn",
-        frames: this.anims.generateFrameNumbers("fireAnim", 
+        frames: this.anims.generateFrameNumbers("fireAnim1", 
         {
             start : 0,
             end : 12,
@@ -58,7 +59,7 @@ function create () {
         }),
 		frameRate: 12,
 		repeat: -1,
-	}
+    }
 
 	// x and y coordinates stored in arrays
     var xValues = [];
@@ -90,7 +91,7 @@ function create () {
     window['Container1'] = container;
 		
     var containerNum = 1;
-    this.anims.create(configFire);
+    this.anims.create(configFire1);
     
     // Arrange the trees by y values
     arrangeTrees(bounds);
@@ -114,7 +115,7 @@ function create () {
     
     // Create fires on all trees, for testing purposes
     for (let i = 0; i < treeArr.length; i++) {
-        fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim');
+        fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1');
         fire.anims.play("burn");
         window['Sprite' + i] = tree;	        
         fire.setInteractive();
