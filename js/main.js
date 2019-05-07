@@ -41,7 +41,7 @@ function preload () {
         this.load.image('tiles', 'assets/sprites/grassTile2.png');
         this.load.image('fire', 'assets/sprites/flame2.png');
         this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11});
-        this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24});
+        this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 23});
         this.load.image('startBtn', '../assets/sprites/startBtn.png');
 }
 
@@ -104,7 +104,10 @@ function create () {
     window['Container1'] = container;
 		
     var containerNum = 1;
+
+    // Creating the fire animations
     this.anims.create(configFire1);
+    this.anims.create(configFire2);
     
     // Arrange the trees by y values
     arrangeTrees(bounds);
@@ -128,8 +131,12 @@ function create () {
     
     // Create fires on all trees, for testing purposes
     for (let i = 0; i < treeArr.length; i++) {
-        fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1');
-        fire.anims.play("burn1");
+        var fireType = Math.floor(Math.random() * 2);
+        console.log(fireType);
+        // fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1');
+        // fire.anims.play("burn1");
+        fire = this.add.sprite(treeArr[i].x, treeArr[i].y, "fireAnim2");
+        fire.anims.play("burn2");
         window['Sprite' + i] = tree;        
         fire.setInteractive();
     }
