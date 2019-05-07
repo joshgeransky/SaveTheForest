@@ -1,18 +1,21 @@
 # Save the Forest
-Team 19's project for COMP2930 at BCIT.
+<i>Team 19's project for COMP2930 at BCIT.</i>
 
-Created by:
-            Joshua
-            Justin
-            Debby
-            Sasha
-            Edmond
+<b>Created by:</b>
 
+<ul>
+            <li>Joshua</li>
+            <li>Justin</li>
+            <li>Debby</li>
+            <li>Sasha</li>
+            <li>Edmond</li>
+</ul>
 
-Resources used:
-                phaser.io
-                Visual Studio Code
-                Brackets
+<b>Resources used:</b>
+<ul>
+                <li>phaser.io<li>
+                <li>Visual Studio Code<li>
+                <li>Brackets<li>
+</ul>
 
-
-© 2019 Team 19, All Rights Reserved.
+<i>© 2019 Team 19, All Rights Reserved.</i>
