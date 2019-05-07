@@ -133,10 +133,13 @@ function create () {
     for (let i = 0; i < treeArr.length; i++) {
         var fireType = Math.floor(Math.random() * 2);
         console.log(fireType);
-        // fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1');
-        // fire.anims.play("burn1");
-        fire = this.add.sprite(treeArr[i].x, treeArr[i].y, "fireAnim2");
-        fire.anims.play("burn2");
+        if (fireType === 0) {
+            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1');
+            fire.anims.play("burn1");
+        } else {
+            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, "fireAnim2");
+            fire.anims.play("burn2");
+        }
         window['Sprite' + i] = tree;        
         fire.setInteractive();
     }
