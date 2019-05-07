@@ -40,7 +40,7 @@ function preload () {
         this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
         this.load.image('tiles', 'assets/sprites/grassTile2.png');
 		this.load.image('fire', 'assets/sprites/flame2.png');
-		this.load.spritesheet("fireAnim", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24});
+		this.load.spritesheet("fireAnim", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11});
         this.load.image('startBtn', '../assets/sprites/startBtn.png');
 }
 
@@ -50,10 +50,11 @@ function create () {
 	// config for fireAnime
 	var configFire = {
 		key: "burn",
-		frames: this.anims.generateFrameNumbers("fireAnim", {
+        frames: this.anims.generateFrameNumbers("fireAnim", 
+        {
             start : 0,
-            end : 23,
-            first : 23
+            end : 12,
+            first : 12
         }),
 		frameRate: 12,
 		repeat: -1,
