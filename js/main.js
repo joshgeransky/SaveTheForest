@@ -50,7 +50,7 @@ function create () {
 
 	// config for fireAnim1
 	var configFire1 = {
-		key: "burn",
+		key: "burn1",
         frames: this.anims.generateFrameNumbers("fireAnim1", 
         {
             start : 0,
@@ -58,7 +58,20 @@ function create () {
             first : 12
         }),
 		frameRate: 12,
-		repeat: -1,
+		repeat: -1
+    }
+
+    //config for fireAnim2
+    var configFire2 = {
+        key: "burn2",
+        frames: this.anims.generateFrameNumbers("fireAnim2",
+        {
+            start: 0,
+            end: 24,
+            first: 24
+        }),
+        frameRate: 12,
+        repeat: -1
     }
 
 	// x and y coordinates stored in arrays
@@ -116,8 +129,8 @@ function create () {
     // Create fires on all trees, for testing purposes
     for (let i = 0; i < treeArr.length; i++) {
         fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1');
-        fire.anims.play("burn");
-        window['Sprite' + i] = tree;	        
+        fire.anims.play("burn1");
+        window['Sprite' + i] = tree;        
         fire.setInteractive();
     }
     
