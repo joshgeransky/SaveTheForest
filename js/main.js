@@ -41,12 +41,39 @@ var stageDelay = 5000;
 function preload () {
     this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
     this.load.image('tiles', 'assets/sprites/grassTile2.png');
-	this.load.spritesheet("fireAnim", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24});
+	this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24});
     this.load.image('startBtn', '../assets/sprites/startBtn.png');
+    this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11});
+
 }
 
 // Creation function
 function create () {
+    
+    // Configure the first fire animation
+    var configFire1 = {
+        key: "burn1",
+        frames: this.anims.generateFrameNumbers("fireAnim1", {
+            start : 0,
+            end : 12,
+            first : 12
+        }),
+        frameRate: 12,
+        repeat: -1,
+    }
+    
+    // Configure the second fire animation
+    var configFire2 = {
+        key: 'burn2',
+        frames: this.anims.generateFrameNumbers('fireAnim2', {
+            start: 0,
+            end: 24,
+            first: 24
+        }),
+        frameRate: 12,
+        repeat: -1
+    }
+    
 
 	// x and y coordinates stored in arrays
     var xValues = [];
@@ -76,15 +103,19 @@ function create () {
     this.cameras.main.setBounds(0, 0, layer.width, layer.height);		    
                 
     // Create the boundaries of the game
-    var bounds = new Phaser.Geom.Rectangle(0, 0, 800, 600);
+    var bounds = new Phaser.Geom.Rectangle(20, 20, 780, 560);
     
     // Creating container variables
     var treeContainer = this.add.container(0, 0).setName('treeContainer');
     window['Container1'] = treeContainer;
     var containerNum = 1;
     
-    // Configure the fire animation
-    this.anims.create(configFireAnim(this));
+
+    // Configure the first fire animation
+    this.anims.create(configFire1);
+    
+    //Configure the second fire animation
+    this.anims.create(configFire2);
     
     // Get the x and y values for the trees
     arrangeTrees(bounds);
@@ -111,19 +142,43 @@ function create () {
     // For loop to repeat for each tree
     for (let i = 0; i < treeArr.length; i++) {
         
-        // Makes fires on each tree
-        fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Sprite' + i);
+        // Generate either 1 or 2 to choose the fire type
+        var fireType = Math.floor(Math.random() * 2);
         
-        // Animate the fires
-        fire.anims.play("burn");
+        // If the first fire type, add it
+        if (fireType == 0) {
         
-        // Set the fires to be clickable
+            // Makes fire on the tree
+            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Sprite' + i);
+        
+            // Animate the fire
+            fire.anims.play("burn1");
+            
+        // If the second fire type, add it
+        } else if (fireType == 1) {
+            
+            // Makes fire on the tree
+            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Sprite' + i);
+            
+            // Animate the fire
+            fire.anims.play("burn2");
+            
+        // Otherwise, in case of a weird number, add the first one
+        } else {
+            // Makes fire on the tree
+            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Sprite' + i);
+        
+            // Animate the fire
+            fire.anims.play("burn1");
+        }
+        
+        // Set the fire to be clickable
         fire.setInteractive();
         
-        // Set the fires to be invisibile (they will be visible when they spawn later)
+        // Set the fire to be invisibile (it will be visible when it spawns later)
         fire.visible = false;
         
-        // Push the fire to the fire array
+        // Push the new fire to the fire array
         fireArr.push(fire);
     }
     
@@ -178,6 +233,7 @@ function update () {
             extinguishFire(fire);
         });
         
+        // Check what stage the user is at
         detStage();
         
         // Delay and then make the fire
@@ -239,6 +295,7 @@ function delayFires() {
 // Determine the rate the fires will spawn
 function detStage() {
     
+    // If less than 10 fires, first stage, etc.
     if (fireCount >= 0 && fireCount <= 10) {
         stageDelay = 5000;
     
@@ -248,7 +305,7 @@ function detStage() {
     } else if (fireCount > 20 && fireCount <= 30) {
         stageDelay = 2000;
     
-    } else if (fireCount > 30 && fireCount <= 40) {
+    } else if (fireCount > 30) {
         stageDelay = 1000;
     } else {
         stageDelay = 5000;
@@ -256,25 +313,7 @@ function detStage() {
     
 }
 
-// Function to configure fire animations
-function configFireAnim(t) {
-
-    // Create variable with animation configuration
-	var configFire = {
-		key: "burn",
-		frames: t.anims.generateFrameNumbers("fireAnim", {
-            start : 0,
-            end : 23,
-            first : 23
-        }),
-		frameRate: 12,
-		repeat: -1,
-	}
-    
-    // Return the configuration for the fire
-    return configFire;
-}
-
+// Save tree function, unused atm
 function saveTree(){
   playerScore++;
   scoreCounter.setText(scoreTitle + playerScore);
