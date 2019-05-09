@@ -105,7 +105,15 @@ function create () {
     objectLayer.setScale(2);
     
     groundLayer.fill(23, 0, 0, map.width);
-    objectLayer.fill(27, 0, 0, map.width);
+    objectLayer.fill(27, 1, 1, map.width);
+    randomObjLayer();
+
+    function randomObjLayer() {
+        objectLayer.weightedRandomize(1, 1, map.width - 2, map.height - 2, [
+            {index: 23, weight: 2},
+            {index: 27, weight: 1}
+        ]);
+    }
 
     // Set the camera location
     this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);    
