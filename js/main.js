@@ -28,7 +28,8 @@ var scoreCounter;
 var scoreTitle = "Score: ";
 var playerScore = 0;
 var start = false;
-var treeArr = [];
+var treeArr = []; // holds x and y values of trees
+var allTrees = []; // holds the trees themselves, as well as burnt trees
 var fireCount = 0;
 var treeContains = [];
 var fire;
@@ -39,11 +40,12 @@ var stageDelay = 5000;
 
 // Preloading function
 function preload () {
-    this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
-    this.load.image('tiles', 'assets/sprites/grassTile2.png');
-	this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24});
-    this.load.image('startBtn', '../assets/sprites/startBtn.png');
-    this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11});
+    this.load.image('tree1', '../assets/sprites/tree1(64x64).png'); // Regular tree
+    this.load.image('burntTree', '../assets/sprites/burntTree(64x64).png'); // Burnt tree
+    this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
+	this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24}); // first fire
+    this.load.image('startBtn', '../assets/sprites/startBtn.png'); // start button
+    this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11}); // second fire
 
 }
 
@@ -124,6 +126,9 @@ function create () {
     for (let i = 0; i < 200; i++) {
         // Create a tree and add it to the window
         var tree = this.add.sprite(treeArr[i].x, treeArr[i].y, 'tree1').setName('Sprite' + i);	
+        var burntTree = this.add.sprite(treeArr[i].x, treeArr[i].y, 'burntTree').setName('Burnt' + i);
+        
+        burntTree.visible = false;
         
         // Creating containers for each individual tree
         // (May be unnecessary but it's working for now so I won't remove it)
@@ -134,13 +139,8 @@ function create () {
 	       containerNum++;
         }
         
-        // Add the tree to the containers array
-        treeContains.push(tree);
-    }
-    
-    
-    // For loop to repeat for each tree
-    for (let i = 0; i < treeArr.length; i++) {
+        // Add the tree to the containers array (will likely be removed eventually)
+        treeContains.push(tree);    
         
         // Generate either 1 or 2 to choose the fire type
         var fireType = Math.floor(Math.random() * 2);
@@ -149,7 +149,7 @@ function create () {
         if (fireType == 0) {
         
             // Makes fire on the tree
-            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Sprite' + i);
+            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
         
             // Animate the fire
             fire.anims.play("burn1");
@@ -158,7 +158,7 @@ function create () {
         } else if (fireType == 1) {
             
             // Makes fire on the tree
-            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Sprite' + i);
+            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
             
             // Animate the fire
             fire.anims.play("burn2");
@@ -166,7 +166,7 @@ function create () {
         // Otherwise, in case of a weird number, add the first one
         } else {
             // Makes fire on the tree
-            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Sprite' + i);
+            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
         
             // Animate the fire
             fire.anims.play("burn1");
@@ -180,6 +180,16 @@ function create () {
         
         // Push the new fire to the fire array
         fireArr.push(fire);
+        
+        
+        // Add the tree, burnt tree, fire and x/y values to the array
+        allTrees.push({
+            tree: tree,
+            burnt: burntTree,
+            fire: fire,
+            x: treeArr[i].x,
+            y: treeArr[i].y
+        });
     }
     
     // Create title text
@@ -240,7 +250,7 @@ function update () {
         this.time.addEvent({
             delay: stageDelay,
             callback: ()=>{
-                startFires()
+                startFires(this) // Send 'this' over so not everything has to be done in this function
             },
             loop: false // Do not loop, the update function loops by itself
         });
@@ -248,7 +258,8 @@ function update () {
 }
 
 // Start making fires
-function startFires() {
+// th = 'this'
+function startFires(th) {
     
     // If a fire is not currently being made
     if (!fireMaking) {
@@ -258,20 +269,26 @@ function startFires() {
         fireMaking = true;
     
         // Grab a fire, any fire.
-        var f = Phaser.Utils.Array.GetRandom(fireArr);
+        var t = Phaser.Utils.Array.GetRandom(allTrees);
         
-        // For loop to search through the entire litFire array.
+        // Get the fire at the randomly chosen index
+        var f = t.fire;
+        
+        // For loop to search through the entire liteFire array.
         // If a matching fire is found that means it's already been lit, and it will find another fire.
         for (let i = 0; i < litFires.length; i++) {
             // While loop to avoid the remote possibility of the grabbing the same fire again.
             while (f == litFires[i]) {
                 // Get a new random fire from the fire array.
-                f = Phaser.Utils.Array.GetRandom(fireArr);
+                f = Phaser.Utils.Array.GetRandom(allTrees.fire);
             }
         }
     
         // Make the fire visible for the user, and thus clickable.   
         f.visible = true;
+        
+        // Bring the fire to the top of the window
+        th.children.bringToTop(f);
     
         //Push the fire to the lit fires array.
         litFires.push(f);
@@ -279,9 +296,14 @@ function startFires() {
         // Increase the count of total fires (includes past removed fires).
         fireCount++;
     
-        console.log(fireCount);
+        // Print the fire count to console (for testing purposes)
+        console.log('FireCount ' + fireCount);
         
+        // Determine how long until the next fire should pop up
         detStage();
+                
+        // Activate function to replace the tree with a burnt tree after a set amount of time
+        burnDelay(t, f, th);
     
         // After delay time, allow the update function to make another fire.
         setTimeout(delayFires, stageDelay);
@@ -305,8 +327,12 @@ function detStage() {
     } else if (fireCount > 20 && fireCount <= 30) {
         stageDelay = 2000;
     
-    } else if (fireCount > 30) {
+    } else if (fireCount > 30 && fireCount <= 40) {
         stageDelay = 1000;
+        
+    } else if (fireCount > 40) {
+        stageDelay = 500;
+        
     } else {
         stageDelay = 5000;
     }
@@ -325,17 +351,55 @@ function sortTrees() {
 }
 
 // Extinguishes the fire
+// f = the fire
 function extinguishFire(f) {
     
+    // Set the fire to invisible
     f.visible = false;
    
+    // For loop to remove the fire from the litFires array
     for (let i = 0; i < litFires.length; i++) {
         if (this == litFires[i]) {
             litFires.splice(i, 1);
         }
-    }
+    }    
+}
+
+// Function to delay the burning of a tree
+// t = specific index at a tree array
+// f = the fire from that index
+// th = 'this'
+function burnDelay(t, f, th) {
     
-    //destroySprite(f); --- Removed for now so the sprites still exist, just invisible
+    // Delay and then burn the tree
+    th.time.addEvent({
+        delay: 5000,
+        callback: ()=>{
+            burnTree(t, f)
+        },
+        loop: false // Do not loop, once it's burned once it's done
+    });
+}
+
+// Function to burn down a tree
+function burnTree(t, f) {
+    
+    // Get the actual tree
+    var tree = t.tree;
+    
+    // Get the currently invisible burnt tree
+    var burnt = t.burnt;
+    
+    // If the fire hasn't been clicked
+    if (f.visible == true) {
+        
+        // Make the actual tree invisible
+        tree.visible = false;
+        
+        // Make the burnt tree visible
+        burnt.visible = true;
+        
+    }
 }
 
 // Removes all titles, start button, trees when start button is clicked    
