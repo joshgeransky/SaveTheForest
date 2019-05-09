@@ -100,9 +100,12 @@ function create () {
     var map = this.make.tilemap({ data: level, tileWidth: 16, tileHeight: 16});
     var tileset = map.addTilesetImage('tilesDynamic');
     var groundLayer = map.createBlankDynamicLayer("Ground Layer", tileset);
-    groundLayer.setScale(1);
+    var objectLayer = map.createBlankDynamicLayer("Object Laber", tileset);
+    groundLayer.setScale(2);
+    objectLayer.setScale(2);
     
-    groundLayer.fill(23);
+    groundLayer.fill(23, 0, 0, map.width);
+    objectLayer.fill(27, 0, 0, map.width);
 
     // Set the camera location
     this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);    
