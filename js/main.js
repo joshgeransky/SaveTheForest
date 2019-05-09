@@ -41,6 +41,7 @@ var stageDelay = 5000;
 function preload () {
     this.load.image('tree1', '../assets/sprites/tree1(64x64).png');
     this.load.image('tiles', 'assets/sprites/grassTile2.png');
+    this.load.image("tilesDynamic", "assets/sprites/RPGTileset.png");
 	this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24});
     this.load.image('startBtn', '../assets/sprites/startBtn.png');
     this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11});
@@ -55,8 +56,8 @@ function create () {
         key: "burn1",
         frames: this.anims.generateFrameNumbers("fireAnim1", {
             start : 0,
-            end : 12,
-            first : 12
+            end : 23,
+            first : 23
         }),
         frameRate: 12,
         repeat: -1,
