@@ -56,8 +56,7 @@ var waterSound;
 var fireSound;
 
 //start button on click
-var start;
-	
+var startSound;
 	
 //configuration for audio
 var musicConfig = {
@@ -146,7 +145,7 @@ function create () {
 	gameMusic = this.sound.add('game', musicConfig);
 	fireSound = this.sound.add('fire', fireConfig);
 	waterSound = this.sound.add('water', waterConfig);
-	start = this.sound.add('startBtn', waterConfig);   
+	startSound = this.sound.add('startBtn', waterConfig);   
 
 	// x and y coordinates stored in arrays
     var xValues = [];
@@ -554,7 +553,7 @@ function startGame() {
    startBtn.visible = false;
    start = true;
    
-   // startBtn.play();
+   startSound.play(waterConfig);
    titleMusic.stop();
    gameMusic.play();
 }
