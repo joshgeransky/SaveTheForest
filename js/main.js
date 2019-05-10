@@ -4,6 +4,7 @@ var config = {
     width: 800,
     height: 600,
     parent: 'game',
+    pixelArt: true,
     scene: {
         preload: preload,
         create: create,
@@ -43,7 +44,7 @@ function preload () {
     this.load.image('tree1', '../assets/sprites/tree1(64x64).png'); // Regular tree
     this.load.image('burntTree', '../assets/sprites/burntTree(64x64).png'); // Burnt tree
     this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
-    this.load.image("tilesDynamic", "assets/sprites/RPGTileset.png");
+    this.load.image("tilesDynamic", "assets/sprites/jungleTileSet.png"); //Object layer tiles
 	this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24}); // first fire
     this.load.image('startBtn', '../assets/sprites/startBtn.png'); // start button
     this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11}); // second fire
@@ -102,24 +103,28 @@ function create () {
     //Initialize the background layer
     var groundLayer = map.createBlankDynamicLayer("Ground Layer", tileset);
     //Initialize the object layer
-    var objectLayer = map.createBlankDynamicLayer("Object Laber", tileset);
+    var objectLayer = map.createBlankDynamicLayer("Object Layer", tileset);
 
     //Scale up the tiles on both the background layer and object layer
-    groundLayer.setScale(4);
-    objectLayer.setScale(4);
+    groundLayer.setScale(2);
+    objectLayer.setScale(2);
     
-    //Fill the background layer and object layer with specific tile
+    //Fill the background layer and object layer with a specific tile from the tileset
     groundLayer.fill(23, 0, 0, map.width, map.height);
     objectLayer.fill(23, 0, 0, map.width, map.height);
 
-    //Call the random function on the object layer so that certain tiles will appear on random spots each time
+    //Call the random function on the object layer to randomize tiles
     randomObjLayer();
 
-    //Function that randomizes tiles on the object layer
+    /*Function that randomizes tiles on the object layer 
+    (Indiviudal tile weight / total weight) determines the frequency of the tile
+    */
     function randomObjLayer() {
-        objectLayer.weightedRandomize(1, 1, map.width - 3, map.height - 3, [
-            {index: 23, weight: 3},
-            {index: 27, weight: 1}
+        objectLayer.weightedRandomize(0, 0, map.width, map.height, [
+            {index: 30, weight: 12},
+            {index: 67, weight: 1},
+            {index: 70, weight: 1},
+            {index: 89, weight: 1}
         ]);
     }
 
