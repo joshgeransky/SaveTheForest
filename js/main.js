@@ -13,10 +13,18 @@ var config = {
         },
 		audio: {
 	        displayWebAudio: true
-	    }
+	    },
+		dom: {
+			createContainer: true
+		}
     }
 }
-
+/**
+		mode: Phaser.DOM.RESIZE,
+		height: '100%',
+		width: '100%',
+		parent: 'game'
+*/		
 // Game variables
 var game = new Phaser.Game(config);
 var width = 40;
@@ -41,6 +49,8 @@ var fireMaking = false; // boolean to check if already making a fire
 var litFires = []; // array of all lit fires
 var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
+//var htmlUser = document.querySelector('.userscore');
+//htmlUser.innerText = "hello";
 
 //title screen music
 var titleMusic;
@@ -54,9 +64,8 @@ var waterSound;
 //fire effect
 var fireSound;
 
-//start button on click
-var start;
-	
+//start button effect
+var startSound;
 	
 //configuration for audio
 var musicConfig = {
@@ -91,7 +100,18 @@ loop: false,
 delay: 0
 }
 
-
+	 var tconfig = {
+      x: 200,
+      y: 50,
+      text: 'Some text to play with on my canvas',
+      style: {
+        fontSize: '24px',
+        fontFamily: 'Arial',
+        color: '#ffffff',
+        align: 'center',
+        lineSpacing: 44,
+      }
+    };﻿
 
 // Preloading function
 function preload () {
@@ -107,13 +127,13 @@ function preload () {
 	this.load.audio('water', ['assets/sounds/Tree_Extinguish1.mp3']);
 	this.load.audio('fire', ['assets/sounds/fire.mp3']);
 	this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);   
-	this.load.audio('startBtn', ['assets/sounds/Start_1.mp3']);   
+	this.load.audio('start', ['assets/sounds/Start_1.mp3']);   
 	
 }
 
 // Creation function
 function create () {
-    
+     //this.input.touch.preventDefault = false;
     // Configure the first fire animation
     var configFire1 = {
         key: "burn1",
@@ -144,8 +164,15 @@ function create () {
 	gameMusic = this.sound.add('game', musicConfig);
 	fireSound = this.sound.add('fire', fireConfig);
 	waterSound = this.sound.add('water', waterConfig);
-	start = this.sound.add('startBtn', waterConfig);   
-
+	startSound = this.sound.add('start', waterConfig);   
+	
+	//create html element to input score
+	//var userScoreDiv = document.createElement('div');
+	//userScoreDiv.add.text(1, 0, "phaser 3");
+	
+    var text = this.make.text(tconfig);
+    text.setWordWrapWidth(100, false);
+	
 	// x and y coordinates stored in arrays
     var xValues = [];
     var yValues = [];
@@ -263,14 +290,15 @@ function create () {
         });
     }
     
+	
     // Create title text
     titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
         
     // Create subtext
     subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
 
-    // Create score counter, currently unused
-    //scoreCounter = this.add.text(10, 10, scoreString + score, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
+    // Create score counter
+    scoreCounter = this.add.text(10, 10, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
       
     // Create start buttons
     startBtn = this.add.sprite(420, 400, 'startBtn').setInteractive();
@@ -323,12 +351,17 @@ function update () {
             
             // Extinguish the fire
             extinguishFire(fire);
+			
+			saveTree();
+			
         });
         
         // When a burnt tree is clicked
         this.input.on('gameobjectdown', function(pointer, burnt) {
             // Extinguish the fire
             removeTree(this, burnt, clickedFire);
+			
+		
         });
         
         
@@ -434,9 +467,10 @@ function detStage() {
     
 }
 
-// Save tree function, unused atm
+// Save tree function, unused atm, used to keep track of score
 function saveTree(){
   playerScore++;
+  //console.log("Your score is: " + playerScore);
   scoreCounter.setText(scoreTitle + playerScore);
 }
 
@@ -451,7 +485,8 @@ function extinguishFire(f) {
     
     // Set the fire to invisible
     f.visible = false;
-	//TURN OFF FIRE NOISE
+	
+	//Turn off fire sounds
 	fireSoundBoolean = false;
 	fireSound.stop();
    
@@ -526,9 +561,9 @@ function startGame() {
    startBtn.visible = false;
    start = true;
    
-   // startBtn.play();
+   startSound.play(waterConfig);
    titleMusic.stop();
-   gameMusic.play();
+   gameMusic.play(musicConfig);
 }
 
 //changes color of start button on hover
@@ -547,3 +582,44 @@ function revertColor() {
 function destroySprite(sprite) {
 	sprite.destroy();
 }
+
+/**
+function resizeApp () {
+	// Width-height-ratio of game resolution
+    // Replace 360 with your game width, and replace 640 with your game height
+	let game_ratio		= 800 / 600;
+	
+	// Make div full height of browser and keep the ratio of game resolution
+	let div			= document.getElementById('phaser-app');
+	div.style.width		= (window.innerHeight * game_ratio) + 'px';
+	div.style.height	= window.innerHeight + 'px';
+	
+	// Check if device DPI messes up the width-height-ratio
+	let canvas			= document.getElementsByTagName('canvas')[0];
+	
+	let dpi_w	= parseInt(div.style.width) / canvas.width;
+	let dpi_h	= parseInt(div.style.height) / canvas.height;		
+	
+	let height	= window.innerHeight * (dpi_w / dpi_h);
+	let width	= height * game_ratio;
+	
+	// Scale canvas	
+	canvas.style.width	= width + 'px';
+	canvas.style.height	= height + 'px';
+}
+
+window.addEventListener('resize', resizeApp);
+*/
+
+//trying to get game to resize
+function resize(gameSize, baseSize, displaySize, resolution) {
+	
+	var width = gameSize.width;
+	var height = gameSize.height;
+	
+	this.cameras.resize(width, height);
+	
+	this.bg.setSize(width, height);
+	this.logo.setPosition(width / 2, height / 2);	
+}
+
