@@ -1,6 +1,12 @@
 /* Import Google fonts */
 @import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 
+/*Style the body of the learn page*/
+#bodyLearn {
+    color: white;
+    background-color: #262626;
+}
+
 /* Style the content of the learn page */
 .learn-content {
     text-align: center;
