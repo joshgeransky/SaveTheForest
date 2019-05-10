@@ -38,3 +38,22 @@
     border-radius: 20px;
     
 }
+
+/* Style for the container that holds the carousel */
+#carouselFireFacts {
+    margin-top: 10pt;
+}
+
+.carousel-inner {
+    height: 70vh;
+  }
+  
+.carousel-item {
+    height: 70vh;
+  }
+  
+.carousel-item img {
+    object-fit: cover;
+    max-height: 100%;
+  }
+
