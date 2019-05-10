@@ -48,13 +48,22 @@
 .carousel-inner {
     height: 70vh;
   }
-  
-.carousel-item {
-    height: 70vh;
-  }
-  
-.carousel-item img {
-    object-fit: cover;
-    max-height: 100%;
+
+  .carousel-item {
+      height: 70vh;
   }
 
+  #carouselImage1 {
+      background-image: url("../../assets/images/wildfire1.jpg");
+      background-size: cover;
+  }
+
+  #carouselImage2 {
+      background-image: url("../../assets/images/wildfire2.jpg");
+      background-size: cover;
+  }
+
+  #carouselImage3 {
+      background-image: url("../../assets/images/wildfire1.jpg");
+      background-size: cover;
+  }

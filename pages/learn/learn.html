@@ -23,15 +23,17 @@
 
         <!-- Carousel for images -->
         <div id="carouselFireFacts" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselFireFacts" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselFireFacts" data-slide-to="1"></li>
+                <li data-target="#carouselFireFacts" data-slide-to="2"></li>
+            </ol>
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                  <img src="../../assets/images/wildfire1.jpg" class="d-block w-100" alt="Fire1">
+              <div class="carousel-item active" id="carouselImage1">
               </div>
-              <div class="carousel-item">
-                <img src="../../assets/images/wildfire2.jpg" class="d-block w-100" alt="Fire2">
+              <div class="carousel-item" id="carouselImage2">
               </div>
-              <div class="carousel-item">
-                <img src="../../assets/images/wildfire1.jpg" class="d-block w-100" alt="Fire3">
+              <div class="carousel-item" id="carouselImage3">
               </div>
             </div>
             <!-- Controls for the carousel -->
