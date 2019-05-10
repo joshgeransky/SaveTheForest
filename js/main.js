@@ -10,7 +10,10 @@ var config = {
         update: update,
         extend: {
 	       minimap: null
-        }
+        },
+		audio: {
+	        displayWebAudio: true
+	    }
     }
 }
 
@@ -30,12 +33,64 @@ var playerScore = 0;
 var start = false;
 var treeArr = []; // holds x and y values of trees
 var allTrees = []; // holds the trees themselves, as well as burnt trees
+
 var fireCount = 0; // total count of fires (including removed ones)
 var treeContains = []; // probably should be removed at some point
 var fire; // holds a fire
 var fireMaking = false; // boolean to check if already making a fire
 var litFires = []; // array of all lit fires
 var stageDelay = 5000; // delay between fires
+var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
+
+//title screen music
+var titleMusic;
+    
+//gameplay music
+var gameMusic;
+    
+//water effect when dousing fire
+var waterSound;
+    
+//fire effect
+var fireSound;
+
+//start button on click
+var start;
+	
+	
+//configuration for audio
+var musicConfig = {
+mute: false,
+volume: 0.5,
+rate: 1,
+detune: 0,
+seek: 0,
+loop: true,
+delay: 0
+}
+
+//configuration for fire effect
+var fireConfig = {
+mute: false,
+volume: 1,
+rate: 1,
+detune: 0,
+seek: 0,
+loop: true,
+delay: 0
+}
+
+//configuration for extinguishing water
+var waterConfig = {
+mute: false,
+volume: 0.5,
+rate: 1,
+detune: 0,
+seek: 0,
+loop: false,
+delay: 0
+}
+
 
 
 // Preloading function
@@ -47,6 +102,13 @@ function preload () {
     this.load.image('startBtn', '../assets/sprites/startBtn.png'); // start button
     this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11}); // second fire
 
+	//audio
+	this.load.audio('bg', ['assets/sounds/Title_Screen_1.mp3']);
+	this.load.audio('water', ['assets/sounds/Tree_Extinguish1.mp3']);
+	this.load.audio('fire', ['assets/sounds/fire.mp3']);
+	this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);   
+	this.load.audio('startBtn', ['assets/sounds/Start_1.mp3']);   
+	
 }
 
 // Creation function
@@ -75,7 +137,14 @@ function create () {
         frameRate: 12,
         repeat: -1
     }
-    
+   
+	//music
+	titleMusic = this.sound.add('bg', musicConfig);
+	titleMusic.play(musicConfig);
+	gameMusic = this.sound.add('game', musicConfig);
+	fireSound = this.sound.add('fire', fireConfig);
+	waterSound = this.sound.add('water', waterConfig);
+	start = this.sound.add('startBtn', waterConfig);   
 
 	// x and y coordinates stored in arrays
     var xValues = [];
@@ -244,7 +313,11 @@ function update () {
     if (start) {
         // When a fire is clicked
         this.input.on('gameobjectdown', function(pointer, fire) {
-            
+
+			
+			//play extinguish fire sound
+			waterSound.play(waterConfig);
+			 
             // Set the clickedFire variable
             clickedFire = fire;
             
@@ -305,7 +378,13 @@ function startFires(th, spread, fi) {
     
         // Make the fire visible for the user, and thus clickable.   
         f.visible = true;
-        
+		
+		//Start fire sound only once
+		if(fireSoundBoolean == false) {
+		 fireSound.play(fireConfig);
+		 fireSoundBoolean = true;
+        }
+		
         // Bring the fire to the top of the window
         th.children.bringToTop(f);
     
@@ -402,6 +481,9 @@ function extinguishFire(f) {
     
     // Set the fire to invisible
     f.visible = false;
+	//TURN OFF FIRE NOISE
+	fireSoundBoolean = false;
+	fireSound.stop();
    
     // For loop to remove the fire from the litFires array
     for (let i = 0; i < litFires.length; i++) {
@@ -517,6 +599,10 @@ function startGame() {
    subText.visible = false;
    startBtn.visible = false;
    start = true;
+   
+   // startBtn.play();
+   titleMusic.stop();
+   gameMusic.play();
 }
 
 //changes color of start button on hover
