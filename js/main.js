@@ -33,63 +33,64 @@ var playerScore = 0;
 var start = false;
 var treeArr = []; // holds x and y values of trees
 var allTrees = []; // holds the trees themselves, as well as burnt trees
-var fireCount = 0;
-var treeContains = [];
-var fire;
-var fireMaking = false;
-var litFires = [];
-var stageDelay = 5000;
-var fireSoundBoolean = false;
 
- 
-    //title screen music
-    var titleMusic;
-    
-    //gameplay music
-    var gameMusic;
-    
-    //water effect when dousing fire
-    var waterSound;
-    
-    //fire effect
-    var fireSound;
+var fireCount = 0; // total count of fires (including removed ones)
+var treeContains = []; // probably should be removed at some point
+var fire; // holds a fire
+var fireMaking = false; // boolean to check if already making a fire
+var litFires = []; // array of all lit fires
+var stageDelay = 5000; // delay between fires
+var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
 
-	//start button on click
-	var start;
+//title screen music
+var titleMusic;
+    
+//gameplay music
+var gameMusic;
+    
+//water effect when dousing fire
+var waterSound;
+    
+//fire effect
+var fireSound;
+
+//start button on click
+var start;
 	
 	
-	//configuration for audio
-	var musicConfig = {
-	mute: false,
-    volume: 0.5,
-    rate: 1,
-    detune: 0,
-    seek: 0,
-    loop: true,
-    delay: 0
-	}
-	
-	//configuration for fire effect
-	var fireConfig = {
-	mute: false,
-    volume: 1,
-    rate: 1,
-    detune: 0,
-    seek: 0,
-    loop: true,
-    delay: 0
-	}
-	
-	//configuration for extinguishing water
-	var waterConfig = {
-	mute: false,
-    volume: 1,
-    rate: 1,
-    detune: 0,
-    seek: 0,
-    loop: false,
-    delay: 0
-	}
+//configuration for audio
+var musicConfig = {
+mute: false,
+volume: 0.5,
+rate: 1,
+detune: 0,
+seek: 0,
+loop: true,
+delay: 0
+}
+
+//configuration for fire effect
+var fireConfig = {
+mute: false,
+volume: 1,
+rate: 1,
+detune: 0,
+seek: 0,
+loop: true,
+delay: 0
+}
+
+//configuration for extinguishing water
+var waterConfig = {
+mute: false,
+volume: 0.5,
+rate: 1,
+detune: 0,
+seek: 0,
+loop: false,
+delay: 0
+}
+
 
 
 // Preloading function
@@ -198,6 +199,8 @@ function create () {
         
         burntTree.visible = false;
         
+        burntTree.setInteractive();
+        
         // Creating containers for each individual tree
         // (May be unnecessary but it's working for now so I won't remove it)
         if (i > 0 && i % 8 === 0) {
@@ -302,20 +305,32 @@ function arrangeTrees(bounds) {
 
 // Update function, repeats indefinitely
 function update () {
+    
+    // Variable to see what fire is being clicked
+    var clickedFire;
         
     // If the game has started
     if (start) {
-		
-		//titleMusic.play(config);
         // When a fire is clicked
         this.input.on('gameobjectdown', function(pointer, fire) {
+
 			
 			//play extinguish fire sound
 			waterSound.play(waterConfig);
-			
+			 
+            // Set the clickedFire variable
+            clickedFire = fire;
+            
             // Extinguish the fire
             extinguishFire(fire);
         });
+        
+        // When a burnt tree is clicked
+        this.input.on('gameobjectdown', function(pointer, burnt) {
+            // Extinguish the fire
+            removeTree(this, burnt, clickedFire);
+        });
+        
         
         // Check what stage the user is at
         detStage();
@@ -354,7 +369,7 @@ function startFires(th) {
             // While loop to avoid the remote possibility of the grabbing the same fire again.
             while (f == litFires[i]) {
                 // Get a new random fire from the fire array.
-                f = Phaser.Utils.Array.GetRandom(allTrees.fire);
+                f = Phaser.Utils.Array.GetRandom(allTrees);
             }
         }
     
@@ -449,7 +464,7 @@ function extinguishFire(f) {
 }
 
 // Function to delay the burning of a tree
-// t = specific index at a tree array
+// t = specific index at the tree array
 // f = the fire from that index
 // th = 'this'
 function burnDelay(t, f, th) {
@@ -465,6 +480,8 @@ function burnDelay(t, f, th) {
 }
 
 // Function to burn down a tree
+// t = specific index at the tree array
+// f = the fire from that index
 function burnTree(t, f) {
     
     // Get the actual tree
@@ -473,15 +490,32 @@ function burnTree(t, f) {
     // Get the currently invisible burnt tree
     var burnt = t.burnt;
     
-    // If the fire hasn't been clicked
-    if (f.visible == true) {
+    // Ensure the tree isn't already burnt down
+    if (burnt.visible == false) {
+    
+        // If the fire hasn't been clicked
+        if (f.visible == true) {
         
-        // Make the actual tree invisible
-        tree.visible = false;
+            // Make the actual tree invisible
+            tree.visible = false;
         
-        // Make the burnt tree visible
-        burnt.visible = true;
+            // Make the burnt tree visible
+            burnt.visible = true;
         
+        }
+    }
+}
+
+// Function to remove a burnt tree
+// th = 'this'
+// b = the burnt tree
+function removeTree(th, b, f) {
+        
+    // Ensure the tree is no longer on fire
+    if (f.visible == false) {
+        
+        // Make the burnt tree disappear
+        b.visible = false;
     }
 }
 
