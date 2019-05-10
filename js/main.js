@@ -255,7 +255,7 @@ function update () {
         // When a burnt tree is clicked
         this.input.on('gameobjectdown', function(pointer, burnt) {
             // Extinguish the fire
-            removeTree(this, burnt, clickedFire);
+            removeTree(burnt, clickedFire);
         });
         
         
@@ -266,16 +266,19 @@ function update () {
         this.time.addEvent({
             delay: stageDelay,
             callback: ()=>{
-                startFires(this) // Send 'this' over so not everything has to be done in this function
+                startFires(this, false, null) // Send 'this' over so not everything has to be done in this function
             },
             loop: false // Do not loop, the update function loops by itself
         });
+        
     }
 }
 
 // Start making fires
 // th = 'this'
-function startFires(th) {
+// spread = boolean for whether or not a fire is being spread
+// fi = a fire being used if applicable
+function startFires(th, spread, fi) {
     
     // If a fire is not currently being made
     if (!fireMaking) {
@@ -313,7 +316,7 @@ function startFires(th) {
         fireCount++;
     
         // Print the fire count to console (for testing purposes)
-        console.log('FireCount ' + fireCount);
+        console.log('FireCount: ' + fireCount);
         
         // Determine how long until the next fire should pop up
         detStage();
@@ -324,7 +327,34 @@ function startFires(th) {
         // After delay time, allow the update function to make another fire.
         setTimeout(delayFires, stageDelay);
     }
+    
+    if (spread) {
+    
+        // Make the fire visible for the user, and thus clickable.   
+        fi.visible = true;
+        
+        // Bring the fire to the top of the window
+        th.children.bringToTop(fi);
+    
+        //Push the fire to the lit fires array.
+        litFires.push(fi);
+    
+        // Increase the count of total fires (includes past removed fires).
+        fireCount++;
+    
+        // Print the fire count to console (for testing purposes)
+        console.log('FireCount: ' + fireCount);
+                
+        // Activate function to replace the tree with a burnt tree after a set amount of time
+        burnDelay(t, fi, th);
+        
+    }
 }
+
+
+
+
+
 // Dealing with the boolean for making fires
 function delayFires() {    
     fireMaking = false;
@@ -424,10 +454,17 @@ function burnTree(t, f) {
     }
 }
 
+function checkBurnt() {
+    
+ //   for (let i = 0; i < burntArray;)
+    
+    
+}
+
 // Function to remove a burnt tree
-// th = 'this'
 // b = the burnt tree
-function removeTree(th, b, f) {
+// f = the fire on the tree
+function removeTree(b, f) {
         
     // Ensure the tree is no longer on fire
     if (f.visible == false) {
@@ -435,6 +472,43 @@ function removeTree(th, b, f) {
         // Make the burnt tree disappear
         b.visible = false;
     }
+}
+
+function delaySpread(th, b, f, x, y) {
+    
+    // Delay and then burn the tree
+    th.time.addEvent({
+        delay: 5000,
+        callback: ()=>{
+            spreadFire(th, b, f, x, y)
+        },
+        loop: false // Do not loop, once it's burned once it's done
+    });
+    
+    
+}
+
+function spreadFire(th, b, f, x, y) {
+    
+    if (f.visible == true) {
+        let i = 0;
+        var found = false;
+    
+        while (i < treeArr.length && !found) {
+
+            var x2 = allTrees[i].x;
+            var y2 = allTrees[i].y;
+        
+            // If in range to the burnt tree's fire
+            if ((x - x2 > 10 || x - x2 < 10) && (y - y2 > 10 || y - y2 < 10)) {
+            
+                found = true;
+                startFires(th, true, allTrees[i].fire);
+            }
+    
+            i++;
+        }
+    }    
 }
 
 // Removes all titles, start button, trees when start button is clicked    
