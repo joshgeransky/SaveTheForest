@@ -4,6 +4,7 @@ var config = {
     width: 800,
     height: 600,
     parent: 'game',
+    pixelArt: true,
     scene: {
         preload: preload,
         create: create,
@@ -55,8 +56,7 @@ var waterSound;
 var fireSound;
 
 //start button on click
-var start;
-	
+var startSound;
 	
 //configuration for audio
 var musicConfig = {
@@ -98,6 +98,7 @@ function preload () {
     this.load.image('tree1', '../assets/sprites/tree1(64x64).png'); // Regular tree
     this.load.image('burntTree', '../assets/sprites/burntTree(64x64).png'); // Burnt tree
     this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
+    this.load.image("tilesDynamic", "assets/sprites/jungleTileSet.png"); //Object layer tiles
 	this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24}); // first fire
     this.load.image('startBtn', '../assets/sprites/startBtn.png'); // start button
     this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11}); // second fire
@@ -119,8 +120,8 @@ function create () {
         key: "burn1",
         frames: this.anims.generateFrameNumbers("fireAnim1", {
             start : 0,
-            end : 12,
-            first : 12
+            end : 23,
+            first : 23
         }),
         frameRate: 12,
         repeat: -1,
@@ -144,7 +145,7 @@ function create () {
 	gameMusic = this.sound.add('game', musicConfig);
 	fireSound = this.sound.add('fire', fireConfig);
 	waterSound = this.sound.add('water', waterConfig);
-	start = this.sound.add('startBtn', waterConfig);   
+	startSound = this.sound.add('startBtn', waterConfig);   
 
 	// x and y coordinates stored in arrays
     var xValues = [];
@@ -165,13 +166,39 @@ function create () {
     }
 		
     // Initialize the starting map
-    var map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64});
-    var tileset = map.addTilesetImage('tiles');
-    var layer = map.createStaticLayer(0, tileset, 0, 0);
+    var map = this.make.tilemap({ data: level, tileWidth: 16, tileHeight: 16});
+    var tileset = map.addTilesetImage('tilesDynamic');
+    //Initialize the background layer
+    var groundLayer = map.createBlankDynamicLayer("Ground Layer", tileset);
+    //Initialize the object layer
+    var objectLayer = map.createBlankDynamicLayer("Object Layer", tileset);
+
+    //Scale up the tiles on both the background layer and object layer
+    groundLayer.setScale(2);
+    objectLayer.setScale(2);
     
+    //Fill the background layer and object layer with a specific tile from the tileset
+    groundLayer.fill(23, 0, 0, map.width, map.height);
+    objectLayer.fill(23, 0, 0, map.width, map.height);
+
+    //Call the random function on the object layer to randomize tiles
+    randomObjLayer();
+
+    /*Function that randomizes tiles on the object layer 
+    (Indiviudal tile weight / total weight) determines the frequency of the tile
+    */
+    function randomObjLayer() {
+        objectLayer.weightedRandomize(0, 0, map.width, map.height, [
+            {index: 30, weight: 17},
+            {index: 67, weight: 1},
+            {index: 70, weight: 1},
+            {index: 89, weight: 1}
+        ]);
+    }
+
     // Set the camera location
-    this.cameras.main.setBounds(0, 0, layer.width, layer.height);    
-    this.cameras.main.setBounds(0, 0, layer.width, layer.height);		    
+    this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);    
+    this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);	    
                 
     // Create the boundaries of the game
     var bounds = new Phaser.Geom.Rectangle(20, 20, 780, 560);
@@ -526,7 +553,7 @@ function startGame() {
    startBtn.visible = false;
    start = true;
    
-   // startBtn.play();
+   startSound.play(waterConfig);
    titleMusic.stop();
    gameMusic.play();
 }
