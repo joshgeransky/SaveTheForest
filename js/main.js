@@ -99,18 +99,26 @@ function create () {
     // Initialize the starting map
     var map = this.make.tilemap({ data: level, tileWidth: 16, tileHeight: 16});
     var tileset = map.addTilesetImage('tilesDynamic');
+    //Initialize the background layer
     var groundLayer = map.createBlankDynamicLayer("Ground Layer", tileset);
+    //Initialize the object layer
     var objectLayer = map.createBlankDynamicLayer("Object Laber", tileset);
-    groundLayer.setScale(2);
-    objectLayer.setScale(2);
+
+    //Scale up the tiles on both the background layer and object layer
+    groundLayer.setScale(4);
+    objectLayer.setScale(4);
     
-    groundLayer.fill(23, 0, 0, map.width);
-    objectLayer.fill(27, 1, 1, map.width);
+    //Fill the background layer and object layer with specific tile
+    groundLayer.fill(23, 0, 0, map.width, map.height);
+    objectLayer.fill(23, 0, 0, map.width, map.height);
+
+    //Call the random function on the object layer so that certain tiles will appear on random spots each time
     randomObjLayer();
 
+    //Function that randomizes tiles on the object layer
     function randomObjLayer() {
-        objectLayer.weightedRandomize(1, 1, map.width - 2, map.height - 2, [
-            {index: 23, weight: 2},
+        objectLayer.weightedRandomize(1, 1, map.width - 3, map.height - 3, [
+            {index: 23, weight: 3},
             {index: 27, weight: 1}
         ]);
     }
