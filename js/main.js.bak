@@ -49,8 +49,6 @@ var fireMaking = false; // boolean to check if already making a fire
 var litFires = []; // array of all lit fires
 var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
-//var htmlUser = document.querySelector('.userscore');
-//htmlUser.innerText = "hello";
 
 //title screen music
 var titleMusic;
@@ -66,6 +64,9 @@ var fireSound;
 
 //start button effect
 var startSound;
+
+//gameOver effect
+var gameOverSound;
 	
 //configuration for audio
 var musicConfig = {
@@ -100,19 +101,6 @@ loop: false,
 delay: 0
 }
 
-	 var tconfig = {
-      x: 200,
-      y: 50,
-      text: 'Some text to play with on my canvas',
-      style: {
-        fontSize: '24px',
-        fontFamily: 'Arial',
-        color: '#ffffff',
-        align: 'center',
-        lineSpacing: 44,
-      }
-    };﻿
-
 // Preloading function
 function preload () {
     this.load.image('tree1', '../assets/sprites/tree1(64x64).png'); // Regular tree
@@ -128,6 +116,7 @@ function preload () {
 	this.load.audio('fire', ['assets/sounds/fire.mp3']);
 	this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);   
 	this.load.audio('start', ['assets/sounds/Start_1.mp3']);   
+	this.load.audio('gameover,'['assets/sounds/GameOver.mp3']);    
 	
 }
 
@@ -165,13 +154,7 @@ function create () {
 	fireSound = this.sound.add('fire', fireConfig);
 	waterSound = this.sound.add('water', waterConfig);
 	startSound = this.sound.add('start', waterConfig);   
-	
-	//create html element to input score
-	//var userScoreDiv = document.createElement('div');
-	//userScoreDiv.add.text(1, 0, "phaser 3");
-	
-    var text = this.make.text(tconfig);
-    text.setWordWrapWidth(100, false);
+	gameOverSound = this.sound.add('gameover', musicConfig);
 	
 	// x and y coordinates stored in arrays
     var xValues = [];
@@ -611,6 +594,7 @@ function resizeApp () {
 window.addEventListener('resize', resizeApp);
 */
 
+//trying to get game to resize
 function resize(gameSize, baseSize, displaySize, resolution) {
 	
 	var width = gameSize.width;
