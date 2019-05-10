@@ -121,7 +121,7 @@ function create () {
     */
     function randomObjLayer() {
         objectLayer.weightedRandomize(0, 0, map.width, map.height, [
-            {index: 30, weight: 12},
+            {index: 30, weight: 17},
             {index: 67, weight: 1},
             {index: 70, weight: 1},
             {index: 89, weight: 1}
