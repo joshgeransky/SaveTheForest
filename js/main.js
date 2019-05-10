@@ -21,8 +21,6 @@ var config = {
 var game = new Phaser.Game(config);
 var width = 40;
 var height = 38;
-var value = Phaser.Math.Between(4, 10);
-var i = 0;
 var fireArr = [];
 var startBtn;
 var titleText;
@@ -44,6 +42,9 @@ var fireSoundBoolean = false; //keeps track of how whether a fire is on the scre
 
 //title screen music
 var titleMusic;
+
+// start button effect
+var startSound;
     
 //gameplay music
 var gameMusic;
@@ -144,7 +145,7 @@ function create () {
 	gameMusic = this.sound.add('game', musicConfig);
 	fireSound = this.sound.add('fire', fireConfig);
 	waterSound = this.sound.add('water', waterConfig);
-	start = this.sound.add('startBtn', waterConfig);   
+	startSound = this.sound.add('startBtn', waterConfig);   
 
 	// x and y coordinates stored in arrays
     var xValues = [];
