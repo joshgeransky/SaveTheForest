@@ -5,23 +5,24 @@ var config = {
     width: 800,
     height: 600,
     parent: 'game',
-    scene: [TitleScene, GameScene]
-   /* scene: {
-        preload: preload,
-        create: create,
-        update: update,
-        extend: {
-	       minimap: null
-        },
+
+    scene: [TitleScene, GameScene],
+    pixelArt: true
 		audio: {
 	        displayWebAudio: true
-	    }
-    } */
+  }	    
+},
+		dom: {
+			createContainer: true
+		}
+    }
 }
-
-
-
-
+/**
+		mode: Phaser.DOM.RESIZE,
+		height: '100%',
+		width: '100%',
+		parent: 'game'
+*/		
 // Game variables
 let game = new Phaser.Game(config);
 var width = 40;
@@ -59,11 +60,13 @@ var waterSound;
 //fire effect
 var fireSound;
 
+
 //start button on click
 var start;
 
 //gameOver effect
 var gameOverSound;	
+
 	
 //configuration for audio
 var musicConfig = {
@@ -101,29 +104,7 @@ delay: 0
 let titleScene = new TitleScene();
 
 
-//game.scene.add('TitleScene', titleScene);
 game.scene.start('TitleScene');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
