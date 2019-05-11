@@ -1,6 +1,12 @@
 /* Import Google fonts */
 @import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 
+/*Style the body of the learn page*/
+#bodyLearn {
+    color: white;
+    background-color: #262626;
+}
+
 /* Style the content of the learn page */
 .learn-content {
     text-align: center;
@@ -32,3 +38,32 @@
     border-radius: 20px;
     
 }
+
+/* Style for the container that holds the carousel */
+#carouselFireFacts {
+    margin-top: 10pt;
+}
+
+/*Style for the images in the carousel */
+.carousel-inner {
+    height: 70vh;
+  }
+
+  .carousel-item {
+      height: 70vh;
+  }
+
+  #carouselImage1 {
+      background-image: url("../../assets/images/wildfire1.jpg");
+      background-size: cover;
+  }
+
+  #carouselImage2 {
+      background-image: url("../../assets/images/wildfire2.jpg");
+      background-size: cover;
+  }
+
+  #carouselImage3 {
+      background-image: url("../../assets/images/wildfire2.jpg");
+      background-size: cover;
+  }

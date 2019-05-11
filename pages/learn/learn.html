@@ -6,9 +6,10 @@
         <title>Save the Forest!</title>
         <link rel="stylesheet" type="text/css" href="../../css/main.css">
         <link rel="stylesheet" type="text/css" href="../../css/learn.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
         
-    <body>
+    <body id="bodyLearn">
         
         <!-- Header -->
         <div class="header">
@@ -19,12 +20,52 @@
                 <a onclick="window.location.href = '../about/about.html';">About</a>
             </div>
         </div>
-        
-        <div class="learn-content">
-                    
-            <div class='learn-image'>
-                <img src="../../assets/images/wildfire1.jpg">
+
+        <!-- Carousel for images -->
+        <div id="carouselFireFacts" class="carousel slide carousel-fade" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselFireFacts" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselFireFacts" data-slide-to="1"></li>
+                <li data-target="#carouselFireFacts" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active" id="carouselImage1">
+                  <!-- Carousel captions -->
+                  <div class="carousel-caption d-non d-md-block">
+                      <h5>Did you know?</h5>
+                      <p>Humans cuase roughly 40% of all forest fires in BC</p>
+                  </div>
+              </div>
+              <div class="carousel-item" id="carouselImage2">
+                  <!-- Carousel captions -->
+                  <div class="carousel-caption d-non d-md-block">
+                    <h5>Did you know?</h5>
+                    <p>BC is expecting 2019 to be its worst fire season ever</p>
+                  </div>
+              </div>
+              <div class="carousel-item" id="carouselImage3">
+                <!-- Carousel captions -->
+                <div class="carousel-caption d-non d-md-block">
+                    <h5>Did you know?</h5>
+                    <p>Everyone can help prevent forest fires!</p>
+                </div>
+              </div>
             </div>
+            <!-- Controls for the carousel -->
+            <a class="carousel-control-prev" href="#carouselFireFacts" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselFireFacts" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <div class="learn-content">
+            <!-- <div class='learn-image'>
+                <img src="../../assets/images/wildfire1.jpg">
+            </div> -->
             
             <h2 class='page-title'>Check out these dope AND littttttt sites to learn more about forest fires!</h2>
 
@@ -44,6 +85,10 @@
             <span class="footer">© 2019 Team 19, All Rights Reserved.</span>
             
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             
     </body>
 </html>

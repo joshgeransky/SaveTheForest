@@ -7,15 +7,10 @@ var config = {
     parent: 'game',
 
     scene: [TitleScene, GameScene],
-    pixelArt: true
+    pixelArt: true,
 		audio: {
 	        displayWebAudio: true
-  }	    
-},
-		dom: {
-			createContainer: true
-		}
-    }
+	},	
 }
 /**
 		mode: Phaser.DOM.RESIZE,
