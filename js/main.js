@@ -40,6 +40,10 @@ var litFires = []; // array of all lit fires
 var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
 
+    
+// Mario music easter egg boolean
+var marioed = false;
+
 //title screen music
 var titleMusic;
 
@@ -55,44 +59,52 @@ var waterSound;
 //fire effect
 var fireSound;
 
-//start button on click
-var start;
+var marioMusic;
+
 	
 	
 //configuration for audio
 var musicConfig = {
-mute: false,
-volume: 0.5,
-rate: 1,
-detune: 0,
-seek: 0,
-loop: true,
-delay: 0
+    mute: false,
+    volume: 0.5,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: 0
 }
 
 //configuration for fire effect
 var fireConfig = {
-mute: false,
-volume: 1,
-rate: 1,
-detune: 0,
-seek: 0,
-loop: true,
-delay: 0
+    mute: false,
+    volume: 1,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: 0
 }
 
 //configuration for extinguishing water
 var waterConfig = {
-mute: false,
-volume: 0.5,
-rate: 1,
-detune: 0,
-seek: 0,
-loop: false,
-delay: 0
+    mute: false,
+    volume: 0.5,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: false,
+    delay: 0
 }
 
-
+var marioConfig = {
+    mute: false,
+    volume: 0.5,
+    rate: 1,
+    detune: 0,
+    seek: 2.5,
+    loop: true,
+    delay: 0
+}
 
 // Preloading function
 function preload () {
@@ -102,6 +114,8 @@ function preload () {
 	this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24}); // first fire
     this.load.image('startBtn', '../assets/sprites/startBtn.png'); // start button
     this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11}); // second fire
+    this.load.image('mushroom', '../assets/sprites/mushroom.png');
+    this.load.image('deadShroom', '../assets/sprites/dead-mushroom.png');
 
 	//audio
 	this.load.audio('bg', ['assets/sounds/Title_Screen_1.mp3']);
@@ -109,6 +123,7 @@ function preload () {
 	this.load.audio('fire', ['assets/sounds/fire.mp3']);
 	this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);   
 	this.load.audio('startBtn', ['assets/sounds/Start_1.mp3']);   
+    this.load.audio('marioMusic', ['assets/sounds/mario.mp3']);
 	
 }
 
@@ -146,7 +161,9 @@ function create () {
 	fireSound = this.sound.add('fire', fireConfig);
 	waterSound = this.sound.add('water', waterConfig);
 	startSound = this.sound.add('startBtn', waterConfig);   
-
+    marioMusic = this.sound.add('marioMusic', marioConfig);
+    
+    
 	// x and y coordinates stored in arrays
     var xValues = [];
     var yValues = [];
@@ -258,6 +275,8 @@ function create () {
         allTrees.push({
             tree: tree,
             burnt: burntTree,
+            shroom: null,
+            deadShroom: null,
             fire: fire,
             x: treeArr[i].x,
             y: treeArr[i].y
@@ -280,6 +299,7 @@ function create () {
     startBtn.on('pointerdown', startGame);
     startBtn.on('pointerover', changeColor);
     startBtn.on('pointerout', revertColor);
+    
 }
    
 // Arrange the trees using the boundaries
@@ -345,6 +365,33 @@ function update () {
             loop: false // Do not loop, the update function loops by itself
         });
         
+    }
+    
+    
+    var mKey = this.input.keyboard.addKey('M');
+    
+    if (mKey.isDown && !marioed) {
+        marioMusic.play(marioConfig);
+        titleMusic.stop();
+        gameMusic.stop();
+        marioed = true;
+        
+        for (let i = 0; i < allTrees.length; i++) {
+            
+            var shroom = this.add.sprite(treeArr[i].x, treeArr[i].y, 'mushroom').setName('Shroom' + i);	
+            shroom.setScale(0.7);
+            
+            var deadShroom = this.add.sprite(treeArr[i].x, treeArr[i].y, 'deadShroom').setName('deadShroom' + i);
+            deadShroom.setScale(0.7);
+            
+            allTrees[i].tree.visible = false;
+            allTrees[i].shroom = shroom;
+            allTrees[i].deadShroom = deadShroom;
+            deadShroom.visible = false;
+            
+            deadShroom.setInteractive();
+            
+        }        
     }
 }
 
@@ -421,19 +468,12 @@ function startFires(th, spread, fi) {
     
         // Increase the count of total fires (includes past removed fires).
         fireCount++;
-    
-        // Print the fire count to console (for testing purposes)
-        console.log('FireCount: ' + fireCount);
                 
         // Activate function to replace the tree with a burnt tree after a set amount of time
         burnDelay(t, fi, th);
         
     }
 }
-
-
-
-
 
 // Dealing with the boolean for making fires
 function delayFires() {    
@@ -482,7 +522,8 @@ function extinguishFire(f) {
     
     // Set the fire to invisible
     f.visible = false;
-	//TURN OFF FIRE NOISE
+    
+	// Turn off fire noise
 	fireSoundBoolean = false;
 	fireSound.stop();
    
@@ -526,12 +567,19 @@ function burnTree(t, f) {
     
         // If the fire hasn't been clicked
         if (f.visible == true) {
+            
+            // Check if in Mario mode
+            if (!marioed) {
         
-            // Make the actual tree invisible
-            tree.visible = false;
+                // Make the actual tree invisible
+                tree.visible = false;
         
-            // Make the burnt tree visible
-            burnt.visible = true;
+                // Make the burnt tree visible
+                burnt.visible = true;
+            } else {
+                t.shroom.visible = false;
+                t.deadShroom.visible = true;
+            }
         
         }
     }
@@ -548,12 +596,15 @@ function checkBurnt() {
 // b = the burnt tree
 // f = the fire on the tree
 function removeTree(b, f) {
-        
+            
     // Ensure the tree is no longer on fire
     if (f.visible == false) {
         
         // Make the burnt tree disappear
-        b.visible = false;
+        //b.visible = false;
+        b = null;
+        
+        //console.log('removed');
     }
 }
 
@@ -596,14 +647,17 @@ function spreadFire(th, b, f, x, y) {
 
 // Removes all titles, start button, trees when start button is clicked    
 function startGame() {
-   titleText.visible = false;
-   subText.visible = false;
-   startBtn.visible = false;
-   start = true;
+    titleText.visible = false;
+    subText.visible = false;
+    startBtn.visible = false;
+    start = true;
    
-   // startBtn.play();
-   titleMusic.stop();
-   gameMusic.play();
+    // startBtn.play();
+    titleMusic.stop();
+    
+    if (!marioed) {
+        gameMusic.play();
+    }
 }
 
 //changes color of start button on hover
