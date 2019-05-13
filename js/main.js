@@ -1,26 +1,32 @@
+
 // Variable holding initial game configuration
 var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
     parent: 'game',
-    scene: {
-        preload: preload,
-        create: create,
-        update: update,
-        extend: {
-	       minimap: null
-        },
+
+    scene: [TitleScene, GameScene],
+    pixelArt: true,
 		audio: {
 	        displayWebAudio: true
-	    }
-    }
+	},	
 }
+/**
+		mode: Phaser.DOM.RESIZE,
+		height: '100%',
+		width: '100%',
+		parent: 'game'
+*/		
 
-// Game variables
-var game = new Phaser.Game(config);
+/* --- Game variables --- */
+let game = new Phaser.Game(config);
 var width = 40;
 var height = 38;
+<<<<<<< HEAD
+=======
+var value = Phaser.Math.Between(4, 10);
+>>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 var fireArr = [];
 var startBtn;
 var titleText;
@@ -31,7 +37,7 @@ var playerScore = 0;
 var start = false;
 var treeArr = []; // holds x and y values of trees
 var allTrees = []; // holds the trees themselves, as well as burnt trees
-
+var animCamp;
 var fireCount = 0; // total count of fires (including removed ones)
 var treeContains = []; // probably should be removed at some point
 var fire; // holds a fire
@@ -39,29 +45,49 @@ var fireMaking = false; // boolean to check if already making a fire
 var litFires = []; // array of all lit fires
 var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
+var spriteCamp;
+var startSound;
+var marioed = false;
+var removingFire = false;
 
+<<<<<<< HEAD
     
 // Mario music easter egg boolean
 var marioed = false;
 
 //title screen music
+=======
+// Title screen music
+>>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 var titleMusic;
 
 // start button effect
 var startSound;
     
-//gameplay music
+// Gameplay music
 var gameMusic;
     
-//water effect when dousing fire
+// Water effect when dousing fire
 var waterSound;
     
-//fire effect
+// Fire effect
 var fireSound;
 
+<<<<<<< HEAD
 var marioMusic;
 
 	
+=======
+// Start button on click
+var start;
+
+// Game over effect
+var gameOverSound;	
+
+// Mario music
+var marioMusic;
+
+>>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 	
 //configuration for audio
 var musicConfig = {
@@ -72,7 +98,11 @@ var musicConfig = {
     seek: 0,
     loop: true,
     delay: 0
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 
 //configuration for fire effect
 var fireConfig = {
@@ -83,6 +113,7 @@ var fireConfig = {
     seek: 0,
     loop: true,
     delay: 0
+<<<<<<< HEAD
 }
 
 //configuration for extinguishing water
@@ -96,6 +127,22 @@ var waterConfig = {
     delay: 0
 }
 
+=======
+};
+
+//configuration for extinguishing water
+var waterConfig = {
+mute: false,
+volume: 0.5,
+rate: 1,
+detune: 0,
+seek: 0,
+loop: false,
+delay: 0
+};
+
+// Configuration for the Mario music
+>>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 var marioConfig = {
     mute: false,
     volume: 0.5,
@@ -104,6 +151,7 @@ var marioConfig = {
     seek: 2.5,
     loop: true,
     delay: 0
+<<<<<<< HEAD
 }
 
 // Preloading function
@@ -199,16 +247,17 @@ function create () {
     window['Container1'] = treeContainer;
     var containerNum = 1;
     
+=======
+}
 
-    // Configure the first fire animation
-    this.anims.create(configFire1);
-    
-    //Configure the second fire animation
-    this.anims.create(configFire2);
-    
-    // Get the x and y values for the trees
-    arrangeTrees(bounds);
+// Setting the Title Screen
+let titleScene = new TitleScene();
 
+game.scene.start('TitleScene');
+>>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
+
+
+<<<<<<< HEAD
     // For loop to create trees
     for (let i = 0; i < 200; i++) {
         // Create a tree and add it to the window
@@ -323,18 +372,12 @@ function arrangeTrees(bounds) {
     }
     
 }
+=======
 
-// Update function, repeats indefinitely
-function update () {
-    
-    // Variable to see what fire is being clicked
-    var clickedFire;
-        
-    // If the game has started
-    if (start) {
-        // When a fire is clicked
-        this.input.on('gameobjectdown', function(pointer, fire) {
+>>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 
+
+<<<<<<< HEAD
 			
 			//play extinguish fire sound
 			waterSound.play(waterConfig);
@@ -659,20 +702,8 @@ function startGame() {
         gameMusic.play();
     }
 }
+=======
 
-//changes color of start button on hover
-function changeColor() {
-    startBtn.setTint(0xa09f9f);
-
-}
-
-//changes color of start button back to normal
-function revertColor() {
- 	startBtn.clearTint();
- }
+>>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 
 
-// Function to destroy sprites, currently unused
-function destroySprite(sprite) {
-	sprite.destroy();
-}
