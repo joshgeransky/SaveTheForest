@@ -47,18 +47,12 @@ var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
 var spriteCamp;
 var startSound;
-var marioed = false;
 var removingFire = false;
-
-<<<<<<< HEAD
     
 // Mario music easter egg boolean
 var marioed = false;
 
-//title screen music
-=======
 // Title screen music
->>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 var titleMusic;
 
 // start button effect
@@ -72,12 +66,7 @@ var waterSound;
     
 // Fire effect
 var fireSound;
-
-<<<<<<< HEAD
-var marioMusic;
-
 	
-=======
 // Start button on click
 var start;
 
@@ -87,7 +76,6 @@ var gameOverSound;
 // Mario music
 var marioMusic;
 
->>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 	
 //configuration for audio
 var musicConfig = {
@@ -98,11 +86,7 @@ var musicConfig = {
     seek: 0,
     loop: true,
     delay: 0
-<<<<<<< HEAD
-}
-=======
 };
->>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 
 //configuration for fire effect
 var fireConfig = {
@@ -113,22 +97,7 @@ var fireConfig = {
     seek: 0,
     loop: true,
     delay: 0
-<<<<<<< HEAD
 }
-
-//configuration for extinguishing water
-var waterConfig = {
-    mute: false,
-    volume: 0.5,
-    rate: 1,
-    detune: 0,
-    seek: 0,
-    loop: false,
-    delay: 0
-}
-
-=======
-};
 
 //configuration for extinguishing water
 var waterConfig = {
@@ -142,7 +111,6 @@ delay: 0
 };
 
 // Configuration for the Mario music
->>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 var marioConfig = {
     mute: false,
     volume: 0.5,
@@ -151,559 +119,14 @@ var marioConfig = {
     seek: 2.5,
     loop: true,
     delay: 0
-<<<<<<< HEAD
 }
 
-// Preloading function
-function preload () {
-    this.load.image('tree1', '../assets/sprites/tree1(64x64).png'); // Regular tree
-    this.load.image('burntTree', '../assets/sprites/burntTree(64x64).png'); // Burnt tree
-    this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
-	this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24}); // first fire
-    this.load.image('startBtn', '../assets/sprites/startBtn.png'); // start button
-    this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11}); // second fire
-    this.load.image('mushroom', '../assets/sprites/mushroom.png');
-    this.load.image('deadShroom', '../assets/sprites/dead-mushroom.png');
 
-	//audio
-	this.load.audio('bg', ['assets/sounds/Title_Screen_1.mp3']);
-	this.load.audio('water', ['assets/sounds/Tree_Extinguish1.mp3']);
-	this.load.audio('fire', ['assets/sounds/fire.mp3']);
-	this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);   
-	this.load.audio('startBtn', ['assets/sounds/Start_1.mp3']);   
-    this.load.audio('marioMusic', ['assets/sounds/mario.mp3']);
-	
-}
-
-// Creation function
-function create () {
-    
-    // Configure the first fire animation
-    var configFire1 = {
-        key: "burn1",
-        frames: this.anims.generateFrameNumbers("fireAnim1", {
-            start : 0,
-            end : 12,
-            first : 12
-        }),
-        frameRate: 12,
-        repeat: -1,
-    }
-    
-    // Configure the second fire animation
-    var configFire2 = {
-        key: 'burn2',
-        frames: this.anims.generateFrameNumbers('fireAnim2', {
-            start: 0,
-            end: 24,
-            first: 24
-        }),
-        frameRate: 12,
-        repeat: -1
-    }
-   
-	//music
-	titleMusic = this.sound.add('bg', musicConfig);
-	titleMusic.play(musicConfig);
-	gameMusic = this.sound.add('game', musicConfig);
-	fireSound = this.sound.add('fire', fireConfig);
-	waterSound = this.sound.add('water', waterConfig);
-	startSound = this.sound.add('startBtn', waterConfig);   
-    marioMusic = this.sound.add('marioMusic', marioConfig);
-    
-    
-	// x and y coordinates stored in arrays
-    var xValues = [];
-    var yValues = [];
-    // In theory we could force the trees to grab only one of the values from
-    // the x/y arrays, thus tiling them and making them more organized. Worth considering.
-                
-    // Create the tiled background
-    var level = [];
-    for (var y = 0; y < height; y++) {
-        var row = [];
-        yValues[y] += y;
-        for (var x = 0; x < width; x++) {
-            xValues[x] += x;
-            row.push(0);
-        }
-        level.push(row);
-    }
-		
-    // Initialize the starting map
-    var map = this.make.tilemap({ data: level, tileWidth: 64, tileHeight: 64});
-    var tileset = map.addTilesetImage('tiles');
-    var layer = map.createStaticLayer(0, tileset, 0, 0);
-    
-    // Set the camera location
-    this.cameras.main.setBounds(0, 0, layer.width, layer.height);    
-    this.cameras.main.setBounds(0, 0, layer.width, layer.height);		    
-                
-    // Create the boundaries of the game
-    var bounds = new Phaser.Geom.Rectangle(20, 20, 780, 560);
-    
-    // Creating container variables
-    var treeContainer = this.add.container(0, 0).setName('treeContainer');
-    window['Container1'] = treeContainer;
-    var containerNum = 1;
-    
-=======
-}
 
 // Setting the Title Screen
 let titleScene = new TitleScene();
 
 game.scene.start('TitleScene');
->>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 
-
-<<<<<<< HEAD
-    // For loop to create trees
-    for (let i = 0; i < 200; i++) {
-        // Create a tree and add it to the window
-        var tree = this.add.sprite(treeArr[i].x, treeArr[i].y, 'tree1').setName('Sprite' + i);	
-        var burntTree = this.add.sprite(treeArr[i].x, treeArr[i].y, 'burntTree').setName('Burnt' + i);
-        
-        burntTree.visible = false;
-        
-        burntTree.setInteractive();
-        
-        // Creating containers for each individual tree
-        // (May be unnecessary but it's working for now so I won't remove it)
-        if (i > 0 && i % 8 === 0) {
-	       treeContainer = this.add.container(0, 0).setName('treeContainer' + containerNum);
-	       treeContains.push(treeContainer);
-	       window['treeContainer' + containerNum] = treeContainer;
-	       containerNum++;
-        }
-        
-        // Add the tree to the containers array (will likely be removed eventually)
-        treeContains.push(tree);    
-        
-        // Generate either 1 or 2 to choose the fire type
-        var fireType = Math.floor(Math.random() * 2);
-        
-        // If the first fire type, add it
-        if (fireType == 0) {
-        
-            // Makes fire on the tree
-            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
-        
-            // Animate the fire
-            fire.anims.play("burn1");
-            
-        // If the second fire type, add it
-        } else if (fireType == 1) {
-            
-            // Makes fire on the tree
-            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
-            
-            // Animate the fire
-            fire.anims.play("burn2");
-            
-        // Otherwise, in case of a weird number, add the first one
-        } else {
-            // Makes fire on the tree
-            fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
-        
-            // Animate the fire
-            fire.anims.play("burn1");
-        }
-        
-        // Set the fire to be clickable
-        fire.setInteractive();
-        
-        // Set the fire to be invisibile (it will be visible when it spawns later)
-        fire.visible = false;
-        
-        // Push the new fire to the fire array
-        fireArr.push(fire);
-        
-        
-        // Add the tree, burnt tree, fire and x/y values to the array
-        allTrees.push({
-            tree: tree,
-            burnt: burntTree,
-            shroom: null,
-            deadShroom: null,
-            fire: fire,
-            x: treeArr[i].x,
-            y: treeArr[i].y
-        });
-    }
-    
-    // Create title text
-    titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
-        
-    // Create subtext
-    subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
-
-    // Create score counter, currently unused
-    //scoreCounter = this.add.text(10, 10, scoreString + score, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
-      
-    // Create start buttons
-    startBtn = this.add.sprite(420, 400, 'startBtn').setInteractive();
-        
-    // Start button functionality
-    startBtn.on('pointerdown', startGame);
-    startBtn.on('pointerover', changeColor);
-    startBtn.on('pointerout', revertColor);
-    
-}
-   
-// Arrange the trees using the boundaries
-function arrangeTrees(bounds) {
-    
-    // For the amount of trees you want (200 atm)
-    for (let i = 0; i < 200; i++) {
-        
-        // Get random x and y values
-        var x = Phaser.Math.Between(bounds.left, bounds.right);
-        var y = Phaser.Math.Between(bounds.top, bounds.bottom);
-        
-        // Push these values to an array
-        treeArr.push({
-            x: x,
-            y: y
-        });
-        
-        // Then sort the trees by y values
-        sortTrees(treeArr[0], treeArr[i]);    
-    }
-    
-}
-=======
-
->>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
-
-
-<<<<<<< HEAD
-			
-			//play extinguish fire sound
-			waterSound.play(waterConfig);
-			 
-            // Set the clickedFire variable
-            clickedFire = fire;
-            
-            // Extinguish the fire
-            extinguishFire(fire);
-        });
-        
-        // When a burnt tree is clicked
-        this.input.on('gameobjectdown', function(pointer, burnt) {
-            // Extinguish the fire
-            removeTree(burnt, clickedFire);
-        });
-        
-        
-        // Check what stage the user is at
-        detStage();
-        
-        // Delay and then make the fire
-        this.time.addEvent({
-            delay: stageDelay,
-            callback: ()=>{
-                startFires(this, false, null) // Send 'this' over so not everything has to be done in this function
-            },
-            loop: false // Do not loop, the update function loops by itself
-        });
-        
-    }
-    
-    
-    var mKey = this.input.keyboard.addKey('M');
-    
-    if (mKey.isDown && !marioed) {
-        marioMusic.play(marioConfig);
-        titleMusic.stop();
-        gameMusic.stop();
-        marioed = true;
-        
-        for (let i = 0; i < allTrees.length; i++) {
-            
-            var shroom = this.add.sprite(treeArr[i].x, treeArr[i].y, 'mushroom').setName('Shroom' + i);	
-            shroom.setScale(0.7);
-            
-            var deadShroom = this.add.sprite(treeArr[i].x, treeArr[i].y, 'deadShroom').setName('deadShroom' + i);
-            deadShroom.setScale(0.7);
-            
-            allTrees[i].tree.visible = false;
-            allTrees[i].shroom = shroom;
-            allTrees[i].deadShroom = deadShroom;
-            deadShroom.visible = false;
-            
-            deadShroom.setInteractive();
-            
-        }        
-    }
-}
-
-// Start making fires
-// th = 'this'
-// spread = boolean for whether or not a fire is being spread
-// fi = a fire being used if applicable
-function startFires(th, spread, fi) {
-    
-    // If a fire is not currently being made
-    if (!fireMaking) {
-    
-        // We are now making a fire, set 'fireMaking' to true.
-        // This avoids the update function making infinite fires at once.
-        fireMaking = true;
-    
-        // Grab a fire, any fire.
-        var t = Phaser.Utils.Array.GetRandom(allTrees);
-        
-        // Get the fire at the randomly chosen index
-        var f = t.fire;
-        
-        // For loop to search through the entire liteFire array.
-        // If a matching fire is found that means it's already been lit, and it will find another fire.
-        for (let i = 0; i < litFires.length; i++) {
-            // While loop to avoid the remote possibility of the grabbing the same fire again.
-            while (f == litFires[i]) {
-                // Get a new random fire from the fire array.
-                f = Phaser.Utils.Array.GetRandom(allTrees);
-            }
-        }
-    
-        // Make the fire visible for the user, and thus clickable.   
-        f.visible = true;
-		
-		//Start fire sound only once
-		if(fireSoundBoolean == false) {
-		 fireSound.play(fireConfig);
-		 fireSoundBoolean = true;
-        }
-		
-        // Bring the fire to the top of the window
-        th.children.bringToTop(f);
-    
-        //Push the fire to the lit fires array.
-        litFires.push(f);
-    
-        // Increase the count of total fires (includes past removed fires).
-        fireCount++;
-    
-        // Print the fire count to console (for testing purposes)
-        console.log('FireCount: ' + fireCount);
-        
-        // Determine how long until the next fire should pop up
-        detStage();
-                
-        // Activate function to replace the tree with a burnt tree after a set amount of time
-        burnDelay(t, f, th);
-    
-        // After delay time, allow the update function to make another fire.
-        setTimeout(delayFires, stageDelay);
-    }
-    
-    if (spread) {
-    
-        // Make the fire visible for the user, and thus clickable.   
-        fi.visible = true;
-        
-        // Bring the fire to the top of the window
-        th.children.bringToTop(fi);
-    
-        //Push the fire to the lit fires array.
-        litFires.push(fi);
-    
-        // Increase the count of total fires (includes past removed fires).
-        fireCount++;
-                
-        // Activate function to replace the tree with a burnt tree after a set amount of time
-        burnDelay(t, fi, th);
-        
-    }
-}
-
-// Dealing with the boolean for making fires
-function delayFires() {    
-    fireMaking = false;
-}
-
-// Determine the rate the fires will spawn
-function detStage() {
-    
-    // If less than 10 fires, first stage, etc.
-    if (fireCount >= 0 && fireCount <= 10) {
-        stageDelay = 5000;
-    
-    } else if (fireCount > 10 && fireCount <= 20) {
-        stageDelay = 3000;
-    
-    } else if (fireCount > 20 && fireCount <= 30) {
-        stageDelay = 2000;
-    
-    } else if (fireCount > 30 && fireCount <= 40) {
-        stageDelay = 1000;
-        
-    } else if (fireCount > 40) {
-        stageDelay = 500;
-        
-    } else {
-        stageDelay = 5000;
-    }
-    
-}
-
-// Save tree function, unused atm
-function saveTree(){
-  playerScore++;
-  scoreCounter.setText(scoreTitle + playerScore);
-}
-
-// Function to sort the trees
-function sortTrees() {    
-    treeArr.sort((a, b) => (a.y > b.y) ? 1 : -1);
-}
-
-// Extinguishes the fire
-// f = the fire
-function extinguishFire(f) {
-    
-    // Set the fire to invisible
-    f.visible = false;
-    
-	// Turn off fire noise
-	fireSoundBoolean = false;
-	fireSound.stop();
-   
-    // For loop to remove the fire from the litFires array
-    for (let i = 0; i < litFires.length; i++) {
-        if (this == litFires[i]) {
-            litFires.splice(i, 1);
-        }
-    }    
-}
-
-// Function to delay the burning of a tree
-// t = specific index at the tree array
-// f = the fire from that index
-// th = 'this'
-function burnDelay(t, f, th) {
-    
-    // Delay and then burn the tree
-    th.time.addEvent({
-        delay: 5000,
-        callback: ()=>{
-            burnTree(t, f)
-        },
-        loop: false // Do not loop, once it's burned once it's done
-    });
-}
-
-// Function to burn down a tree
-// t = specific index at the tree array
-// f = the fire from that index
-function burnTree(t, f) {
-    
-    // Get the actual tree
-    var tree = t.tree;
-    
-    // Get the currently invisible burnt tree
-    var burnt = t.burnt;
-    
-    // Ensure the tree isn't already burnt down
-    if (burnt.visible == false) {
-    
-        // If the fire hasn't been clicked
-        if (f.visible == true) {
-            
-            // Check if in Mario mode
-            if (!marioed) {
-        
-                // Make the actual tree invisible
-                tree.visible = false;
-        
-                // Make the burnt tree visible
-                burnt.visible = true;
-            } else {
-                t.shroom.visible = false;
-                t.deadShroom.visible = true;
-            }
-        
-        }
-    }
-}
-
-function checkBurnt() {
-    
- //   for (let i = 0; i < burntArray;)
-    
-    
-}
-
-// Function to remove a burnt tree
-// b = the burnt tree
-// f = the fire on the tree
-function removeTree(b, f) {
-            
-    // Ensure the tree is no longer on fire
-    if (f.visible == false) {
-        
-        // Make the burnt tree disappear
-        //b.visible = false;
-        b = null;
-        
-        //console.log('removed');
-    }
-}
-
-function delaySpread(th, b, f, x, y) {
-    
-    // Delay and then burn the tree
-    th.time.addEvent({
-        delay: 5000,
-        callback: ()=>{
-            spreadFire(th, b, f, x, y)
-        },
-        loop: false // Do not loop, once it's burned once it's done
-    });
-    
-    
-}
-
-function spreadFire(th, b, f, x, y) {
-    
-    if (f.visible == true) {
-        let i = 0;
-        var found = false;
-    
-        while (i < treeArr.length && !found) {
-
-            var x2 = allTrees[i].x;
-            var y2 = allTrees[i].y;
-        
-            // If in range to the burnt tree's fire
-            if ((x - x2 > 10 || x - x2 < 10) && (y - y2 > 10 || y - y2 < 10)) {
-            
-                found = true;
-                startFires(th, true, allTrees[i].fire);
-            }
-    
-            i++;
-        }
-    }    
-}
-
-// Removes all titles, start button, trees when start button is clicked    
-function startGame() {
-    titleText.visible = false;
-    subText.visible = false;
-    startBtn.visible = false;
-    start = true;
-   
-    // startBtn.play();
-    titleMusic.stop();
-    
-    if (!marioed) {
-        gameMusic.play();
-    }
-}
-=======
-
->>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
 
 
