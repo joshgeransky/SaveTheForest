@@ -18,7 +18,8 @@ var config = {
 		width: '100%',
 		parent: 'game'
 */		
-// Game variables
+
+/* --- Game variables --- */
 let game = new Phaser.Game(config);
 var width = 40;
 var height = 38;
@@ -43,46 +44,51 @@ var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
 var spriteCamp;
 var startSound;
-//title screen music
+var marioed = false;
+var removingFire = false;
+
+// Title screen music
 var titleMusic;
     
-//gameplay music
+// Gameplay music
 var gameMusic;
     
-//water effect when dousing fire
+// Water effect when dousing fire
 var waterSound;
     
-//fire effect
+// Fire effect
 var fireSound;
 
-
-//start button on click
+// Start button on click
 var start;
 
-//gameOver effect
+// Game over effect
 var gameOverSound;	
+
+// Mario music
+var marioMusic;
 
 	
 //configuration for audio
 var musicConfig = {
-mute: false,
-volume: 0.5,
-rate: 1,
-detune: 0,
-seek: 0,
-loop: true,
-delay: 0
+    mute: false,
+    volume: 0.5,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: 0
 };
 
 //configuration for fire effect
 var fireConfig = {
-mute: false,
-volume: 1,
-rate: 1,
-detune: 0,
-seek: 0,
-loop: true,
-delay: 0
+    mute: false,
+    volume: 1,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: 0
 };
 
 //configuration for extinguishing water
@@ -96,8 +102,19 @@ loop: false,
 delay: 0
 };
 
-let titleScene = new TitleScene();
+// Configuration for the Mario music
+var marioConfig = {
+    mute: false,
+    volume: 0.5,
+    rate: 1,
+    detune: 0,
+    seek: 2.5,
+    loop: true,
+    delay: 0
+}
 
+// Setting the Title Screen
+let titleScene = new TitleScene();
 
 game.scene.start('TitleScene');
 
