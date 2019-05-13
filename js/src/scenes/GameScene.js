@@ -6,11 +6,10 @@ class GameScene extends Phaser.Scene {
 		this.scalingAmt = 1.0;
 	}
 	init(){
-
-	console.log("I got it");
 	}
+	
 	preload () {
-    this.load.image('tree1', '../assets/sprites/tree1(64x64).png'); // Regular tree
+    this.load.image('tree1', '../assets/sprites/Tree_3.png'); // Regular tree
     this.load.image('burntTree', '../assets/sprites/burntTree(64x64).png'); // Burnt tree
     this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
     this.load.image("tilesDynamic", "assets/sprites/jungleTileSet.png"); //Object layer tiles
@@ -271,7 +270,8 @@ class GameScene extends Phaser.Scene {
             // Extinguish the fire
             extinguishFire(fire);
 			
-			saveTree();
+			//*******************this function call is where the score gets increased on fire click. adds incorrectly atm****************
+			//saveTree();
 			
         });
         
