@@ -54,16 +54,16 @@
   }
 
   #carouselImage1 {
-      background-image: url("../../assets/images/wildfire1.jpg");
+      background-image: url("../../assets/images/cabinFire.jpg");
       background-size: cover;
   }
 
   #carouselImage2 {
-      background-image: url("../../assets/images/wildfire2.jpg");
+      background-image: url("../../assets/images/fireSeason.jpg");
       background-size: cover;
   }
 
   #carouselImage3 {
-      background-image: url("../../assets/images/wildfire2.jpg");
+      background-image: url("../../assets/images/saveForest.jpg");
       background-size: cover;
   }
