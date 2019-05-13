@@ -13,9 +13,9 @@
 
 <b>Resources used:</b>
 <ul>
-                <li>phaser.io<li>
-                <li>Visual Studio Code<li>
-                <li>Brackets<li>
+                <li>phaser.io</li>
+                <li>Visual Studio Code</li>
+                <li>Brackets</li>
 </ul>
 
 <i>© 2019 Team 19, All Rights Reserved.</i>
