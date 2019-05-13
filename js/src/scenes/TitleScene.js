@@ -6,6 +6,7 @@ class TitleScene extends Phaser.Scene {
 		});
 		this.scalingAmt = 1.0;
 	}
+	
 	preload(){
 		this.load.image('background_image', '../assets/images/forestBackground.png');
 		this.load.image('startButt', '../assets/sprites/startBtn.png'); // start button

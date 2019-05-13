@@ -210,22 +210,6 @@ class GameScene extends Phaser.Scene {
     // Create score counter
     scoreCounter = this.add.text(10, 10, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
 	
-	/*
-    // Create title text
-    titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
-        
-    // Create subtext
-    subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323'});
-
-    
-      
-    // Create start buttons
-    startBtn = this.add.sprite(420, 400, 'startBtn').setInteractive();
-        
-    // Start button functionality
-    
-    startBtn.on('pointerover', changeColor);
-    startBtn.on('pointerout', revertColor); */
 }
    
 // Arrange the trees using the boundaries
