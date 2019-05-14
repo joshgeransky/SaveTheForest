@@ -7,8 +7,9 @@
     background-color: #262626;
 }
 
-/* Style the content of the learn page */
+/* Style the content (cards) of the learn page */
 .learn-content {
+    font-family: 'Teko', sans-serif;
     text-align: center;
     margin-top: 10pt;
 }
@@ -42,6 +43,7 @@
 
 /* Style for the container that holds the carousel */
 #carouselFireFacts {
+    font-family: 'Teko', sans-serif;
     margin-top: 10pt;
 }
 
