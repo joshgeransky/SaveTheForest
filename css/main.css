@@ -87,7 +87,7 @@ body {
 }
 
 /* Media Query, 500px width */ 
-@media screen and (max-width: 500px) {
+@media screen and (orientation: portrait) {
     .header a {
         float: none;
         display: block;
@@ -97,5 +97,9 @@ body {
     .header-nav {
         float: none;
     }
+	
+	body{
+		width: 100%;
+	}
     
 }
