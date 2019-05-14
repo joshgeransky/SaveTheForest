@@ -10,6 +10,7 @@
 /* Style the content of the learn page */
 .learn-content {
     text-align: center;
+    margin-top: 10pt;
 }
 
 /* Style the learn-links */
@@ -66,4 +67,14 @@
   #carouselImage3 {
       background-image: url("../../assets/images/saveForest.jpg");
       background-size: cover;
+  }
+
+  /* Style for caption in the caraousel */
+  .carousel-caption {
+      text-shadow: 2px 2px 2px #262626;
+  }
+
+  /* Style for card text */
+  .card-columns {
+      color: black;
   }
