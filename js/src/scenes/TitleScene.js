@@ -6,17 +6,9 @@ class TitleScene extends Phaser.Scene {
 		});
 		this.scalingAmt = 1.0;
 	}
+	
 	preload(){
-		this.load.image('background_image', '../assets/images/forestBackground.png');
-		this.load.image('startButt', '../assets/sprites/startBtn.png'); // start button
-		this.load.spritesheet('campFire', '../assets/sprites/campFireSprites.png', { frameWidth: 275, frameHeight: 400, endFrame: 8});
-		//music
-		this.load.audio('bg', ['assets/sounds/Title_Screen_1.mp3']);
-		this.load.audio('water', ['assets/sounds/Tree_Extinguish1.mp3']);
-		this.load.audio('fire', ['assets/sounds/fire.mp3']);
-		this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);   
-		this.load.audio('startPlay', ['assets/sounds/Start_1.mp3']);   
-		this.load.audio('gameover', ['assets/sounds/GameOver.mp3']);    
+   
 	}
 	
 	create (){		
@@ -60,8 +52,6 @@ class TitleScene extends Phaser.Scene {
 	    console.log(spriteCamp);
 	
 	    spriteCamp.anims.play('camping');
-	     
-	     
 	     
 	      
 	    // Create start buttons

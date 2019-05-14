@@ -64,7 +64,7 @@ class GameScene extends Phaser.Scene {
         /* -------- Music -------- */
         
         //titleMusic = this.sound.add('bg', musicConfig);
-        titleMusic.stop();
+        //titleMusic.stop();
         gameMusic = this.sound.add('game', musicConfig);
         gameMusic.play();
         fireSound = this.sound.add('fire', fireConfig);
@@ -222,7 +222,10 @@ class GameScene extends Phaser.Scene {
         
         this.children.bringToTop(scoreCounter);
     }
+
    
+
+
     // Arrange the trees using the boundaries
     arrangeTrees(bounds) {
     
