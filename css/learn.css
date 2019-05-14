@@ -38,16 +38,26 @@
   }
 
   #carouselImage1 {
-    background-image: url("../../assets/images/cabinFire.jpg");
+    background-image: url("../../assets/images/damage.jpg");
     background-size: cover;
   }
 
   #carouselImage2 {
-    background-image: url("../../assets/images/fireSeason.jpg");
+    background-image: url("../../assets/images/cabinFire.jpg");
     background-size: cover;
   }
 
   #carouselImage3 {
+    background-image: url("../../assets/images/fireSeason.jpg");
+    background-size: cover;
+  }
+
+  #carouselImage4 {
+    background-image: url("../../assets/images/cMoney.jpg");
+    background-size: cover;
+  }
+
+  #carouselImage5 {
     background-image: url("../../assets/images/saveForest.jpg");
     background-size: cover;
   }
