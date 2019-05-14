@@ -17,7 +17,15 @@
 /* Style for the container that holds the carousel */
 #carouselFireFacts {
     font-family: 'Teko', sans-serif;
+    font-size: 32pt;
     margin-top: 10pt;
+}
+
+/*Style for text in the carousel */
+.carousel-caption {
+    transform: translateY(-50%);
+    bottom: 0;
+    top: 50%;
 }
 
 /*Style for the images in the carousel */
@@ -26,22 +34,22 @@
   }
 
   .carousel-item {
-      height: 70vh;
+    height: 70vh;
   }
 
   #carouselImage1 {
-      background-image: url("../../assets/images/cabinFire.jpg");
-      background-size: cover;
+    background-image: url("../../assets/images/cabinFire.jpg");
+    background-size: cover;
   }
 
   #carouselImage2 {
-      background-image: url("../../assets/images/fireSeason.jpg");
-      background-size: cover;
+    background-image: url("../../assets/images/fireSeason.jpg");
+    background-size: cover;
   }
 
   #carouselImage3 {
-      background-image: url("../../assets/images/saveForest.jpg");
-      background-size: cover;
+    background-image: url("../../assets/images/saveForest.jpg");
+    background-size: cover;
   }
 
   /* Style for caption in the caraousel */
@@ -49,7 +57,7 @@
       text-shadow: 2px 2px 2px #262626;
   }
 
-  /*Style for links */
+  /*Style for card links */
   .myLinks {
       color:black;
   }
