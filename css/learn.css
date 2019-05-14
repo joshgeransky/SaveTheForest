@@ -76,6 +76,15 @@
       text-shadow: 2px 2px 2px #262626;
   }
 
+  /*Style for links */
+  .myLinks {
+      color:black;
+  }
+
+  .myLinks:hover {
+      color:black;
+  }
+
   /* Style for card */
   .card-columns {
       margin: 10pt;
