@@ -76,7 +76,14 @@
       text-shadow: 2px 2px 2px #262626;
   }
 
-  /* Style for card text */
+  /* Style for card */
   .card-columns {
+      margin: 10pt;
       color: black;
+  }
+
+  /* Style for cards on hover */
+  .card:hover {
+    box-shadow: rgba(43, 153, 41) 0px 5px 25px;
+    transform: translate3d(0px, -1px, 0px);
   }
