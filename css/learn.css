@@ -14,33 +14,6 @@
     margin-top: 10pt;
 }
 
-/* Style the learn-links */
-.learn-links a {
-    font-size: 30pt;
-    text-decoration: underline;
-    color: white;
-}
-
-/* On hover, change the background color of links */
-.learn-links a:hover {
-    background-color: #4c4c4c;
-    border-radius: 5px;
-}
-
-/* Style the learn-image class */
-.learn-image {
-    padding-top: 5px;
-}
-
-/* Style the image within the learn-image div */
-.learn-image img {
-    height: 400px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-    
-}
-
 /* Style for the container that holds the carousel */
 #carouselFireFacts {
     font-family: 'Teko', sans-serif;
