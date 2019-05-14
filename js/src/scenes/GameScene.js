@@ -65,7 +65,7 @@ class GameScene extends Phaser.Scene {
         /* -------- Music -------- */
         
         //titleMusic = this.sound.add('bg', musicConfig);
-        titleMusic.stop();
+        //titleMusic.stop();
         gameMusic = this.sound.add('game', musicConfig);
         gameMusic.play();
         fireSound = this.sound.add('fire', fireConfig);
