@@ -6,7 +6,7 @@ var config = {
     height: 600,
     parent: 'game',
 
-    scene: [TitleScene, GameScene],
+    scene: [BootScene, PreloadScene,TitleScene, GamePreload, GameScene, GameOverScene],
     pixelArt: true,
 		audio: {
 	        displayWebAudio: true
@@ -116,7 +116,8 @@ var marioConfig = {
 // Setting the Title Screen
 let titleScene = new TitleScene();
 
-game.scene.start('TitleScene');
+game.scene.add("BootScene", BootScene.js);
+game.scene.start('BootScene');
 
 
 
