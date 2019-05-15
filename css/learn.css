@@ -7,41 +7,25 @@
     background-color: #262626;
 }
 
-/* Style the content of the learn page */
+/* Style the content (cards) of the learn page */
 .learn-content {
+    font-family: 'Teko', sans-serif;
     text-align: center;
-}
-
-/* Style the learn-links */
-.learn-links a {
-    font-size: 30pt;
-    text-decoration: underline;
-    color: white;
-}
-
-/* On hover, change the background color of links */
-.learn-links a:hover {
-    background-color: #4c4c4c;
-    border-radius: 5px;
-}
-
-/* Style the learn-image class */
-.learn-image {
-    padding-top: 5px;
-}
-
-/* Style the image within the learn-image div */
-.learn-image img {
-    height: 400px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-    
+    margin-top: 10pt;
 }
 
 /* Style for the container that holds the carousel */
 #carouselFireFacts {
+    font-family: 'Teko', sans-serif;
+    font-size: 32pt;
     margin-top: 10pt;
+}
+
+/*Style for text in the carousel */
+.carousel-caption {
+    transform: translateY(-50%);
+    bottom: 0;
+    top: 55%;
 }
 
 /*Style for the images in the carousel */
@@ -50,20 +34,56 @@
   }
 
   .carousel-item {
-      height: 70vh;
+    height: 70vh;
   }
 
   #carouselImage1 {
-      background-image: url("../../assets/images/wildfire1.jpg");
-      background-size: cover;
+    background-image: url("../../assets/images/damage.jpg");
+    background-size: cover;
   }
 
   #carouselImage2 {
-      background-image: url("../../assets/images/wildfire2.jpg");
-      background-size: cover;
+    background-image: url("../../assets/images/cabinFire.jpg");
+    background-size: cover;
   }
 
   #carouselImage3 {
-      background-image: url("../../assets/images/wildfire2.jpg");
-      background-size: cover;
+    background-image: url("../../assets/images/fireSeason.jpg");
+    background-size: cover;
+  }
+
+  #carouselImage4 {
+    background-image: url("../../assets/images/cMoney.jpg");
+    background-size: cover;
+  }
+
+  #carouselImage5 {
+    background-image: url("../../assets/images/saveForest.jpg");
+    background-size: cover;
+  }
+
+  /* Style for caption in the caraousel */
+  .carousel-caption {
+      text-shadow: 2px 2px 2px #262626;
+  }
+
+  /*Style for card links */
+  .myLinks {
+      color:black;
+  }
+
+  .myLinks:hover {
+      color:black;
+  }
+
+  /* Style for card */
+  .card-columns {
+      margin: 10pt;
+      color: black;
+  }
+
+  /* Style for cards on hover */
+  .card:hover {
+    box-shadow: rgba(43, 153, 41) 0px 5px 25px;
+    transform: translate3d(0px, -1px, 0px);
   }
