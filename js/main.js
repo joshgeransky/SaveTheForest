@@ -12,18 +12,11 @@ var config = {
 	        displayWebAudio: true
 	},	
 }
-/**
-		mode: Phaser.DOM.RESIZE,
-		height: '100%',
-		width: '100%',
-		parent: 'game'
-*/		
 
 /* --- Game variables --- */
 let game = new Phaser.Game(config);
 var width = 40;
 var height = 38;
-var value = Phaser.Math.Between(4, 10);
 var fireArr = [];
 var startBtn;
 var titleText;
