@@ -7,11 +7,12 @@ class BootScene extends Phaser.Scene {
 	}
 	
 	preload(){
-	
+		//cursor image
+		this.load.image("fireCursor", "assets/sprites/fireExtinguisher.cur");
 	}
 	create(){
-	this.scene.start('PreloadScene');
+		this.input.setDefaultCursor('url(assets/sprites/blue.cur), pointer');
+		this.scene.start('PreloadScene');
 	}
-	
 	
 }

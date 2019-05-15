@@ -66,9 +66,9 @@ class TitleScene extends Phaser.Scene {
 		startBtn.on('pointerdown', function () {
 			startSound.play();
 			
-            console.log('From TitleScene to GameScene');
+            console.log('From TitleScene to GamePreload');
 			//titleMusic.pause();
-            this.scene.start('GameScene');
+            this.scene.start('GamePreload');
             
 
         }, this);
@@ -80,11 +80,9 @@ class TitleScene extends Phaser.Scene {
 	}
 
 }
-function startGame() {
-	   
+function startGame() {  
 	   start = true;
 	   titleMusic.stop();
-
 
 	}
 	

@@ -11,32 +11,14 @@ class GameScene extends Phaser.Scene {
     
 	preload() {
         
-        /* -------- Sprites -------- */
-        this.load.image('tree1', '../assets/sprites/Tree_3.png'); // Regular tree
-        this.load.image('burntTree', '../assets/sprites/burntTree(64x64).png'); // Burnt tree
-        this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
-        this.load.image("tilesDynamic", "assets/sprites/jungleTileSet.png"); //Object layer tiles
-        this.load.image('mushroom', 'assets/sprites/mushroom.png');
-        this.load.image('deadShroom', 'assets/sprites/dead-mushroom.png');
-        this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24}); // first fire
-        //this.load.image('startBtn', '../assets/sprites/startBtn.png'); // start button
-        this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11}); // second fire
-
-        /* -------- Audio -------- */
-        //this.load.audio('bg', ['assets/sounds/Title_Screen_1.mp3']);
-        this.load.audio('water', ['assets/sounds/Tree_Extinguish1.mp3']);
-        this.load.audio('fire', ['assets/sounds/fire.mp3']);
-        this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);   
-        this.load.audio('start', ['assets/sounds/Start_1.mp3']);     
-        this.load.audio('gameover', ['assets/sounds/GameOver.mp3']);     
-        this.load.audio('marioMusic', ['assets/sounds/mario.mp3']);
 	
 }
 
     // Creation function
     create() {
-        //this.input.touch.preventDefault = false;
         
+        
+          
         // Configure the first fire animation
         var configFire1 = {
             key: "burn1",
@@ -147,12 +129,14 @@ class GameScene extends Phaser.Scene {
         // Create score counter
         scoreCounter = this.add.text(10, 10, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
         
+         
         // For loop to create trees
         for (let i = 0; i < 200; i++) {
             // Create a tree and add it to the window
             var tree = this.add.sprite(treeArr[i].x, treeArr[i].y, 'tree1').setName('Sprite' + i);	
             var burntTree = this.add.sprite(treeArr[i].x, treeArr[i].y, 'burntTree').setName('Burnt' + i);
-        
+            burntTree.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
+        	
             burntTree.visible = false;
         
             burntTree.setInteractive();
@@ -177,6 +161,8 @@ class GameScene extends Phaser.Scene {
           
                 // Makes fire on the tree
                 fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
+                fire.setInteractive({ cursor: 'url(assets/sprites/cursor.cur), pointer' });
+                
         
                 // Animate the fire
                 fire.anims.play("burn1");
@@ -186,6 +172,7 @@ class GameScene extends Phaser.Scene {
             
                 // Makes fire on the tree
                 fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
+               	fire.setInteractive({ cursor: 'url(assets/sprites/cursor.cur), pointer' });
             
                 // Animate the fire
                 fire.anims.play("burn2");
@@ -194,6 +181,7 @@ class GameScene extends Phaser.Scene {
             } else {
                 // Makes fire on the tree
                 fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
+                fire.setInteractive({ cursor: 'url(assets/sprites/cursor.cur), pointer' });
         
                 // Animate the fire
                 fire.anims.play("burn1");
@@ -497,6 +485,7 @@ function burnTree(t, f) {
 
                 // Make the burnt tree visible
                 burnt.visible = true;
+                
             } else {
                 t.shroom.visible = false;
                 t.deadShroom.visible = true;
