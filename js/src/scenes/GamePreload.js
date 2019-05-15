@@ -12,10 +12,9 @@ class GamePreload extends Phaser.Scene {
 	preload(){
 		//preload scene assets
 		this.createGameProgressbar(this.centerX(), this.centerY());
-		//this.add.image(this.centerX(), this.centerY(), 'logo');
 		//Game scene assets
 		 /* -------- Sprites -------- */
-        this.load.image('tree1', '../assets/sprites/tree1(64x64).png'); // Regular tree
+        this.load.image('tree1', 'assets/sprites/Tree_3.png'); // Regular tree
         this.load.image('burntTree', '../assets/sprites/burntTree(64x64).png'); // Burnt tree
         this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
         this.load.image("tilesDynamic", "assets/sprites/jungleTileSet.png"); //Object layer tiles
