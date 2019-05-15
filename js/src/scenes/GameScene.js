@@ -5,14 +5,12 @@ class GameScene extends Phaser.Scene {
 		});
 		this.scalingAmt = 1.0;
 	}
-    
 	init() {
         
 	}
     
 	preload() {
         
-      
 	
 }
 
@@ -255,7 +253,7 @@ class GameScene extends Phaser.Scene {
 			 
                 // Set the clickedFire variable (may be unnecessary)
                 clickedFire = fire;
-            
+           
                 // Extinguish the fire
                 extinguishFire(fire, th);
                 removingFire = true;
@@ -350,17 +348,7 @@ function startFires(th) {
 	        
         // Get the fire at the randomly chosen index
         var f = t.fire;
-	        
-        // For loop to search through the entire liteFire array.
-        // If a matching fire is found that means it's already been lit, and it will find another fire.
-        for (let i = 0; i < litFires.length; i++) {
-            // While loop to avoid the remote possibility of the grabbing the same fire again.
-            while (f == litFires[i]) {
-                // Get a new random fire from the fire array.
-                f = Phaser.Utils.Array.GetRandom(allTrees);
-            }
-        }
-	    
+        
         // Make the fire visible for the user, and thus clickable.   
         f.visible = true;
 			
@@ -372,9 +360,6 @@ function startFires(th) {
 			
         // Bring the fire to the top of the window
         th.children.bringToTop(f);
-	    
-        //Push the fire to the lit fires array.
-        litFires.push(f);
 	    
         // Increase the count of total fires (includes past removed fires).
         fireCount++;
@@ -457,13 +442,6 @@ function extinguishFire(f, th) {
     // Mute the fire noise
     fireSoundBoolean = false;
     fireSound.stop();
-	   
-    // For loop to remove the fire from the litFires array
-    for (let i = 0; i < litFires.length; i++) {
-        if (f == litFires[i]) {
-	        litFires.splice(i, 1);
-	    }
-    }    
 }
 	
 // Function to delay the burning of a tree
