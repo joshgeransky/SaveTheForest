@@ -12,7 +12,7 @@ class GameScene extends Phaser.Scene {
 	preload() {
         
 	
-}
+	}
 
     // Creation function
     create() {
@@ -161,7 +161,7 @@ class GameScene extends Phaser.Scene {
           
                 // Makes fire on the tree
                 fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
-                fire.setInteractive({ cursor: 'url(assets/sprites/cursor.cur), pointer' });
+                fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
                 
         
                 // Animate the fire
@@ -172,7 +172,7 @@ class GameScene extends Phaser.Scene {
             
                 // Makes fire on the tree
                 fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
-               	fire.setInteractive({ cursor: 'url(assets/sprites/cursor.cur), pointer' });
+               	fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
             
                 // Animate the fire
                 fire.anims.play("burn2");
@@ -181,7 +181,7 @@ class GameScene extends Phaser.Scene {
             } else {
                 // Makes fire on the tree
                 fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
-                fire.setInteractive({ cursor: 'url(assets/sprites/cursor.cur), pointer' });
+                fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
         
                 // Animate the fire
                 fire.anims.play("burn1");

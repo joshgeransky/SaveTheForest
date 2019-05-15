@@ -12,12 +12,6 @@ var config = {
 	        displayWebAudio: true
 	},	
 }
-/**
-		mode: Phaser.DOM.RESIZE,
-		height: '100%',
-		width: '100%',
-		parent: 'game'
-*/		
 
 /* --- Game variables --- */
 let game = new Phaser.Game(config);

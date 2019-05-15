@@ -12,7 +12,7 @@ class GameOverScene extends Phaser.Scene {
 	}
 	create(){
 	 // Create start buttons
-	    restartBtn = this.add.sprite(400, 270, 'startButt').setInteractive();
+	    restartBtn = this.add.sprite(400, 270, 'restartButt').setInteractive();
   		restartSound = this.sound.add('startPlay', waterConfig);   
 	    
 	    // Start button functionality
