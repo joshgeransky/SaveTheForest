@@ -24,9 +24,12 @@ let game = new Phaser.Game(config);
 var width = 40;
 var height = 38;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 var value = Phaser.Math.Between(4, 10);
 >>>>>>> 6a59bf5f60ce75361b3ef82bdb15a32abd922da2
+=======
+>>>>>>> 6d53501cfd858579263b806987f079c9dbf1ace1
 var fireArr = [];
 var startBtn;
 var titleText;
