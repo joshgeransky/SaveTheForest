@@ -37,7 +37,7 @@ var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
 var spriteCamp;
 var startSound;
-var removingFire = false;
+var removedFires = [];
     
 // Mario music easter egg boolean
 var marioed = false;

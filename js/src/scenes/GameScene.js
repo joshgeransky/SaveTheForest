@@ -256,17 +256,14 @@ class GameScene extends Phaser.Scene {
            
                 // Extinguish the fire
                 extinguishFire(fire, th);
-                removingFire = true;
                 			
             });
         
-            if (!removingFire) {
-                // When a burnt tree is clicked
+            // When a burnt tree is clicked
                 this.input.on('gameobjectdown', function(pointer, burnt) {
                     // Remove the burnt tree
                     removeTree(this, burnt, clickedFire);			
-                });
-            }
+            });
         
             // Check what stage the user is at
             detStage();
@@ -426,22 +423,34 @@ function sortTrees() {
 // f = the fire
 function extinguishFire(f, th) {
 	
-    // Play extinguish fire sound
-    waterSound.play(waterConfig);
+    // Get the number of the fire
+    var fireNumber = parseInt((f.name.replace('Fire', '')), 10);
+        
+    // Check to see if we're actually clicking a fire
+    if (!isNaN(fireNumber)) { 
     
-    // If the fire hasn't been put out yet, add points
-    // This ensures the points are only added once
-    if (f.visible == true) {
-        // Add points to counter
-        addPoints(th);
-    }
+        // If the fire hasn't been put out yet, add points
+        // This ensures the points are only added once
+        if (f.visible == true) {
+            
+            // Play extinguish fire sound
+            waterSound.play(waterConfig);
+        
+            // Add points to counter
+            addPoints(th);
+            
+            // Store the last extinguished fire number
+            removedFires.push(fireNumber);
+                    
+        }
     
-    // Now set the fire to invisible
-    f.visible = false;
+        // Now set the fire to invisible
+        f.visible = false;
 
-    // Mute the fire noise
-    fireSoundBoolean = false;
-    fireSound.stop();
+        // Mute the fire noise
+        fireSoundBoolean = false;
+        fireSound.stop();
+    }
 }
 	
 // Function to delay the burning of a tree
@@ -459,7 +468,7 @@ function burnDelay(t, f, th) {
         loop: false // Do not loop, once it's burned once it's done
     });
 }
-	
+
 // Function to burn down a tree
 // t = specific index at the tree array
 // f = the fire from that index
@@ -499,11 +508,43 @@ function burnTree(t, f) {
 // b = the burnt tree
 function removeTree(th, b, f) {
 	        
-    // Ensure the tree is no longer on fire
-    if (f.visible == false) {
-     
-        // Make the burnt tree disappear
-        b.visible = false;
+    // Get the number of the burnt tree
+    var burntNumber = parseInt(b.name.replace('Burnt', ''), 10);
+    
+    var deadShroomNumber = parseInt(b.name.replace('deadShroom', ''), 10);
+    
+    // Ensure this is a burnt tree
+    if (!isNaN(burntNumber)) {
+        
+        // Go through all previously extinguished fires
+        for (let i = 0; i < removedFires.length; i++) {
+        
+            // Check to see if the fire has been extinguished yet
+            if (burntNumber == removedFires[i]) {
+                
+                // Make the burnt tree disappear
+                b.visible = false;
+                
+                // Remove the extinguished fire from the array
+                removedFires.splice(i, 1);
+            }
+        }
+        
+    } else if (!isNaN(deadShroomNumber)) {
+                
+        // Go through all previously extinguished fires
+        for (let i = 0; i < removedFires.length; i++) {
+            
+            // Check to see if the fire has been extinguished yet
+            if (deadShroomNumber == removedFires[i]) {
+                
+                // Make the dead mushroom disappear
+                b.visible = false;
+                
+                // Remove the extinguished fire from the array
+                removedFires.splice(i, 1);
+            }
+        }
     }
 }
 		
