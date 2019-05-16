@@ -38,6 +38,9 @@ var fireSoundBoolean = false; //keeps track of how whether a fire is on the scre
 var spriteCamp;
 var startSound;
 var removedFires = [];
+var currentFireCount = 0;
+var removedTreeCount = 0;
+
     
 // Mario music easter egg boolean
 var marioed = false;
