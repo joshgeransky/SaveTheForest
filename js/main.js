@@ -37,11 +37,16 @@ var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
 var spriteCamp;
 var startSound;
+var removedFires = [];
+    
+// Mario music easter egg boolean
 var marioed = false;
-var removingFire = false;
 
 // Title screen music
 var titleMusic;
+
+// start button effect
+var startSound;
     
 // Gameplay music
 var gameMusic;
@@ -51,7 +56,7 @@ var waterSound;
     
 // Fire effect
 var fireSound;
-
+	
 // Start button on click
 var start;
 
@@ -82,7 +87,7 @@ var fireConfig = {
     seek: 0,
     loop: true,
     delay: 0
-};
+}
 
 //configuration for extinguishing water
 var waterConfig = {
@@ -106,16 +111,13 @@ var marioConfig = {
     delay: 0
 }
 
+
+
 // Setting the Title Screen
 let titleScene = new TitleScene();
 
 game.scene.add("BootScene", BootScene.js);
 game.scene.start('BootScene');
-
-
-
-
-
 
 
 
