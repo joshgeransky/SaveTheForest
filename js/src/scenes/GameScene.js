@@ -243,11 +243,9 @@ class GameScene extends Phaser.Scene {
         
         // Variable for 'this'
         var th = this;
-        
-       // var removingFire = true;
-        
+                
         // If the game has started
-        if (start) {
+        if (start && !((removedTreeCount + currentFireCount) == 200)) {
             // When a fire is clicked
             this.input.on('gameobjectdown', function(pointer, fire) {
 			 
@@ -298,9 +296,11 @@ class GameScene extends Phaser.Scene {
                     allTrees[i].shroom = shroom;
                     allTrees[i].deadShroom = deadShroom;
                     deadShroom.visible = false;
-                    deadShroom.setInteractive();
+                    deadShroom.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
                 }        
             }
+        } else if (currentFireCount + removedTreeCount == 200) {
+            gameOver(this);
         }
     }
 }
@@ -360,6 +360,9 @@ function startFires(th) {
 	    
         // Increase the count of total fires (includes past removed fires).
         fireCount++;
+        
+        // Increase the current fire count.
+        currentFireCount++;
 	    
         // Print the fire count to console (for testing purposes)
         console.log('FireCount ' + fireCount);
@@ -385,7 +388,7 @@ function delayFires() {
 function detStage() {
 	    
     // If less than 10 fires, first stage, etc.
-    if (fireCount >= 0 && fireCount <= 10) {
+    if (fireCount >= 0 && fireCount <= 10) {        
         stageDelay = 5000;
 	    
     } else if (fireCount > 10 && fireCount <= 20) {
@@ -442,6 +445,8 @@ function extinguishFire(f, th) {
             // Store the last extinguished fire number
             removedFires.push(fireNumber);
                     
+            // Decrease the current fire count
+            currentFireCount--;
         }
     
         // Now set the fire to invisible
@@ -494,9 +499,13 @@ function burnTree(t, f) {
 
                 // Make the burnt tree visible
                 burnt.visible = true;
-                
+                                
             } else {
+                
+                // Make the normal mushroom invisible
                 t.shroom.visible = false;
+                
+                // Make the sad dead mushroom visible
                 t.deadShroom.visible = true;
             }
         }
@@ -525,6 +534,9 @@ function removeTree(th, b, f) {
                 // Make the burnt tree disappear
                 b.visible = false;
                 
+                // Increase the count of removed trees
+                removedTreeCount++;
+                
                 // Remove the extinguished fire from the array
                 removedFires.splice(i, 1);
             }
@@ -541,11 +553,20 @@ function removeTree(th, b, f) {
                 // Make the dead mushroom disappear
                 b.visible = false;
                 
+                // Increase the count of removed trees/shrooms
+                removedTreeCount++;
+                
                 // Remove the extinguished fire from the array
                 removedFires.splice(i, 1);
             }
         }
     }
+}
+
+// Game over function
+function gameOver(th) {
+    console.log("Game Over");
+    
 }
 		
 //changes color of start button on hover
