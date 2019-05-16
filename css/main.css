@@ -7,11 +7,11 @@
     background-color: #0f0f0f;
     padding: 20px 10px;
     border-radius: 20px;
-    
+    line-height: 1;
 }
 
 /* Style the body */
-body {
+#bodyGeneral {
     background-color: #262626;
     color: white;
     font-family: 'Teko', sans-serif;
@@ -22,7 +22,7 @@ body {
           image-rendering: crisp-edges;                /* Possible future browsers. */
           -ms-interpolation-mode: nearest-neighbor;    /* IE (non standard naming) */
           image-rendering: pixelated;                  /* Chrome 41 */
-        
+    margin: 10pt;
 }
 
 /* Styling for the header links */

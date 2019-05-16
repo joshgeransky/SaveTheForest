@@ -1,12 +1,6 @@
 /* Import Google fonts */
 @import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 
-/*Style the body of the learn page*/
-#bodyLearn {
-    color: white;
-    background-color: #262626;
-}
-
 /* Style the content (cards) of the learn page */
 .learn-content {
     font-family: 'Teko', sans-serif;
@@ -18,7 +12,6 @@
 #carouselFireFacts {
     font-family: 'Teko', sans-serif;
     font-size: 32pt;
-    margin-top: 10pt;
 }
 
 /*Style for text in the carousel */
@@ -62,7 +55,7 @@
     background-size: cover;
   }
 
-  /* Style for caption in the caraousel */
+  /* Style for caption in the carousel */
   .carousel-caption {
       text-shadow: 2px 2px 2px #262626;
   }
