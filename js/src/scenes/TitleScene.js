@@ -76,6 +76,22 @@ class TitleScene extends Phaser.Scene {
 		  
 		startBtn.on('pointerdown', startGame);
 
+		//Create full screen button
+		var fullscreenBtn = this.add.sprite(400, 470, "startButt").setInteractive();
+
+		fullscreenBtn.on("pointerdown", function () {
+			if (this.scale.isFullscreen) {
+				fullscreenBtn.setFrame(0);
+
+				this.scale.stopFullscreen();
+
+			} else {
+				fullscreenBtn.setFrame(0);
+
+				this.scale.startFullscreen();
+			}
+		}, this);
+
 		whatOrientation(this.scale.orientation);
 
 		this.scale.on("orientationchange", whatOrientation, this);
@@ -95,10 +111,8 @@ function whatOrientation (orientation) {
 		console.log("Portrait Mode");
 	} else  {
 		console.log("LandScape Mode");
-		this.Scale.ScaleMode = Phaser.Scale.ScaleModes.HEIGHT_CONTROLS_WIDTH;
 	}
 }
-	
 
 //export default TitleScene;
 
