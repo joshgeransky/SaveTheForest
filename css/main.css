@@ -22,6 +22,7 @@
           image-rendering: crisp-edges;                /* Possible future browsers. */
           -ms-interpolation-mode: nearest-neighbor;    /* IE (non standard naming) */
           image-rendering: pixelated;                  /* Chrome 41 */
+    margin: 0;
 }
 
 /* Styling for the header links */
