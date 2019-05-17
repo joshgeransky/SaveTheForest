@@ -30,25 +30,25 @@
 
 /*Style the drop down title*/
 #titleOne {
-    color: white;
+    color: black;
     font-size: 24pt;
     text-decoration: none;
 }
 
 #titleTwo {
-    color: white;
+    color: black;
     font-size: 24pt;
     text-decoration: none;
 }
 
 #titleThree {
-    color: white;
+    color: black;
     font-size: 24pt;
     text-decoration: none;
 }
 
 /* Style the head of card 1, card2 and card 3*/
-#headingOne {
+/* #headingOne {
     background-color: #262626;
 }
 
@@ -58,25 +58,27 @@
 
 #headingThree {
     background-color: #262626;
-}
+} */
 
 /*Style the body of the cards in the drop down */
-.card-body {
+/* .card-body {
     background-color: #262626;
-}
+} */
 
 /*Style the image in the cards for the drop down */
 img.card-img {
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
-    border-radius: 0;
+    padding: 10pt;
+    border-radius: 20px;
 }
 
 /*Style the text in the cards for the drop down*/
 div.card-body{
     min-width: 100%;
     min-height: 100%;
+    color: black;
 }
 
 /* Make card glow on hover */
