@@ -26,6 +26,25 @@
     margin: 10pt;
 }
 
+/*Style the drop down title*/
+#titleOne {
+    color: white;
+    font-size: 24pt;
+    text-decoration: none;
+}
+
+#titleTwo {
+    color: white;
+    font-size: 24pt;
+    text-decoration: none;
+}
+
+#titleThree {
+    color: white;
+    font-size: 24pt;
+    text-decoration: none;
+}
+
 /* Style the head of card 1, card2 and card 3*/
 #headingOne {
     background-color: #262626;
