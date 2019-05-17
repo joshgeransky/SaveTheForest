@@ -24,15 +24,26 @@ class GameOverScene extends Phaser.Scene {
 	    // restartBtn.on('pointerout', revertColor);
 	    //Event handler for start button
 		restartBtn.on('pointerdown', function () {
+
+			// var theOtherScene = this.scene.get('BootScene');
+			// theOtherScene.scene.restart();
+			// theOtherScene = this.scene.get('GamePreload');
+			// theOtherScene.scene.restart();
+			// theOtherScene = this.scene.get('GameScene');
+			// theOtherScene.scene.restart();
+			// theOtherScene = this.scene.get('PreloadScene');
+			// theOtherScene.scene.restart();
+			// theOtherScene = this.scene.get('TitleScene');
+			// theOtherScene.scene.restart();
+
 			startSound.play();
 			
-            console.log('From TitleScene to GameScene');
+            
 			//titleMusic.pause();
-            this.scene.start('GameScene');
+            this.scene.start('TitleScene');
             
 
         }, this);
-		
 		  
 		restartBtn.on('pointerdown', startGame);
 	}

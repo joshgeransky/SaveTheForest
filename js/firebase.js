@@ -40,8 +40,6 @@ function loaded() {
 
       });
 
-      
-
     });
     
   }
