@@ -5,19 +5,19 @@ var config = {
     width: 800,
     height: 600,
     parent: 'game',
-
+	scale: {
+        // automatic scaling of the entire app
+        mode: Phaser.Scale.FIT,
+      // autoCenter: Phaser.Scale.CENTER_VERTICAL,
+		width: 800,
+		height: 600
+	},
     scene: [TitleScene, GameScene],
     pixelArt: true,
 		audio: {
 	        displayWebAudio: true
 	},	
 }
-/**
-		mode: Phaser.DOM.RESIZE,
-		height: '100%',
-		width: '100%',
-		parent: 'game'
-*/		
 
 /* --- Game variables --- */
 let game = new Phaser.Game(config);
@@ -47,6 +47,28 @@ var startSound;
 var marioed = false;
 var removingFire = false;
 
+//for setting up facts and tool tip
+var facts = []; //all wildfire facts
+var factsLength = 0; //length of facts array (# of facts to display - 1)
+var textHolder; //the 
+var firstBurntTree = false;
+var burntTreeCounter = 0;
+var ran = 0;
+var readingToolTip = false;
+var clickedBurntTree = 0;
+var wait5Secs = false;
+
+var trophyTen = false;
+var trophyTwenty = false;
+var trophyThirty = false;
+var trophyFourty = false;
+var trophyFifty = false;
+var trophySixty = false;
+var trophySeventy = false;
+var trophyEighty = false;
+var trophyNinety = false;
+var trophyHun = false;
+
 // Title screen music
 var titleMusic;
     
@@ -67,6 +89,9 @@ var gameOverSound;
 
 // Mario music
 var marioMusic;
+
+//tree chopping effect
+var chopTreeSound;
 
 	
 //configuration for audio

@@ -87,7 +87,7 @@ body {
 }
 
 /* Media Query, 500px width */ 
-@media screen and (orientation: portrait) {
+@media screen and (max-width: 500px) {
     .header a {
         float: none;
         display: block;
@@ -98,8 +98,8 @@ body {
         float: none;
     }
 	
-	body{
-		width: 100%;
+	#game{
+		max-width: 500px;
 	}
     
 }

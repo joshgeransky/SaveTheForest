@@ -94,8 +94,6 @@ function startGame() {
 	   
 	   start = true;
 	   titleMusic.stop();
-
-
 	}
 	
 

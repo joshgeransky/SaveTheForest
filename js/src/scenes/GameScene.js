@@ -5,15 +5,12 @@ class GameScene extends Phaser.Scene {
 		});
 		this.scalingAmt = 1.0;
 	}
-	init() {
-        
-	}
     
 	preload() {
-        
+       //   this.load.plugin('DialogModalPlugin', 'dialog_plugin.js');
         /* -------- Sprites -------- */
         this.load.image('tree1', '../assets/sprites/Tree_3.png'); // Regular tree
-        this.load.image('burntTree', '../assets/sprites/burntTree(64x64).png'); // Burnt tree
+        this.load.image('burntTree', '../assets/sprites/Burnt_Tree_3.png'); // Burnt tree
         this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
         this.load.image("tilesDynamic", "assets/sprites/jungleTileSet.png"); //Object layer tiles
         this.load.image('mushroom', 'assets/sprites/mushroom.png');
@@ -21,22 +18,24 @@ class GameScene extends Phaser.Scene {
         this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", {frameWidth: 64, frameHeight: 64, endFrame: 24}); // first fire
         //this.load.image('startBtn', '../assets/sprites/startBtn.png'); // start button
         this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", {frameWidth: 42, frameHeight: 64, endFrame: 11}); // second fire
+		this.load.image("msgBox", "../assets/images/chatbox.png");
+		this.load.image("okBtn", "../assets/images/ok.png");
 
         /* -------- Audio -------- */
-        //this.load.audio('bg', ['assets/sounds/Title_Screen_1.mp3']);
         this.load.audio('water', ['assets/sounds/Tree_Extinguish1.mp3']);
         this.load.audio('fire', ['assets/sounds/fire.mp3']);
         this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);   
         this.load.audio('start', ['assets/sounds/Start_1.mp3']);     
         this.load.audio('gameover', ['assets/sounds/GameOver.mp3']);     
         this.load.audio('marioMusic', ['assets/sounds/mario.mp3']);
-	
+		this.load.audio('chopTree', ['assets/sounds/chopTree.wav']); 
 }
+
+firstBurntTree = false;
 
     // Creation function
     create() {
-        //this.input.touch.preventDefault = false;
-        
+         
         // Configure the first fire animation
         var configFire1 = {
             key: "burn1",
@@ -63,7 +62,6 @@ class GameScene extends Phaser.Scene {
    
         /* -------- Music -------- */
         
-        //titleMusic = this.sound.add('bg', musicConfig);
         titleMusic.stop();
         gameMusic = this.sound.add('game', musicConfig);
         gameMusic.play();
@@ -72,13 +70,14 @@ class GameScene extends Phaser.Scene {
         startSound = this.sound.add('start', waterConfig);   
         gameOverSound = this.sound.add('gameover', musicConfig);
         marioMusic = this.sound.add('marioMusic', marioConfig);
+		chopTreeSound = this.sound.add('chopTree', waterConfig);
 
         // x and y coordinates stored in arrays
         var xValues = [];
         var yValues = [];
         // In theory we could force the trees to grab only one of the values from
         // the x/y arrays, thus tiling them and making them more organized. Worth considering.
-                
+                	
         // Create the tiled background
         var level = [];
         for (var y = 0; y < height; y++) {
@@ -121,6 +120,60 @@ class GameScene extends Phaser.Scene {
             ]);
         }
 
+//wild fire facts array with 20 facts, to lessen the chance of repeats
+facts = [
+'A typical year has over 9,000 forest fires in Canada.', //1
+'An average of 2.5 million hectares or 25,000 square kilometers are burned in a year.', //2
+'The smoke released by the fire can cause health problems.', //3
+'Forest fires can burn from a rate of 0.5 km/h to 6 km/h or more.', //4
+'In Canada, two-thirds of all forest fires are caused by humans.', //5
+'Wildfires need fuel, oxygen, and heat to ignite and burn.', //6
+'On average, 40% of wildfires in British Columbia were started by humans.', //7
+'Human caused wildfires attribute to: cigarettes, campfires, engines/vehicles, and more.', //8
+'Never leave a fire unattended before leaving the campsite.', //9
+'Call 911, a local fire department, or the park service if you notice smoke or fire.', //10
+'Never discard smoking materials from moving cars or park grounds.', //11
+'All wildfires in British Columbia are investigated for its origin and cause.', //12
+'Wildfires usually occur from May to September.', //13
+'The smoke from BC\'s 2018 wildfires spread from across Canada to as far as Ireland.', //14
+]; 
+ 
+factsLength = facts.length - 1; // will display 5 facts per game
+clickedBurntTree = 0;
+
+//initializing milestones
+trophyTen = false;
+trophyTwenty = false;
+trophyThirty = false;
+trophyFourty = false;
+trophyFifty = false;
+trophySixty = false;
+trophySeventy = false;
+trophyEighty = false;
+trophyNinety = false;
+trophyHun = false;
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+shuffle(facts);
+
         // Set the camera location
         this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);    
         this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);	    
@@ -143,10 +196,23 @@ class GameScene extends Phaser.Scene {
         // Get the x and y values for the trees
         arrangeTrees(bounds);
 
-                
-        // Create score counter
+		var textStyle = {fontSize: '16pt', fontFamily: 'VT323', fill: 'white', backgroundColor: 'black', align: 'center'};
+         
+		
+		// Create score counter
         scoreCounter = this.add.text(10, 10, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
-        
+        textHolder = this.add.text(0, 580, "default");
+		textHolder.setStyle({
+        fontSize: '16pt',
+        fontFamily: 'VT323',
+        color: '#ffffff',
+        //align: 'center',
+        backgroundColor: 'black',
+      });
+		//textHolder.setOrigin(0.5);
+		//textHolder.setX(200);
+		textHolder.visible = false;
+				
         // For loop to create trees
         for (let i = 0; i < 200; i++) {
             // Create a tree and add it to the window
@@ -180,6 +246,7 @@ class GameScene extends Phaser.Scene {
         
                 // Animate the fire
                 fire.anims.play("burn1");
+				
             
                 // If the second fire type, add it
             } else if (fireType == 1) {
@@ -188,7 +255,8 @@ class GameScene extends Phaser.Scene {
                 fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
             
                 // Animate the fire
-                fire.anims.play("burn2");
+                fire.anims.play("burn2");	
+					
             
                 // Otherwise, in case of a weird number, add the first one
             } else {
@@ -221,6 +289,8 @@ class GameScene extends Phaser.Scene {
         }
         
         this.children.bringToTop(scoreCounter);
+		this.children.bringToTop(textHolder);
+		this.children.bringToTop(allTrees.burnt);
     }
    
     // Arrange the trees using the boundaries
@@ -253,8 +323,6 @@ class GameScene extends Phaser.Scene {
         // Variable for 'this'
         var th = this;
         
-       // var removingFire = true;
-        
         // If the game has started
         if (start) {
             // When a fire is clicked
@@ -265,6 +333,7 @@ class GameScene extends Phaser.Scene {
            
                 // Extinguish the fire
                 extinguishFire(fire, th);
+	
                 removingFire = true;
                 			
             });
@@ -272,14 +341,37 @@ class GameScene extends Phaser.Scene {
             if (!removingFire) {
                 // When a burnt tree is clicked
                 this.input.on('gameobjectdown', function(pointer, burnt) {
-                    // Remove the burnt tree
-                    removeTree(this, burnt, clickedFire);			
+					//waterSound.stop();
+					//play chopping music
+					//chopTreeSound.play(waterConfig);
+
+                    //Remove the burnt tree
+                    removeTree(this, burnt, clickedFire);	
+					
+					//no longer reading tool tip
+					readingToolTip = false;
+					
+					//to keep track of tool tip 
+					clickedBurntTree += 1;
+					
+					//removes text when user clicks on a burnt tree
+					if(clickedBurntTree == 1) {
+						textHolder.setText();
+					}
                 });
             }
         
             // Check what stage the user is at
             detStage();
-        
+			/**
+			//makes it so the informational text disappears on a timer
+			if(readingToolTip == false) {
+				//setTimeout(setBlank, stageDelay);
+				//timedEvent = this.time.delayedCall(5000, setBlank, [], this);
+				textDelay(this);
+				console.log("should have been delayed");
+			}
+        */
             // Delay and then make the fire
             this.time.addEvent({
                 delay: stageDelay,
@@ -288,7 +380,14 @@ class GameScene extends Phaser.Scene {
                 },
                 loop: false // Do not loop, the update function loops by itself
             });
-        
+			
+			 this.time.addEvent({
+                delay: 5000,
+                callback: ()=>{
+                    delayText() // Send 'this' over so not everything has to be done in this function
+                },
+                loop: false // Do not loop, the update function loops by itself
+            });
         
             var mKey = this.input.keyboard.addKey('M');
     
@@ -317,8 +416,6 @@ class GameScene extends Phaser.Scene {
     }
 }
 
-	
-	
 // Arrange the trees using the boundaries
 function arrangeTrees(bounds) {
 	    
@@ -385,27 +482,75 @@ function startFires(th) {
 	    
         // Increase the count of total fires (includes past removed fires).
         fireCount++;
+		
+		// Randomly assigns a number from 1 to 3
+		ran = Math.floor(Math.random() * 3 + 1);
+		//ran = 3;
+		console.log("random is: " + ran);
+		
+		if(readingToolTip == false && clickedBurntTree >= 1) {
+			textHolder.setText();
+		}
+		//makes it so the second text to display will always be the tool tip instead of another fact
+		while(ran == 3 && clickedBurntTree == 0 || playerScore == 100 || playerScore == 200
+		|| playerScore == 300 || playerScore == 400 || playerScore == 500 || playerScore == 600
+		|| playerScore == 700 || playerScore == 800 || playerScore == 900 || playerScore == 1000) {
+			ran = Math.floor(Math.random() * 3 + 1);
+			console.log("new random is: " + ran); 
+		}
+		
+		//shows tool tip only when the random is not a 3 and there's been a burnt tree
+		//ran can't be 3 because it will override a fact resulting in the fact not being displayed
+		if(firstBurntTree && burntTreeCounter == 0 && ran != 3) {
+			toolTip(th);
+			burntTreeCounter++;
+		}	
+		
+		//1 in 3 chance of a fact popping up,
+		//stops trying to display facts after all facts are displayed
+		if(ran == 3 && readingToolTip == false && factsLength >= 0) {
+			
+			//textHolder is initially not displayed
+			textHolder.visible = true;
+			
+			console.log("Fact supposed to be displayed is: " + facts[factsLength]);
+			
+			updateInfo(th);
+		}
 	    
         // Print the fire count to console (for testing purposes)
         console.log('FireCount ' + fireCount);
 	        
         // Determine how long until the next fire should pop up
         detStage();
-	                
-        // Activate function to replace the tree with a burnt tree after a set amount of time
-        burnDelay(t, f, th);
-	    
+		
+		 // Activate function to replace the tree with a burnt tree after a set amount of time
+			burnDelay(t, f, th);
+			
+			/**
+	     	if(readingToolTip == false && !wait5Secs) {           
+					setBlank();
+					wait5Secs = true;
+					console.log("already set blank");	
+					
+			}
+		*/
         // After delay time, allow the update function to make another fire.
+		
         setTimeout(delayFires, stageDelay);
-    }
+		//setTimeout(delayText, 5000);
+		
+	}
 }
 
-
+function delayText() {
+	wait5Secs = false;
+}
 // Dealing with the boolean for making fires
 function delayFires() {    
     fireMaking = false;
 }
-	
+
 // Determine the rate the fires will spawn
 function detStage() {
 	    
@@ -436,14 +581,47 @@ function addPoints(th) {
     playerScore += 10;
     scoreCounter.setText(scoreTitle + playerScore);
     th.children.bringToTop(scoreCounter);
-    
 }
-	
+
+function setBlank() {
+	textHolder.setText();
+}
+
+//displays a tool tip for chopping down a tree the first time it appears 
+function toolTip(th) {
+	console.log("should be setting text, inside tooltip");
+	textHolder.setText("Click on the burnt tree to chop it down, so fires do not spread faster.");
+	th.children.bringToTop(textHolder);
+	readingToolTip = true;
+}
+
+//function to update the text holding the informational facts
+function updateInfo(th) {
+	if (factsLength < 0) { //no more facts to display
+		textHolder.setText();
+	} else { //display the fact
+		textHolder.setText(facts[factsLength]);
+		th.children.bringToTop(textHolder);
+		factsLength -= 1;
+	}
+}	
+
 // Function to sort the trees
 function sortTrees() {    
     treeArr.sort((a, b) => (a.y > b.y) ? 1 : -1);
 }
 	
+function textDelay(th) {
+    // Delay and then remove text
+    th.time.addEvent({
+        delay: 5000,
+        callback: ()=>{
+            setBlank()
+        },
+        loop: false // Do not loop, once it's removed once, it's done
+    });	
+}
+
 // Extinguishes the fire
 // f = the fire
 function extinguishFire(f, th) {
@@ -456,6 +634,70 @@ function extinguishFire(f, th) {
     if (f.visible == true) {
         // Add points to counter
         addPoints(th);
+		
+		//milestone/trophy announcements for the player
+		if(ran != 3) {
+			if(trophyTen == false && playerScore == 100) {
+				textHolder.setText("You have saved 10 trees!");
+				th.children.bringToTop(textHolder);
+				console.log("should be saying you have saved 10 trees");
+				trophyTen = true;
+			}
+			if(trophyTwenty == false && playerScore == 200) {
+				textHolder.setText("You have saved 20 trees, keep going!");
+				th.children.bringToTop(textHolder);
+				console.log("should be saying you have saved 20 trees");
+				trophyTwenty = true;
+			}
+			if(trophyThirty == false && playerScore >= 300) {
+				textHolder.setText("Wow! You have saved 30 trees!");
+				th.children.bringToTop(textHolder);
+				console.log("should be saying you have saved 30 trees");
+				trophyThirty = true;
+			}
+			if(trophyFourty == false && playerScore >= 400) {
+				textHolder.setText("Holy smokes, you have saved 40 trees!");
+				th.children.bringToTop(textHolder);
+				console.log("should be saying you have saved 40 trees");
+				trophyThirty = true;
+			}
+			if(trophyFifty == false && playerScore >= 500) {
+				textHolder.setText("Amazing, you have saved 50 trees!");
+				th.children.bringToTop(textHolder);
+				console.log("should be saying you have saved 50 trees");
+				trophyThirty = true;
+			}
+			if(trophySixty == false && playerScore >= 600) {
+				textHolder.setText("Is this even possible? You have saved 60 trees!");
+				th.children.bringToTop(textHolder);
+				console.log("should be saying you have saved 60 trees");
+				trophyThirty = true;
+			}
+			if(trophySeventy == false && playerScore >= 700) {
+				textHolder.setText("You are a firefighter, 70 trees have been saved!");
+				th.children.bringToTop(textHolder);
+				console.log("should be saying you have saved 70 trees");
+				trophyThirty = true;
+			}
+			if(trophyEighty == false && playerScore >= 800) {
+				textHolder.setText("The forest is eternally greatful to you. 80 trees have been saved.");
+				th.children.bringToTop(textHolder);
+				console.log("should be saying you have saved 80 trees");
+				trophyThirty = true;
+			}
+			if(trophyNinety == false && playerScore >= 900) {
+				textHolder.setText("Unbelievable! You have saved 90 trees!");
+				th.children.bringToTop(textHolder);
+				console.log("should be saying you have saved 90 trees");
+				trophyThirty = true;
+			}
+			if(trophyHun == false && playerScore >= 1000) {
+				textHolder.setText("You have truly saved the forest, 100 trees and counting...!");
+				th.children.bringToTop(textHolder);
+				console.log("should be saying you have saved 100 trees");
+				trophyThirty = true;
+			}
+		}
     }
     
     // Now set the fire to invisible
@@ -478,7 +720,6 @@ function extinguishFire(f, th) {
 // f = the fire from that index
 // th = 'this'
 function burnDelay(t, f, th) {
-	    
     // Delay and then burn the tree
     th.time.addEvent({
         delay: 5000,
@@ -486,7 +727,7 @@ function burnDelay(t, f, th) {
             burnTree(t, f)
         },
         loop: false // Do not loop, once it's burned once it's done
-    });
+    });	
 }
 	
 // Function to burn down a tree
@@ -514,6 +755,15 @@ function burnTree(t, f) {
 
                 // Make the burnt tree visible
                 burnt.visible = true;
+				
+			
+				//for showing a tool tip message about clicking on trees to chop
+				if(firstBurntTree == false) {
+					console.log("firstBurntTree should be true");
+				//a burnt tree has appeared for the first time
+				firstBurntTree = true;
+	
+				}
             } else {
                 t.shroom.visible = false;
                 t.deadShroom.visible = true;
@@ -529,7 +779,6 @@ function removeTree(th, b, f) {
 	        
     // Ensure the tree is no longer on fire
     if (f.visible == false) {
-     
         // Make the burnt tree disappear
         b.visible = false;
     }
@@ -545,9 +794,7 @@ function revertColor() {
     startBtn.clearTint();
 }
 	
-	
 // Function to destroy sprites, currently unused
 function destroySprite(sprite) {
     sprite.destroy();
 }
-
