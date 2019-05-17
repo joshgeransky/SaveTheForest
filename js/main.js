@@ -6,7 +6,7 @@ var config = {
     height: 600,
     parent: 'game',
 
-    scene: [BootScene, PreloadScene,TitleScene, GamePreload, GameScene, GameOverScene],
+    scene: [BootScene, PreloadScene, TitleScene, GamePreload, GameScene, GameOverScene],
     pixelArt: true,
 		audio: {
 	        displayWebAudio: true
