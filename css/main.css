@@ -22,7 +22,7 @@
           image-rendering: crisp-edges;                /* Possible future browsers. */
           -ms-interpolation-mode: nearest-neighbor;    /* IE (non standard naming) */
           image-rendering: pixelated;                  /* Chrome 41 */
-    margin: 10pt;
+    margin: 0;
 }
 
 /* Styling for the header links */
@@ -68,17 +68,11 @@
 /* Style the page title */
 .page-title {
     font-size: 40pt;
-    
 }
 
 .score {
     text-align: center;
     font-size: 36pt;
-}
-
-
-#game {
-    text-align: center;
 }
 
 /* Style the footer class */
@@ -97,9 +91,5 @@
     .header-nav {
         float: none;
     }
-	
-	body{
-		width: 100%;
-	}
     
 }
