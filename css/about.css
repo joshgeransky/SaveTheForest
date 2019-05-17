@@ -20,3 +20,14 @@
 .about-content p {
     font-size: 30pt;
 }
+
+/* Style the accordion that holds the drop down */
+.accordion {
+    margin: 10pt;
+}
+
+/* Style for about page title */
+.page-title {
+    margin-top: 10pt;
+    text-align: center;
+}
