@@ -1,10 +1,6 @@
 /* Import Google fonts */
 @import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 
-#bodyGeneral {
-    color: black;
-}
-
 /* Style the about-image class */
 .about-image {
     padding-top: 5px;
@@ -27,8 +23,25 @@
 
 /* Style the accordion that holds the drop down */
 .accordion {
-    background-color: black;
     margin: 10pt;
+}
+
+/* Style the head of card 1, card2 and card 3*/
+#headingOne {
+    background-color: #262626;
+}
+
+#headingTwo {
+    background-color: #262626;
+}
+
+#headingThree {
+    background-color: #262626;
+}
+
+/*Style the body fo the cards in the accordion */
+.card-body {
+    background-color: #262626;
 }
 
 /* Style for about page title */
