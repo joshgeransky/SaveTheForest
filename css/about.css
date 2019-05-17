@@ -60,9 +60,23 @@
     background-color: #262626;
 }
 
-/*Style the body of the cards in the accordion */
+/*Style the body of the cards in the drop down */
 .card-body {
     background-color: #262626;
+}
+
+/*Style the image in the cards for the drop down */
+img.card-img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+/*Style the text in the cards for the drop down*/
+div.card-body{
+    min-width: 100%;
+    min-height: 100%;
 }
 
 /* Make card glow on hover */
