@@ -24,7 +24,7 @@ class TitleScene extends Phaser.Scene {
 		
 		
 		  // Create title text
-	    titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
+	    titleText = this.add.text(15, 70, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
 	
 	        
 	    // Create subtext
@@ -55,7 +55,7 @@ class TitleScene extends Phaser.Scene {
 	     
 	      
 	    // Create start buttons
-	    startBtn = this.add.sprite(400, 270, 'startButt').setInteractive();
+	    startBtn = this.add.sprite(400, 300, 'startButt').setInteractive();
   		startSound = this.sound.add('startPlay', waterConfig);   
 	    
 	    // Start button functionality
