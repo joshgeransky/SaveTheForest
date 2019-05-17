@@ -138,7 +138,7 @@ facts = [
 'The smoke from BC\'s 2018 wildfires spread from across Canada to as far as Ireland.', //14
 ]; 
  
-factsLength = facts.length - 1; // will display 5 facts per game
+factsLength = 4; // will display 5 facts per game
 clickedBurntTree = 0;
 
 //initializing milestones
