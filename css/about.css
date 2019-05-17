@@ -23,7 +23,9 @@
 
 /* Style the accordion that holds the drop down */
 .accordion {
-    margin: 10pt;
+    margin-top: 15pt;
+    margin-left: 10pt;
+    margin-right:10pt;
 }
 
 /*Style the drop down title*/
@@ -58,13 +60,18 @@
     background-color: #262626;
 }
 
-/*Style the body fo the cards in the accordion */
+/*Style the body of the cards in the accordion */
 .card-body {
     background-color: #262626;
 }
 
+/* Make card glow on hover */
+.card:hover {
+    box-shadow: rgba(43, 153, 41) 0px 5px 25px;
+  }
+
 /* Style for about page title */
 .page-title {
-    margin-top: 10pt;
+    margin-top: 15pt;
     text-align: center;
 }
