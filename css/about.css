@@ -1,6 +1,10 @@
 /* Import Google fonts */
 @import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 
+#bodyGeneral {
+    color: black;
+}
+
 /* Style the about-image class */
 .about-image {
     padding-top: 5px;
@@ -23,6 +27,7 @@
 
 /* Style the accordion that holds the drop down */
 .accordion {
+    background-color: black;
     margin: 10pt;
 }
 
