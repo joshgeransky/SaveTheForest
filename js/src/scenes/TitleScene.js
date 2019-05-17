@@ -76,15 +76,28 @@ class TitleScene extends Phaser.Scene {
 		  
 		startBtn.on('pointerdown', startGame);
 
-		
+		whatOrientation(this.scale.orientation);
+
+		this.scale.on("orientationchange", whatOrientation, this);
+
 	}
 
 }
+
+//Function for stopping start screen music
 function startGame() {  
 	   start = true;
 	   titleMusic.stop();
+}
 
+function whatOrientation (orientation) {
+	if (orientation === Phaser.Scale.PORTRAIT) {
+		console.log("Portrait Mode");
+	} else  {
+		console.log("LandScape Mode");
+		this.Scale.ScaleMode = Phaser.Scale.ScaleModes.HEIGHT_CONTROLS_WIDTH;
 	}
+}
 	
 
 //export default TitleScene;
