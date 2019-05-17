@@ -28,7 +28,8 @@ class GameOverScene extends Phaser.Scene {
 			
             console.log('From TitleScene to GameScene');
 			//titleMusic.pause();
-            this.scene.start('GameScene');
+			
+            this.scene.start('BootScene');
             
 
         }, this);

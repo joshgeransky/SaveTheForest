@@ -113,10 +113,12 @@ h1{
     border-radius: 4px;
     margin: 5pt;
     font-size: 30pt;
-    background-color: #ff7e2d;
+    background-color: #4c4c4c;
+    
     color: white;
     border: none;
     margin-top: 20pt;
+    border: 1px solid #2b9929;
 }
 #escapeButton:hover{
     background-color: #2b9929;
