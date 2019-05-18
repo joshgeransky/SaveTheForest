@@ -17,19 +17,32 @@ class GameScene extends Phaser.Scene {
     // Creation function
     create() {
 
-        
+        //Temporary game over trigger and point addition system.
 
-        //Temporary Game Over Trigger Function.
         //**************** DELETE BELOW AFTER IMPLEMENTATION ****************
-        var saveIcon = this.add.sprite(500, 50, 'save').setInteractive().setScale(0.25, 0.25);
+        var gameOverButton = this.add.sprite(550, 50, 'gameOverButton').setInteractive().setScale(0.25, 0.25);
 
-        saveIcon.setDepth(500);
+        gameOverButton.setDepth(500);
 
-        saveIcon.on('pointerdown', (pointer) => {
+        gameOverButton.on('pointerdown', (pointer) => {
+
+            gameMusic.pause();
 
             this.scene.start("GameOverScene");
             
         })
+
+        var pointIcon = this.add.sprite(450, 50, 'pointsButton').setInteractive().setScale(0.2, 0.2);
+
+        pointIcon.setDepth(500);
+
+        pointIcon.on('pointerdown', (pointer) => {
+
+            playerScore += 10;
+            scoreCounter.setText(scoreTitle + playerScore);
+            
+        })
+
         //**************** DELETE ABOVE AFTER IMPLEMENTATION ****************
           
 
@@ -124,8 +137,6 @@ class GameScene extends Phaser.Scene {
         // Create the boundaries of the game
         var bounds = new Phaser.Geom.Rectangle(20, 20, 780, 560);
 
-        console.log("LEFT: " + bounds.left + " RIGHT: " + bounds.right + " TOP: " + bounds.top + " BOTTOM: " + bounds.bottom);
-    
         // Creating container variables
         var treeContainer = this.add.container(0, 0).setName('treeContainer');
         window['Container1'] = treeContainer;

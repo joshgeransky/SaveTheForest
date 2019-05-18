@@ -16,7 +16,7 @@ class EnterName extends Phaser.Scene {
     
     create ()
     {
-        gameState.scoreText = this.add.text(300, 310, gameState.score, { fontSize: '30px', fill: '#000000' });
+        this.add.text(300, 310, playerScore, {fontSize: '60pt', fontFamily: 'VT323', fill: 'white'});
 
         var chars = [
             [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' ],
@@ -83,18 +83,19 @@ class EnterName extends Phaser.Scene {
                 if (cursor.x === 9 && cursor.y === 2 && name.length > 0)
                 {
                     //  Submit
-                    console.log("SCORE: " + gameState.score + " NAME: " + name);
 
                     var saveData = {
                         name: name,
                         metrics: {
-                        count: (gameState.score) * -1
+                        count: playerScore * -1
                         }
                     }
 
                     $('#scoreTable').empty()
         
                     ref.push(saveData);
+
+                    this.scene.start('TitleScene');
                 
                 }
                 else if (cursor.x === 8 && cursor.y === 2 && name.length > 0)
@@ -161,18 +162,19 @@ class EnterName extends Phaser.Scene {
             else if (char === '>' && name.length > 0)
             {
                 //  Submit
-                console.log("SCORE: " + gameState.score + " NAME: " + name);
 
                 var saveData = {
                     name: name,
                     metrics: {
-                    count: (gameState.score) * -1
+                    count: playerScore * -1
                     }
                 }
 
                 $('#scoreTable').empty()
         
                 ref.push(saveData);
+
+                this.scene.start('TitleScene');
 
             }
             else if (name.length < 3)

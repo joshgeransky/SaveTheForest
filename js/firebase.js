@@ -13,18 +13,15 @@ var database = firebase.database();
 
 var ref = database.ref("scores/");
 
+var highScoreMin;
+
 function loaded() {
 
   var table = document.getElementById("scoreTable");
 
-  var highScoreMin;
-
   ref.orderByChild("metrics/count").limitToFirst(5).on(
     "value",
     function(snap) {
-
-      // console.log("---Names sorted from highest score to lowest: ");
-      // console.log(snap);
 
       snap.forEach(function(snap) {
 
@@ -35,7 +32,7 @@ function loaded() {
         table.innerHTML += "<li>NAME: " + name.substring(1, name.length - 1); + "</li>";
         table.innerHTML += "<li>SCORE: " + currentScore + "</li>";
 
-        //Assigns final value in the table (ie the lowest high score value) to the highScoreMin variable.
+        // Assigns final value in the table (ie the lowest high score value) to the highScoreMin variable.
         highScoreMin = currentScore;
 
       });
