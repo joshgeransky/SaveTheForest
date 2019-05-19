@@ -16,11 +16,6 @@
     
 }
 
-/* Style the paragraphs in the content */
-.about-content p {
-    font-size: 30pt;
-}
-
 /* Style the accordion that holds the drop down */
 .accordion {
     margin-top: 15pt;
@@ -28,7 +23,7 @@
     margin-right:10pt;
 }
 
-/*Style the drop down title*/
+/* Style the drop down title */
 #titleOne {
     color: black;
     font-size: 24pt;
@@ -47,25 +42,7 @@
     text-decoration: none;
 }
 
-/* Style the head of card 1, card2 and card 3*/
-/* #headingOne {
-    background-color: #262626;
-}
-
-#headingTwo {
-    background-color: #262626;
-}
-
-#headingThree {
-    background-color: #262626;
-} */
-
-/*Style the body of the cards in the drop down */
-/* .card-body {
-    background-color: #262626;
-} */
-
-/*Style the image in the cards for the drop down */
+/* Style the image in the cards for the drop down */
 img.card-img {
     min-width: 100%;
     min-height: 100%;
@@ -74,19 +51,19 @@ img.card-img {
     border-radius: 20px;
 }
 
-/*Style the body of the cards for the drop down*/
+/* Style the body of the cards for the drop down */
 div.card-body{
     min-width: 100%;
     min-height: 100%;
     color: black;
 }
 
-/*Style the text in the cards*/
+/* Style the text in the cards for the drop down */
 .card-body p {
     font-size: 14pt;
 }
 
-/* Make card glow on hover */
+/* Make the drop down glow on hover */
 .card:hover {
     box-shadow: rgba(43, 153, 41) 0px 5px 25px;
   }
@@ -97,7 +74,7 @@ div.card-body{
     text-align: center;
 }
 
-/* Style the footer */
+/* Style for about page footer */
 .footer {
     margin-top: 15pt;
     margin-bottom: 15pt;
