@@ -81,6 +81,7 @@ div.card-body{
     color: black;
 }
 
+/*Style the text in the cards*/
 .card-body p {
     font-size: 14pt;
 }
