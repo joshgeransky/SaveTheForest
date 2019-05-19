@@ -2,23 +2,23 @@
 // Variable holding initial game configuration
 var config = {
         type: Phaser.AUTO,
-        // width: 800,
-        // height: 600,
-        // parent: 'game',
-        scale: {
-                mode: Phaser.Scale.FIT,
-                parent: 'game',
-                autoCenter: Phaser.Scale.CENTER_BOTH,
-                width: 800,
-                height: 600
-        },
+        width: 800,
+        height: 600,
+        parent: 'game',
 
-    scene: [BootScene, PreloadScene, TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
-    pixelArt: true,
-		audio: {
-	        displayWebAudio: true
-	},	
-}
+        scale: {
+            // automatic scaling of the entire app
+            mode: Phaser.Scale.FIT,
+            // autoCenter: Phaser.Scale.CENTER_BOTH,
+            width: 800,
+            height: 600
+        },
+        scene: [BootScene, PreloadScene,TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
+        pixelArt: true,
+                    audio: {
+                    displayWebAudio: true
+            },	
+    }
 
 /* --- Game variables --- */
 let game = new Phaser.Game(config);
