@@ -187,7 +187,7 @@ class GameScene extends Phaser.Scene {
             if (fireType == 0) {
           
                 // Makes fire on the tree
-                fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
+                fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
                 fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
                 
         
@@ -198,7 +198,7 @@ class GameScene extends Phaser.Scene {
             } else if (fireType == 1) {
             
                 // Makes fire on the tree
-                fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
+                fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim2').setName('Fire' + i);
                	fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
             
                 // Animate the fire
