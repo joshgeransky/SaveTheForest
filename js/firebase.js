@@ -24,13 +24,13 @@ function loaded() {
 
 var table = document.getElementById("scoreTable");
 
-ref.orderByChild("metrics/count").limitToFirst(highScorePlaces).on(
-  "value",
-  function(snap) {
+  ref.orderByChild("metrics/count").limitToFirst(highScorePlaces).on(
+    "value",
+    function(snap) {
 
-    highScoreCount = 0;
+      highScoreCount = 0;
 
-    snap.forEach(function(snap) {
+      snap.forEach(function(snap) {
 
       highScoreCount++;
 
