@@ -74,11 +74,15 @@ img.card-img {
     border-radius: 20px;
 }
 
-/*Style the text in the cards for the drop down*/
+/*Style the body of the cards for the drop down*/
 div.card-body{
     min-width: 100%;
     min-height: 100%;
     color: black;
+}
+
+.card-body p {
+    font-size: 14pt;
 }
 
 /* Make card glow on hover */
