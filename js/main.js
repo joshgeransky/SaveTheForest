@@ -1,10 +1,17 @@
 
 // Variable holding initial game configuration
 var config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    parent: 'game',
+        type: Phaser.AUTO,
+        // width: 800,
+        // height: 600,
+        // parent: 'game',
+        scale: {
+                mode: Phaser.Scale.FIT,
+                parent: 'game',
+                autoCenter: Phaser.Scale.CENTER_BOTH,
+                width: 800,
+                height: 600
+        },
 
     scene: [BootScene, PreloadScene, TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
     pixelArt: true,
