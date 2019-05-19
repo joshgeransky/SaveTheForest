@@ -11,25 +11,32 @@ class GameOverScene extends Phaser.Scene {
 	}
 	create(){
 
+		console.log("HIGH SCORE COUNT: " + highScoreCount);
+
 		let background = this.add.sprite(0, 0, 'gameOverBackground');
 		background.setOrigin(0, 0);
 
-		var continueBtn = this.add.sprite(400, 450, 'continueBtn').setInteractive();
+		var gameOverText = this.add.text(400, 120, "Game Over", {fontSize: '70pt', stroke: 0x000000, strokeThickness: 6, fontFamily: 'VT323', fill: 'white'});
+		gameOverText.setOrigin(0.5);
 		
-		var yourScoreText = this.add.text(400, 200, "Your Score:", {fontSize: '60pt', fontFamily: 'VT323', fill: 'white'});
+		var yourScoreText = this.add.text(400, 250, "Your Score:", {fontSize: '50pt', stroke: 0x000000, strokeThickness: 6, fontFamily: 'VT323', fill: 'white'});
 		yourScoreText.setOrigin(0.5);
 
-		var scoreText = this.add.text(400, 275, playerScore, {fontSize: '60pt', fontFamily: 'VT323', fill: 'white'});
+		var scoreText = this.add.text(400, 320, playerScore, {fontSize: '70pt', stroke: 0x000000, strokeThickness: 6, fontFamily: 'VT323', fill: 'white'});
 		scoreText.setOrigin(0.5);
+
+		var continueBtn = this.add.sprite(400, 490, 'continueBtn').setInteractive();
 
 		continueBtn.on('pointerdown', function () {
 
 			startSound.play();
-			
+
 			// If the player score is higher than the highScoreMin after game over, they will enter their name
-			// to the high score table. highScoreMin = lowest value on the high score table. See firebase.js
+			// to the high score table. highScoreMin = lowest value on the high score table.
+			// Also allows the player to enter a value onto the high score table if the table is not
+			// already filled. See firebase.js for variables.
 			
-			if (playerScore > highScoreMin) {
+			if (playerScore > highScoreMin || highScoreCount != highScorePlaces) {
 
 				this.scene.start('EnterName');
 
@@ -37,6 +44,7 @@ class GameOverScene extends Phaser.Scene {
 
 				this.scene.start('TitleScene');
 			}
+
 
         }, this);
 	}

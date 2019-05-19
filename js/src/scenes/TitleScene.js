@@ -24,7 +24,7 @@ class TitleScene extends Phaser.Scene {
 		
 		
 		  // Create title text
-	    titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
+	    titleText = this.add.text(15, 70, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
 	
 	        
 	    // Create subtext
@@ -55,7 +55,7 @@ class TitleScene extends Phaser.Scene {
 	     
 	      
 	    // Create start buttons
-	    startBtn = this.add.sprite(400, 270, 'startButt').setInteractive();
+	    startBtn = this.add.sprite(400, 300, 'startButt').setInteractive();
   		startSound = this.sound.add('startPlay', waterConfig);   
 	    
 	    // Start button functionality
@@ -76,16 +76,43 @@ class TitleScene extends Phaser.Scene {
 		  
 		startBtn.on('pointerdown', startGame);
 
-		
+		//Create full screen button
+		var fullscreenBtn = this.add.sprite(400, 470, "startButt").setInteractive();
+
+		fullscreenBtn.on("pointerdown", function () {
+			if (this.scale.isFullscreen) {
+				fullscreenBtn.setFrame(0);
+
+				this.scale.stopFullscreen();
+
+			} else {
+				fullscreenBtn.setFrame(0);
+
+				this.scale.startFullscreen();
+			}
+		}, this);
+
+		whatOrientation(this.scale.orientation);
+
+		this.scale.on("orientationchange", whatOrientation, this);
+
 	}
 
 }
+
+//Function for stopping start screen music
 function startGame() {  
 	   start = true;
 	   titleMusic.stop();
+}
 
+function whatOrientation (orientation) {
+	if (orientation === Phaser.Scale.PORTRAIT) {
+		console.log("Portrait Mode");
+	} else  {
+		console.log("LandScape Mode");
 	}
-	
+}
 
 //export default TitleScene;
 
