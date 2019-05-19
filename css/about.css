@@ -25,20 +25,26 @@
 
 /* Style the drop down title */
 #titleOne {
+    width: 100%;
     color: black;
     font-size: 24pt;
+    text-align: left;
     text-decoration: none;
 }
 
 #titleTwo {
+    width: 100%;
     color: black;
     font-size: 24pt;
+    text-align: left;
     text-decoration: none;
 }
 
 #titleThree {
+    width: 100%;
     color: black;
     font-size: 24pt;
+    text-align: left;
     text-decoration: none;
 }
 
