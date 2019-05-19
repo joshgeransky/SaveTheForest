@@ -1,42 +1,51 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyDIgxhp9wXm7EeVtlFdb8yLxbu_1RbYvwg",
-    authDomain: "savetheforest-2cbcf.firebaseapp.com",
-    databaseURL: "https://savetheforest-2cbcf.firebaseio.com",
-    projectId: "savetheforest-2cbcf",
-    storageBucket: "savetheforest-2cbcf.appspot.com",
-    messagingSenderId: "115454159169",
-    appId: "1:115454159169:web:e326338b8258298d"
-  };
+  apiKey: "AIzaSyDIgxhp9wXm7EeVtlFdb8yLxbu_1RbYvwg",
+  authDomain: "savetheforest-2cbcf.firebaseapp.com",
+  databaseURL: "https://savetheforest-2cbcf.firebaseio.com",
+  projectId: "savetheforest-2cbcf",
+  storageBucket: "savetheforest-2cbcf.appspot.com",
+  messagingSenderId: "115454159169",
+  appId: "1:115454159169:web:e326338b8258298d"
+};
 
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 var ref = database.ref("scores/");
 
-var highScoreMin;
+// The lowest value stored on the high score table.
+var highScoreMin = 0;
+// The number of high score places currently being displayed.
+var highScoreCount;
+// The maximum number of places the high score table will display.
+var highScorePlaces = 5;
 
 function loaded() {
 
-  var table = document.getElementById("scoreTable");
+var table = document.getElementById("scoreTable");
 
-  ref.orderByChild("metrics/count").limitToFirst(5).on(
-    "value",
-    function(snap) {
+ref.orderByChild("metrics/count").limitToFirst(highScorePlaces).on(
+  "value",
+  function(snap) {
 
-      snap.forEach(function(snap) {
+    highScoreCount = 0;
 
-        let currentScore = JSON.stringify(snap.val().metrics.count) * -1;
+    snap.forEach(function(snap) {
 
-        let name = JSON.stringify(snap.val().name);
+      highScoreCount++;
 
-        table.innerHTML += "<li>NAME: " + name.substring(1, name.length - 1); + "</li>";
-        table.innerHTML += "<li>SCORE: " + currentScore + "</li>";
+      let currentScore = JSON.stringify(snap.val().metrics.count) * -1;
 
-        // Assigns final value in the table (ie the lowest high score value) to the highScoreMin variable.
-        highScoreMin = currentScore;
+      let name = JSON.stringify(snap.val().name);
 
-      });
+      table.innerHTML += "<li>NAME: " + name.substring(1, name.length - 1); + "</li>";
+      table.innerHTML += "<li>SCORE: " + currentScore + "</li>";
+
+      // Assigns final value in the table (ie the lowest high score value) to the highScoreMin variable.
+      highScoreMin = currentScore;
 
     });
-    
-  }
+
+  });
+  
+}
