@@ -13,17 +13,26 @@ var database = firebase.database();
 
 var ref = database.ref("scores/");
 
-var highScoreMin;
+// The lowest value stored on the high score table.
+var highScoreMin = 0;
+// The number of high score places currently being displayed.
+var highScoreCount;
+// The maximum number of places the high score table will display.
+var highScorePlaces = 5;
 
 function loaded() {
 
   var table = document.getElementById("scoreTable");
 
-  ref.orderByChild("metrics/count").limitToFirst(5).on(
+  ref.orderByChild("metrics/count").limitToFirst(highScorePlaces).on(
     "value",
     function(snap) {
 
+      highScoreCount = 0;
+
       snap.forEach(function(snap) {
+
+        highScoreCount++;
 
         let currentScore = JSON.stringify(snap.val().metrics.count) * -1;
 
