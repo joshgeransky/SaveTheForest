@@ -96,3 +96,10 @@ div.card-body{
     margin-top: 15pt;
     text-align: center;
 }
+
+/* Style the footer */
+.footer {
+    margin-top: 15pt;
+    margin-bottom: 15pt;
+    text-align: center;
+}
