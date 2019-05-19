@@ -14,28 +14,32 @@ class GameOverScene extends Phaser.Scene {
 		let background = this.add.sprite(0, 0, 'gameOverBackground');
 		background.setOrigin(0, 0);
 
-	 // Create start buttons
-	    var restartBtn = this.add.sprite(400, 270, 'continueBtn').setInteractive();
-  		// restartSound = this.sound.add('startPlay', waterConfig);   
-	    
-	    // Start button functionality
+		var continueBtn = this.add.sprite(400, 450, 'continueBtn').setInteractive();
+		
+		var yourScoreText = this.add.text(400, 200, "Your Score:", {fontSize: '60pt', fontFamily: 'VT323', fill: 'white'});
+		yourScoreText.setOrigin(0.5);
 
-	    // restartBtn.on('pointerover', changeColor);
-	    // restartBtn.on('pointerout', revertColor);
-	    //Event handler for start button
-		restartBtn.on('pointerdown', function () {
+		var scoreText = this.add.text(400, 275, playerScore, {fontSize: '60pt', fontFamily: 'VT323', fill: 'white'});
+		scoreText.setOrigin(0.5);
+
+		continueBtn.on('pointerdown', function () {
+
 			startSound.play();
 			
-            console.log('From TitleScene to GameScene');
-			//titleMusic.pause();
+
+			// If the player score is higher than the highScoreMin after game over, they will enter their name
+			// to the high score table. highScoreMin = lowest value on the high score table. See firebase.js
 			
-            this.scene.start('BootScene');
-            
+			if (playerScore > highScoreMin) {
+
+				this.scene.start('EnterName');
+
+			} else {
+
+				this.scene.start('TitleScene');
+			}
+
 
         }, this);
-		
-		  
-		restartBtn.on('pointerdown', startGame);
 	}
-	
 }

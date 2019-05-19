@@ -2,6 +2,7 @@
 // Variable holding initial game configuration
 var config = {
     type: Phaser.AUTO,
+
     scale: {
         // automatic scaling of the entire app
         mode: Phaser.Scale.FIT,
@@ -11,7 +12,8 @@ var config = {
         width: 800,
         height: 600
     },
-    scene: [BootScene, PreloadScene,TitleScene, GamePreload, GameScene, GameOverScene],
+    scene: [BootScene, PreloadScene,TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
+
     pixelArt: true,
 		audio: {
 	        displayWebAudio: true
