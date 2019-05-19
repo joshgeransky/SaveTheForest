@@ -236,6 +236,16 @@ class GameScene extends Phaser.Scene {
         }
         
         this.children.bringToTop(scoreCounter);
+        //**************** DELETE BELOW AFTER IMPLEMENTATION ****************
+    var saveIcon = this.add.sprite(500, 50, 'save').setInteractive().setScale(0.25, 0.25);
+
+    saveIcon.setDepth(500);
+
+    saveIcon.on('pointerdown', (pointer) => {
+
+        this.scene.start("GameOverScene");
+     
+ })
     }
 
    
@@ -612,3 +622,4 @@ function destroySprite(sprite) {
     sprite.destroy();
 }
 
+ 
