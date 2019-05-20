@@ -75,7 +75,6 @@ var gameOverSound;
 
 // Mario music
 var marioMusic;
-
 	
 //configuration for audio
 var musicConfig = {

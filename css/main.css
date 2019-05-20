@@ -80,6 +80,26 @@
     font-size: 20pt;
 }
 
+#scoreTable {
+    margin: 20px auto;
+    font-size: 25pt;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 2px 50px;
+    margin: 0;
+}
+
+th {
+    font-size: 30pt;
+}
+
+tr:nth-child(even) {
+    background-color: #555555;
+    box-shadow: -5px 5px #000000;
+}
+
 /* Media Query, 500px width */ 
 @media screen and (orientation: portrait) {
     .header a {

@@ -30,22 +30,31 @@ var table = document.getElementById("scoreTable");
 
       highScoreCount = 0;
 
+      let innerTable = "<tr><th colspan='2'>HIGHSCORES</th></tr>"
+
       snap.forEach(function(snap) {
 
-      highScoreCount++;
+        highScoreCount++;
 
-      let currentScore = JSON.stringify(snap.val().metrics.count) * -1;
+        innerTable += "<tr>";
 
-      let name = JSON.stringify(snap.val().name);
+        let currentScore = JSON.stringify(snap.val().metrics.count) * -1;
 
-      table.innerHTML += "<li>NAME: " + name.substring(1, name.length - 1); + "</li>";
-      table.innerHTML += "<li>SCORE: " + currentScore + "</li>";
+        let name = JSON.stringify(snap.val().name);
+
+        innerTable += "<td>" + name.substring(1, name.length - 1); + "</td>";
+        innerTable += "<td>" + currentScore + "</td>";
+
+        innerTable += "</tr>";
 
       // Assigns final value in the table (ie the lowest high score value) to the highScoreMin variable.
-      highScoreMin = currentScore;
+        highScoreMin = currentScore;
 
     });
+
+    table.innerHTML += innerTable;
 
   });
   
 }
+
