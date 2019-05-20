@@ -32,7 +32,9 @@ class GameOverScene extends Phaser.Scene {
 			startSound.play();
 
 			// If the player score is higher than the highScoreMin after game over, they will enter their name
-			// to the high score table. highScoreMin = lowest value on the high score table. See firebase.js
+			// to the high score table. highScoreMin = lowest value on the high score table.
+			// Also allows the player to enter a value onto the high score table if the table is not
+			// already filled. See firebase.js for variables.
 			
 			if (playerScore > highScoreMin || highScoreCount != highScorePlaces) {
 
