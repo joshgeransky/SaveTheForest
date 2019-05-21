@@ -26,14 +26,38 @@ class GameOverScene extends Phaser.Scene {
 		scoreText.setOrigin(0.5);
 
 		var continueBtn = this.add.sprite(400, 490, 'continueBtn').setInteractive();
+<<<<<<< HEAD
 		// continue button functionality
 		continueBtn.on('pointerover', changeColor);
         
 	    continueBtn.on('pointerout', revertColor);
 		continueBtn.on('pointerdown', function () {
+=======
+		
+		function shuffle(array) {
+			var currentIndex = array.length, temporaryValue, randomIndex;
 
+			// While there remain elements to shuffle...
+			while (0 !== currentIndex) {
+>>>>>>> 35455324993395e7e9c515b0aac34c87a30f5abd
+
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+
+			// And swap it with the current element.
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+			}
+			return array;
+		}
+		
+		continueBtn.on('pointerdown', function () {
+			
+			gameOverSound.stop();
 			startSound.play();
-
+			
 			// If the player score is higher than the highScoreMin after game over, they will enter their name
 			// to the high score table. highScoreMin = lowest value on the high score table.
 			// Also allows the player to enter a value onto the high score table if the table is not
@@ -51,8 +75,15 @@ class GameOverScene extends Phaser.Scene {
                 // (cheesy way to restart the game without causing problems)
                 location.reload();
 			}
-
-
+			//reset playerscore
+			//playerScore = 0;
+			
+			//reset facts index
+			//factsLength = 4;
+			
+			//reshuffle facts array
+			//shuffle(facts);
+			
         }, this);
 	}
 }
