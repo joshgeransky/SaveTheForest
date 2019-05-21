@@ -575,6 +575,7 @@ function removeTree(th, b, f) {
 function gameOver(th) {
     console.log("Game Over");
     
+    th.scene.start("GameOverScene");
 }
 		
 //changes color of start button on hover
