@@ -87,14 +87,12 @@ tr:nth-child(even) {
     filter: invert(100%);
 }
 
-
 /* Media Query, Portrait */ 
 @media screen and (orientation: portrait) {
 
     #game {
         display:none;
     }
-    
 }
 
 /* Media Query, Landscape */
