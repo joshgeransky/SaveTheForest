@@ -101,7 +101,7 @@ tr:nth-child(even) {
     box-shadow: -5px 5px #000000;
 }
 
-<<<<<<< HEAD
+
 /* Style the message for prompting Lanscape */
 #msgLandscape {
     width: 100%;
@@ -117,10 +117,7 @@ tr:nth-child(even) {
 
 /* Media Query, Portrait */ 
 @media screen and (orientation: portrait) {
-=======
-/* Media Query, 500px width */ 
-@media screen and (max-width: 500px) {
->>>>>>> 35455324993395e7e9c515b0aac34c87a30f5abd
+
     .header a {
         float: none;
         display: block;
@@ -129,7 +126,7 @@ tr:nth-child(even) {
     
     .header-nav {
         float: none;
-<<<<<<< HEAD
+
     }
 
     #game {
@@ -150,7 +147,6 @@ tr:nth-child(even) {
     #msgLandscape {
         display: none;
     }
-=======
-    }    
->>>>>>> 35455324993395e7e9c515b0aac34c87a30f5abd
+
+
 }
