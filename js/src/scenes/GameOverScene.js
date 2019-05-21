@@ -26,12 +26,19 @@ class GameOverScene extends Phaser.Scene {
 		scoreText.setOrigin(0.5);
 
 		var continueBtn = this.add.sprite(400, 490, 'continueBtn').setInteractive();
+
+		// continue button functionality
+		continueBtn.on('pointerover', changeColor);
+        
+	    continueBtn.on('pointerout', revertColor);
 		
+
 		function shuffle(array) {
 			var currentIndex = array.length, temporaryValue, randomIndex;
 
 			// While there remain elements to shuffle...
 			while (0 !== currentIndex) {
+
 
 			// Pick a remaining element...
 			randomIndex = Math.floor(Math.random() * currentIndex);
@@ -44,7 +51,7 @@ class GameOverScene extends Phaser.Scene {
 			}
 			return array;
 		}
-		
+	
 		continueBtn.on('pointerdown', function () {
 			
 			gameOverSound.stop();
