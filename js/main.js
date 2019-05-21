@@ -60,7 +60,7 @@ var ran = 0; //determines whether or not an informational fact should be display
 var readingToolTip = false; //whether or not the tool tip is displayed
 var clickedBurntTree = 0; //for removing the text when user clicks on a burnt tree
 var trophyStatus = false; //wait time for trophy announcement's appearance
-
+var shuffle;
 //designates milestones for every 100, 200, 300... points
 //not using the odd scores for now (spams when the pace of the game is fast)
 var trophyTen = true; 
