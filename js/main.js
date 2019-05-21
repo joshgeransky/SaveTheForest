@@ -1,10 +1,10 @@
-
 // Variable holding initial game configuration
 var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
     parent: 'game',
+
 	scale: {
         // automatic scaling of the entire app
         mode: Phaser.Scale.FIT,
@@ -12,7 +12,8 @@ var config = {
 		width: 800,
 		height: 600
 	},
-    scene: [TitleScene, GameScene],
+    scene: [BootScene, PreloadScene,TitleScene, GamePreload, GameScene, GameOverScene],
+	
     pixelArt: true,
 		audio: {
 	        displayWebAudio: true
@@ -23,7 +24,6 @@ var config = {
 let game = new Phaser.Game(config);
 var width = 40;
 var height = 38;
-var value = Phaser.Math.Between(4, 10);
 var fireArr = [];
 var startBtn;
 var titleText;
@@ -44,33 +44,55 @@ var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
 var spriteCamp;
 var startSound;
+var removedFires = [];
+var currentFireCount = 0;
+var removedTreeCount = 0;
+  
+// Mario music easter egg boolean
 var marioed = false;
-var removingFire = false;
 
 //for setting up facts and tool tip
 var facts = []; //all wildfire facts
-var factsLength = 0; //length of facts array (# of facts to display - 1)
-var textHolder; //the 
-var firstBurntTree = false;
-var burntTreeCounter = 0;
-var ran = 0;
-var readingToolTip = false;
-var clickedBurntTree = 0;
-var wait5Secs = false;
+var factsLength = 4; //index (not length) of facts array, 5 facts will be displayed
+var textHolder; //the text at the bottom of the game
+var firstBurntTree = false; //whether a burnt tree has appeared or not
+var burntTreeCounter = 0; //shows tool tip only when the random is not a 3 and there's been a burnt tree
+var ran = 0; //determines whether or not an informational fact should be displayed 
+var readingToolTip = false; //whether or not the tool tip is displayed
+var clickedBurntTree = 0; //for removing the text when user clicks on a burnt tree
+var trophyStatus = false; //wait time for trophy announcement's appearance
 
-var trophyTen = false;
-var trophyTwenty = false;
-var trophyThirty = false;
-var trophyFourty = false;
-var trophyFifty = false;
-var trophySixty = false;
-var trophySeventy = false;
-var trophyEighty = false;
-var trophyNinety = false;
-var trophyHun = false;
+//designates milestones for every 100, 200, 300... points
+//not using the odd scores for now (spams when the pace of the game is fast)
+var trophyTen = true; 
+var trophyTwenty = true;
+var trophyThirty = true;
+var trophyFourty = true;
+var trophyFifty = true;
+var trophySixty = true;
+var trophySeventy = true;
+var trophyEighty = true;
+var trophyNinety = true;
+var trophyHun = true;
+
+//designates the milestone message has finished showing
+//not using the odd trophies for now (spams)
+var trophyTenFin = false;
+var trophyTwentyFin = false;
+var trophyThirtyFin = false;
+var trophyFourtyFin = false;
+var trophyFiftyFin = false;
+var trophySixtyFin = false;
+var trophySeventyFin = false;
+var trophyEightyFin = false;
+var trophyNinetyFin = false;
+var trophyHunFin = false;
 
 // Title screen music
 var titleMusic;
+
+// start button effect
+var startSound;
     
 // Gameplay music
 var gameMusic;
@@ -80,7 +102,7 @@ var waterSound;
     
 // Fire effect
 var fireSound;
-
+	
 // Start button on click
 var start;
 
@@ -92,7 +114,6 @@ var marioMusic;
 
 //tree chopping effect
 var chopTreeSound;
-
 	
 //configuration for audio
 var musicConfig = {
@@ -105,7 +126,7 @@ var musicConfig = {
     delay: 0
 };
 
-//configuration for fire effect
+//configuration for fire sound
 var fireConfig = {
     mute: false,
     volume: 1,
@@ -114,9 +135,9 @@ var fireConfig = {
     seek: 0,
     loop: true,
     delay: 0
-};
+}
 
-//configuration for extinguishing water
+//configuration for extinguishing fire
 var waterConfig = {
 mute: false,
 volume: 0.5,
@@ -141,12 +162,5 @@ var marioConfig = {
 // Setting the Title Screen
 let titleScene = new TitleScene();
 
-game.scene.start('TitleScene');
-
-
-
-
-
-
-
-
+game.scene.add("BootScene", BootScene.js);
+game.scene.start('BootScene');

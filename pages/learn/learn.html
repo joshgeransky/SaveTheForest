@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
         
-    <body id="bodyLearn">
+    <body id="bodyGeneral">
         
         <!-- Header -->
         <div class="header">
@@ -19,7 +19,7 @@
                 <a class="active">Learn</a>
                 <a onclick="window.location.href = '../about/about.html';">About</a>
             </div>
-        </div>
+        </div><br>
 
         <!-- Carousel for images -->
         <div id="carouselFireFacts" class="carousel slide carousel-fade" data-ride="carousel">
@@ -27,27 +27,42 @@
                 <li data-target="#carouselFireFacts" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselFireFacts" data-slide-to="1"></li>
                 <li data-target="#carouselFireFacts" data-slide-to="2"></li>
+                <li data-target="#carouselFireFacts" data-slide-to="3"></li>
+                <li data-target="#carouselFireFacts" data-slide-to="4"></li>
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active" id="carouselImage1">
                   <!-- Carousel captions -->
                   <div class="carousel-caption d-non d-md-block">
-                      <h5>Did you know?</h5>
-                      <p>Humans cuase roughly 40% of all forest fires in BC</p>
+                      <p>For 2 years BC had back to back record breaking worst fire seasons.</p>
                   </div>
               </div>
               <div class="carousel-item" id="carouselImage2">
                   <!-- Carousel captions -->
                   <div class="carousel-caption d-non d-md-block">
-                    <h5>Did you know?</h5>
-                    <p>BC is expecting 2019 to be its worst fire season ever</p>
+                    <!-- <h5>Did you know?</h5> -->
+                    <p>2008-2017 roughly 42.5% of wildfires in BC were caused by people</p>
                   </div>
               </div>
               <div class="carousel-item" id="carouselImage3">
                 <!-- Carousel captions -->
                 <div class="carousel-caption d-non d-md-block">
-                    <h5>Did you know?</h5>
-                    <p>Everyone can help prevent forest fires!</p>
+                    <!-- <h5>Did you know?</h5> -->
+                    <p>In 2018 wildfires destroyed 13,500 sq.km of BC's land</p>
+                </div>
+              </div>
+              <div class="carousel-item" id="carouselImage4">
+                <!-- Carousel captions -->
+                <div class="carousel-caption d-non d-md-block">
+                    <!-- <h5>Did you know?</h5> -->
+                    <p>In 2018 BC spent approximately $615 million dollars fighting forest fires</p>
+                </div>
+              </div>
+              <div class="carousel-item" id="carouselImage5">
+                <!-- Carousel captions -->
+                <div class="carousel-caption d-non d-md-block">
+                    <!-- <h5>Did you know?</h5> -->
+                    <p>Protect yourself and save the forest by learning more about wildfires</p>
                 </div>
               </div>
             </div>
@@ -62,27 +77,98 @@
             </a>
         </div>
 
+        <!-- Container for cards -->
         <div class="learn-content">
-            <!-- <div class='learn-image'>
-                <img src="../../assets/images/wildfire1.jpg">
-            </div> -->
-            
-            <h2 class='page-title'>Check out these dope AND littttttt sites to learn more about forest fires!</h2>
-
-            
-            
-            <div class="learn-links">
-                
-                <a href="https://www.nationalgeographic.com/environment/natural-disasters/wildfires/" target="_blank">National Geographic on Wildfires</a>
-                <br>
-                <a href="https://www2.gov.bc.ca/gov/content/safety/wildfire-status/wildfire-situation" target="_blank">Current Wildfire Activity in British Columbia</a>
-                <br>
-                <a href="http://cwfis.cfs.nrcan.gc.ca/interactive-map" target="_blank">Interactive Map of Wildfires in Canada</a>
-            
+            <div class="card-columns">
+                <a href="http://bcfireinfo.for.gov.bc.ca/hprScripts/WildfireNews/Fires.asp?Mode=normal&AllFires=0&FC=0" class="myLinks" target="_blank">
+                    <div class="card border border-success">
+                        <img src="/assets/images/time.jpg" class="card-img-top" alt="Forest Fire">
+                        <div class="card-body">
+                        <h5 class="card-title">Preparedness</h5>
+                        <p class="card-text">Stay up to date on all active wildfires in British Columbia.</p>
+                    </div>
+                </div>
+                </a>
+                <a href="https://study.com/academy/lesson/forest-fire-facts-lesson-for-kids.html" class="myLinks" target="_blank">
+                    <div class="card border border-success">
+                        <img src="/assets/images/learningKids2.jpg" class="card-img-top" alt="Cabin">
+                    </div>
+                </a>
+                <a href="https://www.cbc.ca/news/canada/british-columbia/bc-preparation-wildfires-2019-1.5062537" class="myLinks" target="_blank">
+                    <div class="card p-3 border border-success">
+                        <blockquote class="blockquote mb-0 card-body">
+                        <p>"Wildfire management funding boosted to $101M as B.C. prepares for dry season"</p>
+                        <footer class="blockquote-footer">
+                            <small class="text-muted">
+                            <cite title="Source Title">CBC</cite>
+                            </small>
+                        </footer>
+                        </blockquote>
+                    </div>
+                </a>
+                <a href="https://www2.gov.bc.ca/assets/gov/public-safety-and-emergency-services/wildfire-status/prevention/prevention-home-community/bcws_homeowner_firesmart_manual.pdf" class="myLinks" target="_blank">
+                    <div class="card border border-success">
+                        <img src="/assets/images/coniferousForest.jpg" class="card-img-top" alt="Forest Fire">
+                        <div class="card-body">
+                            <h5 class="card-title">Interesting facts</h5>
+                            <p class="card-text">Did you know coniferous trees are highly flammable?</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 hours ago</small></p>
+                        </div>
+                    </div>
+                </a>   
+                <a href="https://globalnews.ca/news/5272511/osoyoos-wildfire/" class="myLinks" target="_blank">
+                    <div class="card bg-success text-white text-center p-3">
+                        <blockquote class="blockquote mb-0">
+                        <p>"UPDATE: 80-hectare wildfire remains out-of-control west of Osoyoos, one property on alert"</p>
+                        <footer class="blockquote-footer text-white">
+                            <small>
+                            <cite title="Source Title">Global News</cite>
+                            </small>
+                        </footer>
+                        </blockquote>
+                    </div>
+                </a>
+                <a href="https://www2.gov.bc.ca/gov/content/safety/wildfire-status/wildfire-situation/fire-danger" class="myLinks" target="_blank">
+                    <div class="card text-center border border-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Preparedness</h5>
+                            <p class="card-text">Is your region at risk for wildfires?</p>
+                            <p class="card-text"><small class="text-muted">Last updated yesterday</small></p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://study.com/academy/lesson/wildfire-lesson-for-kids-definition-facts.html" class="myLinks" target="_blank">
+                    <div class="card border border-success">
+                        <img src="/assets/images/learningKids.jpg" class="card-img-top" alt="Cabin">
+                    </div>
+                </a>
+                <a href="https://globalnews.ca/news/5267524/wildfire-fraser-lake-2019/" class="myLinks" target="_blank">
+                    <div class="card p-3 text-right border border-success">
+                        <blockquote class="blockquote mb-0">
+                        <p>"Wildfire burning near Fraser Lake, B.C. swells to 236 hectares, evacuations ordered"</p>
+                        <footer class="blockquote-footer">
+                            <small class="text-muted">
+                            <cite title="Source Title">Global News</cite>
+                            </small>
+                        </footer>
+                        </blockquote>
+                    </div>
+                </a>
+                <a href="http://bcfireinfo.for.gov.bc.ca/hprScripts/WildfireNews/DisplayBan.asp?ID=586#OpenFireBans" class="myLinks" target="_blank">
+                    <div class="card border border-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Fire Bans and Restrictions</h5>
+                            <p class="card-text">The Northwest Fire Centre has prohibited open burning.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 4 hours ago</small></p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://easyscienceforkids.com/all-about-forests/" class="myLinks" target="_blank">
+                    <div class="card border border-success">
+                        <img src="/assets/images/learningKids3.jpg" class="card-img-top" alt="Cabin">
+                    </div>
+                </a>
             </div>
-                
-            <br><br>
-            <span class="footer">© 2019 Team 19, All Rights Reserved.</span>
             
         </div>
 

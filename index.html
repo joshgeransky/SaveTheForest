@@ -11,8 +11,8 @@
 
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
-        
-    <body>
+
+    <body id="bodyGeneral">
         
         <!-- Header -->
         <div class="header">
@@ -25,18 +25,16 @@
         </div><br>
             
         <div id="game"></div>
+        
 		<script src="./js/phaser-v3.16.2.js"></script>
+		<script src="./js/src/scenes/BootScene.js"></script>
+		<script src="./js/src/scenes/PreloadScene.js"></script>
 		<script src="./js/src/scenes/TitleScene.js"></script>
+		<script src="./js/src/scenes/GamePreload.js"></script>
 		<script src="./js/src/scenes/GameScene.js"></script>
-	
+		<script src="./js/src/scenes/GameOverScene.js"></script>
         <script src="js/main.js"></script>
         
-        <div class="score">
-            
-        </div>
-        
-    </body>
-    
-
-        
+        <div class="score"></div>   
+    </body>       
 </html>
