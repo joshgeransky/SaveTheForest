@@ -41,13 +41,16 @@ class GamePreload extends Phaser.Scene {
         this.load.image('gameOverBackground', '../assets/images/gameOverBackground.jpeg');
         this.load.image('continueBtn', '../assets/sprites/continueButton.png');
 	}
+	
 	create(){
 		this.scene.start('GameScene');
 		
 	}
+	
 	centerX(){
 		return this.sys.game.config.width /2;
 	}
+	
 	centerY(){
 		return this.sys.game.config.height /2;
 	}

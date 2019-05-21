@@ -40,13 +40,15 @@ var fire; // holds a fire
 var fireMaking = false; // boolean to check if already making a fire
 var litFires = []; // array of all lit fires
 var stageDelay = 5000; // delay between fires
-var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
+var fireSoundBoolean = false; // keeps track of how whether a fire is on the screen or not
 var spriteCamp;
 var startSound;
 var removedFires = [];
 var currentFireCount = 0;
 var removedTreeCount = 0;
-  
+var fireReset = false; // Boolean to check if currently restarting fires on burnt trees
+var allBurntTrees = []; // Array to hold all currently burnt trees
+
 // Mario music easter egg boolean
 var marioed = false;
 
@@ -61,6 +63,7 @@ var readingToolTip = false; //whether or not the tool tip is displayed
 var clickedBurntTree = 0; //for removing the text when user clicks on a burnt tree
 var trophyStatus = false; //wait time for trophy announcement's appearance
 var shuffle;
+
 //designates milestones for every 100, 200, 300... points
 //not using the odd scores for now (spams when the pace of the game is fast)
 var trophyTen = true; 

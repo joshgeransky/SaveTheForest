@@ -16,8 +16,7 @@ class TitleScene extends Phaser.Scene {
 		
 		let background = this.add.sprite(0, 0, 'background_image');
 		background.setOrigin(0, 0);
-		
-		
+	
 		// Create title text
 	    titleText = this.add.text(15, 70, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
 	        
@@ -47,38 +46,37 @@ class TitleScene extends Phaser.Scene {
 	    // Create start buttons
 	    startBtn = this.add.sprite(400, 300, 'startButt').setInteractive();
   		startSound = this.sound.add('startPlay', waterConfig);   
-	    
-	    // Start button functionality
+
+	    /**** Start button functionality ****/
 	    startBtn.on('pointerover', changeColor);
+        
 	    startBtn.on('pointerout', revertColor);
-		
+        
 	    //Event handler for start button
 		startBtn.on('pointerdown', function () {
-			startSound.play();
-			this.scene.start('GamePreload');
 			
-        }, this);
-		 
-		startBtn.on('pointerdown', startGame);
-
-		//Create full screen button
-		var fullscreenBtn = this.add.sprite(400, 470, "startButt").setInteractive();
-
-		fullscreenBtn.on("pointerdown", function () {
-			if (this.scale.isFullscreen) {
-				fullscreenBtn.setFrame(0);
+			startSound.play();
+            
+            if (this.scale.isFullscreen) {
 
 				this.scale.stopFullscreen();
 
 			} else {
-				fullscreenBtn.setFrame(0);
 
 				this.scale.startFullscreen();
 			}
-		}, this);
+            console.log('From TitleScene to GamePreload');
+            
+			//titleMusic.pause();
+            
+            this.scene.start('GamePreload');
+        }, this);
+		
+		// On start button press  
+		startBtn.on('pointerdown', startGame);
 
+        // Check orientation
 		whatOrientation(this.scale.orientation);
-
 		this.scale.on("orientationchange", whatOrientation, this);
 	}
 }

@@ -25,10 +25,11 @@ class GameScene extends Phaser.Scene {
         gameOverButton.on('pointerdown', (pointer) => {
 			
 			//stop game music and play the game over music
-            gameMusic.pause();
+            gameMusic.stop();
 			gameOverSound.play();
             this.scene.start("GameOverScene");
         })
+		
 		/**
 		var pointIcon = this.add.sprite(450, 50, 'pointsButton').setInteractive().setScale(0.2, 0.2);
 
@@ -68,6 +69,7 @@ class GameScene extends Phaser.Scene {
         }
    
         /* -------- Music -------- */
+		
         titleMusic.stop();
         gameMusic = this.sound.add('game', musicConfig);
         gameMusic.play();
@@ -202,19 +204,11 @@ facts = [
         // Create the boundaries of the game
         var bounds = new Phaser.Geom.Rectangle(20, 20, 780, 560);
 
-        // Creating container variables
-        var treeContainer = this.add.container(0, 0).setName('treeContainer');
-        window['Container1'] = treeContainer;
-        var containerNum = 1;
-     
         // Configure the first fire animation
         this.anims.create(configFire1);
     
-        //Configure the second fire animation
+        // Configure the second fire animation
         this.anims.create(configFire2);
-    
-        // Get the x and y values for the trees
-        arrangeTrees(bounds);
 
 		var textStyle = {fontSize: '16pt', fontFamily: 'VT323', fill: 'white', backgroundColor: 'black', align: 'center'};
          
@@ -237,108 +231,22 @@ facts = [
 		//hides it from view before any facts are shown
 		textHolder.visible = false;
 
-        // For loop to create trees
-        for (let i = 0; i < 200; i++) {
-            // Create a tree and add it to the window
-            var tree = this.add.sprite(treeArr[i].x, treeArr[i].y, 'tree1').setName('Sprite' + i);	
-            var burntTree = this.add.sprite(treeArr[i].x, treeArr[i].y, 'burntTree').setName('Burnt' + i);
-            burntTree.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
-        	
-            burntTree.visible = false;
+        // Create the entire scene
+        createScene(this, bounds);
         
-            burntTree.setInteractive();
-        
-            // Creating containers for each individual tree
-            // (May be unnecessary but it's working for now so I won't remove it)
-            if (i > 0 && i % 8 === 0) {
-                treeContainer = this.add.container(0, 0).setName('treeContainer' + containerNum);
-                treeContains.push(treeContainer);
-                window['treeContainer' + containerNum] = treeContainer;
-                containerNum++;
-            }
-        
-            // Add the tree to the containers array (will likely be removed eventually)
-            treeContains.push(tree);    
-        
-            // Generate either 1 or 2 to choose the fire type
-            var fireType = Math.floor(Math.random() * 2);
-        
-            // If the first fire type, add it
-            if (fireType == 0) {
-          
-                // Makes fire on the tree
-                fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
-                fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
-                
-                // Animate the fire
-                fire.anims.play("burn1");
-				
-            // If the second fire type, add it
-            } else if (fireType == 1) {
-            
-                // Makes fire on the tree
-                fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim2').setName('Fire' + i);
-               	fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
-            
-                // Animate the fire
-                fire.anims.play("burn2");	
-					
-            // Otherwise, in case of a weird number, add the first one
-            } else {
-				
-                // Makes fire on the tree
-                fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
-                fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
-        
-                // Animate the fire
-                fire.anims.play("burn1");
-            }
-        
-            // Set the fire to be clickable
-            fire.setInteractive();
-         
-            // Set the fire to be invisibile (it will be visible when it spawns later)
-            fire.visible = false;
-        
-            // Push the new fire to the fire array
-            fireArr.push(fire);
-        
-            // Add the tree, burnt tree, fire and x/y values to the array
-            allTrees.push({
-                tree: tree,
-                burnt: burntTree,
-                fire: fire,
-                shroom: null,
-                deadShroom: null,
-                x: treeArr[i].x,
-                y: treeArr[i].y
-            });
-        }
-        
-        this.children.bringToTop(scoreCounter);
-		this.children.bringToTop(textHolder);
-		this.children.bringToTop(allTrees.burnt);
-    }
+        this.children.bringToTop(scoreCounter);        
+	
+	/**
+		//**************** DELETE BELOW AFTER IMPLEMENTATION ****************
+		var saveIcon = this.add.sprite(500, 50, 'save').setInteractive().setScale(0.25, 0.25);
 
-    // Arrange the trees using the boundaries
-    arrangeTrees(bounds) {
-    
-        // For the amount of trees you want (200 atm)
-        for (let i = 0; i < 200; i++) {
-        
-            // Get random x and y values
-            var x = Phaser.Math.Between(bounds.left, bounds.right);
-            var y = Phaser.Math.Between(bounds.top, bounds.bottom);
-        
-            // Push these values to an array
-            treeArr.push({
-                x: x,
-                y: y
-            });
-        
-            // Then sort the trees by y values
-            sortTrees(treeArr[0], treeArr[i]);    
-        }
+		saveIcon.setDepth(500);
+
+		saveIcon.on('pointerdown', (pointer) => {
+
+        this.scene.start("GameOverScene");
+		})
+		*/
     }
 
     // Update function, repeats indefinitely
@@ -355,173 +263,41 @@ facts = [
 			
 		//milestone/trophy announcements for the player
 		if(!readingToolTip) {
-			if(playerScore >= 100 && !trophyTenFin) {
-				textHolder.setText("You have saved 10 trees!                                                                                         ");
-				th.children.bringToTop(textHolder);
-				console.log("should be saying you have saved 10 trees");
-				trophyStatus = true;
-				
-				if(playerScore == 120) { //2 trees after
-					setBlank();
-					console.log("should be setting trophy 10 blank");
-					trophyStatus = false;
-					trophyTenFin = true; //do not show this announcement anymore
-				}	
-			}
-			if(playerScore >= 200 && !trophyTwentyFin) {
-				textHolder.setText("You have saved 20 trees, keep going!                                                                              ");
-				th.children.bringToTop(textHolder);
-				console.log("should be saying you have saved 20 trees");
-				trophyStatus = true;
-				
-				if(playerScore == 230) { //3 trees after
-					setBlank();
-					console.log("should be setting trophy 20 blank");
-					trophyStatus = false;
-					trophyTwentyFin = true; //do not show this announcement anymore
-				}	
-			}
-			/**
-			if(playerScore >= 300 && !trophyThirtyFin) {
-				textHolder.setText("Wow! You have saved 30 trees!                                                                                     ");
-				th.children.bringToTop(textHolder);
-				console.log("should be saying you have saved 30 trees");
-				trophyStatus = true;
-			    if(playerScore == 340) { //4 trees after
-					setBlank();
-					console.log("should be setting trophy 30 blank");
-					trophyStatus = false;
-					trophyThirtyFin = true; //do not show this announcement anymore
-				}
-			}
-			*/
-			if(playerScore >= 400 && !trophyFourtyFin) {
-				textHolder.setText("Holy smokes, you have saved 40 trees!                                                                              ");
-				th.children.bringToTop(textHolder);
-				console.log("should be saying you have saved 40 trees");
-				trophyStatus = true;
-				
-				if(playerScore == 440) { //4 trees after
-					setBlank();
-					console.log("should be setting trophy 40 blank");
-					trophyStatus = false;
-					trophyFourtyFin = true; //do not show this announcement anymore
-				}
-			}
-			/**
-			if(playerScore >= 500 && !trophyFiftyFin) {
-				textHolder.setText("Amazing, you have saved 50 trees!                                                                                  ");
-				th.children.bringToTop(textHolder);
-				console.log("should be saying you have saved 50 trees");
-				trophyStatus = true;
-				if(playerScore == 550) { //5 trees after
-					setBlank();
-					console.log("should be setting trophy 50 blank");
-					trophyStatus = false;
-					trophyFiftyFin = true; //do not show this announcement anymore
-				}
-			}
-			*/
-			if(playerScore >= 600 && !trophySixtyFin) {
-				textHolder.setText("Amazing! You have saved 60 trees!                                                                    ");
-				th.children.bringToTop(textHolder);
-				console.log("should be saying you have saved 60 trees");
-				trophyStatus = true;
-				
-				if(playerScore == 650) { //5 trees after
-					setBlank();
-					console.log("should be setting trophy 60 blank");
-					trophyStatus = false;
-					trophySixtyFin = true; //do not show this announcement anymore	
-				}
-			}
-			/**
-			if(playerScore >= 700 && !trophySeventyFin) {
-				textHolder.setText("You are a firefighter, 70 trees have been saved!                                                                   ");
-				th.children.bringToTop(textHolder);
-				console.log("should be saying you have saved 70 trees");
-				trophyStatus = true;
-				if(playerScore == 750) { //5 trees after
-					setBlank();
-					console.log("should be setting trophy 70 blank");
-					trophyStatus = false;
-					trophySeventyFin = true; //do not show this announcement anymore
-				}
-			}
-			*/
-			if(playerScore >= 800 && !trophyEightyFin) {
-				textHolder.setText("Unbelievable! You have saved 80 trees!                                           ");
-				th.children.bringToTop(textHolder);
-				console.log("should be saying you have saved 80 trees");
-				trophyStatus = true;
-				
-				if(playerScore == 850) { //5 trees after
-					setBlank();
-					console.log("should be setting trophy 80 blank");
-					trophyStatus = false;
-					trophyEightyFin = true; //do not show this announcement anymore
-				}
-			}
-			/**
-			if(playerScore >= 900 && !trophyNinetyFin) {
-				textHolder.setText("Unbelievable! You have saved 90 trees!                                                                             ");
-				th.children.bringToTop(textHolder);
-				console.log("should be saying you have saved 90 trees");
-				trophyStatus = true;
-				if(playerScore == 950) { //5 trees after
-					setBlank();
-					console.log("should be setting trophy 90 blank");
-					trophyStatus = false;
-					trophyNinetyFin = true; //do not show this announcement anymore
-				} 
-			}
-			*/
-			if(playerScore >= 1000 && !trophyHunFin) {
-				textHolder.setText("You have saved the forest, 100 trees and counting!                                                        ");
-				th.children.bringToTop(textHolder);
-				console.log("should be saying you have saved 100 trees");
-				trophyStatus = true;
-				
-				if(playerScore == 1100) { //10 trees after 
-					setBlank();
-					console.log("should be setting trophy 100 blank");
-					trophyStatus = false;
-					trophyHunFin = true; //do not show this announcement anymore
-				}
-			}
+			//all the trophy logic is done in there
+			determineTrophy();
 		}
 		
-            // When a fire is clicked
-            this.input.on('gameobjectdown', function(pointer, fire) {
-			 
-                // Set the clickedFire variable (may be unnecessary)
-                clickedFire = fire;
-					
-				// Extinguish the fire
-				extinguishFire(fire, th);			
-            });
-        
-            // When a burnt tree is clicked
-                this.input.on('gameobjectdown', function(pointer, burnt) {					
-					
-					//Remove the burnt tree
-					removeTree(this, burnt, clickedFire);	
-                });
-        
-            // Check what stage the user is at
-            detStage();
-		
-            // Delay and then make the fire
-            this.time.addEvent({
-                delay: stageDelay,
-                callback: ()=>{
-                    startFires(this) // Send 'this' over so not everything has to be done in this function
-                },
-                loop: false // Do not loop, the update function loops by itself
-            });
+		// When a fire is clicked
+		this.input.on('gameobjectdown', function(pointer, fire) {
+		 
+			// Set the clickedFire variable (may be unnecessary)
+			clickedFire = fire;
+	   
+			// Extinguish the fire
+			extinguishFire(fire, th);
+		});
+	
+		// When a burnt tree is clicked
+		this.input.on('gameobjectdown', function(pointer, burnt) {					
 			
-			//Mario Easter Egg
-            var mKey = this.input.keyboard.addKey('M');
+			//Remove the burnt tree
+			removeTree(this, burnt, clickedFire);	
+		});
+	
+		// Check what stage the user is at
+		detStage();
+	
+		// Delay and then make the fire
+		this.time.addEvent({
+			delay: stageDelay,
+			callback: ()=>{
+				startFires(this) // Send 'this' over so not everything has to be done in this function
+			},
+			loop: false // Do not loop, the update function loops by itself
+		});
+		
+		/** Mario Easter Egg */
+		var mKey = this.input.keyboard.addKey('M');
     
             if (mKey.isDown && !marioed) {
                 marioMusic.play(marioConfig);
@@ -544,12 +320,90 @@ facts = [
                     deadShroom.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
                 }        
             }
-		}
-		if (fireCount + removedTreeCount == 200) {
+		} else if (currentFireCount + removedTreeCount == 200) {
 			gameOver(this);
-		
 		}			
 	}
+}
+
+// Create the entire tree scene
+// th = this
+// bounds = boundaries of the game
+function createScene(th, bounds) {
+    
+    // Get the x and y values for the trees
+    arrangeTrees(bounds);
+    
+// For loop to create trees
+	for (let i = 0; i < 200; i++) {
+		
+		// Create a tree and add it to the window
+		var tree = th.add.sprite(treeArr[i].x, treeArr[i].y, 'tree1').setName('Sprite' + i);	
+		var burntTree = th.add.sprite(treeArr[i].x, treeArr[i].y, 'burntTree').setName('Burnt' + i);
+		
+		burntTree.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
+		
+		burntTree.visible = false;
+	
+		burntTree.setInteractive();
+	
+		// Add the tree to the containers array
+		treeContains.push(tree);    
+	
+		// Generate either 1 or 2 to choose the fire type
+		var fireType = Math.floor(Math.random() * 2);
+	
+		// If the first fire type, add it
+		if (fireType == 0) {
+	  
+			// Makes fire on the tree
+			fire = th.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
+			fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
+			
+	
+			// Animate the fire
+			fire.anims.play("burn1");
+		
+			// If the second fire type, add it
+		} else if (fireType == 1) {
+		
+			// Makes fire on the tree
+			fire = th.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim2').setName('Fire' + i);
+			fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
+		
+			// Animate the fire
+			fire.anims.play("burn2");
+		
+			// Otherwise, in case of a weird number, add the first one
+		} else {
+			// Makes fire on the tree
+			fire = th.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
+			fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
+	
+			// Animate the fire
+			fire.anims.play("burn1");
+		}
+	
+		// Set the fire to be clickable
+		fire.setInteractive();
+	 
+		// Set the fire to be invisibile (it will be visible when it spawns later)
+		fire.visible = false;
+	
+		// Push the new fire to the fire array
+		fireArr.push(fire);
+	
+		// Add the tree, burnt tree, fire and x/y values to the array
+		allTrees.push({
+			tree: tree,
+			burnt: burntTree,
+			fire: fire,
+			shroom: null,
+			deadShroom: null,
+			x: treeArr[i].x,
+			y: treeArr[i].y
+		});
+	} 
 }
 
 // Arrange the trees using the boundaries
@@ -576,7 +430,29 @@ function arrangeTrees(bounds) {
 // Start making fires
 // th = 'this'
 function startFires(th) {
-	    
+    
+    /* ------ Restart fires on burnt trees; time dependent on stage delay ------ */
+    if (!fireReset) {
+        
+        // Wait until there's already at least 5 burnt trees
+        if (allBurntTrees.length > 5) {
+        
+            // Only do this once every stage delay
+            fireReset = true;
+        
+            // Get a tree from the burnt trees array
+            var t = Phaser.Utils.Array.GetRandom(allBurntTrees);
+        
+            // Get the fire
+            var f = t.fire;          
+
+            // Make the fire visible
+            // This doesn't account for already visible fires,
+            // but trying to account for this seems to break things
+            f.visible = true;  
+        }
+    }
+    
     // If a fire is not currently being made
     if (!fireMaking) {
 	    
@@ -609,7 +485,7 @@ function startFires(th) {
 		ran = Math.floor(Math.random() * 2 + 1);
 		console.log("random is: " + ran);
 		
-		
+		/**Informational text is printed and removed from here: */
 		//sets text blank after a new fire pops up if a burnt tree has not showed up yet or recieving trophy
 		if (readingToolTip == false && clickedBurntTree == 0 && !firstBurntTree && !trophyStatus) {
 			setBlank();
@@ -653,7 +529,8 @@ function startFires(th) {
 			//displays text
 			updateInfo(th);
 		}
-        
+        /**To here. */
+		
         // Increase the current fire count.
         currentFireCount++;
 	    
@@ -669,6 +546,146 @@ function startFires(th) {
 		// After delay time, allow the update function to make another fire.
         setTimeout(delayFires, stageDelay);	
 	}
+}
+
+
+//determines which trophy to show
+//and how long it stays for
+function determineTrophy() {
+	if(playerScore >= 100 && !trophyTenFin) {
+		textHolder.setText("You have saved 10 trees!                                                                                         ");
+		th.children.bringToTop(textHolder);
+		console.log("should be saying you have saved 10 trees");
+		trophyStatus = true;
+		
+		if(playerScore == 120) { //2 trees after
+			setBlank();
+			console.log("should be setting trophy 10 blank");
+			trophyStatus = false;
+			trophyTenFin = true; //do not show this announcement anymore
+		}	
+	}
+	if(playerScore >= 200 && !trophyTwentyFin) {
+		textHolder.setText("You have saved 20 trees, keep going!                                                                              ");
+		th.children.bringToTop(textHolder);
+		console.log("should be saying you have saved 20 trees");
+		trophyStatus = true;
+		
+		if(playerScore == 230) { //3 trees after
+			setBlank();
+			console.log("should be setting trophy 20 blank");
+			trophyStatus = false;
+			trophyTwentyFin = true; //do not show this announcement anymore
+		}	
+	}
+	/**
+	if(playerScore >= 300 && !trophyThirtyFin) {
+		textHolder.setText("Wow! You have saved 30 trees!                                                                                     ");
+		th.children.bringToTop(textHolder);
+		console.log("should be saying you have saved 30 trees");
+		trophyStatus = true;
+		if(playerScore == 340) { //4 trees after
+			setBlank();
+			console.log("should be setting trophy 30 blank");
+			trophyStatus = false;
+			trophyThirtyFin = true; //do not show this announcement anymore
+		}
+	}
+	*/
+	if(playerScore >= 400 && !trophyFourtyFin) {
+		textHolder.setText("Holy smokes, you have saved 40 trees!                                                                              ");
+		th.children.bringToTop(textHolder);
+		console.log("should be saying you have saved 40 trees");
+		trophyStatus = true;
+		
+		if(playerScore == 440) { //4 trees after
+			setBlank();
+			console.log("should be setting trophy 40 blank");
+			trophyStatus = false;
+			trophyFourtyFin = true; //do not show this announcement anymore
+		}
+	}
+	/**
+	if(playerScore >= 500 && !trophyFiftyFin) {
+		textHolder.setText("Amazing, you have saved 50 trees!                                                                                  ");
+		th.children.bringToTop(textHolder);
+		console.log("should be saying you have saved 50 trees");
+		trophyStatus = true;
+		if(playerScore == 550) { //5 trees after
+			setBlank();
+			console.log("should be setting trophy 50 blank");
+			trophyStatus = false;
+			trophyFiftyFin = true; //do not show this announcement anymore
+		}
+	}
+	*/
+	if(playerScore >= 600 && !trophySixtyFin) {
+		textHolder.setText("Amazing! You have saved 60 trees!                                                                    ");
+		th.children.bringToTop(textHolder);
+		console.log("should be saying you have saved 60 trees");
+		trophyStatus = true;
+		
+		if(playerScore == 650) { //5 trees after
+			setBlank();
+			console.log("should be setting trophy 60 blank");
+			trophyStatus = false;
+			trophySixtyFin = true; //do not show this announcement anymore	
+		}
+	}
+	/**
+	if(playerScore >= 700 && !trophySeventyFin) {
+		textHolder.setText("You are a firefighter, 70 trees have been saved!                                                                   ");
+		th.children.bringToTop(textHolder);
+		console.log("should be saying you have saved 70 trees");
+		trophyStatus = true;
+		if(playerScore == 750) { //5 trees after
+			setBlank();
+			console.log("should be setting trophy 70 blank");
+			trophyStatus = false;
+			trophySeventyFin = true; //do not show this announcement anymore
+		}
+	}
+	*/
+	if(playerScore >= 800 && !trophyEightyFin) {
+		textHolder.setText("Unbelievable! You have saved 80 trees!                                           ");
+		th.children.bringToTop(textHolder);
+		console.log("should be saying you have saved 80 trees");
+		trophyStatus = true;
+		
+		if(playerScore == 850) { //5 trees after
+			setBlank();
+			console.log("should be setting trophy 80 blank");
+			trophyStatus = false;
+			trophyEightyFin = true; //do not show this announcement anymore
+		}
+	}
+	/**
+	if(playerScore >= 900 && !trophyNinetyFin) {
+		textHolder.setText("Unbelievable! You have saved 90 trees!                                                                             ");
+		th.children.bringToTop(textHolder);
+		console.log("should be saying you have saved 90 trees");
+		trophyStatus = true;
+		if(playerScore == 950) { //5 trees after
+			setBlank();
+			console.log("should be setting trophy 90 blank");
+			trophyStatus = false;
+			trophyNinetyFin = true; //do not show this announcement anymore
+		} 
+	}
+	*/
+	if(playerScore >= 1000 && !trophyHunFin) {
+		textHolder.setText("You have saved the forest, 100 trees and counting!                                                        ");
+		th.children.bringToTop(textHolder);
+		console.log("should be saying you have saved 100 trees");
+		trophyStatus = true;
+		
+		if(playerScore == 1100) { //10 trees after 
+			setBlank();
+			console.log("should be setting trophy 100 blank");
+			trophyStatus = false;
+			trophyHunFin = true; //do not show this announcement anymore
+		}
+	}	
 }
 
 //delays the amount of time a trophy is displayed for
@@ -771,6 +788,7 @@ function delayTrophy(whichTrophy) {
 // Dealing with the boolean for making fires
 function delayFires() {    
     fireMaking = false;
+    fireReset = false;
 }
 
 // Determine the rate the fires will spawn
@@ -937,6 +955,8 @@ function burnTree(t, f) {
 					//a burnt tree has appeared for the first time
 					firstBurntTree = true;
 				}
+                
+                allBurntTrees.push(t);
             } else {
                 
                 // Make the normal mushroom invisible
@@ -944,6 +964,8 @@ function burnTree(t, f) {
                 
                 // Make the sad dead mushroom visible
                 t.deadShroom.visible = true;
+                
+                allBurntTrees.push(t);
             }
         }
     }
@@ -994,7 +1016,25 @@ function removeTree(th, b, f) {
 					console.log("removing burnt tree inside removeTree");
 				}
 			}
-        } 
+        }      
+           
+        
+        /* Remove the burnt tree from the burnt tree array */
+        for (let i = 0; i < allBurntTrees.length; i++) {
+            
+            if (b == allBurntTrees[i].burnt) {
+                t = allBurntTrees[i];
+                allBurntTrees.splice(i, 1);
+            }
+        }
+        
+        /* Remove the entire tree from the tree array */
+        for (let i = 0; i < allTrees.length; i++) {
+            if (b == allTrees[i].burnt) {
+                allTrees.splice(i, 1);
+            }
+        }
+		
     } else if (!isNaN(deadShroomNumber)) {
                 
         // Go through all previously extinguished fires
@@ -1013,12 +1053,28 @@ function removeTree(th, b, f) {
                 removedFires.splice(i, 1);
             }
         }
+        
+        /* Remove the burnt shrrom from the burnt tree array */
+        for (let i = 0; i < allBurntTrees.length; i++) {
+            if (b == allBurntTrees[i].deadShrrom) {
+				t = allBurntTrees[i];
+                allBurntTrees.splice(i, 1);
+            }
+        }
+        
+        /* Remove the entire tree from the tree array */
+        for (let i = 0; i < allTrees.length; i++) {
+            if (b == allTrees[i].deadShrrom) {
+                allTrees.splice(i, 1);
+            }
+        }
     }
 }
 
 // Game over function
 function gameOver(th) {
-    alert("Game Over"); 
+    console.log("Game Over");    
+    th.scene.start("GameOverScene");
 }
 		
 //changes color of start button on hover
