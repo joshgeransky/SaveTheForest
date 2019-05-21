@@ -340,7 +340,31 @@ function arrangeTrees(bounds) {
 // Start making fires
 // th = 'this'
 function startFires(th) {
-	    
+    
+    /* ------ Restart fires on burnt trees; time dependent on stage delay ------ */
+    if (!fireReset) {
+        
+        // Wait until there's already at least 5 burnt trees
+        if (allBurntTrees.length > 5) {
+        
+            // Only do this once every stage delay
+            fireReset = true;
+        
+            // Get a tree from the burnt trees array
+            var t = Phaser.Utils.Array.GetRandom(allBurntTrees);
+        
+            // Get the fire
+            var f = t.fire;          
+
+            // Make the fire visible
+            // This doesn't account for already visible fires,
+            // but trying to account for this seems to break things
+            f.visible = true;
+            
+        }
+        
+    }
+    
     // If a fire is not currently being made
     if (!fireMaking) {
 	    
@@ -390,6 +414,7 @@ function startFires(th) {
 // Dealing with the boolean for making fires
 function delayFires() {    
     fireMaking = false;
+    fireReset = false;
 }
 	
 // Determine the rate the fires will spawn
@@ -507,6 +532,8 @@ function burnTree(t, f) {
 
                 // Make the burnt tree visible
                 burnt.visible = true;
+                
+                allBurntTrees.push(t);
                                 
             } else {
                 
@@ -515,6 +542,8 @@ function burnTree(t, f) {
                 
                 // Make the sad dead mushroom visible
                 t.deadShroom.visible = true;
+                
+                allBurntTrees.push(t);
             }
         }
     }
@@ -547,8 +576,29 @@ function removeTree(th, b, f) {
                 
                 // Remove the extinguished fire from the array
                 removedFires.splice(i, 1);
+                
+            }
+            
+        }
+        
+        
+        /* Remove the burnt tree from the burnt tree array */
+        for (let i = 0; i < allBurntTrees.length; i++) {
+            
+            if (b == allBurntTrees[i].burnt) {
+                t = allBurntTrees[i];
+                allBurntTrees.splice(i, 1);
             }
         }
+        
+        /* Remove the entire tree from the tree array */
+        for (let i = 0; i < allTrees.length; i++) {
+            if (b == allTrees[i].burnt) {
+                allTrees.splice(i, 1);
+            }
+        }
+        
+        
         
     } else if (!isNaN(deadShroomNumber)) {
                 
@@ -566,6 +616,23 @@ function removeTree(th, b, f) {
                 
                 // Remove the extinguished fire from the array
                 removedFires.splice(i, 1);
+            }
+        }
+        
+        
+        /* Remove the burnt shrrom from the burnt tree array */
+        for (let i = 0; i < allBurntTrees.length; i++) {
+            
+            if (b == allBurntTrees[i].deadShrrom) {
+                t = allBurntTrees[i];
+                allBurntTrees.splice(i, 1);
+            }
+        }
+        
+        /* Remove the entire tree from the tree array */
+        for (let i = 0; i < allTrees.length; i++) {
+            if (b == allTrees[i].deadShrrom) {
+                allTrees.splice(i, 1);
             }
         }
     }

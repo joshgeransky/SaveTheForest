@@ -41,12 +41,14 @@ var fire; // holds a fire
 var fireMaking = false; // boolean to check if already making a fire
 var litFires = []; // array of all lit fires
 var stageDelay = 5000; // delay between fires
-var fireSoundBoolean = false; //keeps track of how whether a fire is on the screen or not
+var fireSoundBoolean = false; // keeps track of how whether a fire is on the screen or not
 var spriteCamp;
 var startSound;
 var removedFires = [];
 var currentFireCount = 0;
 var removedTreeCount = 0;
+var fireReset = false; // Boolean to check if currently restarting fires on burnt trees
+var allBurntTrees = []; // Array to hold all currently burnt trees
 
     
 // Mario music easter egg boolean
