@@ -42,7 +42,11 @@ class GameOverScene extends Phaser.Scene {
 
 			} else {
 
-				this.scene.start('TitleScene');
+				//this.scene.start('TitleScene'); --- Tends to screw up the game
+                
+                // Reloads the page
+                // (cheesy way to restart the game without causing problems)
+                location.reload();
 			}
 
 

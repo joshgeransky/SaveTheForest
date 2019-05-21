@@ -137,105 +137,21 @@ class GameScene extends Phaser.Scene {
         // Create the boundaries of the game
         var bounds = new Phaser.Geom.Rectangle(20, 20, 780, 560);
 
-        // Creating container variables
-        var treeContainer = this.add.container(0, 0).setName('treeContainer');
-        window['Container1'] = treeContainer;
-        var containerNum = 1;
-     
-
         // Configure the first fire animation
         this.anims.create(configFire1);
     
-        //Configure the second fire animation
+        // Configure the second fire animation
         this.anims.create(configFire2);
     
-        // Get the x and y values for the trees
-        arrangeTrees(bounds);
-
+        // Create the entire scene
+        createScene(this, bounds);
                 
         // Create score counter
-        scoreCounter = this.add.text(10, 10, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
-        
-         
-        // For loop to create trees
-        for (let i = 0; i < 200; i++) {
-            // Create a tree and add it to the window
-            var tree = this.add.sprite(treeArr[i].x, treeArr[i].y, 'tree1').setName('Sprite' + i);	
-            var burntTree = this.add.sprite(treeArr[i].x, treeArr[i].y, 'burntTree').setName('Burnt' + i);
-            burntTree.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
-        	
-            burntTree.visible = false;
-        
-            burntTree.setInteractive();
-        
-            // Creating containers for each individual tree
-            // (May be unnecessary but it's working for now so I won't remove it)
-            if (i > 0 && i % 8 === 0) {
-                treeContainer = this.add.container(0, 0).setName('treeContainer' + containerNum);
-                treeContains.push(treeContainer);
-                window['treeContainer' + containerNum] = treeContainer;
-                containerNum++;
-            }
-        
-            // Add the tree to the containers array (will likely be removed eventually)
-            treeContains.push(tree);    
-        
-            // Generate either 1 or 2 to choose the fire type
-            var fireType = Math.floor(Math.random() * 2);
-        
-            // If the first fire type, add it
-            if (fireType == 0) {
-          
-                // Makes fire on the tree
-                fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
-                fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
-                
-        
-                // Animate the fire
-                fire.anims.play("burn1");
-            
-                // If the second fire type, add it
-            } else if (fireType == 1) {
-            
-                // Makes fire on the tree
-                fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim2').setName('Fire' + i);
-               	fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
-            
-                // Animate the fire
-                fire.anims.play("burn2");
-            
-                // Otherwise, in case of a weird number, add the first one
-            } else {
-                // Makes fire on the tree
-                fire = this.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
-                fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
-        
-                // Animate the fire
-                fire.anims.play("burn1");
-            }
-        
-            // Set the fire to be clickable
-            fire.setInteractive();
-         
-            // Set the fire to be invisibile (it will be visible when it spawns later)
-            fire.visible = false;
-        
-            // Push the new fire to the fire array
-            fireArr.push(fire);
-        
-            // Add the tree, burnt tree, fire and x/y values to the array
-            allTrees.push({
-                tree: tree,
-                burnt: burntTree,
-                fire: fire,
-                shroom: null,
-                deadShroom: null,
-                x: treeArr[i].x,
-                y: treeArr[i].y
-            });
-        }
+        scoreCounter = this.add.text(10, 10, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});        
         
         this.children.bringToTop(scoreCounter);
+        
+        
         //**************** DELETE BELOW AFTER IMPLEMENTATION ****************
     var saveIcon = this.add.sprite(500, 50, 'save').setInteractive().setScale(0.25, 0.25);
 
@@ -246,30 +162,6 @@ class GameScene extends Phaser.Scene {
         this.scene.start("GameOverScene");
      
  })
-    }
-
-   
-
-
-    // Arrange the trees using the boundaries
-    arrangeTrees(bounds) {
-    
-        // For the amount of trees you want (200 atm)
-        for (let i = 0; i < 200; i++) {
-        
-            // Get random x and y values
-            var x = Phaser.Math.Between(bounds.left, bounds.right);
-            var y = Phaser.Math.Between(bounds.top, bounds.bottom);
-        
-            // Push these values to an array
-            treeArr.push({
-                x: x,
-                y: y
-            });
-        
-            // Then sort the trees by y values
-            sortTrees(treeArr[0], treeArr[i]);    
-        }
     }
 
     // Update function, repeats indefinitely
@@ -291,7 +183,7 @@ class GameScene extends Phaser.Scene {
            
                 // Extinguish the fire
                 extinguishFire(fire, th);
-                			
+                
             });
         
             // When a burnt tree is clicked
@@ -342,6 +234,85 @@ class GameScene extends Phaser.Scene {
     }
 }
 
+
+// Create the entire tree scene
+// th = this
+// bounds = boundaries of the game
+function createScene(th, bounds) {
+    
+    // Get the x and y values for the trees
+    arrangeTrees(bounds);
+    
+    // For loop to create trees
+        for (let i = 0; i < 200; i++) {
+            // Create a tree and add it to the window
+            var tree = th.add.sprite(treeArr[i].x, treeArr[i].y, 'tree1').setName('Sprite' + i);	
+            var burntTree = th.add.sprite(treeArr[i].x, treeArr[i].y, 'burntTree').setName('Burnt' + i);
+            burntTree.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
+        	
+            burntTree.visible = false;
+        
+            burntTree.setInteractive();
+        
+            // Add the tree to the containers array
+            treeContains.push(tree);    
+        
+            // Generate either 1 or 2 to choose the fire type
+            var fireType = Math.floor(Math.random() * 2);
+        
+            // If the first fire type, add it
+            if (fireType == 0) {
+          
+                // Makes fire on the tree
+                fire = th.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
+                fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
+                
+        
+                // Animate the fire
+                fire.anims.play("burn1");
+            
+                // If the second fire type, add it
+            } else if (fireType == 1) {
+            
+                // Makes fire on the tree
+                fire = th.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim2').setName('Fire' + i);
+               	fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
+            
+                // Animate the fire
+                fire.anims.play("burn2");
+            
+                // Otherwise, in case of a weird number, add the first one
+            } else {
+                // Makes fire on the tree
+                fire = th.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim').setName('Fire' + i);
+                fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
+        
+                // Animate the fire
+                fire.anims.play("burn1");
+            }
+        
+            // Set the fire to be clickable
+            fire.setInteractive();
+         
+            // Set the fire to be invisibile (it will be visible when it spawns later)
+            fire.visible = false;
+        
+            // Push the new fire to the fire array
+            fireArr.push(fire);
+        
+            // Add the tree, burnt tree, fire and x/y values to the array
+            allTrees.push({
+                tree: tree,
+                burnt: burntTree,
+                fire: fire,
+                shroom: null,
+                deadShroom: null,
+                x: treeArr[i].x,
+                y: treeArr[i].y
+            });
+        }
+    
+}
 	
 	
 // Arrange the trees using the boundaries
