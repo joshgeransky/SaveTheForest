@@ -6,7 +6,8 @@
     overflow: hidden;
     background-color: #0f0f0f;
     padding: 20px 10px;
-    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     line-height: 1;
 }
 
