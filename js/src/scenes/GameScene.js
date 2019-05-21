@@ -647,12 +647,12 @@ function gameOver(th) {
 		
 //changes color of start button on hover
 function changeColor() {
-    startBtn.setTint(0xa09f9f);
+    this.setTint(0xa09f9f);
 }
 	
 //changes color of start button back to normal
 function revertColor() {
-    startBtn.clearTint();
+    this.clearTint();
 }
 	
 	

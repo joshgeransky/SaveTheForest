@@ -26,7 +26,10 @@ class GameOverScene extends Phaser.Scene {
 		scoreText.setOrigin(0.5);
 
 		var continueBtn = this.add.sprite(400, 490, 'continueBtn').setInteractive();
-
+		// continue button functionality
+		continueBtn.on('pointerover', changeColor);
+        
+	    continueBtn.on('pointerout', revertColor);
 		continueBtn.on('pointerdown', function () {
 
 			startSound.play();
