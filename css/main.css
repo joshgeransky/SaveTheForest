@@ -31,17 +31,13 @@ a.navbar-brand {
     font-size: 40pt;
 }
 
-/*Style the links in the nav bar */
+/* Style the links in the nav bar */
 a.nav-item {
     font-size: 18pt;
 }
 
-.myNavLink {
-    display: inline;
-}
-
 .myButton {
-    margin-right: 5pt;
+    margin-right: 10pt;
 }
 
 /* Styling for the header links */
