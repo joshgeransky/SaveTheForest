@@ -304,6 +304,12 @@ facts = [
                 titleMusic.stop();
                 gameMusic.stop();
                 marioed = true;
+				//switch score font to black for visibility
+				scoreCounter.setStyle({
+				color: 'black',
+				
+				});
+			
         
                 for (let i = 0; i < allTrees.length; i++) {
             
@@ -817,7 +823,6 @@ function detStage() {
 	
 // Adds a point to the player score
 function addPoints(th) {
-    
     playerScore += 10;
     scoreCounter.setText(scoreTitle + playerScore);
     th.children.bringToTop(scoreCounter);
@@ -943,7 +948,7 @@ function burnTree(t, f) {
 
             // Check if in Mario mode
             if (!marioed) {
-
+			  
                 // Make the actual tree invisible
                 tree.visible = false;
 
@@ -957,6 +962,7 @@ function burnTree(t, f) {
 				}
                 
                 allBurntTrees.push(t);
+				
             } else {
                 
                 // Make the normal mushroom invisible
