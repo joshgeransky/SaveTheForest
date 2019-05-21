@@ -544,10 +544,12 @@ facts = [
                     deadShroom.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
                 }        
             }
-		} else if (fireCount + removedTreeCount == 200) {
-			gameOver(this);
 		}
-	}			
+		if (fireCount + removedTreeCount == 200) {
+			gameOver(this);
+		
+		}			
+	}
 }
 
 // Arrange the trees using the boundaries
