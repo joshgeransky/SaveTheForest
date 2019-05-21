@@ -662,7 +662,7 @@ function determineTrophy(th) {
 	}
 	*/
 	if(playerScore >= 800 && !trophyEightyFin) {
-		textHolder.setText("Unbelievable! You have saved 80 trees!                                           ");
+		textHolder.setText("Unbelievable! You have saved 80 trees!    						                                       ");
 		th.children.bringToTop(textHolder);
 		console.log("should be saying you have saved 80 trees");
 		trophyStatus = true;
@@ -844,7 +844,7 @@ function setBlank() {
 
 //displays a tool tip for chopping down a tree the first time it appears 
 function toolTip(th) {
-	textHolder.setText("Click on the burnt tree to chop it down, so fires do not spread faster.                        ");
+	textHolder.setText("Click on the burnt tree to chop it down.																														                        ");
 	th.children.bringToTop(textHolder);
 	readingToolTip = true;
 	
@@ -902,10 +902,10 @@ function extinguishFire(f, th) {
             waterSound.play(waterConfig);
 			
 			//only get points if you are not reading the tool tip
-			if(!readingToolTip) {
+			//if(!readingToolTip) {
 				// Add points to counter
 				addPoints(th);
-            }
+            //}
 			
             // Store the last extinguished fire number
             removedFires.push(fireNumber);
@@ -1089,6 +1089,18 @@ function removeTree(th, b, f) {
 // Game over function
 function gameOver(th) {
     console.log("Game Over");    
+	
+	//stop mario music if in mario mode
+			if(marioed) {
+				
+			marioMusic.stop();
+			} else {
+				
+			//stop game music and play the game over music
+            gameMusic.stop();
+			}
+			
+	gameOverSound.play();
     th.scene.start("GameOverScene");
 }
 		
