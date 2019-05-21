@@ -75,7 +75,6 @@ class TitleScene extends Phaser.Scene {
 		// On start button press  
 		startBtn.on('pointerdown', startGame);
 
-
 	}
 }
 
