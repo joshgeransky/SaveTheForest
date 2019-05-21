@@ -91,10 +91,6 @@ class TitleScene extends Phaser.Scene {
 		// On start button press  
 		startBtn.on('pointerdown', startGame);
 
-        // Check orientation
-		whatOrientation(this.scale.orientation);
-		this.scale.on("orientationchange", whatOrientation, this);
-
 	}
 
 }
@@ -103,17 +99,6 @@ class TitleScene extends Phaser.Scene {
 function startGame() {  
 	   start = true;
 	   titleMusic.stop();
-}
-
-function whatOrientation (orientation) {
-	var gameDiv = document.getElementById("game");
-	if (orientation === Phaser.Scale.PORTRAIT) {
-		console.log("Portrait Mode");
-		// gameDiv.style.display = "none";
-	} else  {
-		console.log("LandScape Mode");
-		// gameDiv.style.display = "block";
-	}
 }
 
 //export default TitleScene;
