@@ -18,7 +18,7 @@ class GameScene extends Phaser.Scene {
         //Temporary game over trigger and point addition system.
 
         //**************** DELETE BELOW AFTER IMPLEMENTATION ****************
-        var gameOverButton = this.add.sprite(550, 50, 'gameOverButton').setInteractive().setScale(0.25, 0.25);
+        /*var gameOverButton = this.add.sprite(550, 50, 'gameOverButton').setInteractive().setScale(0.25, 0.25);
 
         gameOverButton.setDepth(500);
 
@@ -36,7 +36,7 @@ class GameScene extends Phaser.Scene {
 				
 			gameOverSound.play();
             this.scene.start("GameOverScene");
-        })
+        }); */
 		
 		/**
 		var pointIcon = this.add.sprite(450, 50, 'pointsButton').setInteractive().setScale(0.2, 0.2);
@@ -210,7 +210,7 @@ facts = [
         this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);	    
                 
         // Create the boundaries of the game
-        var bounds = new Phaser.Geom.Rectangle(20, 20, 780, 560);
+        var bounds = new Phaser.Geom.Rectangle(40, 40, 740, 510);
 
         // Configure the first fire animation
         this.anims.create(configFire1);

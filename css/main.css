@@ -123,6 +123,7 @@ tr:nth-child(even) {
     
     .header-nav {
         float: none;
+
     }
 
     #game {
@@ -142,4 +143,6 @@ tr:nth-child(even) {
     #msgLandscape {
         display: none;
     }
+
 }    
+
