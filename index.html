@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     
+    <!-- Head -->
     <head>
         <meta charset="utf-8">
         <title>Save the Forest!</title>
@@ -9,12 +10,14 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
+        <!-- Firebase scripts -->
         <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js"></script>
         <script src="js/firebase.js"></script>
     </head>
 
+    <!-- Body -->
     <body id="bodyGeneral" onload="loaded()">
         
         <!-- Header -->
@@ -27,8 +30,10 @@
             </div>
         </div><br>
             
+        <!-- Div to hold the game -->
         <div id="game"></div>
         
+        <!-- Necessary Javascript files -->
 		<script src="./js/phaser-v3.16.2.js"></script>
 		<script src="./js/src/scenes/BootScene.js"></script>
 		<script src="./js/src/scenes/PreloadScene.js"></script>
@@ -39,9 +44,8 @@
         <script src="./js/src/scenes/EnterName.js"></script>
         <script src="js/main.js"></script>
 
-        <table id="scoreTable">
-            
-        </table>
+        <!-- Table to hold the high scores -->
+        <table id="scoreTable"></table>
                     
     </body>
         
