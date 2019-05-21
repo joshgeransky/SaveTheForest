@@ -24,8 +24,16 @@ class GameScene extends Phaser.Scene {
 
         gameOverButton.on('pointerdown', (pointer) => {
 			
+			//stop mario music if in mario mode
+			if(marioed) {
+				
+			marioMusic.stop();
+			} else {
+				
 			//stop game music and play the game over music
             gameMusic.stop();
+			}
+				
 			gameOverSound.play();
             this.scene.start("GameOverScene");
         })
@@ -311,7 +319,7 @@ facts = [
                     var deadShroom = this.add.sprite(treeArr[i].x, treeArr[i].y, 'deadShroom').setName('deadShroom' + i);
                     deadShroom.setScale(0.7);
 					
-					//switch score font to black for visibility
+					//switch score font to black w/ white outline for visibility
 					scoreCounter.setStyle({
 					color: 'black',
 					stroke: 'white',
