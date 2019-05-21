@@ -13,6 +13,9 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
+        <!-- Boostrap css -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
         <!-- Firebase scripts -->
         <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
@@ -24,14 +27,22 @@
     <body id="bodyGeneral" onload="loaded()">
         
         <!-- Header -->
-        <div class="header">
-            <span class="site-title">Save the Forest</span>
-            <div class="header-nav">
-                <a class="active" href="">Play</a>
-                <a href="pages/learn/learn.html">Learn</a>
-                <a href="pages/about/about.html">About</a>
+        <br>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/index.html">Save the Forest</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex flex-row-reverse collapse navbar-collapse" id="navButtons">
+              <div class="navbar-nav">
+                <button class ="btn btn-outline-success" type="button">
+                    <a class="nav-item nav-link active" href="/index.html">Play<span class="sr-only">(current)</span></a>
+                </button>
+                <a class="nav-item nav-link" href="/pages/learn/learn.html">Learn</a>
+                <a class="nav-item nav-link" href="/pages/about/about.html">About</a>
+              </div>
             </div>
-        </div><br>
+          </nav><br>
             
         <!-- Div to hold the game -->
         <div id="game"></div>
@@ -56,5 +67,10 @@
         <table id="scoreTable"></table>
               
     </body>
+
+     <!-- Bootstrap Resources -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
 </html>
