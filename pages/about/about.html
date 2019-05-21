@@ -6,6 +6,7 @@
         <title>Save the Forest!</title>
         <link rel="stylesheet" type="text/css" href="../../css/main.css">
         <link rel="stylesheet" type="text/css" href="../../css/about.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
         
     <body id="bodyGeneral">
@@ -18,28 +19,161 @@
                 <a onclick="window.location.href = '../learn/learn.html';">Learn</a>
                 <a class="active">About</a>
             </div>
-        </div>
+        </div><br>
         
         <div class="about-content">
             
             <div class='about-image'>
-                <img src="../../assets/images/learningKids.jpg">
+                <img src="../../assets/images/groupPhoto.jpg">
             </div>
         
-            <h2 class="page-title"><i>Save the Forest </i>&nbsp;is a game developed for COMP2930 at BCIT.</h2>
-        
-            <p>It is being created by Team 19!
-                <br> Justin Tendeck
-                <br> Joshua Geransky
-                <br> Edmond Wong
-                <br> Sasha Sorokina
-                <br> Debby Chiu
-            </p>
+            <h2 class="page-title">Team 19</h2>
 
-            <p>Fire animations from Sharm.</p>
+            <!-- Drop down for group story -->
+            <div class="accordion border border-success rounded" id="accordionExample">
+                <div class="card border border-success rounded">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button id="titleOne" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="flase" aria-controls="collapseOne">
+                        Myth of the trees
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body border-top border-success">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+
+                </div>
+
+            </div>
             
-            <span class="footer">© 2019 Team 19, All Rights Reserved.</span>
+            <!-- Drop down for team biographies -->
+            <div class="accordion border border-success rounded" id="accordionExample2">
+                <div class="card border border-success rounded">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button id="titleTwo" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Meet Team #19
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample2">
+                        
+                    <!-- Card for first member's bio -->
+                    <div class="row no-gutters">
+                        <div class="col-md-3 memberImage border-top border-success">
+                            <img src="../../assets/images/groupPhoto.jpg" class="card-img" alt="Debby's Picture">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body border-top border-success">
+                                <h3 class="card-title">Debby Chiu</h3>
+                                <p class="card-text">Growing up as a second generation Canadian of Asian descent, Debby is frequently asked “Where are you from?” to which she answers “Canada!”. 
+                                  She hopes to one day be freed of the awkwardness of answering that question as well as correcting the spelling of her name. 
+                                  She was introduced to technology early on in life as her father was an avid fan of computer games. 
+                                  From there, she became interested in learning about technology and its effects on the world around us. 
+                                  In her free time, she enjoys playing video games, binge watching a wide variety of shows/movies, and spending time with her loved ones. 
+                                  She has worked in the front-end of Loblaws City Market, and as a server at Gyo-O Japanese restaurant. 
+                                  She hopes to graduate from BCIT with a broader range of skills and lifelong friendships.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <div class="col-md-3 memberImage border-top border-success">
+                            <img src="../../assets/images/groupPhoto.jpg" class="card-img" alt="Debby's Picture">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body border-top border-success">
+                                <h3 class="card-title">Joshua Geransky</h3>
+                                <p class="card-text">Joshua Geransky is a CST student at BCIT and has lived in British Columbia his entire life.
+                                  He recently graduated from high school and hasn’t had much in the way of job experience, although he does have a somewhat successful YouTube channel by the name of ‘91Tech’ that focuses on older technology.
+                                  Josh isn’t a terribly passionate person but considers himself to at least do have a decent job on most projects he works on, including this one.
+                                  When he’s not using Comic Sans Josh enjoys watching Netflix until his eyes dry out or playing the odd video game- until he gets bored of that and replays Skyrim for the millionth time.
+                                  He also owns a 2015 Ford Mustang that he is much too proud of.
+                                  Josh aspires to be completely self-employed one day, but for now is hard at work attempting to pass his classes at BCIT.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <div class="col-md-3 memberImage border-top border-success">
+                            <img src="../../assets/images/groupPhoto.jpg" class="card-img" alt="Debby's Picture">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body border-top border-success">
+                                <h3 class="card-title">Aleksandra Sorokina</h3>
+                                <p class="card-text">Aleksandra is a CST student at BCIT, she is passionate about technology solutions to the pressing environmental and social issues. 
+                                  Aleksandra recently worked on an Ecocity related project with a team of fellow CST students called Greenpoints that would allow users to earn points for recycling. 
+                                  Currently, she is working with a team of passionate individuals to implement an educational game for children and adults to increase awareness about the dangers of the forest fires and about preventive measures that everyone has to learn. 
+                                  When she is not working on the projects, she enjoys hiking at the local trails in Vancouver, reading motivational literature, and dancing at the social dancing events. 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <div class="col-md-3 memberImage border-top border-success">
+                            <img src="../../assets/images/groupPhoto.jpg" class="card-img" alt="Debby's Picture">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body border-top border-success">
+                                <h3 class="card-title">Justin Tendeck</h3>
+                                <p class="card-text">Justin is a first-term CST student at BCIT. He hopes to one day work as a software developer and take up game development as a hobby.
+                                  Before coming to BCIT, he attended the Media Arts Production program at Saskatchewan Polytechnic then worked as a television producer for 4 years. He hopes to
+                                  use his repertoire of skills to create applications that improve the lives of its users, as well as make games that bring people together for some fun!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <div class="col-md-3 memberImage border-top border-success">
+                            <img src="../../assets/images/groupPhoto.jpg" class="card-img" alt="Debby's Picture">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card-body border-top border-success">
+                                <h3 class="card-title">Edmond Wong</h3>
+                                <p class="card-text">Edmond Wong is a first-term computer systems technology (CST) student at the British Columbia Institute of Technology. 
+                                  He has helped create a disaster survival assistant web application and is currently creating a web application to promote awareness of forest fires. 
+                                  During his time off when he is not being bombarded by course work, Edmond enjoys reading, writing and trying to actually win on Overwatch with his six stack. 
+                                  You can reach Edmond at wongedmondk@gmail.com.</p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="accordion border border-success rounded" id="accordionExample3">
+                <div class="card border border-success rounded">
+                  <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                      <button id="titleThree" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Special Thanks
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample3">
+                    <div class="card-body border-top border-success">
+                      <p>Fire animation from graphic artist <a href="https://opengameart.org/content/lpc-flames" target="_blank">Sharm </a>at open game art.</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+              <span class="footer">© 2019 Team 19, All Rights Reserved.</span>
+            </div>
             
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     </body>
+
 </html>

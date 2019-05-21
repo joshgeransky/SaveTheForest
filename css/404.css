@@ -7,11 +7,20 @@
     background-color: #0f0f0f;
     padding: 20px 10px;
     border-radius: 20px;
-    line-height: 1;
+    
 }
-
+html, body{
+    min-height: 100%;
+   
+}
 /* Style the body */
-#bodyGeneral {
+body {
+    background-image: url("../assets/images/gameOverGrey.jpeg");
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: bottom;
+    background-size: cover;
     background-color: #262626;
     color: white;
     font-family: 'Teko', sans-serif;
@@ -22,8 +31,9 @@
           image-rendering: crisp-edges;                /* Possible future browsers. */
           -ms-interpolation-mode: nearest-neighbor;    /* IE (non standard naming) */
           image-rendering: pixelated;                  /* Chrome 41 */
-    margin: 0;
+    color: #fff;
 }
+
 
 /* Styling for the header links */
 .header a {
@@ -68,11 +78,16 @@
 /* Style the page title */
 .page-title {
     font-size: 40pt;
+    
 }
 
-.score {
+
+h1{
+    font-size: 40pt;
+    text-shadow: 1px 1px #000;
     text-align: center;
-    font-size: 36pt;
+    width: 100%;
+    margin: 0;
 }
 
 /* Style the footer class */
@@ -80,28 +95,51 @@
     font-size: 20pt;
 }
 
-#scoreTable {
-    margin: 20px auto;
-    font-size: 25pt;
-    border-collapse: collapse;
+#container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* align-content: space-around; */
 }
 
-td {
-    padding: 2px 50px;
+#escapeButton{
+    font-family: 'Teko', sans-serif;
+    float: left;
+    /* color: white; */
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    line-height: 25px;
+    border-radius: 4px;
+    margin: 5pt;
+    font-size: 30pt;
+    background-color: #4c4c4c;
+    
+    color: white;
+    border: none;
+    margin-top: 20pt;
+    border: 1px solid #2b9929;
+}
+#escapeButton:hover{
+    background-color: #2b9929;
+    color: white;
+}
+
+
+#doom{
+    display: block;
+    width: 100%;
+}
+
+div p{
+    font-size: 30pt;
+    text-shadow: 1px 1px #000;
+    text-align: center;
+    width: 100%;
     margin: 0;
 }
-
-th {
-    font-size: 30pt;
-}
-
-tr:nth-child(even) {
-    background-color: #555555;
-    box-shadow: -5px 5px #000000;
-}
-
 /* Media Query, 500px width */ 
-@media screen and (max-width: 500px) {
+@media screen and (orientation: portrait) {
     .header a {
         float: none;
         display: block;
@@ -110,5 +148,23 @@ tr:nth-child(even) {
     
     .header-nav {
         float: none;
-    }    
+    }
+	
+	body{
+		width: 100%;
+	}
+    
 }
+@media screen and (max-width: 992px) {
+    h1{
+        font-size: 35px;
+        
+    }
+  }
+@media screen and (max-width: 600px){
+    h1{
+        font-size: 30px;
+    }
+
+}
+

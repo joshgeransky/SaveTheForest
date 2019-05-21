@@ -1,24 +1,23 @@
 // Variable holding initial game configuration
 var config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    parent: 'game',
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        parent: 'game',
 
-	scale: {
-        // automatic scaling of the entire app
-        mode: Phaser.Scale.FIT,
-      // autoCenter: Phaser.Scale.CENTER_VERTICAL,
-		width: 800,
-		height: 600
-	},
-    scene: [BootScene, PreloadScene,TitleScene, GamePreload, GameScene, GameOverScene],
-	
-    pixelArt: true,
-		audio: {
-	        displayWebAudio: true
-	},	
-}
+        scale: {
+            // automatic scaling of the entire app
+            mode: Phaser.Scale.FIT,
+            autoCenter: Phaser.Scale.CENTER_BOTH,
+            width: 800,
+            height: 600
+        },
+        scene: [BootScene, PreloadScene,TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
+        pixelArt: true,
+                    audio: {
+                    displayWebAudio: true
+            },	
+    }
 
 /* --- Game variables --- */
 let game = new Phaser.Game(config);
@@ -114,7 +113,7 @@ var marioMusic;
 
 //tree chopping effect
 var chopTreeSound;
-	
+
 //configuration for audio
 var musicConfig = {
     mute: false,

@@ -16,12 +16,73 @@
     
 }
 
-/* Style the about content */
-.about-content {
+/* Style the accordion that holds the drop down */
+.accordion {
+    margin-top: 15pt;
+    margin-left: 10pt;
+    margin-right:10pt;
+}
+
+/* Style the drop down title */
+#titleOne {
+    width: 100%;
+    color: black;
+    font-size: 24pt;
+    text-align: left;
+    text-decoration: none;
+}
+
+#titleTwo {
+    width: 100%;
+    color: black;
+    font-size: 24pt;
+    text-align: left;
+    text-decoration: none;
+}
+
+#titleThree {
+    width: 100%;
+    color: black;
+    font-size: 24pt;
+    text-align: left;
+    text-decoration: none;
+}
+
+/* Style the image in the cards for the drop down */
+img.card-img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    padding: 10pt;
+    border-radius: 20px;
+}
+
+/* Style the body of the cards for the drop down */
+div.card-body{
+    min-width: 100%;
+    min-height: 100%;
+    color: black;
+}
+
+/* Style the text in the cards for the drop down */
+.card-body p {
+    font-size: 14pt;
+}
+
+/* Make the drop down glow on hover */
+.card:hover {
+    box-shadow: rgba(43, 153, 41) 0px 5px 25px;
+  }
+
+/* Style for about page title */
+.page-title {
+    margin-top: 15pt;
     text-align: center;
 }
 
-/* Style the paragraphs in the content */
-.about-content p {
-    font-size: 30pt;
+/* Style for about page footer */
+.footer {
+    margin-top: 15pt;
+    margin-bottom: 15pt;
+    text-align: center;
 }
