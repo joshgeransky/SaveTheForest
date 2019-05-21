@@ -23,14 +23,14 @@ class GameScene extends Phaser.Scene {
         gameOverButton.setDepth(500);
 
         gameOverButton.on('pointerdown', (pointer) => {
-
+			
+			//stop game music and play the game over music
             gameMusic.pause();
-
+			gameOverSound.play();
             this.scene.start("GameOverScene");
-            
         })
-
-        var pointIcon = this.add.sprite(450, 50, 'pointsButton').setInteractive().setScale(0.2, 0.2);
+		/**
+		var pointIcon = this.add.sprite(450, 50, 'pointsButton').setInteractive().setScale(0.2, 0.2);
 
         pointIcon.setDepth(500);
 
@@ -40,6 +40,7 @@ class GameScene extends Phaser.Scene {
             scoreCounter.setText(scoreTitle + playerScore);
             
         })
+		*/
         //**************** DELETE ABOVE AFTER IMPLEMENTATION ****************
           
         // Configure the first fire animation
@@ -129,9 +130,9 @@ class GameScene extends Phaser.Scene {
 		facts = [
 		'A typical year has over 9,000 forest fires in Canada.                                                 ', //1
 		'An average of 2.5 million hectares of trees are burned in a year.                                     ', //2
-		'The smoke released by the fire can cause health problems.                                             ', //3
+		'The smoke released by fire can cause health problems.                                                 ', //3
 		'Forest fires can burn from a rate of 0.5 km/h to 6 km/h or more.                                      ', //4
-		'In Canada, two-thirds of all forest fires are caused by humans.                                       ', //5
+		'In the summer of 2018, three B.C cities were among the worst for air pollution in the world.      ', //5
 		'Wildfires need fuel, oxygen, and heat to ignite and burn.                                             ', //6
 		'On average, 40% of wildfires in British Columbia were started by humans.                              ', //7
 		'Human caused wildfires attribute to: cigarettes, campfires, engines/vehicles, and more.               ', //8
@@ -317,17 +318,6 @@ facts = [
         this.children.bringToTop(scoreCounter);
 		this.children.bringToTop(textHolder);
 		this.children.bringToTop(allTrees.burnt);
-
-        //**************** DELETE BELOW AFTER IMPLEMENTATION ****************
-		var saveIcon = this.add.sprite(500, 50, 'save').setInteractive().setScale(0.25, 0.25);
-
-		saveIcon.setDepth(500);
-
-		saveIcon.on('pointerdown', (pointer) => {
-
-			this.scene.start("GameOverScene");
-		 
-		})
     }
 
     // Arrange the trees using the boundaries

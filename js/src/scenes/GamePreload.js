@@ -7,7 +7,6 @@ class GamePreload extends Phaser.Scene {
 		this.scalingAmt = 1.0;
 	}
 	
-		
 	preload(){
 		//preload scene assets
 		this.createGameProgressbar(this.centerX(), this.centerY());
@@ -36,7 +35,7 @@ class GamePreload extends Phaser.Scene {
 
         // Game Over Icon. Delete after proper game over screen implementation.
         this.load.image('gameOverButton', 'https://pbs.twimg.com/profile_images/657603448553127936/D7T9j7Pk_400x400.png');
-        this.load.image('pointsButton', 'https://cdn-images-1.medium.com/max/526/1*Ma5s4UBzPQXOmR3HbGue5Q.png');
+       // this.load.image('pointsButton', 'https://cdn-images-1.medium.com/max/526/1*Ma5s4UBzPQXOmR3HbGue5Q.png');
         // Delete above after proper game over screen implementation.
 
         this.load.image('gameOverBackground', '../assets/images/gameOverBackground.jpeg');
@@ -102,5 +101,5 @@ class GamePreload extends Phaser.Scene {
             this.scene.start('title');
 
         }, this);
-}
+	}
 }

@@ -17,10 +17,8 @@ class TitleScene extends Phaser.Scene {
 		let background = this.add.sprite(0, 0, 'background_image');
 		background.setOrigin(0, 0);
 		
+		
 		// Create title text
-	   // titleText = this.add.text(15, 100, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
-
-		  // Create title text
 	    titleText = this.add.text(15, 70, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
 	        
 	    // Create subtext
