@@ -37,7 +37,11 @@ a.nav-item {
 }
 
 .myButton {
-    margin-right: 10pt;
+    margin: 10pt;
+}
+
+#myNavBar {
+    flex-direction: row-reverse;
 }
 
 /* Styling for the header links */
@@ -130,15 +134,6 @@ tr:nth-child(even) {
 
 /* Media Query, Portrait */ 
 @media screen and (orientation: portrait) {
-    .header a {
-        float: none;
-        display: block;
-        text-align: left;
-    }
-    
-    .header-nav {
-        float: none;
-    }
 
     #game {
         display:none;
