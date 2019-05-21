@@ -51,7 +51,7 @@
 /* Style the image in the cards for the drop down */
 img.card-img {
     min-width: 100%;
-    min-height: 100%;
+    min-height: 10%;
     object-fit: cover;
     padding: 10pt;
     border-radius: 20px;
