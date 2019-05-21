@@ -109,10 +109,10 @@ function whatOrientation (orientation) {
 	var gameDiv = document.getElementById("game");
 	if (orientation === Phaser.Scale.PORTRAIT) {
 		console.log("Portrait Mode");
-		gameDiv.style.display = "none";
+		// gameDiv.style.display = "none";
 	} else  {
 		console.log("LandScape Mode");
-		gameDiv.style.display = "block";
+		// gameDiv.style.display = "block";
 	}
 }
 
