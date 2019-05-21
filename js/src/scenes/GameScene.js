@@ -578,7 +578,10 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 10 blank");
 			trophyStatus = false;
 			trophyTenFin = true; //do not show this announcement anymore
-		}	
+		}else if(playerScore > 120) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophyTenFin = true;
+		}			
 	}
 	if(playerScore >= 200 && !trophyTwentyFin) {
 		textHolder.setText("You have saved 20 trees, keep going!                                                                              ");
@@ -591,7 +594,10 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 20 blank");
 			trophyStatus = false;
 			trophyTwentyFin = true; //do not show this announcement anymore
-		}	
+		}else if(playerScore > 230) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophyTwentyFin = true;
+		}
 	}
 	/**
 	if(playerScore >= 300 && !trophyThirtyFin) {
@@ -618,6 +624,9 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 40 blank");
 			trophyStatus = false;
 			trophyFourtyFin = true; //do not show this announcement anymore
+		} else if(playerScore > 440) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophyFourtyFin = true;
 		}
 	}
 	/**
@@ -645,6 +654,9 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 60 blank");
 			trophyStatus = false;
 			trophySixtyFin = true; //do not show this announcement anymore	
+		} else if(playerScore > 650) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophySixtyFin = true;
 		}
 	}
 	/**
@@ -672,6 +684,9 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 80 blank");
 			trophyStatus = false;
 			trophyEightyFin = true; //do not show this announcement anymore
+		} else if(playerScore > 850) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophyEightyFin = true;
 		}
 	}
 	/**
@@ -699,6 +714,9 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 100 blank");
 			trophyStatus = false;
 			trophyHunFin = true; //do not show this announcement anymore
+		} else if(playerScore > 1100) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophyHunFin = true;
 		}
 	}	
 }
