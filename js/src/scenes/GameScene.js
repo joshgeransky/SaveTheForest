@@ -264,7 +264,7 @@ facts = [
 		//milestone/trophy announcements for the player
 		if(!readingToolTip) {
 			//all the trophy logic is done in there
-			determineTrophy();
+			determineTrophy(th);
 		}
 		
 		// When a fire is clicked
@@ -551,7 +551,7 @@ function startFires(th) {
 
 //determines which trophy to show
 //and how long it stays for
-function determineTrophy() {
+function determineTrophy(th) {
 	if(playerScore >= 100 && !trophyTenFin) {
 		textHolder.setText("You have saved 10 trees!                                                                                         ");
 		th.children.bringToTop(textHolder);
