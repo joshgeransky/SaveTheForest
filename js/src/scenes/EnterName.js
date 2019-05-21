@@ -136,6 +136,8 @@ class EnterName extends Phaser.Scene {
         
                 ref.push(saveData);
 
+                
+
                 this.scene.start('TitleScene');
 
                 //gameReset();

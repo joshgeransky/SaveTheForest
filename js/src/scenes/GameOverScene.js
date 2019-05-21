@@ -41,11 +41,13 @@ class GameOverScene extends Phaser.Scene {
 				this.scene.start('EnterName');
 
 			} else {
-
+				
 				this.scene.start('TitleScene');
 			}
 
 
         }, this);
 	}
+
 }
+

@@ -21,7 +21,8 @@ var config = {
     }
 
 /* --- Game variables --- */
-let game = new Phaser.Game(config);
+var game = new Phaser.Game(config);
+
 var width = 40;
 var height = 38;
 var fireArr = [];
