@@ -209,11 +209,9 @@ facts = [
     
         // Configure the second fire animation
         this.anims.create(configFire2);
-
-		var textStyle = {fontSize: '16pt', fontFamily: 'VT323', fill: 'white', backgroundColor: 'black', align: 'center'};
          
 		// Create score counter
-        scoreCounter = this.add.text(10, 10, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
+        scoreCounter = this.add.text(10, 10, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white', stroke: 'black', strokeThickness: '6',});
         textHolder = this.add.text(0, 580, "default");
 		textHolder.setStyle({
         fontSize: '16pt',
@@ -304,12 +302,6 @@ facts = [
                 titleMusic.stop();
                 gameMusic.stop();
                 marioed = true;
-				//switch score font to black for visibility
-				scoreCounter.setStyle({
-				color: 'black',
-				
-				});
-			
         
                 for (let i = 0; i < allTrees.length; i++) {
             
@@ -318,7 +310,16 @@ facts = [
             
                     var deadShroom = this.add.sprite(treeArr[i].x, treeArr[i].y, 'deadShroom').setName('deadShroom' + i);
                     deadShroom.setScale(0.7);
-            
+					
+					//switch score font to black for visibility
+					scoreCounter.setStyle({
+					color: 'black',
+					stroke: 'white',
+					strokeThickness: '6',
+					});
+					
+					th.children.bringToTop(scoreCounter);
+				
                     allTrees[i].tree.visible = false;
                     allTrees[i].shroom = shroom;
                     allTrees[i].deadShroom = deadShroom;
