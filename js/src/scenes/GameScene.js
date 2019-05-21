@@ -847,7 +847,6 @@ function toolTip(th) {
 	textHolder.setText("Click on the burnt tree to chop it down.																														                        ");
 	th.children.bringToTop(textHolder);
 	readingToolTip = true;
-	
 }
 
 //function to update the text holding the informational facts
