@@ -58,42 +58,41 @@ class TitleScene extends Phaser.Scene {
 	    startBtn = this.add.sprite(400, 300, 'startButt').setInteractive();
   		startSound = this.sound.add('startPlay', waterConfig);   
 	    
-	    // Start button functionality
-
+        
+	    /**** Start button functionality ****/
+        
 	    startBtn.on('pointerover', changeColor);
+        
 	    startBtn.on('pointerout', revertColor);
+        
+        
 	    //Event handler for start button
 		startBtn.on('pointerdown', function () {
 			startSound.play();
+            
+            if (this.scale.isFullscreen) {
+
+				this.scale.stopFullscreen();
+
+			} else {
+
+				this.scale.startFullscreen();
+			}
 			
             console.log('From TitleScene to GamePreload');
+            
 			//titleMusic.pause();
+            
             this.scene.start('GamePreload');
             
 
         }, this);
 		
-		  
+		// On start button press  
 		startBtn.on('pointerdown', startGame);
 
-		//Create full screen button
-		var fullscreenBtn = this.add.sprite(400, 470, "startButt").setInteractive();
-
-		fullscreenBtn.on("pointerdown", function () {
-			if (this.scale.isFullscreen) {
-				fullscreenBtn.setFrame(0);
-
-				this.scale.stopFullscreen();
-
-			} else {
-				fullscreenBtn.setFrame(0);
-
-				this.scale.startFullscreen();
-			}
-		}, this);
-
+        // Check orientation
 		whatOrientation(this.scale.orientation);
-
 		this.scale.on("orientationchange", whatOrientation, this);
 
 	}
