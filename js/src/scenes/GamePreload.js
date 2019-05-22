@@ -17,8 +17,8 @@ class GamePreload extends Phaser.Scene {
         this.load.image('burntTree', '../assets/sprites/Burnt_Tree_3.png'); // Burnt tree
         this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
         this.load.image("tilesDynamic", "assets/sprites/jungleTileSet.png"); //Object layer tiles
-        this.load.image('mushroom', 'assets/sprites/mushroom.png');
-        this.load.image('deadShroom', 'assets/sprites/dead-mushroom.png');
+        this.load.image('mushroom', 'assets/sprites/mushroom.png'); //Easter egg tree
+        this.load.image('deadShroom', 'assets/sprites/dead-mushroom.png'); //Easter egg burnt tree
         this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", { frameWidth: 64, frameHeight: 64, endFrame: 24 }); // first fire
         this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", { frameWidth: 42, frameHeight: 64, endFrame: 11 }); // second fire
         this.load.image("msgBox", "../assets/images/chatbox.png");
@@ -29,8 +29,8 @@ class GamePreload extends Phaser.Scene {
         this.load.image('quitBtn', '../assets/sprites/quitBtn.png'); // Quit button for pause menu
 
         /* -------- Audio -------- */
-        this.load.audio('water', ['assets/sounds/Tree_Extinguish1.mp3']);
-        this.load.audio('fire', ['assets/sounds/fire.mp3']);
+        this.load.audio('water', ['assets/sounds/Tree_Extinguish1.mp3']); //Audio for extinguishing fire
+        this.load.audio('fire', ['assets/sounds/fire.mp3']); //Audio for fires
         this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);
         this.load.audio('start', ['assets/sounds/Start_1.mp3']);
         this.load.audio('gameover', ['assets/sounds/GameOver.mp3']);
