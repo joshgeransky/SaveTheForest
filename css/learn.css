@@ -1,82 +1,90 @@
 /* Import Google fonts */
-@import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 
+@import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 /* Style the content (cards) of the learn page */
+
 .learn-content {
-    font-family: 'Teko', sans-serif;
-    text-align: center;
-    margin-top: 10pt;
+  font-family: 'Teko', sans-serif;
+  text-align: center;
+  margin-top: 10pt;
 }
 
 /* Style for the container that holds the carousel */
+
 #carouselFireFacts {
-    font-family: 'Teko', sans-serif;
-    font-size: 32pt;
+  font-family: 'Teko', sans-serif;
+  font-size: 32pt;
 }
 
 /*Style for text in the carousel */
+
 .carousel-caption {
-    transform: translateY(-50%);
-    bottom: 0;
-    top: 55%;
+  transform: translateY(-50%);
+  bottom: 0;
+  top: 55%;
 }
 
 /*Style for the images in the carousel */
+
 .carousel-inner {
-    height: 70vh;
-  }
+  height: 70vh;
+}
 
-  .carousel-item {
-    height: 70vh;
-  }
+.carousel-item {
+  height: 70vh;
+}
 
-  #carouselImage1 {
-    background-image: url("../../assets/images/damage.jpg");
-    background-size: cover;
-  }
+#carouselImage1 {
+  background-image: url("../../assets/images/damage.jpg");
+  background-size: cover;
+}
 
-  #carouselImage2 {
-    background-image: url("../../assets/images/cabinFire.jpg");
-    background-size: cover;
-  }
+#carouselImage2 {
+  background-image: url("../../assets/images/cabinFire.jpg");
+  background-size: cover;
+}
 
-  #carouselImage3 {
-    background-image: url("../../assets/images/fireSeason.jpg");
-    background-size: cover;
-  }
+#carouselImage3 {
+  background-image: url("../../assets/images/fireSeason.jpg");
+  background-size: cover;
+}
 
-  #carouselImage4 {
-    background-image: url("../../assets/images/cMoney.jpg");
-    background-size: cover;
-  }
+#carouselImage4 {
+  background-image: url("../../assets/images/cMoney.jpg");
+  background-size: cover;
+}
 
-  #carouselImage5 {
-    background-image: url("../../assets/images/saveForest.jpg");
-    background-size: cover;
-  }
+#carouselImage5 {
+  background-image: url("../../assets/images/saveForest.jpg");
+  background-size: cover;
+}
 
-  /* Style for caption in the carousel */
-  .carousel-caption {
-      text-shadow: 2px 2px 2px #262626;
-  }
+/* Style for caption in the carousel */
 
-  /*Style for card links */
-  .myLinks {
-      color:black;
-  }
+.carousel-caption {
+  text-shadow: 2px 2px 2px #262626;
+}
 
-  .myLinks:hover {
-      color:black;
-  }
+/*Style for card links */
 
-  /* Style for card */
-  .card-columns {
-      margin: 10pt;
-      color: black;
-  }
+.myLinks {
+  color: black;
+}
 
-  /* Style for cards on hover */
-  .card:hover {
-    box-shadow: rgba(43, 153, 41) 0px 5px 25px;
-    transform: translate3d(0px, -1px, 0px);
-  }
+.myLinks:hover {
+  color: black;
+}
+
+/* Style for card */
+
+.card-columns {
+  margin: 10pt;
+  color: black;
+}
+
+/* Style for cards on hover */
+
+.card:hover {
+  box-shadow: rgba(43, 153, 41) 0px 5px 25px;
+  transform: translate3d(0px, -1px, 0px);
+}

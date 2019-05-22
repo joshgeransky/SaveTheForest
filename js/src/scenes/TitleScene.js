@@ -10,14 +10,6 @@ class TitleScene extends Phaser.Scene {
     }
 
 	create() {
-
-        if (localStorage.getItem('loaded') != null) {
-            console.log('already loaded');
-        } else {
-            localStorage.setItem('loaded', 'true');
-            console.log('never loaded');
-            location.reload();
-        }
         
 		//music
 		titleMusic = this.sound.add('bg', musicConfig);
@@ -32,7 +24,7 @@ class TitleScene extends Phaser.Scene {
 		//workaround for score text not showing up properly
 		titleText.visible = false;
 
-		//campfire animations setup
+		// Campfire animations setup
 		let campAnimConfig = {
 			key: 'camping',
 			frames: this.anims.generateFrameNumbers('campFire', {
