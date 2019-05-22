@@ -6,7 +6,8 @@
     overflow: hidden;
     background-color: #0f0f0f;
     padding: 20px 10px;
-    border-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     line-height: 1;
 }
 
@@ -100,7 +101,19 @@ tr:nth-child(even) {
     box-shadow: -5px 5px #000000;
 }
 
-/* Media Query, 500px width */ 
+/* Style the message for prompting Lanscape */
+#msgLandscape {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+/* Style the Lanscape icon */
+#orientationIcon {
+    filter: invert(100%);
+}
+
+/* Media Query, Portrait */ 
 @media screen and (orientation: portrait) {
     .header a {
         float: none;
@@ -110,6 +123,26 @@ tr:nth-child(even) {
     
     .header-nav {
         float: none;
+
     }
-    
+
+    #game {
+        display:none;
+    }
 }
+
+/* Media Query, Landscape */
+@media screen and (orientation: landscape) {
+
+    /* Sets the game Div back into view when phone is landscape */
+    #game {
+        display: block;
+    }
+
+    /* Sets the message for notification out of view */
+    #msgLandscape {
+        display: none;
+    }
+
+}    
+

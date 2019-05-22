@@ -79,8 +79,11 @@ class EnterName extends Phaser.Scene {
 
         skipText.on('pointerup', () => {
             startSound.play();
-            this.scene.start('TitleScene');
+            // this.scene.start('TitleScene');
             // gameReset();
+            
+            // Refresh the page to restart the game
+            location.reload();
         })
     
         input.on('pointermove', function (pointer, x, y) {
@@ -136,11 +139,7 @@ class EnterName extends Phaser.Scene {
         
                 ref.push(saveData);
 
-                
-
-                this.scene.start('TitleScene');
-
-                //gameReset();
+                location.reload();
 
             }
 
