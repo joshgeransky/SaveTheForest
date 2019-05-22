@@ -210,7 +210,7 @@ facts = [
         this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);	    
                 
         // Create the boundaries of the game
-        var bounds = new Phaser.Geom.Rectangle(20, 100, 780, 560);
+        var bounds = new Phaser.Geom.Rectangle(20, 100, 750, 450);
 
 
         // Configure the first fire animation
