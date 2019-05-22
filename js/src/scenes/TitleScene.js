@@ -10,14 +10,6 @@ class TitleScene extends Phaser.Scene {
     }
 
 	create() {
-
-        if (localStorage.getItem('loaded') != null) {
-            console.log('already loaded');
-        } else {
-            localStorage.setItem('loaded', 'true');
-            console.log('never loaded');
-            location.reload();
-        }
         
 		//music
 		titleMusic = this.sound.add('bg', musicConfig);
@@ -65,15 +57,6 @@ class TitleScene extends Phaser.Scene {
 		startBtn.on('pointerdown', function () {
 
 			startSound.play();
-
-		/*	if (this.scale.isFullscreen) {
-
-				this.scale.stopFullscreen();
-
-			} else {
-
-				this.scale.startFullscreen();
-			} */
             
 			console.log('From TitleScene to GamePreload');
 
