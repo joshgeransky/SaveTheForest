@@ -5,18 +5,27 @@ class TitleScene extends Phaser.Scene {
 		});
 		this.scalingAmt = 1.0;
 	}
+    
 	preload() {
-	}
+    }
 
 	create() {
 
+        if (localStorage.getItem('loaded') != null) {
+            console.log('already loaded');
+        } else {
+            localStorage.setItem('loaded', 'true');
+            console.log('never loaded');
+            location.reload();
+        }
+        
 		//music
 		titleMusic = this.sound.add('bg', musicConfig);
 		titleMusic.play(musicConfig);
 
 		let background = this.add.sprite(0, 0, 'background_image');
 		background.setOrigin(0, 0);
-
+        
 		// Create title text
 		titleText = this.add.text(15, 70, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
 
@@ -57,14 +66,15 @@ class TitleScene extends Phaser.Scene {
 
 			startSound.play();
 
-			if (this.scale.isFullscreen) {
+		/*	if (this.scale.isFullscreen) {
 
 				this.scale.stopFullscreen();
 
 			} else {
 
 				this.scale.startFullscreen();
-			}
+			} */
+            
 			console.log('From TitleScene to GamePreload');
 
 			//titleMusic.pause();
@@ -74,7 +84,7 @@ class TitleScene extends Phaser.Scene {
 
 		// On start button press  
 		startBtn.on('pointerdown', startGame);
-
+        
 	}
 }
 
