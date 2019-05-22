@@ -119,8 +119,8 @@ class GameScene extends Phaser.Scene {
         objectLayer.setScale(2);
 
         // Fill the background layer and object layer with a specific tile from the tileset
-        groundLayer.fill(23, 0, 0, map.width, map.height);
-        objectLayer.fill(23, 0, 0, map.width, map.height);
+        groundLayer.fill(30, 0, 0, map.width, map.height);
+        objectLayer.fill(30, 0, 0, map.width, map.height);
 
         // Call the random function on the object layer to randomize tiles
         randomObjLayer();
@@ -129,7 +129,9 @@ class GameScene extends Phaser.Scene {
         // (Indiviudal tile weight / total weight) determines the frequency of the tile
         function randomObjLayer() {
             objectLayer.weightedRandomize(0, 0, map.width, map.height, [
-                { index: 30, weight: 17 },
+                { index: 30, weight: 10 },
+                { index: 31, weight: 3 },
+                { index: 32, weight: 2 },
                 { index: 67, weight: 1 },
                 { index: 70, weight: 1 },
                 { index: 89, weight: 1 }
