@@ -202,7 +202,7 @@ facts = [
         this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);	    
                 
         // Create the boundaries of the game
-        var bounds = new Phaser.Geom.Rectangle(20, 20, 780, 560);
+        var bounds = new Phaser.Geom.Rectangle(20, 100, 780, 560);
 
         // Configure the first fire animation
         this.anims.create(configFire1);
@@ -213,7 +213,7 @@ facts = [
 		var textStyle = {fontSize: '16pt', fontFamily: 'VT323', fill: 'white', backgroundColor: 'black', align: 'center'};
          
 		// Create score counter
-        scoreCounter = this.add.text(10, 10, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
+        scoreCounter = this.add.text(100, 30, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
         textHolder = this.add.text(0, 580, "default");
 		textHolder.setStyle({
         fontSize: '16pt',
@@ -223,7 +223,7 @@ facts = [
 		//align center does not work...
         //align: 'center', 
         backgroundColor: 'black',
-      });
+        });
 	  
 		//textHolder.setOrigin(0.5);
 		//textHolder.setX(200);
@@ -234,7 +234,58 @@ facts = [
         // Create the entire scene
         createScene(this, bounds);
         
-        this.children.bringToTop(scoreCounter);        
+        this.children.bringToTop(scoreCounter);
+        
+        pauseBtn = this.add.sprite(50, 50, 'pauseBtn').setInteractive();
+        
+        pauseBack = this.add.sprite(400, 300, 'pauseMenuBack');
+        pauseBack.visible = false;
+        
+        resumeBtn = this.add.sprite(400, 400, 'resumeBtn').setInteractive();
+        resumeBtn.visible = false;
+        
+        quitBtn = this.add.sprite(400, 500, 'quitBtn').setInteractive();
+        quitBtn.visible = false;
+        
+        /**** Pause buttons functionality ****/
+	    pauseBtn.on('pointerover', changeColor);
+	    pauseBtn.on('pointerout', revertColor);
+        resumeBtn.on('pointerover', changeColor);
+        quitBtn.on('pointerover', changeColor);
+        resumeBtn.on('pointerout', revertColor);
+        quitBtn.on('pointerout', revertColor);
+        
+        
+        pauseBtn.on('pointerdown', function() {
+            
+            pauseBack.visible = true;
+            gameMusic.pause();
+            
+            isPaused = true;
+            
+            quitBtn.visible = true;
+            resumeBtn.visible = true;
+        
+        });
+        
+        resumeBtn.on('pointerdown', function() {
+            
+            isPaused = false;
+            pauseBack.visible = false;
+            gameMusic.play();
+            resumeBtn.visible = false;
+            quitBtn.visible = false;
+            
+        });
+        
+        quitBtn.on('pointerdown', (pointer) => {
+			
+			//stop game music and play the game over music
+            gameMusic.stop();
+			gameOverSound.play();
+            this.scene.start("GameOverScene");
+            
+        });
 	
 	/**
 		//**************** DELETE BELOW AFTER IMPLEMENTATION ****************
@@ -252,6 +303,8 @@ facts = [
     // Update function, repeats indefinitely
     update() {
     
+        if (!isPaused) {
+
         // Variable to see what fire is being clicked
         var clickedFire;
         
@@ -329,7 +382,16 @@ facts = [
 		} else if (currentFireCount + removedTreeCount == 200) {
 			gameOver(this);
 		}			
-	}
+	
+        
+    } else {
+        this.children.bringToTop(pauseBack);
+        this.children.bringToTop(quitBtn);
+        this.children.bringToTop(resumeBtn);
+        
+        
+    }
+}
 }
 
 // Create the entire tree scene

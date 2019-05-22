@@ -29,7 +29,7 @@ var titleText;
 var subText;
 var scoreCounter;
 var scoreTitle = "Score: ";
-var playerScore = 0;
+var playerScore = 0; // Variable to hold the user score
 var start = false;
 var treeArr = []; // holds x and y values of trees
 var allTrees = []; // holds the trees themselves, as well as burnt trees
@@ -42,12 +42,17 @@ var litFires = []; // array of all lit fires
 var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; // keeps track of how whether a fire is on the screen or not
 var spriteCamp;
-var startSound;
-var removedFires = [];
-var currentFireCount = 0;
-var removedTreeCount = 0;
+var startSound; // Start game sound
+var removedFires = []; // Array of all removed fires
+var currentFireCount = 0; // Total amount of current fires
+var removedTreeCount = 0; // Total amount of removed trees
 var fireReset = false; // Boolean to check if currently restarting fires on burnt trees
 var allBurntTrees = []; // Array to hold all currently burnt trees
+var pauseBtn; // Variable to hold the pause button
+var pauseBack; // Variable to hold the image for the pause menu background
+var isPaused = false; // Boolean to track whether or not the game is paused
+var resumeBtn; // Resume button for pause menu
+var quitBtn; // Quit button for pause menu
 
 // Mario music easter egg boolean
 var marioed = false;
