@@ -266,13 +266,14 @@ class GameScene extends Phaser.Scene {
         resumeBtn.on('pointerout', revertColor);
         quitBtn.on('pointerout', revertColor);
 
-
         pauseBtn.on('pointerdown', function () {
 
             pauseBack.visible = true;
             gameMusic.pause();
             fireSound.pause();
-
+			if (marioed) {
+				marioMusic.pause();
+			}
             isPaused = true;
 
             quitBtn.visible = true;
@@ -284,7 +285,11 @@ class GameScene extends Phaser.Scene {
 
             isPaused = false;
             pauseBack.visible = false;
+			if (marioed) {
+				marioMusic.resume();
+			} else {
             gameMusic.resume();
+			}
             fireSound.resume();
             resumeBtn.visible = false;
             quitBtn.visible = false;
@@ -336,12 +341,12 @@ class GameScene extends Phaser.Scene {
 			}
 		
 			//shows tool tip only when the random is not a 3 and there's been a burnt tree
-			//ran can't be 3 because it will override a fact resulting in the fact not being displayed
-			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && firstFireExtinguished && removedTreeCount == 0) {
+			//ran can't be 2 because it will override a fact resulting in the fact not being displayed
+			if (firstBurntTree && burntTreeCounter == 0 && ran != 2) {
 				toolTip(th);
 				burntTreeCounter++;
 				console.log("should be reading tool tip");
-			}	
+			}
 		
 			// When a fire is clicked
 			this.input.on('gameobjectdown', function(pointer, fire) {
@@ -372,7 +377,7 @@ class GameScene extends Phaser.Scene {
 				loop: false // Do not loop, the update function loops by itself
 			});
 		
-			/** Mario Easter Egg */
+			/** Easter Egg */
 			var mKey = this.input.keyboard.addKey('M');
 		
 			if (mKey.isDown && !marioed) {
@@ -652,7 +657,7 @@ function startFires(th) {
             currentFireCount++;
 			
             // Print the fire count to console (for testing purposes)
-            console.log('FireCount ' + fireCount);
+            console.log('current fires for gameover: ' + currentFireCount);
 
             // Determine how long until the next fire should pop up
             detStage();
@@ -1021,7 +1026,10 @@ function removeTree(th, b, f) {
 
                 // Make the dead mushroom disappear
                 b.visible = false;
-
+				
+				//play chopping sound
+				chopTreeSound.play();
+				
                 // Increase the count of removed trees/shrooms
                 removedTreeCount++;
 
