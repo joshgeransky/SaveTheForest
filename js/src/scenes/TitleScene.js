@@ -66,14 +66,15 @@ class TitleScene extends Phaser.Scene {
 
 			startSound.play();
 
-			if (this.scale.isFullscreen) {
+		/*	if (this.scale.isFullscreen) {
 
 				this.scale.stopFullscreen();
 
 			} else {
 
 				this.scale.startFullscreen();
-			}
+			} */
+            
 			console.log('From TitleScene to GamePreload');
 
 			//titleMusic.pause();
