@@ -161,7 +161,7 @@ class GameScene extends Phaser.Scene {
         this.anims.create(configFire2);
 
         // Create score counter
-        scoreCounter = this.add.text(70, 15, scoreTitle + playerScore, { fontSize: '24pt', fontFamily: 'VT323', fill: 'white', stroke: 'black', strokeThickness: '6' });
+        scoreCounter = this.add.text(70, 15, scoreTitle + playerScore, { fontSize: '24pt', fontFamily: 'VT323', fill: 'white', });
 		
         textHolder = this.add.text(0, 580, "default");
         textHolder.setStyle({
@@ -177,8 +177,8 @@ class GameScene extends Phaser.Scene {
 
         // Create the entire scene
         createScene(this, bounds);
-
-        this.children.bringToTop(scoreCounter);
+	    
+	this.children.bringToTop(scoreCounter);
 
         pauseBtn = this.add.sprite(35, 35, 'pauseBtn').setInteractive().setScale(0.75);
 
@@ -204,7 +204,9 @@ class GameScene extends Phaser.Scene {
             pauseBack.visible = true;
             gameMusic.pause();
             fireSound.pause();
-
+			if (marioed) {
+				marioMusic.pause();
+			}
             isPaused = true;
 
             quitBtn.visible = true;
@@ -216,7 +218,11 @@ class GameScene extends Phaser.Scene {
 
             isPaused = false;
             pauseBack.visible = false;
+			if (marioed) {
+				marioMusic.resume();
+			} else {
             gameMusic.resume();
+			}
             fireSound.resume();
             resumeBtn.visible = false;
             quitBtn.visible = false;
@@ -231,11 +237,11 @@ class GameScene extends Phaser.Scene {
             this.scene.start("GameOverScene");
 
         });
-
     }
 
     // Update function, repeats indefinitely
     update() {
+
 
         if (!isPaused) {
 
@@ -257,8 +263,8 @@ class GameScene extends Phaser.Scene {
 			}
 		
 			//shows tool tip only when the random is not a 3 and there's been a burnt tree
-			//ran can't be 3 because it will override a fact resulting in the fact not being displayed
-			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && firstFireExtinguished && removedTreeCount == 0) {
+			//ran can't be 2 because it will override a fact resulting in the fact not being displayed
+			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && !readingInfo) {
 				toolTip(th);
 				burntTreeCounter++;
 			}	
@@ -292,7 +298,7 @@ class GameScene extends Phaser.Scene {
 				loop: false // Do not loop, the update function loops by itself
 			});
 		
-			/** Mario Easter Egg */
+			/** Easter Egg */
 			var mKey = this.input.keyboard.addKey('M');
 		
 			if (mKey.isDown && !marioed) {
@@ -370,7 +376,6 @@ function createScene(th, bounds) {
             // Makes fire on the tree
             fire = th.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
             fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
-
 
             // Animate the fire
             fire.anims.play("burn1");
@@ -500,7 +505,6 @@ function startFires(th) {
             ran = Math.floor(Math.random() * 2 + 1);
 
             /**Informational text is printed and removed from here: */
-			
 			//stopping the fire tutorial from popping up more than once
 			if(firstFireExtinguished){
 				firstFire = false;
@@ -513,6 +517,7 @@ function startFires(th) {
                 textHolder.visible = true;	
 				textHolder.setText("Click on a fire to extinguish it.                                                                        				            ");
 				th.children.bringToTop(textHolder);
+				readingInfo = true;
 			}
 			
             //sets text blank after a new fire pops up if a burnt tree has not showed up yet or recieving trophy
@@ -911,7 +916,10 @@ function removeTree(th, b, f) {
 
                 // Make the dead mushroom disappear
                 b.visible = false;
-
+				
+				//play chopping sound
+				chopTreeSound.play();
+				
                 // Increase the count of removed trees/shrooms
                 removedTreeCount++;
 
@@ -963,9 +971,4 @@ function changeColor() {
 //changes color of start button back to normal
 function revertColor() {
     this.clearTint();
-}
-
-// Function to destroy sprites, currently unused
-function destroySprite(sprite) {
-    sprite.destroy();
 }

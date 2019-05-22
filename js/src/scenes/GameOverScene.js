@@ -45,7 +45,8 @@ class GameOverScene extends Phaser.Scene {
 				this.scene.start('LoadKeyboard');
 
 			} else {
-
+				
+				// Reloads the page
 				location.reload();
 			}
 

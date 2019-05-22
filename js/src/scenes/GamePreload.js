@@ -15,14 +15,12 @@ class GamePreload extends Phaser.Scene {
         /* -------- Sprites -------- */
         this.load.image('tree1', '../assets/sprites/Tree_3.png'); // Regular tree
         this.load.image('burntTree', '../assets/sprites/Burnt_Tree_3.png'); // Burnt tree
-        this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
+        //this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
         this.load.image("tilesDynamic", "assets/sprites/jungleTileSet.png"); //Object layer tiles
         this.load.image('mushroom', 'assets/sprites/mushroom.png');
         this.load.image('deadShroom', 'assets/sprites/dead-mushroom.png');
         this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", { frameWidth: 64, frameHeight: 64, endFrame: 24 }); // first fire
         this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", { frameWidth: 42, frameHeight: 64, endFrame: 11 }); // second fire
-        this.load.image("msgBox", "../assets/images/chatbox.png");
-        this.load.image("okBtn", "../assets/images/ok.png");
         this.load.image('pauseBtn', '../assets/sprites/pause.png'); // Sprite for the pause button
         this.load.image('pauseMenuBack', '../assets/images/newPauseMenu.png'); // Background for pause menu
         this.load.image('resumeBtn', '../assets/sprites/continueButton.png'); // Resume button for pause menu

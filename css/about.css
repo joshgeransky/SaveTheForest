@@ -11,9 +11,9 @@
 /* Style the image within the about-image div */
 
 .about-image img {
-    width: auto;
+    width: 100%;
     max-height: 400px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 20px;
 }
 
