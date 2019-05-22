@@ -27,10 +27,10 @@ class TitleScene extends Phaser.Scene {
 		background.setOrigin(0, 0);
         
 		// Create title text
-		titleText = this.add.text(15, 70, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
+	//	titleText = this.add.text(120, 70, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
 
 		// Create subtext
-		subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323' });
+	//	subText = this.add.text(300, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323' });
 
 		// Campfire animations setup
 		let campAnimConfig = {
@@ -46,14 +46,14 @@ class TitleScene extends Phaser.Scene {
 
 		//creating and adding the campfire sprite to title page
 		animCamp = this.anims.create(campAnimConfig);
-		spriteCamp = this.add.sprite(450, 450, 'campFire').setScale(0.5);
+		spriteCamp = this.add.sprite(600, 450, 'campFire').setScale(0.5);
 
 		console.log(spriteCamp);
 
 		spriteCamp.anims.play('camping');
 
 		// Create start buttons
-		startBtn = this.add.sprite(400, 300, 'startButt').setInteractive();
+		startBtn = this.add.sprite(500, 300, 'startButt').setInteractive();
 		startSound = this.sound.add('startPlay', waterConfig);
 
 		/**** Start button functionality ****/
