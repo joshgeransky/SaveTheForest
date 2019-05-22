@@ -140,26 +140,26 @@ class GameScene extends Phaser.Scene {
 
         //wild fire facts array with 20 facts, 5 will be randomly chosen
         facts = [
-            'A typical year has over 9,000 forest fires in Canada.                                                 ', //1
-            'An average of 2.5 million hectares of trees are burned in a year.                                     ', //2
-            'The smoke released by fire can cause health problems.                                                 ', //3
-            'Forest fires can burn from a rate of 0.5 km/h to 6 km/h or more.                                      ', //4
-            'In the summer of 2018, three B.C cities were among the worst for air pollution in the world.      ', //5
-            'Wildfires need fuel, oxygen, and heat to ignite and burn.                                             ', //6
-            'On average, 40% of wildfires in British Columbia were started by humans.                              ', //7
-            'Human caused wildfires attribute to: cigarettes, campfires, engines/vehicles, and more.               ', //8
-            'Never leave a fire unattended before leaving the campsite.                                            ', //9
-            'Call 911, a local fire department, or the park service if you notice smoke or fire.                   ', //10
-            'Never discard smoking materials from moving cars or park grounds.                                     ', //11
-            'All wildfires in British Columbia are investigated for its origin and cause.                          ', //12
-            'Wildfires usually occur in the summer season from May to September.                                   ', //13
-            'The smoke from BC\'s 2018 wildfires spread from across Canada to as far as Ireland.                   ', //14
-            'Firebreaks are areas with no fuel materials that help slow forest fires.                              ', //15
-            'Large wildfires can even change the weather of the surrounding area.                                  ', //16
-            'Aircrafts can be used to drop water or fire retardant chemicals onto wildfires.                       ', //17
-            'Crown fires are a type of wildfire that spread from tree top to tree top.                             ', //18
-            'Large fires can cause a fire whirl - a whirlwind composed of wind and fire.                           ', //19
-            'In 2018, the total cost of wildfire suppression was $615 million.                                     ' //20 
+            'A typical year has over 9,000 forest fires in Canada.                                                                        				            ', //1
+            'An average of 2.5 million hectares of trees are burned in a year.                                                                        				', //2
+            'The smoke released by fire can cause health problems.                                                                        				            ', //3
+            'Forest fires can burn from a rate of 0.5 km/h to 6 km/h or more.                                                                        				', //4
+            'In the summer of 2018, three B.C cities were among the worst for air pollution in the world.                                                           ', //5
+            'Wildfires need fuel, oxygen, and heat to ignite and burn.                                                                        				        ', //6
+            'On average, 40% of wildfires in British Columbia were started by humans.                                                                        		', //7
+            'Human caused wildfires attribute to: cigarettes, campfires, engines/vehicles, and more.                                                                ', //8
+            'Never leave a fire unattended before leaving the campsite.                                                                        				        ', //9
+            'Call 911, a local fire department, or the park service if you notice smoke or fire.                                                                    ', //10
+            'Never discard smoking materials from moving cars or park grounds.                                                                        				', //11
+            'All wildfires in British Columbia are investigated for its origin and cause.                                                                           ', //12
+            'Wildfires usually occur in the summer season from May to September.                                                                        	        ', //13
+            'The smoke from BC\'s 2018 wildfires spread from across Canada to as far as Ireland.                                                                    ', //14
+            'Firebreaks are areas with no fuel materials that help slow forest fires.                                                                        	    ', //15
+            'Large wildfires can even change the weather of the surrounding area.                                                                        		    ', //16
+            'Aircrafts can be used to drop water or fire retardant chemicals onto wildfires.                                                                        ', //17
+            'Crown fires are a type of wildfire that spread from tree top to tree top.                                                                        	    ', //18
+            'Large fires can cause a fire whirl - a whirlwind composed of wind and fire.                                                                            ', //19
+            'In 2018, the total cost of wildfire suppression was $615 million.                                                                        				' //20 
         ];
 
         /**uncomment this if you want to try centering the text, milestone text will have to be centered as well
@@ -591,7 +591,7 @@ function startFires(th) {
 				
 				//textHolder is initially not displayed
                 textHolder.visible = true;	
-				textHolder.setText("Click on a fire to extinguish it.                                                                                    ");
+				textHolder.setText("Click on a fire to extinguish it.                                                                        				            ");
 				th.children.bringToTop(textHolder);
 				console.log("should be showing tutorial on fires");
 			}
@@ -670,7 +670,7 @@ function startFires(th) {
 //and how long it stays for
 function determineTrophy(th) {
     if (playerScore >= 100 && !trophyTenFin) {
-        textHolder.setText("You have saved 10 trees!                                                                                         ");
+        textHolder.setText("You have saved 10 trees!                                                                                                                                     ");
         th.children.bringToTop(textHolder);
         console.log("should be saying you have saved 10 trees");
         trophyStatus = true;
@@ -693,7 +693,7 @@ function determineTrophy(th) {
     }
 	
     if (playerScore >= 200 && !trophyTwentyFin) {
-        textHolder.setText("You have saved 20 trees, keep going!                                                                              ");
+        textHolder.setText("You have saved 20 trees, keep going!                                                                                                                                     ");
         th.children.bringToTop(textHolder);
         console.log("should be saying you have saved 20 trees");
         trophyStatus = true;
@@ -715,7 +715,7 @@ function determineTrophy(th) {
     }
 	
 	if(playerScore >= 500 && !trophyFiftyFin) {
-		textHolder.setText("Amazing, you have saved 50 trees!                                                                                  ");
+		textHolder.setText("Amazing, you have saved 50 trees!                                                                                                                                     ");
 		th.children.bringToTop(textHolder);
 		console.log("should be saying you have saved 50 trees");
 		trophyStatus = true;
@@ -738,7 +738,7 @@ function determineTrophy(th) {
 	}
 	
     if (playerScore >= 1000 && !trophyHunFin) {
-        textHolder.setText("You have saved the forest, 100 trees and counting!                                                        ");
+        textHolder.setText("You have saved the forest, 100 trees and counting!                                                                                                                                     ");
         th.children.bringToTop(textHolder);
         console.log("should be saying you have saved 100 trees");
         trophyStatus = true;
