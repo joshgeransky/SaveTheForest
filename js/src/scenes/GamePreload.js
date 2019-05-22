@@ -29,20 +29,21 @@ class GamePreload extends Phaser.Scene {
         /* -------- Audio -------- */
         this.load.audio('water', ['assets/sounds/Tree_Extinguish1.mp3']); //Audio for extinguishing fire
         this.load.audio('fire', ['assets/sounds/fire.mp3']); //Audio for fires
-        this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);
-        this.load.audio('start', ['assets/sounds/Start_1.mp3']);
-        this.load.audio('gameover', ['assets/sounds/GameOver.mp3']);
-        this.load.audio('marioMusic', ['assets/sounds/mario.mp3']);
-        this.load.audio('chopTree', ['assets/sounds/chopTree.wav']);
-		this.load.audio('milestone', ['assets/sounds/successJingleSFX.wav']);
+        this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']); //Audio when playing game
+        this.load.audio('start', ['assets/sounds/Start_1.mp3']); //Audio on start screen
+        this.load.audio('gameover', ['assets/sounds/GameOver.mp3']); //Audio for gameover screen
+        this.load.audio('marioMusic', ['assets/sounds/mario.mp3']); //Audio for easter egg mode
+        this.load.audio('chopTree', ['assets/sounds/chopTree.wav']); //Audio for chopping trees
+		this.load.audio('milestone', ['assets/sounds/successJingleSFX.wav']); //Audio for reaching milestone
 
-        this.load.image('gameOverBackground', '../assets/images/newGameOverBack.png');
-        this.load.image('continueBtn', '../assets/sprites/continueButton.png');
+        /* -------- Image assets -------- */
+        this.load.image('gameOverBackground', '../assets/images/newGameOverBack.png'); //Image for game over screen
+        this.load.image('continueBtn', '../assets/sprites/continueButton.png'); //Image for continue button
     }
 
+    //Create the game screen
     create() {
         this.scene.start('GameScene');
-
     }
 
     centerX() {
