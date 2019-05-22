@@ -317,25 +317,6 @@ class GameScene extends Phaser.Scene {
 
     // Update function, repeats indefinitely
     update() {
-        
-        if (justStarted) {
-            
-            justStarted = false;
-        
-            for (let i = 0; i < allTrees.length; i++) {
-            
-                this.children.bringToTop(allTrees[i].tree);
-                this.children.bringToTop(allTrees[i].burnt);
-                this.children.bringToTop(allTrees[i].shroom);
-                this.children.bringToTop(allTrees[i].deadShroom);
-                this.children.bringToTop(allTrees[i].fire);
-            
-            }
-            
-            this.children.bringToTop(scoreCounter);
-            this.children.bringToTop(pauseBtn);
-            
-        }
 
 
         if (!isPaused) {
