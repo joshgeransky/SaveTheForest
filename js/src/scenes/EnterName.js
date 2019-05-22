@@ -1,13 +1,13 @@
 class EnterName extends Phaser.Scene {
-	constructor(){
-		super({
+    constructor() {
+        super({
             key: "EnterName",
-		});
+        });
         this.scalingAmt = 1.0;
     }
 
-    preload() 
-    {
+    preload() {
+        //loads assets
         this.load.image('block', 'assets/input/block.png');
         this.load.image('rub', 'assets/input/rub.png');
         this.load.image('end', 'assets/input/end.png');
@@ -17,9 +17,8 @@ class EnterName extends Phaser.Scene {
         this.load.audio('newHighScore', ['assets/sounds/newHighScoreSFX.wav']);
         this.load.audio('completeEntry', ['assets/sounds/completeEntrySFX.wav']);
     }
-    
-    create ()
-    {
+
+    create() {
         var invalidSFXConfig = {
             mute: false,
             volume: 0.4,
@@ -30,25 +29,23 @@ class EnterName extends Phaser.Scene {
             delay: 0
         }
 
-        // function gameReset() {
-        //     this.scene.start('TitleScene');
-        // }
 
         var invalidSFX = this.sound.add('invalidEntry', invalidSFXConfig);
         var backspaceSFX = this.sound.add('backspace', invalidSFXConfig);
         var newHighScoreSFX = this.sound.add('newHighScore', invalidSFXConfig);
         var completeEntrySFX = this.sound.add('completeEntry', invalidSFXConfig);
-        
-        newHighScoreSFX.play();
 
+        newHighScoreSFX.play();
+        //array for keyboard
         var chars = [
-            [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' ],
-            [ 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T' ],
-            [ 'U', 'V', 'W', 'X', 'Y', 'Z', '.', '-', '<', '>' ]
+            ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
+            ['K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'],
+            ['U', 'V', 'W', 'X', 'Y', 'Z', '.', '-', '<', '>']
         ];
+        
         var cursor = { x: 0, y: 0 };
         var name = '';
-        
+
         var newHighScoreText = this.add.bitmapText(400, 65, 'arcade', 'NEW HIGH SCORE!').setTint(0xffff00);
         newHighScoreText.setOrigin(0.5);
 
@@ -58,98 +55,94 @@ class EnterName extends Phaser.Scene {
 
         var input = this.add.bitmapText(400, 200, 'arcade', 'ABCDEFGHIJ\n\nKLMNOPQRST\n\nUVWXYZ.-').setLetterSpacing(20);
         input.setOrigin(0.5);
-    
         input.setInteractive();
 
         var rub = this.add.image(input.x + 181, input.y + 67, 'rub');
         var end = this.add.image(input.x + 233, input.y + 67, 'end');
-    
+
         var block = this.add.image(input.x - 260, input.y - 83, 'block').setOrigin(0);
-    
+
         var scoreLegend = this.add.bitmapText(150, 325, 'arcade', 'SCORE').setTint(0xff00ff);
         var nameLegend = this.add.bitmapText(500, 325, 'arcade', 'NAME').setTint(0xff00ff);
 
         var scoreText = this.add.bitmapText(150, 370, 'arcade', playerScore).setTint(0xffffff);
-    
+
         var playerText = this.add.bitmapText(500, 370, 'arcade', name).setTint(0xff0000);
 
         var invalidText = this.add.bitmapText(400, 472, 'arcade', 'PLEASE ENTER\nYOUR INITIALS!');
         invalidText.setOrigin(0.5);
         invalidText.visible = false;
-
+        // skip text button
         skipText.on('pointerup', () => {
             startSound.play();
             // this.scene.start('TitleScene');
             // gameReset();
-            
+
             // Refresh the page to restart the game
             location.reload();
         })
-    
+
+
         input.on('pointermove', function (pointer, x, y) {
-    
-            var cx = Phaser.Math.Snap.Floor(x, 52, 0, true);
-            var cy = Phaser.Math.Snap.Floor(y, 64, 0, true);
-            
-            var char = chars[cy][cx];
-    
-            cursor.x = cx;
-            cursor.y = cy;
-    
-            block.x = input.x - 260 + (cx * 52);
-            block.y = input.y - 83 + (cy * 64);
-    
-        }, this);
-    
-        input.on('pointerup', function (pointer, x, y) {
-    
+
             var cx = Phaser.Math.Snap.Floor(x, 52, 0, true);
             var cy = Phaser.Math.Snap.Floor(y, 64, 0, true);
 
             var char = chars[cy][cx];
-    
+
             cursor.x = cx;
             cursor.y = cy;
-    
+
             block.x = input.x - 260 + (cx * 52);
             block.y = input.y - 83 + (cy * 64);
-    
-            if (char === '<' && name.length > 0)
-            {
+
+        }, this);
+
+        input.on('pointerup', function (pointer, x, y) {
+
+            var cx = Phaser.Math.Snap.Floor(x, 52, 0, true);
+            var cy = Phaser.Math.Snap.Floor(y, 64, 0, true);
+
+            var char = chars[cy][cx];
+
+            cursor.x = cx;
+            cursor.y = cy;
+
+            block.x = input.x - 260 + (cx * 52);
+            block.y = input.y - 83 + (cy * 64);
+
+            if (char === '<' && name.length > 0) {
                 //  Rub
                 name = name.substr(0, name.length - 1);
-    
+
                 playerText.text = name;
 
                 backspaceSFX.play();
             }
-            else if (char === '>' && name.length > 0)
-            {
+            else if (char === '>' && name.length > 0) {
                 //  Submit
                 completeEntrySFX.play();
 
                 var saveData = {
                     name: name,
                     metrics: {
-                    count: playerScore * -1
+                        count: playerScore * -1
                     }
                 }
 
                 $('#scoreTable').empty()
-        
+
                 ref.push(saveData);
 
                 //this.scene.start('TitleScene');
 
                 //gameReset();
-                
+
                 // Reload the page to restart the game
                 location.reload();
 
             }
-
-            else if (name.length < 3)
-            {
+            else if (name.length < 3) {
                 // Add
                 // If player hits enter without entering a name, shake screen and play invalid entry sound.
                 if (char === '>') {
@@ -159,20 +152,20 @@ class EnterName extends Phaser.Scene {
                     invalidText.visible = true;
 
                 } else if (char === '<') {
-                    
+
                     // If name field is empty and player presses backspace, do nothing.
-                    
+
                 } else {
 
                     //If player selects a letter, add it to their name.
                     startSound.play();
                     name = name.concat(char);
                     playerText.text = name;
-                    
+
                 }
-                
+
             }
-    
+
         }, this);
     }
 

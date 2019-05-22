@@ -23,7 +23,7 @@ class TitleScene extends Phaser.Scene {
 		// Create subtext
 		subText = this.add.text(200, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323' });
 
-		//campfire animations setup
+		// Campfire animations setup
 		let campAnimConfig = {
 			key: 'camping',
 			frames: this.anims.generateFrameNumbers('campFire', {

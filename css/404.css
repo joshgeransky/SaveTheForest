@@ -1,19 +1,21 @@
 /* Import Google fonts */
-@import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 
+@import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 /* Style the entire header */
+
 .header {
     overflow: hidden;
     background-color: #0f0f0f;
     padding: 20px 10px;
     border-radius: 20px;
-    
 }
-html, body{
+
+html, body {
     min-height: 100%;
-   
 }
+
 /* Style the body */
+
 body {
     background-image: url("../assets/images/gameOverGrey.jpeg");
     object-fit: cover;
@@ -24,18 +26,25 @@ body {
     background-color: #262626;
     color: white;
     font-family: 'Teko', sans-serif;
-    image-rendering: optimizeSpeed;                    /* Older versions of FF */
-          image-rendering: -moz-crisp-edges;           /* FF 6.0+ */
-          image-rendering: -webkit-optimize-contrast;  /* Webkit (non standard naming) */
-          image-rendering: -o-crisp-edges;             /* OS X & Windows Opera (12.02+) */
-          image-rendering: crisp-edges;                /* Possible future browsers. */
-          -ms-interpolation-mode: nearest-neighbor;    /* IE (non standard naming) */
-          image-rendering: pixelated;                  /* Chrome 41 */
+    image-rendering: optimizeSpeed;
+    /* Older versions of FF */
+    image-rendering: -moz-crisp-edges;
+    /* FF 6.0+ */
+    image-rendering: -webkit-optimize-contrast;
+    /* Webkit (non standard naming) */
+    image-rendering: -o-crisp-edges;
+    /* OS X & Windows Opera (12.02+) */
+    image-rendering: crisp-edges;
+    /* Possible future browsers. */
+    -ms-interpolation-mode: nearest-neighbor;
+    /* IE (non standard naming) */
+    image-rendering: pixelated;
+    /* Chrome 41 */
     color: #fff;
 }
 
-
 /* Styling for the header links */
+
 .header a {
     font-family: 'Teko', sans-serif;
     float: left;
@@ -49,6 +58,7 @@ body {
 }
 
 /* Style the site title */
+
 .site-title {
     font-family: 'VT323', sans-serif;
     font-size: 40pt;
@@ -58,31 +68,33 @@ body {
 }
 
 /* Change the background color on hover */
+
 .header a:hover {
-  background-color: #4c4c4c;
-  color: white;
+    background-color: #4c4c4c;
+    color: white;
 }
 
 /* Style the active/current link*/
+
 .header a.active {
-  background-color: #2b9929;
-  color: white;
+    background-color: #2b9929;
+    color: white;
 }
 
 /* Float the link section to the right */
+
 .header-nav {
     float: right;
     font-size: 16pt;
 }
 
 /* Style the page title */
+
 .page-title {
     font-size: 40pt;
-    
 }
 
-
-h1{
+h1 {
     font-size: 40pt;
     text-shadow: 1px 1px #000;
     text-align: center;
@@ -91,18 +103,19 @@ h1{
 }
 
 /* Style the footer class */
+
 .footer {
     font-size: 20pt;
 }
 
-#container{
+#container {
     display: flex;
     align-items: center;
     flex-direction: column;
     /* align-content: space-around; */
 }
 
-#escapeButton{
+#escapeButton {
     font-family: 'Teko', sans-serif;
     float: left;
     /* color: white; */
@@ -114,57 +127,54 @@ h1{
     margin: 5pt;
     font-size: 30pt;
     background-color: #4c4c4c;
-    
     color: white;
     border: none;
     margin-top: 20pt;
     border: 1px solid #2b9929;
 }
-#escapeButton:hover{
+
+#escapeButton:hover {
     background-color: #2b9929;
     color: white;
 }
 
-
-#doom{
+#doom {
     display: block;
     width: 100%;
 }
 
-div p{
+div p {
     font-size: 30pt;
     text-shadow: 1px 1px #000;
     text-align: center;
     width: 100%;
     margin: 0;
 }
-/* Media Query, 500px width */ 
+
+/* Media Query, 500px width */
+
 @media screen and (orientation: portrait) {
     .header a {
         float: none;
         display: block;
         text-align: left;
     }
-    
     .header-nav {
         float: none;
     }
-	
-	body{
-		width: 100%;
-	}
-    
-}
-@media screen and (max-width: 992px) {
-    h1{
-        font-size: 35px;
-        
+    body {
+        width: 100%;
     }
-  }
-@media screen and (max-width: 600px){
-    h1{
+}
+
+@media screen and (max-width: 992px) {
+    h1 {
+        font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
         font-size: 30px;
     }
-
 }
-

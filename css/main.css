@@ -1,7 +1,9 @@
 /* Import Google fonts */
-@import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 
+@import url('https://fonts.googleapis.com/css?family=Teko|VT323');
 /* Style the entire header */
+
+
 .header {
     overflow: hidden;
     background-color: #0f0f0f;
@@ -12,26 +14,36 @@
 }
 
 /* Style the body */
+
 #bodyGeneral {
     background-color: #262626;
     color: white;
     font-family: 'Teko', sans-serif;
-    image-rendering: optimizeSpeed;                    /* Older versions of FF */
-          image-rendering: -moz-crisp-edges;           /* FF 6.0+ */
-          image-rendering: -webkit-optimize-contrast;  /* Webkit (non standard naming) */
-          image-rendering: -o-crisp-edges;             /* OS X & Windows Opera (12.02+) */
-          image-rendering: crisp-edges;                /* Possible future browsers. */
-          -ms-interpolation-mode: nearest-neighbor;    /* IE (non standard naming) */
-          image-rendering: pixelated;                  /* Chrome 41 */
+    image-rendering: optimizeSpeed;
+    /* Older versions of FF */
+    image-rendering: -moz-crisp-edges;
+    /* FF 6.0+ */
+    image-rendering: -webkit-optimize-contrast;
+    /* Webkit (non standard naming) */
+    image-rendering: -o-crisp-edges;
+    /* OS X & Windows Opera (12.02+) */
+    image-rendering: crisp-edges;
+    /* Possible future browsers. */
+    -ms-interpolation-mode: nearest-neighbor;
+    /* IE (non standard naming) */
+    image-rendering: pixelated;
+    /* Chrome 41 */
     margin: 0;
 }
 
 /* Style for nav bar title */
+
 a.navbar-brand {
     font-size: 40pt;
 }
 
 /* Style for links in the nav bar */
+
 a.nav-item {
     font-size: 18pt;
 }
@@ -45,12 +57,14 @@ a.nav-item {
 }
 
 /* Style for high scores */
+
 .score {
     text-align: center;
     font-size: 36pt;
 }
 
 /* Style the footer class */
+
 .footer {
     font-size: 20pt;
 }
@@ -76,6 +90,7 @@ tr:nth-child(even) {
 }
 
 /* Style the message for prompting Lanscape */
+
 #msgLandscape {
     width: 100%;
     height: auto;
@@ -83,26 +98,26 @@ tr:nth-child(even) {
 }
 
 /* Style the Lanscape icon */
+
 #orientationIcon {
     filter: invert(100%);
 }
 
-/* Media Query, Portrait */ 
-@media screen and (orientation: portrait) {
+/* Media Query, Portrait */
 
+@media screen and (orientation: portrait) {
     #game {
-        display:none;
+        display: none;
     }
 }
 
 /* Media Query, Landscape */
-@media screen and (orientation: landscape) {
 
+@media screen and (orientation: landscape) {
     /* Sets the game Div back into view when phone is landscape */
     #game {
         display: block;
     }
-
     /* Sets the message for notification out of view */
     #msgLandscape {
         display: none;
