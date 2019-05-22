@@ -67,21 +67,10 @@ class GameOverScene extends Phaser.Scene {
 				this.scene.start('LoadKeyboard');
 
 			} else {
-
-				//this.scene.start('TitleScene'); --- Tends to screw up the game
-
+				
 				// Reloads the page
-				// (cheesy way to restart the game without causing problems)
 				location.reload();
 			}
-			//reset playerscore
-			//playerScore = 0;
-
-			//reset facts index
-			//factsLength = 4;
-
-			//reshuffle facts array
-			//shuffle(facts);
 
 		}, this);
 	}
