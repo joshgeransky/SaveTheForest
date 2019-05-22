@@ -1,23 +1,23 @@
 // Variable holding initial game configuration
 var config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        parent: 'game',
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    parent: 'game',
 
-        scale: {
-            // automatic scaling of the entire app
-            mode: Phaser.Scale.FIT,
-            autoCenter: Phaser.Scale.CENTER_BOTH,
-            width: 800,
-            height: 600
-        },
-        scene: [BootScene, PreloadScene,TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
-        pixelArt: true,
-                    audio: {
-                    displayWebAudio: true
-            },	
-    }
+    scale: {
+        // automatic scaling of the entire app
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 800,
+        height: 600
+    },
+    scene: [BootScene, PreloadScene, TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
+    pixelArt: true,
+    audio: {
+        displayWebAudio: true
+    },
+}
 
 /* --- Game variables --- */
 var game = new Phaser.Game(config);
@@ -30,7 +30,7 @@ var titleText;
 var subText;
 var scoreCounter;
 var scoreTitle = "Score: ";
-var playerScore = 0;
+var playerScore = 0; // Variable to hold the user score
 var start = false;
 var treeArr = []; // holds x and y values of trees
 var allTrees = []; // holds the trees themselves, as well as burnt trees
@@ -43,12 +43,17 @@ var litFires = []; // array of all lit fires
 var stageDelay = 5000; // delay between fires
 var fireSoundBoolean = false; // keeps track of how whether a fire is on the screen or not
 var spriteCamp;
-var startSound;
-var removedFires = [];
-var currentFireCount = 0;
-var removedTreeCount = 0;
+var startSound; // Start game sound
+var removedFires = []; // Array of all removed fires
+var currentFireCount = 0; // Total amount of current fires
+var removedTreeCount = 0; // Total amount of removed trees
 var fireReset = false; // Boolean to check if currently restarting fires on burnt trees
 var allBurntTrees = []; // Array to hold all currently burnt trees
+var pauseBtn; // Variable to hold the pause button
+var pauseBack; // Variable to hold the image for the pause menu background
+var isPaused = false; // Boolean to track whether or not the game is paused
+var resumeBtn; // Resume button for pause menu
+var quitBtn; // Quit button for pause menu
 
 // Mario music easter egg boolean
 var marioed = false;
@@ -63,11 +68,12 @@ var ran = 0; //determines whether or not an informational fact should be display
 var readingToolTip = false; //whether or not the tool tip is displayed
 var clickedBurntTree = 0; //for removing the text when user clicks on a burnt tree
 var trophyStatus = false; //wait time for trophy announcement's appearance
-var shuffle;
+var everyTwo = 0; //info facts should stay for at least 2 fire durations
+var readingInfo = false; //whether the info facts are displayed or not
 
 //designates milestones for every 100, 200, 300... points
 //not using the odd scores for now (spams when the pace of the game is fast)
-var trophyTen = true; 
+var trophyTen = true;
 var trophyTwenty = true;
 var trophyThirty = true;
 var trophyFourty = true;
@@ -96,21 +102,21 @@ var titleMusic;
 
 // start button effect
 var startSound;
-    
+
 // Gameplay music
 var gameMusic;
-    
+
 // Water effect when dousing fire
 var waterSound;
-    
+
 // Fire effect
 var fireSound;
-	
+
 // Start button on click
 var start;
 
 // Game over effect
-var gameOverSound;	
+var gameOverSound;
 
 // Mario music
 var marioMusic;
@@ -142,13 +148,13 @@ var fireConfig = {
 
 //configuration for extinguishing fire
 var waterConfig = {
-mute: false,
-volume: 0.5,
-rate: 1,
-detune: 0,
-seek: 0,
-loop: false,
-delay: 0
+    mute: false,
+    volume: 0.5,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: false,
+    delay: 0
 };
 
 // Configuration for the Mario music

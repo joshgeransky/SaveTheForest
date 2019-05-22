@@ -28,6 +28,8 @@ var table = document.getElementById("scoreTable");
     "value",
     function(snap) {
 
+      $('#scoreTable').empty();
+
       highScoreCount = 0;
 
       let innerTable = "<tr><th colspan='2'>HIGHSCORES</th></tr>"

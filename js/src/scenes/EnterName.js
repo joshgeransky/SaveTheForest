@@ -135,7 +135,7 @@ class EnterName extends Phaser.Scene {
                     }
                 }
 
-                $('#scoreTable').empty()
+                $('#scoreTable').empty();
         
                 ref.push(saveData);
 
