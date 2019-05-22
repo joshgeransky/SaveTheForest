@@ -53,6 +53,7 @@ var pauseBack; // Variable to hold the image for the pause menu background
 var isPaused = false; // Boolean to track whether or not the game is paused
 var resumeBtn; // Resume button for pause menu
 var quitBtn; // Quit button for pause menu
+var justStarted = true; // Boolean to check if first start of game
 
 // Mario music easter egg boolean
 var marioed = false;

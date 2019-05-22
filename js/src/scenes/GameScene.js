@@ -85,6 +85,9 @@ class GameScene extends Phaser.Scene {
         // Fill the background layer and object layer with a specific tile from the tileset
         groundLayer.fill(30, 0, 0, map.width, map.height);
         objectLayer.fill(30, 0, 0, map.width, map.height);
+        
+        this.children.bringToTop(groundLayer);
+        this.children.bringToTop(objectLayer);
 
         // Call the random function on the object layer to randomize tiles
         randomObjLayer();
@@ -186,7 +189,7 @@ class GameScene extends Phaser.Scene {
         this.anims.create(configFire2);
 
         // Create score counter
-        scoreCounter = this.add.text(70, 15, scoreTitle + playerScore, { fontSize: '24pt', fontFamily: 'VT323', fill: 'white', stroke: 'black', strokeThickness: '6' });
+        scoreCounter = this.add.text(70, 15, scoreTitle + playerScore, { fontSize: '24pt', fontFamily: 'VT323', fill: 'white', });
 		
         textHolder = this.add.text(0, 580, "default");
         textHolder.setStyle({
@@ -202,8 +205,7 @@ class GameScene extends Phaser.Scene {
 
         // Create the entire scene
         createScene(this, bounds);
-
-        this.children.bringToTop(scoreCounter);
+        
 
         pauseBtn = this.add.sprite(35, 35, 'pauseBtn').setInteractive().setScale(0.75);
 
@@ -266,6 +268,7 @@ class GameScene extends Phaser.Scene {
 
     // Update function, repeats indefinitely
     update() {
+
 
         if (!isPaused) {
 
