@@ -64,7 +64,7 @@ class GameOverScene extends Phaser.Scene {
 
 			if (playerScore > highScoreMin || highScoreCount != highScorePlaces) {
 
-				this.scene.start('EnterName');
+				this.scene.start('LoadKeyboard');
 
 			} else {
 

@@ -12,7 +12,7 @@ var config = {
         width: 1000,
         height: 600
     },
-    scene: [BootScene, PreloadScene, TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
+    scene: [BootScene, PreloadScene, TitleScene, GamePreload, GameScene, GameOverScene,LoadKeyboard, EnterName],
     pixelArt: true,
     audio: {
         displayWebAudio: true
