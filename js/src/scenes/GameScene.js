@@ -551,6 +551,8 @@ function startFires(th) {
 
             // Make the fire visible for the user, and thus clickable.   
             f.visible = true;
+			
+			firstFire = true;
 
             //Start fire sound only once
             if (fireSoundBoolean == false) {
@@ -569,9 +571,27 @@ function startFires(th) {
             console.log("random is: " + ran);
 
             /**Informational text is printed and removed from here: */
+			
+			//stopping the fire tutorial from popping up more than once
+			if(firstFireExtinguished){
+				firstFire = false;
+				console.log("firstFire is: " + firstFire);
+			}
+			
+			//instructions for clicking on a fire
+			if(firstFire && fireCount >= 1) {
+				
+				//textHolder is initially not displayed
+                textHolder.visible = true;	
+				textHolder.setText("Click on a fire to extinguish it.                                                                                    ");
+				th.children.bringToTop(textHolder);
+				console.log("should be showing tutorial on fires");
+			}
+			
+			
             //sets text blank after a new fire pops up if a burnt tree has not showed up yet or recieving trophy
             if (readingToolTip == false && clickedBurntTree == 0 && !firstBurntTree && !trophyStatus) {
-                if (everyTwo == 2) { //it will remove text at the start of the third fire (2 fires duration)
+                if (everyTwo == 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
                 setBlank();
                 console.log("setting text blank before tool tip is displayed");
                 everyTwo = 0; //reset
@@ -582,7 +602,7 @@ function startFires(th) {
 
             //sets text blank after a new fire pops up and player is not reading the tool tip or recieving trophy
             if (readingToolTip == false && clickedBurntTree >= 1 && !trophyStatus) {
-                if (everyTwo == 2) { //it will remove text at the start of the third fire (2 fires duration)
+                if (everyTwo == 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
                 setBlank();
                 console.log("typical setting text blank");
                 everyTwo = 0; //reset
@@ -599,7 +619,7 @@ function startFires(th) {
 
             //shows tool tip only when the random is not a 3 and there's been a burnt tree
             //ran can't be 3 because it will override a fact resulting in the fact not being displayed
-            if (firstBurntTree && burntTreeCounter == 0 && ran != 2) {
+            if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && firstFireExtinguished) {
                 if (factsLength == 4) { //workaround for tool tip not showing unless a fact has appeared first
                     ran = 2; //show a fact and then the tool tip will show
                 } else {	//a fact has already shown so show tool tip	
@@ -612,7 +632,7 @@ function startFires(th) {
             //1 in 2 chance of a fact popping up,
             //stops trying to display facts after all facts are displayed
             //and not while displaying a trophy
-            if (ran == 2 && !readingToolTip && factsLength >= 0 && !trophyStatus && !readingInfo) {
+            if (ran == 2 && !readingToolTip && factsLength >= 0 && !trophyStatus && !readingInfo && firstFireExtinguished) {
 
                 //textHolder is initially not displayed
                 textHolder.visible = true;
@@ -622,10 +642,6 @@ function startFires(th) {
                 //displays text
                 updateInfo(th);
             }
-            /**To here. */
-
-            // Increase the current fire count.
-            currentFireCount++;
 
             //to control facts showing up for 2 fires
             //only do this when there are still facts to be displayed
@@ -633,8 +649,11 @@ function startFires(th) {
                 everyTwo++;
                 console.log("everyTwo when reading info: " + everyTwo);
             }
-
-
+			/**To here. */
+			   
+			// Increase the current fire count.
+            currentFireCount++;
+			
             // Print the fire count to console (for testing purposes)
             console.log('FireCount ' + fireCount);
 
@@ -967,6 +986,7 @@ function setBlank() {
 
 //displays a tool tip for chopping down a tree the first time it appears 
 function toolTip(th) {
+	textHolder.visible = true;
 	textHolder.setText("Click on the burnt tree to chop it down.																														                        ");
 	th.children.bringToTop(textHolder);
 	readingToolTip = true;
@@ -1023,10 +1043,18 @@ function extinguishFire(f, th) {
             // Play extinguish fire sound
             waterSound.play(waterConfig);
 			
+			//for tutorial tips on fire extinguishing
+			firstFireExtinguished = true;
+			
+			//set text to blank after extinguishing fire
+			if(firstFire) {
+				setBlank();
+			}
+			
 			//only get points if you are not reading the tool tip
 			//if(!readingToolTip) {
 				// Add points to counter
-				addPoints(th);
+			addPoints(th);
             //}
 			
             // Store the last extinguished fire number

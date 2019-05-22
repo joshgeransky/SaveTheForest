@@ -69,6 +69,8 @@ var clickedBurntTree = 0; //for removing the text when user clicks on a burnt tr
 var trophyStatus = false; //wait time for trophy announcement's appearance
 var everyTwo = 0; //info facts should stay for at least 2 fire durations
 var readingInfo = false; //whether the info facts are displayed or not
+var firstFire = true; //whether or not the first fire has appeared
+var firstFireExtinguished = false; //whether the first fire has been extinguished
 
 //designates milestones for every 100, 200, 300... points
 //not using the odd scores for now (spams when the pace of the game is fast)
