@@ -334,7 +334,7 @@ class GameScene extends Phaser.Scene {
 		
 			//shows tool tip only when the random is not a 3 and there's been a burnt tree
 			//ran can't be 3 because it will override a fact resulting in the fact not being displayed
-			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && firstFireExtinguished) {
+			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && firstFireExtinguished && removedTreeCount == 0) {
 				if (factsLength == 4) { //workaround for tool tip not showing unless a fact has appeared first
 					ran = 2; //show a fact and then the tool tip will show
 				} else {	//a fact has already shown so show tool tip	
@@ -586,7 +586,6 @@ function startFires(th) {
 			//stopping the fire tutorial from popping up more than once
 			if(firstFireExtinguished){
 				firstFire = false;
-				console.log("firstFire is: " + firstFire);
 			}
 			
 			//instructions for clicking on a fire
@@ -613,7 +612,7 @@ function startFires(th) {
 
             //sets text blank after a new fire pops up and player is not reading the tool tip or recieving trophy
             if (readingToolTip == false && clickedBurntTree >= 1 && !trophyStatus) {
-                if (everyTwo == 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
+                if (firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
 					setBlank();
 					console.log("typical setting text blank");
 					everyTwo = 0; //reset
@@ -678,24 +677,29 @@ function determineTrophy(th) {
         console.log("should be saying you have saved 10 trees");
         trophyStatus = true;
 
-        if (playerScore == 120) { //2 trees after
+        if (playerScore == 130) { //3 trees after
             setBlank();
             console.log("should be setting trophy 10 blank");
             trophyStatus = false;
             trophyTenFin = true; //do not show this announcement anymore
-        } else if (playerScore > 120) { //trophy was passed due to the user not clicking on a burnt tree
+			readingInfo = false;
+        } else if (playerScore > 130) { //trophy was passed due to the user not clicking on a burnt tree
             trophyStatus = false;
             trophyTenFin = true;
+			readingInfo = false;
             if (!readingToolTip) {
                 setBlank();
+				readingInfo = false;
             }
         }
     }
+	
     if (playerScore >= 200 && !trophyTwentyFin) {
         textHolder.setText("You have saved 20 trees, keep going!                                                                              ");
         th.children.bringToTop(textHolder);
         console.log("should be saying you have saved 20 trees");
         trophyStatus = true;
+		readingInfo = false;
 
         if (playerScore == 230) { //3 trees after
             setBlank();
@@ -707,237 +711,56 @@ function determineTrophy(th) {
             trophyTwentyFin = true;
             if (!readingToolTip) {
                 setBlank();
+				readingInfo = false;
             }
         }
     }
-	/**
-	if (playerScore >= 300 && !trophyThirtyFin) {
-		textHolder.setText("Wow! You have saved 30 trees!                                                                                     ");
-		th.children.bringToTop(textHolder);
-		console.log("should be saying you have saved 30 trees");
-		trophyStatus = true;
-		if (playerScore == 340) { //4 trees after
-			setBlank();
-			console.log("should be setting trophy 30 blank");
-			trophyStatus = false;
-			trophyThirtyFin = true; //do not show this announcement anymore
-		}
-	}
-	*/
-    if (playerScore >= 400 && !trophyFourtyFin) {
-        textHolder.setText("Holy smokes, you have saved 40 trees!                                                                              ");
-        th.children.bringToTop(textHolder);
-        console.log("should be saying you have saved 40 trees");
-        trophyStatus = true;
-
-        if (playerScore == 440) { //4 trees after
-            setBlank();
-            console.log("should be setting trophy 40 blank");
-            trophyStatus = false;
-            trophyFourtyFin = true; //do not show this announcement anymore
-        } else if (playerScore > 440) { //trophy was passed due to the user not clicking on a burnt tree
-            trophyStatus = false;
-            trophyFourtyFin = true;
-            if (!readingToolTip) {
-                setBlank();
-            }
-        }
-    }
-	/**
+	
 	if(playerScore >= 500 && !trophyFiftyFin) {
 		textHolder.setText("Amazing, you have saved 50 trees!                                                                                  ");
 		th.children.bringToTop(textHolder);
 		console.log("should be saying you have saved 50 trees");
 		trophyStatus = true;
+		readingInfo = false;
 		if(playerScore == 550) { //5 trees after
 			setBlank();
 			console.log("should be setting trophy 50 blank");
 			trophyStatus = false;
 			trophyFiftyFin = true; //do not show this announcement anymore
-		}
-	}
-	*/
-    if (playerScore >= 600 && !trophySixtyFin) {
-        textHolder.setText("Amazing! You have saved 60 trees!                                                                    ");
-        th.children.bringToTop(textHolder);
-        console.log("should be saying you have saved 60 trees");
-        trophyStatus = true;
-
-        if (playerScore == 650) { //5 trees after
-            setBlank();
-            console.log("should be setting trophy 60 blank");
+			readingInfo = false;
+		} else if (playerScore > 550) { //trophy was passed due to the user not clicking on a burnt tree
             trophyStatus = false;
-            trophySixtyFin = true; //do not show this announcement anymore	
-        } else if (playerScore > 650) { //trophy was passed due to the user not clicking on a burnt tree
-            trophyStatus = false;
-            trophySixtyFin = true;
+            trophyFiftyFin = true;
+			readingInfo = false;
             if (!readingToolTip) {
                 setBlank();
+				readingInfo = false;
             }
         }
-    }
-	/**
-	if(playerScore >= 700 && !trophySeventyFin) {
-		textHolder.setText("You are a firefighter, 70 trees have been saved!                                                                   ");
-		th.children.bringToTop(textHolder);
-		console.log("should be saying you have saved 70 trees");
-		trophyStatus = true;
-		if(playerScore == 750) { //5 trees after
-			setBlank();
-			console.log("should be setting trophy 70 blank");
-			trophyStatus = false;
-			trophySeventyFin = true; //do not show this announcement anymore
-		}
 	}
-	*/
-    if (playerScore >= 800 && !trophyEightyFin) {
-        textHolder.setText("Unbelievable! You have saved 80 trees!    						                                       ");
-        th.children.bringToTop(textHolder);
-        console.log("should be saying you have saved 80 trees");
-        trophyStatus = true;
-
-        if (playerScore == 850) { //5 trees after
-            setBlank();
-            console.log("should be setting trophy 80 blank");
-            trophyStatus = false;
-            trophyEightyFin = true; //do not show this announcement anymore
-        } else if (playerScore > 850) { //trophy was passed due to the user not clicking on a burnt tree
-            trophyStatus = false;
-            trophyEightyFin = true;
-            if (!readingToolTip) {
-                setBlank();
-            }
-        }
-    }
-	/**
-	if(playerScore >= 900 && !trophyNinetyFin) {
-		textHolder.setText("Unbelievable! You have saved 90 trees!                                                                             ");
-		th.children.bringToTop(textHolder);
-		console.log("should be saying you have saved 90 trees");
-		trophyStatus = true;
-		if(playerScore == 950) { //5 trees after
-			setBlank();
-			console.log("should be setting trophy 90 blank");
-			trophyStatus = false;
-			trophyNinetyFin = true; //do not show this announcement anymore
-		} 
-	}
-	*/
+	
     if (playerScore >= 1000 && !trophyHunFin) {
         textHolder.setText("You have saved the forest, 100 trees and counting!                                                        ");
         th.children.bringToTop(textHolder);
         console.log("should be saying you have saved 100 trees");
         trophyStatus = true;
+		readingInfo = false;
 
         if (playerScore == 1100) { //10 trees after 
             setBlank();
             console.log("should be setting trophy 100 blank");
             trophyStatus = false;
             trophyHunFin = true; //do not show this announcement anymore
+			readingInfo = false;
         } else if (playerScore > 1100) { //trophy was passed due to the user not clicking on a burnt tree
             trophyStatus = false;
             trophyHunFin = true;
+			readingInfo = false;
             if (!readingToolTip) {
                 setBlank();
+				readingInfo = false;
             }
         }
-    }
-}
-
-//delays the amount of time a trophy is displayed for
-//for some reason it only works for trophyten
-//unused for now but don't delete it josh...
-function delayTrophy(whichTrophy) {
-    switch (whichTrophy) {
-
-        case trophyTen: trophyStatus = true; //currently waiting for the trophy to finish its "run-time"
-            if (playerScore == 120) { //2 trees after
-                setBlank(); //can remove announcement
-                console.log("should be setting trophy 10 blank");
-                trophyStatus = false; //setting text blank is back to normal
-                trophyTenFin = true; //do not show this announcement anymore
-            }
-            break;
-
-        case trophyTwenty: trophyStatus = true;
-            if (playerScore == 230) { //3 trees after
-                setBlank();
-                console.log("should be setting trophy 20 blank");
-                trophyStatus = false;
-                trophyTwentyFin = true; //do not show this announcement anymore
-            }
-            break;
-
-        case trophyThirty: trophyStatus = true;
-            if (playerScore == 330) { //3 trees after
-                setBlank();
-                console.log("should be setting trophy 30 blank");
-                trophyStatus = false;
-                trophyThirtyFin = true; //do not show this announcement anymore
-            }
-            break;
-
-        case trophyFourty: trophyStatus = true;
-            if (playerScore == 440) { //4 trees after
-                setBlank();
-                console.log("should be setting trophy 40 blank");
-                trophyStatus = false;
-                trophyFourtyFin = true; //do not show this announcement anymore
-            }
-            break;
-
-        case trophyFifty: trophyStatus = true;
-            if (playerScore == 550) { //5 trees after
-                setBlank();
-                console.log("should be setting trophy 50 blank");
-                trophyStatus = false;
-                trophyFiftyFin = true; //do not show this announcement anymore
-            }
-            break;
-        case trophySixty: trophyStatus = true;
-            if (playerScore == 650) { //5 trees after
-                setBlank();
-                console.log("should be setting trophy 60 blank");
-                trophyStatus = false;
-                trophySixtyFin = true; //do not show this announcement anymore	
-            }
-            break;
-
-        case trophySeventy: trophyStatus = true;
-            if (playerScore == 750) { //5 trees after
-                setBlank();
-                console.log("should be setting trophy 70 blank");
-                trophyStatus = false;
-                trophySeventyFin = true; //do not show this announcement anymore
-            }
-            break;
-
-        case trophyEighty: trophyStatus = true;
-            if (playerScore == 850) { //5 trees after
-                setBlank();
-                console.log("should be setting trophy 80 blank");
-                trophyStatus = false;
-                trophyEightyFin = true; //do not show this announcement anymore
-            }
-            break;
-
-        case trophyNinety: trophyStatus = true;
-            if (playerScore == 950) { //5 trees after
-                setBlank();
-                console.log("should be setting trophy 90 blank");
-                trophyStatus = false;
-                trophyNinetyFin = true; //do not show this announcement anymore
-            }
-            break;
-
-        case trophyHun: trophyStatus = true;
-            if (playerScore == 1100) { //10 trees after 
-                setBlank();
-                console.log("should be setting trophy 100 blank");
-                trophyStatus = false;
-                trophyHunFin = true; //do not show this announcement anymore
-            }
-            break;
     }
 }
 
@@ -1011,18 +834,6 @@ function updateInfo(th) {
 // Function to sort the trees
 function sortTrees() {
     treeArr.sort((a, b) => (a.y > b.y) ? 1 : -1);
-}
-
-//function to delay the text	
-function textDelay(th) {
-    // Delay and then remove text
-    th.time.addEvent({
-        delay: 5000,
-        callback: () => {
-            setBlank()
-        },
-        loop: false // Do not loop, once it's removed once, it's done
-    });
 }
 
 // Extinguishes the fire

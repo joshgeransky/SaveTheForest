@@ -73,30 +73,18 @@ var readingInfo = false; //whether the info facts are displayed or not
 var firstFire = true; //whether or not the first fire has appeared
 var firstFireExtinguished = false; //whether the first fire has been extinguished
 
-//designates milestones for every 100, 200, 300... points
+//designates milestones for every 100, 200, 500, 1000 points
 //not using the odd scores for now (spams when the pace of the game is fast)
 var trophyTen = true;
 var trophyTwenty = true;
-var trophyThirty = true;
-var trophyFourty = true;
 var trophyFifty = true;
-var trophySixty = true;
-var trophySeventy = true;
-var trophyEighty = true;
-var trophyNinety = true;
 var trophyHun = true;
 
 //designates the milestone message has finished showing
-//not using the odd trophies for now (spams)
+//only showing trophies on: 100, 200, 500, 1000
 var trophyTenFin = false;
 var trophyTwentyFin = false;
-var trophyThirtyFin = false;
-var trophyFourtyFin = false;
 var trophyFiftyFin = false;
-var trophySixtyFin = false;
-var trophySeventyFin = false;
-var trophyEightyFin = false;
-var trophyNinetyFin = false;
 var trophyHunFin = false;
 
 // Title screen music
