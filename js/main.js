@@ -1,23 +1,23 @@
 // Variable holding initial game configuration
 var config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        parent: 'game',
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    parent: 'game',
 
-        scale: {
-            // automatic scaling of the entire app
-            mode: Phaser.Scale.FIT,
-            autoCenter: Phaser.Scale.CENTER_BOTH,
-            width: 800,
-            height: 600
-        },
-        scene: [BootScene, PreloadScene,TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
-        pixelArt: true,
-                    audio: {
-                    displayWebAudio: true
-            },	
-    }
+    scale: {
+        // automatic scaling of the entire app
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 800,
+        height: 600
+    },
+    scene: [BootScene, PreloadScene, TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
+    pixelArt: true,
+    audio: {
+        displayWebAudio: true
+    },
+}
 
 /* --- Game variables --- */
 let game = new Phaser.Game(config);
@@ -72,7 +72,7 @@ var readingInfo = false; //whether the info facts are displayed or not
 
 //designates milestones for every 100, 200, 300... points
 //not using the odd scores for now (spams when the pace of the game is fast)
-var trophyTen = true; 
+var trophyTen = true;
 var trophyTwenty = true;
 var trophyThirty = true;
 var trophyFourty = true;
@@ -101,21 +101,21 @@ var titleMusic;
 
 // start button effect
 var startSound;
-    
+
 // Gameplay music
 var gameMusic;
-    
+
 // Water effect when dousing fire
 var waterSound;
-    
+
 // Fire effect
 var fireSound;
-	
+
 // Start button on click
 var start;
 
 // Game over effect
-var gameOverSound;	
+var gameOverSound;
 
 // Mario music
 var marioMusic;
@@ -147,13 +147,13 @@ var fireConfig = {
 
 //configuration for extinguishing fire
 var waterConfig = {
-mute: false,
-volume: 0.5,
-rate: 1,
-detune: 0,
-seek: 0,
-loop: false,
-delay: 0
+    mute: false,
+    volume: 0.5,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: false,
+    delay: 0
 };
 
 // Configuration for the Mario music

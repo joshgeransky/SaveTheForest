@@ -1,205 +1,239 @@
 <!DOCTYPE html>
 <html>
-    
-    <head>
-        <meta charset="utf-8">
-        <title>Save the Forest!</title>
-        <link rel="stylesheet" type="text/css" href="../../css/main.css">
-        <link rel="stylesheet" type="text/css" href="../../css/about.css">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-        
-    <body id="bodyGeneral">
-        
-        <!-- Header -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/index.html">Save the Forest</a>
-            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#myNavBar" aria-controls="myNavBar" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+<head>
+  <meta charset="utf-8">
+  <title>Save the Forest!</title>
+  <link rel="stylesheet" type="text/css" href="../../css/main.css">
+  <link rel="stylesheet" type="text/css" href="../../css/about.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body id="bodyGeneral">
+
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/index.html">Save the Forest</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#myNavBar"
+      aria-controls="myNavBar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavBar">
+      <div class="navbar-nav">
+        <button class="btn btn-outline-success myButton" type="button">
+          <a class="nav-item nav-link d-inline" href="/index.html">Play</a>
+        </button>
+        <button class="btn btn-outline-success myButton" type="button">
+          <a class="nav-item nav-link d-inline" href="/pages/learn/learn.html">Learn</a>
+        </button>
+        <button class="btn btn-outline-success myButton" type="button">
+          <a class="nav-item nav-link d-inline active" href="/pages/about/about.html">About<span
+              class="sr-only">(current)</span></a>
+        </button>
+      </div>
+    </div>
+  </nav><br>
+
+  <div class="about-content">
+
+    <div class='about-image'>
+      <img src="../../assets/images/groupPhoto.jpg">
+    </div>
+
+    <h2 class="page-title">Team 19</h2>
+
+    <!-- Drop down for group story -->
+    <div class="accordion border border-success rounded" id="accordionExample">
+      <div class="card border border-success rounded">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button id="titleOne" class="btn btn-link collapsed" type="button" data-toggle="collapse"
+              data-target="#collapseOne" aria-expanded="flase" aria-controls="collapseOne">
+              Our story
             </button>
-            <div class="collapse navbar-collapse" id="myNavBar">
-              <div class="navbar-nav">
-                <button class="btn btn-outline-success myButton" type="button">
-                    <a class="nav-item nav-link d-inline" href="/index.html">Play</a>
-                </button>
-                <button class="btn btn-outline-success myButton" type="button">
-                    <a class="nav-item nav-link d-inline" href="/pages/learn/learn.html">Learn</a>
-                </button>
-                <button class="btn btn-outline-success myButton" type="button">
-                    <a class="nav-item nav-link d-inline active" href="/pages/about/about.html">About<span class="sr-only">(current)</span></a>
-                </button>
-              </div>
-            </div>
-          </nav><br>
-        
-        <div class="about-content">
-            
-            <div class='about-image'>
-                <img src="../../assets/images/groupPhoto.jpg">
-            </div>
-        
-            <h2 class="page-title">Team 19</h2>
-
-            <!-- Drop down for group story -->
-            <div class="accordion border border-success rounded" id="accordionExample">
-                <div class="card border border-success rounded">
-                  <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                      <button id="titleOne" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="flase" aria-controls="collapseOne">
-                        Our story
-                      </button>
-                    </h2>
-                  </div>
-              
-                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body border-top border-success">
-                      In 2018, over 2000 wildfires burned within BC, destroying over 1,350,000 hectares of forest, 
-                      making it the worst fire season on record. All of the team members reside in BC and therefore it 
-                      was an eye opening experience when the air quality in Vancouver dropped to number 5 worst air quality 
-                      in a major city around the world because of the wildfires. 
-                      Roughly 40% of the wildfires are caused by humans and that is a sizable portion that could be prevented. 
-                      Our team came up with the idea of creating a game to educate our players while keeping them entertained.</br>
-                      The game we created incorporates educational content such as popup facts into the gameplay and we also 
-                      included an extra resources page on our website for players who are interested in learning more after 
-                      playing our game. Our mission is to increase awareness about forest fires among the younger generation, 
-                      in order to decrease human causes of the wildfires. 
-
-
-                    </div>
-                  </div>
-
-                </div>
-
-            </div>
-            
-            <!-- Drop down for team biographies -->
-            <div class="accordion border border-success rounded" id="accordionExample2">
-                <div class="card border border-success rounded">
-                  <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                      <button id="titleTwo" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Meet Team #19
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample2">
-                        
-                    <!-- Card for first member's bio -->
-                    <div class="row no-gutters">
-                        <div class="col-md-3 memberImage border-top border-success">
-                            <img src="../../assets/images/memberDebby.jpg" class="card-img" alt="Debby's Picture">
-                        </div>
-                        <div class="col-md-9">
-                            <div class="card-body border-top border-success">
-                                <h3 class="card-title">Debby Chiu</h3>
-                                <p class="card-text">Growing up as a second generation Canadian of Asian descent, Debby is frequently asked “Where are you from?” to which she answers “Canada!”. 
-                                  She hopes to one day be freed of the awkwardness of answering that question as well as correcting the spelling of her name. 
-                                  She was introduced to technology early on in life as her father was an avid fan of computer games. 
-                                  From there, she became interested in learning about technology and its effects on the world around us. 
-                                  In her free time, she enjoys playing video games, binge watching a wide variety of shows/movies, and spending time with her loved ones. 
-                                  She has worked in the front-end of Loblaws City Market, and as a server at Gyo-O Japanese restaurant. 
-                                  She hopes to graduate from BCIT with a broader range of skills and lifelong friendships.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row no-gutters">
-                        <div class="col-md-3 memberImage border-top border-success">
-                            <img src="../../assets/images/memberJosh.jpg" class="card-img" alt="Debby's Picture">
-                        </div>
-                        <div class="col-md-9">
-                            <div class="card-body border-top border-success">
-                                <h3 class="card-title">Joshua Geransky</h3>
-                                <p class="card-text">Joshua Geransky is a CST student at BCIT and has lived in British Columbia his entire life.
-                                  He recently graduated from high school and hasn’t had much in the way of job experience, although he does have a somewhat successful YouTube channel by the name of ‘91Tech’ that focuses on older technology.
-                                  Josh isn’t a terribly passionate person but considers himself to at least do have a decent job on most projects he works on, including this one.
-                                  When he’s not using Comic Sans Josh enjoys watching Netflix until his eyes dry out or playing the odd video game- until he gets bored of that and replays Skyrim for the millionth time.
-                                  He also owns a 2015 Ford Mustang that he is much too proud of.
-                                  Josh aspires to be completely self-employed one day, but for now is hard at work attempting to pass his classes at BCIT.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row no-gutters">
-                        <div class="col-md-3 memberImage border-top border-success">
-                            <img src="../../assets/images/memberSasha.jpg" class="card-img" alt="Debby's Picture">
-                        </div>
-                        <div class="col-md-9">
-                            <div class="card-body border-top border-success">
-                                <h3 class="card-title">Aleksandra Sorokina</h3>
-                                <p class="card-text">Aleksandra is a CST student at BCIT, she is passionate about technology solutions to the pressing environmental and social issues. 
-                                  Aleksandra recently worked on an Ecocity related project with a team of fellow CST students called Greenpoints that would allow users to earn points for recycling. 
-                                  Currently, she is working with a team of passionate individuals to implement an educational game for children and adults to increase awareness about the dangers of the forest fires and about preventive measures that everyone has to learn. 
-                                  When she is not working on the projects, she enjoys hiking at the local trails in Vancouver, reading motivational literature, and dancing at the social dancing events. 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row no-gutters">
-                        <div class="col-md-3 memberImage border-top border-success">
-                            <img src="../../assets/images/memberJustin.jpg" class="card-img" alt="Debby's Picture">
-                        </div>
-                        <div class="col-md-9">
-                            <div class="card-body border-top border-success">
-                                <h3 class="card-title">Justin Tendeck</h3>
-                                <p class="card-text">Justin is a first-term CST student at BCIT. He hopes to one day work as a software developer and take up game development as a hobby.
-                                  Before coming to BCIT, he attended the Media Arts Production program at Saskatchewan Polytechnic then worked as a television producer for 4 years. He hopes to
-                                  use his repertoire of skills to create applications that improve the lives of its users, as well as make games that bring people together for some fun!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row no-gutters">
-                        <div class="col-md-3 memberImage border-top border-success">
-                            <img src="../../assets/images/memberEdmond.jpg" class="card-img" alt="Debby's Picture">
-                        </div>
-                        <div class="col-md-9">
-                            <div class="card-body border-top border-success">
-                                <h3 class="card-title">Edmond Wong</h3>
-                                <p class="card-text">Edmond Wong is a first-term computer systems technology (CST) student at the British Columbia Institute of Technology. 
-                                  He has helped create a disaster survival assistant web application and is currently creating a web application to promote awareness of forest fires. 
-                                  During his time off when he is not being bombarded by course work, Edmond enjoys reading, writing and trying to actually win on Overwatch with his six stack. 
-                                  You can reach Edmond at wongedmondk@gmail.com.</p>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-            <div class="accordion border border-success rounded" id="accordionExample3">
-                <div class="card border border-success rounded">
-                  <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                      <button id="titleThree" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Special Thanks
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample3">
-                    <div class="card-body border-top border-success">
-                      <p>Fire animation from graphic artist <a href="https://opengameart.org/content/lpc-flames" target="_blank">Sharm </a>at open game art.</p>
-                      <p>Orientation icon from <a href="https://icons8.com/" target="_blank">Icons8</a>.</p>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            
-            <div class="footer">
-              <span class="footer">© 2019 Team 19, All Rights Reserved.</span>
-            </div>
-            
+          </h2>
         </div>
 
-        <!-- Bootstrap Resources -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body border-top border-success">
+            In 2018, over 2000 wildfires burned within BC, destroying over 1,350,000 hectares of forest,
+            making it the worst fire season on record. All of the team members reside in BC and therefore it
+            was an eye opening experience when the air quality in Vancouver dropped to number 5 worst air quality
+            in a major city around the world because of the wildfires.
+            Roughly 40% of the wildfires are caused by humans and that is a sizable portion that could be prevented.
+            Our team came up with the idea of creating a game to educate our players while keeping them
+            entertained.</br>
+            The game we created incorporates educational content such as popup facts into the gameplay and we also
+            included an extra resources page on our website for players who are interested in learning more after
+            playing our game. Our mission is to increase awareness about forest fires among the younger generation,
+            in order to decrease human causes of the wildfires.
 
-    </body>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Drop down for team biographies -->
+    <div class="accordion border border-success rounded" id="accordionExample2">
+      <div class="card border border-success rounded">
+        <div class="card-header" id="headingTwo">
+          <h2 class="mb-0">
+            <button id="titleTwo" class="btn btn-link collapsed" type="button" data-toggle="collapse"
+              data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Meet Team #19
+            </button>
+          </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample2">
+
+          <!-- Card for first member's bio -->
+          <div class="row no-gutters">
+            <div class="col-md-3 memberImage border-top border-success">
+              <img src="../../assets/images/memberDebby.jpg" class="card-img" alt="Debby's Picture">
+            </div>
+            <div class="col-md-9">
+              <div class="card-body border-top border-success">
+                <h3 class="card-title">Debby Chiu</h3>
+                <p class="card-text">Growing up as a second generation Canadian of Asian descent, Debby is frequently
+                  asked “Where are you from?” to which she answers “Canada!”.
+                  She hopes to one day be freed of the awkwardness of answering that question as well as correcting the
+                  spelling of her name.
+                  She was introduced to technology early on in life as her father was an avid fan of computer games.
+                  From there, she became interested in learning about technology and its effects on the world around us.
+                  In her free time, she enjoys playing video games, binge watching a wide variety of shows/movies, and
+                  spending time with her loved ones.
+                  She has worked in the front-end of Loblaws City Market, and as a server at Gyo-O Japanese restaurant.
+                  She hopes to graduate from BCIT with a broader range of skills and lifelong friendships.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row no-gutters">
+            <div class="col-md-3 memberImage border-top border-success">
+              <img src="../../assets/images/memberJosh.jpg" class="card-img" alt="Debby's Picture">
+            </div>
+            <div class="col-md-9">
+              <div class="card-body border-top border-success">
+                <h3 class="card-title">Joshua Geransky</h3>
+                <p class="card-text">Joshua Geransky is a CST student at BCIT and has lived in British Columbia his
+                  entire life.
+                  He recently graduated from high school and hasn’t had much in the way of job experience, although he
+                  does have a somewhat successful YouTube channel by the name of ‘91Tech’ that focuses on older
+                  technology.
+                  Josh isn’t a terribly passionate person but considers himself to at least do have a decent job on most
+                  projects he works on, including this one.
+                  When he’s not using Comic Sans Josh enjoys watching Netflix until his eyes dry out or playing the odd
+                  video game- until he gets bored of that and replays Skyrim for the millionth time.
+                  He also owns a 2015 Ford Mustang that he is much too proud of.
+                  Josh aspires to be completely self-employed one day, but for now is hard at work attempting to pass
+                  his classes at BCIT.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row no-gutters">
+            <div class="col-md-3 memberImage border-top border-success">
+              <img src="../../assets/images/memberSasha.jpg" class="card-img" alt="Debby's Picture">
+            </div>
+            <div class="col-md-9">
+              <div class="card-body border-top border-success">
+                <h3 class="card-title">Aleksandra Sorokina</h3>
+                <p class="card-text">Aleksandra is a CST student at BCIT, she is passionate about technology solutions
+                  to the pressing environmental and social issues.
+                  Aleksandra recently worked on an Ecocity related project with a team of fellow CST students called
+                  Greenpoints that would allow users to earn points for recycling.
+                  Currently, she is working with a team of passionate individuals to implement an educational game for
+                  children and adults to increase awareness about the dangers of the forest fires and about preventive
+                  measures that everyone has to learn.
+                  When she is not working on the projects, she enjoys hiking at the local trails in Vancouver, reading
+                  motivational literature, and dancing at the social dancing events.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row no-gutters">
+            <div class="col-md-3 memberImage border-top border-success">
+              <img src="../../assets/images/memberJustin.jpg" class="card-img" alt="Debby's Picture">
+            </div>
+            <div class="col-md-9">
+              <div class="card-body border-top border-success">
+                <h3 class="card-title">Justin Tendeck</h3>
+                <p class="card-text">Justin is a first-term CST student at BCIT. He hopes to one day work as a software
+                  developer and take up game development as a hobby.
+                  Before coming to BCIT, he attended the Media Arts Production program at Saskatchewan Polytechnic then
+                  worked as a television producer for 4 years. He hopes to
+                  use his repertoire of skills to create applications that improve the lives of its users, as well as
+                  make games that bring people together for some fun!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row no-gutters">
+            <div class="col-md-3 memberImage border-top border-success">
+              <img src="../../assets/images/memberEdmond.jpg" class="card-img" alt="Debby's Picture">
+            </div>
+            <div class="col-md-9">
+              <div class="card-body border-top border-success">
+                <h3 class="card-title">Edmond Wong</h3>
+                <p class="card-text">Edmond Wong is a first-term computer systems technology (CST) student at the
+                  British Columbia Institute of Technology.
+                  He has helped create a disaster survival assistant web application and is currently creating a web
+                  application to promote awareness of forest fires.
+                  During his time off when he is not being bombarded by course work, Edmond enjoys reading, writing and
+                  trying to actually win on Overwatch with his six stack.
+                  You can reach Edmond at wongedmondk@gmail.com.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion border border-success rounded" id="accordionExample3">
+      <div class="card border border-success rounded">
+        <div class="card-header" id="headingThree">
+          <h2 class="mb-0">
+            <button id="titleThree" class="btn btn-link collapsed" type="button" data-toggle="collapse"
+              data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Special Thanks
+            </button>
+          </h2>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample3">
+          <div class="card-body border-top border-success">
+            <p>Fire animation from graphic artist <a href="https://opengameart.org/content/lpc-flames"
+                target="_blank">Sharm </a>at open game art.</p>
+            <p>Orientation icon from <a href="https://icons8.com/" target="_blank">Icons8</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span class="footer">© 2019 Team 19, All Rights Reserved.</span>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap Resources -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+</body>
 
 </html>

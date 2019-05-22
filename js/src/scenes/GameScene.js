@@ -321,11 +321,11 @@ class GameScene extends Phaser.Scene {
             // Variable for 'this'
             var th = this;
             //The variable for half of the current trees on the screen
-            var gameOverTrees = allTrees.length/2;
+            var gameOverTrees = allTrees.length / 2;
             // uncomment to see game over conditions
             // console.log("all trees number " + gameOverTrees);
             // console.log("current fire count " + currentFireCount);
-           
+
             // If the game has started
             if (start && !(currentFireCount > gameOverTrees)) {
 
