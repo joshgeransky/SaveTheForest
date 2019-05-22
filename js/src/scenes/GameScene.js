@@ -122,9 +122,6 @@ class GameScene extends Phaser.Scene {
         // Fill the background layer and object layer with a specific tile from the tileset
         groundLayer.fill(30, 0, 0, map.width, map.height);
         objectLayer.fill(30, 0, 0, map.width, map.height);
-        
-        this.children.bringToTop(groundLayer);
-        this.children.bringToTop(objectLayer);
 
         // Call the random function on the object layer to randomize tiles
         randomObjLayer();
@@ -247,7 +244,8 @@ class GameScene extends Phaser.Scene {
 
         // Create the entire scene
         createScene(this, bounds);
-        
+	    
+	this.children.bringToTop(scoreCounter);
 
         pauseBtn = this.add.sprite(35, 35, 'pauseBtn').setInteractive().setScale(0.75);
 
