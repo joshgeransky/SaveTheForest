@@ -322,9 +322,11 @@ class GameScene extends Phaser.Scene {
 		
 		// Variable for 'this'
         var th = this;
+		
+		var gameOverTrees = allTrees.length / 2;
 
         // If the game has started
-        if (start && !((removedTreeCount + currentFireCount) == 200)) {
+        if (start && !(currentFireCount > gameOverTrees)) {
 			
 			//milestone/trophy announcements for the player
 			if (!readingToolTip) {
@@ -335,9 +337,9 @@ class GameScene extends Phaser.Scene {
 			//shows tool tip only when the random is not a 3 and there's been a burnt tree
 			//ran can't be 3 because it will override a fact resulting in the fact not being displayed
 			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && firstFireExtinguished && removedTreeCount == 0) {
-					toolTip(th);
-					burntTreeCounter++;
-					console.log("should be reading tool tip");
+				toolTip(th);
+				burntTreeCounter++;
+				console.log("should be reading tool tip");
 			}	
 		
 			// When a fire is clicked
@@ -402,7 +404,7 @@ class GameScene extends Phaser.Scene {
 					deadShroom.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
 				}        
 			}
-		} else if (currentFireCount + removedTreeCount == 200) {
+		} else if (currentFireCount > gameOverTrees) {
 				gameOver(this);
 			}			
 	
@@ -985,10 +987,9 @@ function removeTree(th, b, f) {
 				console.log("clickedBurntTree is: " + clickedBurntTree);
             
 				//removes text when user clicks on a burnt tree
-				if (clickedBurntTree == 1 && !readingToolTip) {
+				if (clickedBurntTree == 1 && !readingToolTip && !readingInfo) {
 					setBlank();
 					console.log("removing burnt tree inside removeTree");
-					readingInfo = false;
 				}
 			}
         }      
