@@ -87,6 +87,7 @@ class GameScene extends Phaser.Scene {
         gameOverSound = this.sound.add('gameover', musicConfig);
         marioMusic = this.sound.add('marioMusic', marioConfig);
         chopTreeSound = this.sound.add('chopTree', waterConfig);
+		milestoneSound = this.sound.add('milestone',waterConfig);
 
         // x and y coordinates stored in arrays
         var xValues = [];
@@ -223,7 +224,7 @@ class GameScene extends Phaser.Scene {
 
         // Create score counter
         scoreCounter = this.add.text(70, 15, scoreTitle + playerScore, { fontSize: '24pt', fontFamily: 'VT323', fill: 'white', stroke: 'black', strokeThickness: '6' });
-
+		
         textHolder = this.add.text(0, 580, "default");
         textHolder.setStyle({
             fontSize: '16pt',
@@ -738,7 +739,7 @@ function determineTrophy(th) {
 	}
 	
     if (playerScore >= 1000 && !trophyHunFin) {
-        textHolder.setText("You have saved the forest, 100 trees and counting!                                                                                                                                     ");
+        textHolder.setText("Congratulations, you have saved 100 trees and counting!                                                                                                                                     ");
         th.children.bringToTop(textHolder);
         console.log("should be saying you have saved 100 trees");
         trophyStatus = true;
@@ -807,7 +808,7 @@ function setBlank() {
 //displays a tool tip for chopping down a tree the first time it appears 
 function toolTip(th) {
 	textHolder.visible = true;
-	textHolder.setText("Click on the burnt tree to chop it down.																														                        ");
+	textHolder.setText("Click on the burnt tree to chop it down.																																																						                        ");
 	th.children.bringToTop(textHolder);
 	readingToolTip = true;
 }
@@ -1059,7 +1060,8 @@ function gameOver(th) {
         //stop game music and play the game over music
         gameMusic.stop();
     }
-
+	
+	fireSound.stop();
     gameOverSound.play();
     th.scene.start("GameOverScene");
 }

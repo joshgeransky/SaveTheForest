@@ -114,6 +114,9 @@ var marioMusic;
 //tree chopping effect
 var chopTreeSound;
 
+//trophy sound effect
+var milestoneSound;
+
 //configuration for audio
 var musicConfig = {
     mute: false,
