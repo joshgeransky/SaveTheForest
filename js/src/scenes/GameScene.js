@@ -210,7 +210,7 @@ class GameScene extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);
 
         // Create the boundaries of the game
-        var bounds = new Phaser.Geom.Rectangle(20, 45, 770, 520);
+        var bounds = new Phaser.Geom.Rectangle(20, 45, 970, 520);
 
 
         // Configure the first fire animation
@@ -246,13 +246,13 @@ class GameScene extends Phaser.Scene {
 
         pauseBtn = this.add.sprite(35, 35, 'pauseBtn').setInteractive().setScale(0.75);
 
-        pauseBack = this.add.sprite(400, 300, 'pauseMenuBack');
+        pauseBack = this.add.sprite(500, 300, 'pauseMenuBack');
         pauseBack.visible = false;
 
-        resumeBtn = this.add.sprite(400, 400, 'resumeBtn').setInteractive();
+        resumeBtn = this.add.sprite(500, 400, 'resumeBtn').setInteractive();
         resumeBtn.visible = false;
 
-        quitBtn = this.add.sprite(400, 500, 'quitBtn').setInteractive();
+        quitBtn = this.add.sprite(500, 500, 'quitBtn').setInteractive();
         quitBtn.visible = false;
 
         /**** Pause buttons functionality ****/

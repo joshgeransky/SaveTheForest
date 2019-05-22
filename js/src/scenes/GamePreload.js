@@ -24,7 +24,7 @@ class GamePreload extends Phaser.Scene {
         this.load.image("msgBox", "../assets/images/chatbox.png");
         this.load.image("okBtn", "../assets/images/ok.png");
         this.load.image('pauseBtn', '../assets/sprites/pause.png'); // Sprite for the pause button
-        this.load.image('pauseMenuBack', '../assets/images/pauseMenu.png'); // Background for pause menu
+        this.load.image('pauseMenuBack', '../assets/images/newPauseMenu.png'); // Background for pause menu
         this.load.image('resumeBtn', '../assets/sprites/continueButton.png'); // Resume button for pause menu
         this.load.image('quitBtn', '../assets/sprites/quitBtn.png'); // Quit button for pause menu
 
@@ -42,7 +42,7 @@ class GamePreload extends Phaser.Scene {
         // this.load.image('pointsButton', 'https://cdn-images-1.medium.com/max/526/1*Ma5s4UBzPQXOmR3HbGue5Q.png');
         // Delete above after proper game over screen implementation.
 
-        this.load.image('gameOverBackground', '../assets/images/gameOverBackground.jpeg');
+        this.load.image('gameOverBackground', '../assets/images/newGameOverBack.png');
         this.load.image('continueBtn', '../assets/sprites/continueButton.png');
     }
 
