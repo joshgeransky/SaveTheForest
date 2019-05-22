@@ -335,13 +335,9 @@ class GameScene extends Phaser.Scene {
 			//shows tool tip only when the random is not a 3 and there's been a burnt tree
 			//ran can't be 3 because it will override a fact resulting in the fact not being displayed
 			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && firstFireExtinguished && removedTreeCount == 0) {
-				if (factsLength == 4) { //workaround for tool tip not showing unless a fact has appeared first
-					ran = 2; //show a fact and then the tool tip will show
-				} else {	//a fact has already shown so show tool tip	
 					toolTip(th);
 					burntTreeCounter++;
 					console.log("should be reading tool tip");
-				}
 			}	
 		
 			// When a fire is clicked

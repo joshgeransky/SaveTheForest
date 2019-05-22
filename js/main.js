@@ -81,7 +81,7 @@ var trophyFifty = true;
 var trophyHun = true;
 
 //designates the milestone message has finished showing
-//only showing trophies on: 100, 200, 500, 1000
+//only showing trophies on: 100, 200, 500, 1000 points
 var trophyTenFin = false;
 var trophyTwentyFin = false;
 var trophyFiftyFin = false;
