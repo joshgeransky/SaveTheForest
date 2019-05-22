@@ -503,14 +503,24 @@ function startFires(th) {
 		/**Informational text is printed and removed from here: */
 		//sets text blank after a new fire pops up if a burnt tree has not showed up yet or recieving trophy
 		if (readingToolTip == false && clickedBurntTree == 0 && !firstBurntTree && !trophyStatus) {
+			if(everyTwo == 2) { //it will remove text at the start of the third fire (2 fires duration)
 			setBlank();
 			console.log("setting text blank before tool tip is displayed");
+			everyTwo = 0; //reset
+			console.log("everyTwo after setting blank: " + everyTwo);
+			readingInfo = false;
+			}
 		}
 		
 		//sets text blank after a new fire pops up and player is not reading the tool tip or recieving trophy
 		if (readingToolTip == false && clickedBurntTree >= 1 && !trophyStatus) {
+			if(everyTwo == 2) { //it will remove text at the start of the third fire (2 fires duration)
 			setBlank();
 			console.log("typical setting text blank");
+			everyTwo = 0; //reset
+			console.log("everyTwo after setting blank: " + everyTwo);
+			readingInfo = false;
+			}
 		}
 		
 		//re-roll random if a burnt tree is there and random is 2 so the fact index doesnt get overwritten
@@ -534,7 +544,7 @@ function startFires(th) {
 		//1 in 2 chance of a fact popping up,
 		//stops trying to display facts after all facts are displayed
 		//and not while displaying a trophy
-		if (ran == 2 && !readingToolTip && factsLength >= 0 && !trophyStatus) {
+		if (ran == 2 && !readingToolTip && factsLength >= 0 && !trophyStatus && !readingInfo) {
 			
 			//textHolder is initially not displayed
 			textHolder.visible = true;
@@ -548,6 +558,14 @@ function startFires(th) {
 		
         // Increase the current fire count.
         currentFireCount++;
+		
+		//to control facts showing up for 2 fires
+		//only do this when there are still facts to be displayed
+		if(readingInfo && factsLength >= 0) { 
+			everyTwo++;
+			console.log("everyTwo when reading info: " + everyTwo);
+		}
+		
 	    
         // Print the fire count to console (for testing purposes)
         console.log('FireCount ' + fireCount);
@@ -581,6 +599,9 @@ function determineTrophy(th) {
 		}else if(playerScore > 120) { //trophy was passed due to the user not clicking on a burnt tree
 			trophyStatus = false;
 			trophyTenFin = true;
+			if(!readingToolTip) {
+			setBlank();
+			}
 		}			
 	}
 	if(playerScore >= 200 && !trophyTwentyFin) {
@@ -597,6 +618,9 @@ function determineTrophy(th) {
 		}else if(playerScore > 230) { //trophy was passed due to the user not clicking on a burnt tree
 			trophyStatus = false;
 			trophyTwentyFin = true;
+			if(!readingToolTip) {
+			setBlank();
+			}
 		}
 	}
 	/**
@@ -627,6 +651,9 @@ function determineTrophy(th) {
 		} else if(playerScore > 440) { //trophy was passed due to the user not clicking on a burnt tree
 			trophyStatus = false;
 			trophyFourtyFin = true;
+			if(!readingToolTip) {
+			setBlank();
+			}
 		}
 	}
 	/**
@@ -657,6 +684,9 @@ function determineTrophy(th) {
 		} else if(playerScore > 650) { //trophy was passed due to the user not clicking on a burnt tree
 			trophyStatus = false;
 			trophySixtyFin = true;
+			if(!readingToolTip) {
+			setBlank();
+			}
 		}
 	}
 	/**
@@ -687,6 +717,9 @@ function determineTrophy(th) {
 		} else if(playerScore > 850) { //trophy was passed due to the user not clicking on a burnt tree
 			trophyStatus = false;
 			trophyEightyFin = true;
+			if(!readingToolTip) {
+			setBlank();
+			}
 		}
 	}
 	/**
@@ -717,6 +750,9 @@ function determineTrophy(th) {
 		} else if(playerScore > 1100) { //trophy was passed due to the user not clicking on a burnt tree
 			trophyStatus = false;
 			trophyHunFin = true;
+			if(!readingToolTip) {
+			setBlank();
+			}
 		}
 	}	
 }
@@ -877,7 +913,7 @@ function updateInfo(th) {
 	}
 	textHolder.setX(len);
 	*/
-	
+	readingInfo = true;
 	//display the fact and move to next index
 	textHolder.setText(facts[factsLength]);
 	th.children.bringToTop(textHolder);
