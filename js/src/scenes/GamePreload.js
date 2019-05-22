@@ -36,6 +36,7 @@ class GamePreload extends Phaser.Scene {
         this.load.audio('gameover', ['assets/sounds/GameOver.mp3']);
         this.load.audio('marioMusic', ['assets/sounds/mario.mp3']);
         this.load.audio('chopTree', ['assets/sounds/chopTree.wav']);
+		this.load.audio('milestone', ['assets/sounds/successJingleSFX.wav']);
 
         // Game Over Icon. Delete after proper game over screen implementation.
         this.load.image('gameOverButton', 'https://pbs.twimg.com/profile_images/657603448553127936/D7T9j7Pk_400x400.png');

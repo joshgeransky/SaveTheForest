@@ -19,10 +19,10 @@ class TitleScene extends Phaser.Scene {
 		background.setOrigin(0, 0);
         
 		// Create title text
-	//	titleText = this.add.text(120, 70, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
-
-		// Create subtext
-	//	subText = this.add.text(300, 200, 'Tap the fires to save the forest!', { fontSize: '24pt', fill: 'white', fontFamily: 'VT323' });
+		titleText = this.add.text(120, 70, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
+		
+		//workaround for score text not showing up properly
+		titleText.visible = false;
 
 		// Campfire animations setup
 		let campAnimConfig = {
@@ -60,14 +60,11 @@ class TitleScene extends Phaser.Scene {
             
 			console.log('From TitleScene to GamePreload');
 
-			//titleMusic.pause();
-
 			this.scene.start('GamePreload');
 		}, this);
 
 		// On start button press  
-		startBtn.on('pointerdown', startGame);
-        
+		startBtn.on('pointerdown', startGame);  
 	}
 }
 
@@ -76,5 +73,4 @@ function startGame() {
 	start = true;
 	titleMusic.stop();
 }
-
 //export default TitleScene;
