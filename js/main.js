@@ -1,7 +1,7 @@
 // Variable holding initial game configuration
 var config = {
     type: Phaser.AUTO,
-    width: 800,
+    width: 100,
     height: 600,
     parent: 'game',
 
@@ -9,7 +9,7 @@ var config = {
         // automatic scaling of the entire app
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: 800,
+        width: 1000,
         height: 600
     },
     scene: [BootScene, PreloadScene, TitleScene, GamePreload, GameScene, GameOverScene, EnterName],
