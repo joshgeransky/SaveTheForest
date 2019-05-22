@@ -15,7 +15,7 @@
 }
 
 #heading {
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 /* Style the body */
@@ -99,7 +99,7 @@ tr:nth-child(even) {
     box-shadow: -5px 5px #000000;
 }
 
-/* Style the message for prompting Lanscape */
+/* Style the message for prompting landscape */
 
 #msgLandscape {
     width: 100%;
@@ -107,7 +107,7 @@ tr:nth-child(even) {
     text-align: center;
 }
 
-/* Style the Lanscape icon */
+/* Style the landscape icon */
 
 #orientationIcon {
     filter: invert(100%);
