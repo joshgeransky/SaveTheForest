@@ -7,15 +7,7 @@ class EnterName extends Phaser.Scene {
     }
 
     preload() {
-        //loads assets
-        this.load.image('block', 'assets/input/block.png');
-        this.load.image('rub', 'assets/input/rub.png');
-        this.load.image('end', 'assets/input/end.png');
-        this.load.bitmapFont('arcade', 'assets/fonts/bitmap/arcade.png', 'assets/fonts/bitmap/arcade.xml');
-        this.load.audio('invalidEntry', ['assets/sounds/invalidEntry.wav']);
-        this.load.audio('backspace', ['assets/sounds/backspaceSFX.wav']);
-        this.load.audio('newHighScore', ['assets/sounds/newHighScoreSFX.wav']);
-        this.load.audio('completeEntry', ['assets/sounds/completeEntrySFX.wav']);
+       
     }
 
     create() {
