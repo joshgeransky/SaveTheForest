@@ -210,7 +210,7 @@ facts = [
         this.cameras.main.setBounds(0, 0, groundLayer.width, groundLayer.height);	    
                 
         // Create the boundaries of the game
-        var bounds = new Phaser.Geom.Rectangle(20, 100, 750, 450);
+        var bounds = new Phaser.Geom.Rectangle(20, 45, 770, 540);
 
 
         // Configure the first fire animation
@@ -220,7 +220,7 @@ facts = [
         this.anims.create(configFire2);
          
 		// Create score counter
-        scoreCounter = this.add.text(100, 30, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white', stroke: 'black', strokeThickness: '6'});
+        scoreCounter = this.add.text(70, 15, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white', stroke: 'black', strokeThickness: '6'});
 
         textHolder = this.add.text(0, 580, "default");
 		textHolder.setStyle({
@@ -244,7 +244,7 @@ facts = [
         
         this.children.bringToTop(scoreCounter);
         
-        pauseBtn = this.add.sprite(50, 50, 'pauseBtn').setInteractive();
+        pauseBtn = this.add.sprite(35, 35, 'pauseBtn').setInteractive().setScale(0.75);
         
         pauseBack = this.add.sprite(400, 300, 'pauseMenuBack');
         pauseBack.visible = false;
