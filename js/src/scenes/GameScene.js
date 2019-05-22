@@ -18,17 +18,25 @@ class GameScene extends Phaser.Scene {
         //Temporary game over trigger and point addition system.
 
         //**************** DELETE BELOW AFTER IMPLEMENTATION ****************
-        var gameOverButton = this.add.sprite(550, 50, 'gameOverButton').setInteractive().setScale(0.25, 0.25);
+        /*var gameOverButton = this.add.sprite(550, 50, 'gameOverButton').setInteractive().setScale(0.25, 0.25);
 
         gameOverButton.setDepth(500);
 
         gameOverButton.on('pointerdown', (pointer) => {
 			
+			//stop mario music if in mario mode
+			if(marioed) {
+				
+			marioMusic.stop();
+			} else {
+				
 			//stop game music and play the game over music
             gameMusic.stop();
+			}
+				
 			gameOverSound.play();
             this.scene.start("GameOverScene");
-        })
+        }); */
 		
 		/**
 		var pointIcon = this.add.sprite(450, 50, 'pointsButton').setInteractive().setScale(0.2, 0.2);
@@ -204,16 +212,16 @@ facts = [
         // Create the boundaries of the game
         var bounds = new Phaser.Geom.Rectangle(20, 100, 780, 560);
 
+
         // Configure the first fire animation
         this.anims.create(configFire1);
     
         // Configure the second fire animation
         this.anims.create(configFire2);
-
-		var textStyle = {fontSize: '16pt', fontFamily: 'VT323', fill: 'white', backgroundColor: 'black', align: 'center'};
          
 		// Create score counter
-        scoreCounter = this.add.text(100, 30, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white'});
+        scoreCounter = this.add.text(100, 30, scoreTitle + playerScore, {fontSize: '24pt', fontFamily: 'VT323', fill: 'white', stroke: 'black', strokeThickness: '6'});
+
         textHolder = this.add.text(0, 580, "default");
 		textHolder.setStyle({
         fontSize: '16pt',
@@ -357,12 +365,6 @@ facts = [
                 titleMusic.stop();
                 gameMusic.stop();
                 marioed = true;
-				//switch score font to black for visibility
-				scoreCounter.setStyle({
-				color: 'black',
-				
-				});
-			
         
                 for (let i = 0; i < allTrees.length; i++) {
             
@@ -371,7 +373,16 @@ facts = [
             
                     var deadShroom = this.add.sprite(treeArr[i].x, treeArr[i].y, 'deadShroom').setName('deadShroom' + i);
                     deadShroom.setScale(0.7);
-            
+					
+					//switch score font to black w/ white outline for visibility
+					scoreCounter.setStyle({
+					color: 'black',
+					stroke: 'white',
+					strokeThickness: '6',
+					});
+					
+					th.children.bringToTop(scoreCounter);
+				
                     allTrees[i].tree.visible = false;
                     allTrees[i].shroom = shroom;
                     allTrees[i].deadShroom = deadShroom;
@@ -631,7 +642,10 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 10 blank");
 			trophyStatus = false;
 			trophyTenFin = true; //do not show this announcement anymore
-		}	
+		}else if(playerScore > 120) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophyTenFin = true;
+		}			
 	}
 	if(playerScore >= 200 && !trophyTwentyFin) {
 		textHolder.setText("You have saved 20 trees, keep going!                                                                              ");
@@ -644,7 +658,10 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 20 blank");
 			trophyStatus = false;
 			trophyTwentyFin = true; //do not show this announcement anymore
-		}	
+		}else if(playerScore > 230) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophyTwentyFin = true;
+		}
 	}
 	/**
 	if(playerScore >= 300 && !trophyThirtyFin) {
@@ -671,6 +688,9 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 40 blank");
 			trophyStatus = false;
 			trophyFourtyFin = true; //do not show this announcement anymore
+		} else if(playerScore > 440) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophyFourtyFin = true;
 		}
 	}
 	/**
@@ -698,6 +718,9 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 60 blank");
 			trophyStatus = false;
 			trophySixtyFin = true; //do not show this announcement anymore	
+		} else if(playerScore > 650) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophySixtyFin = true;
 		}
 	}
 	/**
@@ -715,7 +738,7 @@ function determineTrophy(th) {
 	}
 	*/
 	if(playerScore >= 800 && !trophyEightyFin) {
-		textHolder.setText("Unbelievable! You have saved 80 trees!                                           ");
+		textHolder.setText("Unbelievable! You have saved 80 trees!    						                                       ");
 		th.children.bringToTop(textHolder);
 		console.log("should be saying you have saved 80 trees");
 		trophyStatus = true;
@@ -725,6 +748,9 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 80 blank");
 			trophyStatus = false;
 			trophyEightyFin = true; //do not show this announcement anymore
+		} else if(playerScore > 850) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophyEightyFin = true;
 		}
 	}
 	/**
@@ -752,6 +778,9 @@ function determineTrophy(th) {
 			console.log("should be setting trophy 100 blank");
 			trophyStatus = false;
 			trophyHunFin = true; //do not show this announcement anymore
+		} else if(playerScore > 1100) { //trophy was passed due to the user not clicking on a burnt tree
+			trophyStatus = false;
+			trophyHunFin = true;
 		}
 	}	
 }
@@ -897,10 +926,9 @@ function setBlank() {
 
 //displays a tool tip for chopping down a tree the first time it appears 
 function toolTip(th) {
-	textHolder.setText("Click on the burnt tree to chop it down, so fires do not spread faster.                        ");
+	textHolder.setText("Click on the burnt tree to chop it down.																														                        ");
 	th.children.bringToTop(textHolder);
 	readingToolTip = true;
-	
 }
 
 //function to update the text holding the informational facts
@@ -955,10 +983,10 @@ function extinguishFire(f, th) {
             waterSound.play(waterConfig);
 			
 			//only get points if you are not reading the tool tip
-			if(!readingToolTip) {
+			//if(!readingToolTip) {
 				// Add points to counter
 				addPoints(th);
-            }
+            //}
 			
             // Store the last extinguished fire number
             removedFires.push(fireNumber);
@@ -1142,6 +1170,18 @@ function removeTree(th, b, f) {
 // Game over function
 function gameOver(th) {
     console.log("Game Over");    
+	
+	//stop mario music if in mario mode
+			if(marioed) {
+				
+			marioMusic.stop();
+			} else {
+				
+			//stop game music and play the game over music
+            gameMusic.stop();
+			}
+			
+	gameOverSound.play();
     th.scene.start("GameOverScene");
 }
 		

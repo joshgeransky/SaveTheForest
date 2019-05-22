@@ -26,51 +26,25 @@
     margin: 0;
 }
 
-/* Styling for the header links */
-.header a {
-    font-family: 'Teko', sans-serif;
-    float: left;
-    color: white;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    line-height: 25px;
-    border-radius: 4px;
-    margin: 5pt;
-}
-
-/* Style the site title */
-.site-title {
-    font-family: 'VT323', sans-serif;
-    font-size: 40pt;
-    font-weight: bold;
-    color: white;
-    padding-left: 20px;
-}
-
-/* Change the background color on hover */
-.header a:hover {
-  background-color: #4c4c4c;
-  color: white;
-}
-
-/* Style the active/current link*/
-.header a.active {
-  background-color: #2b9929;
-  color: white;
-}
-
-/* Float the link section to the right */
-.header-nav {
-    float: right;
-    font-size: 16pt;
-}
-
-/* Style the page title */
-.page-title {
+/* Style for nav bar title */
+a.navbar-brand {
     font-size: 40pt;
 }
 
+/* Style for links in the nav bar */
+a.nav-item {
+    font-size: 18pt;
+}
+
+.myButton {
+    margin: 10pt;
+}
+
+#myNavBar {
+    flex-direction: row-reverse;
+}
+
+/* Style for high scores */
 .score {
     text-align: center;
     font-size: 36pt;
@@ -115,15 +89,6 @@ tr:nth-child(even) {
 
 /* Media Query, Portrait */ 
 @media screen and (orientation: portrait) {
-    .header a {
-        float: none;
-        display: block;
-        text-align: left;
-    }
-    
-    .header-nav {
-        float: none;
-    }
 
     #game {
         display:none;
@@ -142,4 +107,4 @@ tr:nth-child(even) {
     #msgLandscape {
         display: none;
     }
-}    
+}
