@@ -135,15 +135,10 @@ class EnterName extends Phaser.Scene {
                     }
                 }
 
-                $('#scoreTable').empty()
+                $('#scoreTable').empty();
         
                 ref.push(saveData);
 
-                //this.scene.start('TitleScene');
-
-                //gameReset();
-                
-                // Reload the page to restart the game
                 location.reload();
 
             }

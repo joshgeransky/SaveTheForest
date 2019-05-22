@@ -24,6 +24,7 @@ class PreloadScene extends Phaser.Scene {
         this.load.audio('game', ['assets/sounds/Game_Screen_1.mp3']);
         this.load.audio('startPlay', ['assets/sounds/Start_1.mp3']);
         this.load.audio('gameover', ['assets/sounds/GameOver.mp3']);
+        this.load.audio('tutorialAlertSFX', ['assets/sounds/tutorialAlertSFX.wav']);
     }
     create() {
 
