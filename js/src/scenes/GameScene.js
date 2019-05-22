@@ -330,6 +330,18 @@ facts = [
 			determineTrophy(th);
 		}
 		
+		//shows tool tip only when the random is not a 3 and there's been a burnt tree
+            //ran can't be 3 because it will override a fact resulting in the fact not being displayed
+            if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && firstFireExtinguished) {
+                if (factsLength == 4) { //workaround for tool tip not showing unless a fact has appeared first
+                    ran = 2; //show a fact and then the tool tip will show
+                } else {	//a fact has already shown so show tool tip	
+                    toolTip(th);
+                    burntTreeCounter++;
+                    console.log("should be reading tool tip");
+                }
+            }	
+		
 		// When a fire is clicked
 		this.input.on('gameobjectdown', function(pointer, fire) {
 		 
@@ -401,10 +413,9 @@ facts = [
         this.children.bringToTop(pauseBack);
         this.children.bringToTop(quitBtn);
         this.children.bringToTop(resumeBtn);
-        
-        
+            
     }
-}
+	}
 }
 
 // Create the entire tree scene
@@ -592,22 +603,22 @@ function startFires(th) {
             //sets text blank after a new fire pops up if a burnt tree has not showed up yet or recieving trophy
             if (readingToolTip == false && clickedBurntTree == 0 && !firstBurntTree && !trophyStatus) {
                 if (everyTwo == 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
-                setBlank();
-                console.log("setting text blank before tool tip is displayed");
-                everyTwo = 0; //reset
-                console.log("everyTwo after setting blank: " + everyTwo);
-                readingInfo = false;
-                }
+					setBlank();
+					console.log("setting text blank before tool tip is displayed");
+					everyTwo = 0; //reset
+					console.log("everyTwo after setting blank: " + everyTwo);
+					readingInfo = false;
+				}
             }
 
             //sets text blank after a new fire pops up and player is not reading the tool tip or recieving trophy
             if (readingToolTip == false && clickedBurntTree >= 1 && !trophyStatus) {
                 if (everyTwo == 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
-                setBlank();
-                console.log("typical setting text blank");
-                everyTwo = 0; //reset
-                console.log("everyTwo after setting blank: " + everyTwo);
-                readingInfo = false;
+					setBlank();
+					console.log("typical setting text blank");
+					everyTwo = 0; //reset
+					console.log("everyTwo after setting blank: " + everyTwo);
+					readingInfo = false;
                 }
             }
 
@@ -615,19 +626,7 @@ function startFires(th) {
             while (ran == 2 && clickedBurntTree == 0 && firstBurntTree && trophyStatus) {
                 ran = 1;
                 console.log("new random is: " + ran); 
-            }
-
-            //shows tool tip only when the random is not a 3 and there's been a burnt tree
-            //ran can't be 3 because it will override a fact resulting in the fact not being displayed
-            if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && firstFireExtinguished) {
-                if (factsLength == 4) { //workaround for tool tip not showing unless a fact has appeared first
-                    ran = 2; //show a fact and then the tool tip will show
-                } else {	//a fact has already shown so show tool tip	
-                    toolTip(th);
-                    burntTreeCounter++;
-                    console.log("should be reading tool tip");
-                }
-            }			
+            }		
 
             //1 in 2 chance of a fact popping up,
             //stops trying to display facts after all facts are displayed
@@ -1049,6 +1048,8 @@ function extinguishFire(f, th) {
 			//set text to blank after extinguishing fire
 			if(firstFire) {
 				setBlank();
+				//no longer reading text
+				readingInfo = false;
 			}
 			
 			//only get points if you are not reading the tool tip
@@ -1178,9 +1179,10 @@ function removeTree(th, b, f) {
 				console.log("clickedBurntTree is: " + clickedBurntTree);
             
 				//removes text when user clicks on a burnt tree
-				if (clickedBurntTree == 1) {
+				if (clickedBurntTree == 1 && !readingToolTip) {
 					setBlank();
 					console.log("removing burnt tree inside removeTree");
+					readingInfo = false;
 				}
 			}
         }      
