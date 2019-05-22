@@ -291,7 +291,7 @@ class GameScene extends Phaser.Scene {
 		
 			//shows tool tip only when the random is not a 3 and there's been a burnt tree
 			//ran can't be 2 because it will override a fact resulting in the fact not being displayed
-			if (firstBurntTree && burntTreeCounter == 0 && ran != 2) {
+			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && !readingInfo) {
 				toolTip(th);
 				burntTreeCounter++;
 				console.log("should be reading tool tip");
@@ -547,6 +547,7 @@ function startFires(th) {
 				textHolder.setText("Click on a fire to extinguish it.                                                                        				            ");
 				th.children.bringToTop(textHolder);
 				console.log("should be showing tutorial on fires");
+				readingInfo = true;
 			}
 			
             //sets text blank after a new fire pops up if a burnt tree has not showed up yet or recieving trophy
