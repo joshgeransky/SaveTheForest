@@ -48,6 +48,14 @@
     text-decoration: none;
 }
 
+#titleFour {
+    width: 100%;
+    color: black;
+    font-size: 24pt;
+    text-align: left;
+    text-decoration: none;
+}
+
 /* Style the image in the cards for the drop down */
 img.card-img {
     min-width: 100%;
