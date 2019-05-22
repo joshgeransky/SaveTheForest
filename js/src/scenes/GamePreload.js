@@ -38,11 +38,6 @@ class GamePreload extends Phaser.Scene {
         this.load.audio('chopTree', ['assets/sounds/chopTree.wav']);
 		this.load.audio('milestone', ['assets/sounds/successJingleSFX.wav']);
 
-        // Game Over Icon. Delete after proper game over screen implementation.
-        this.load.image('gameOverButton', 'https://pbs.twimg.com/profile_images/657603448553127936/D7T9j7Pk_400x400.png');
-        // this.load.image('pointsButton', 'https://cdn-images-1.medium.com/max/526/1*Ma5s4UBzPQXOmR3HbGue5Q.png');
-        // Delete above after proper game over screen implementation.
-
         this.load.image('gameOverBackground', '../assets/images/newGameOverBack.png');
         this.load.image('continueBtn', '../assets/sprites/continueButton.png');
     }
@@ -61,7 +56,7 @@ class GamePreload extends Phaser.Scene {
     }
 
     createGameProgressbar(x, y) {
-        // size &amp; position
+        // size and position
         let width = 400;
         let height = 20;
         let xStart = x - width / 2;
@@ -88,8 +83,6 @@ class GamePreload extends Phaser.Scene {
 
         /**
          * Updates the progress bar.
-         * 
-         *  
          */
 
         let updateProgressbar = function (percentage) {

@@ -10,6 +10,7 @@ class LoadKeyboard extends Phaser.Scene {
         
          //preload scene assets
          this.createGameProgressbar(this.centerX(), this.centerY());
+
          //loads assets for keyboard
          this.load.image('block', 'assets/input/block.png');
          this.load.image('rub', 'assets/input/rub.png');
@@ -32,7 +33,7 @@ class LoadKeyboard extends Phaser.Scene {
         return this.sys.game.config.height / 2;
     }
     createGameProgressbar(x, y) {
-        // size &amp; position
+        // size and position
         let width = 400;
         let height = 20;
         let xStart = x - width / 2;
@@ -59,7 +60,6 @@ class LoadKeyboard extends Phaser.Scene {
 
         /**
          * Updates the progress bar.
-         *  
          */
 
         let updateProgressbar = function (percentage) {
