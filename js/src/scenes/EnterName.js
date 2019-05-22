@@ -28,6 +28,7 @@ class EnterName extends Phaser.Scene {
         var completeEntrySFX = this.sound.add('completeEntry', invalidSFXConfig);
 
         newHighScoreSFX.play();
+
         //array for keyboard
         var chars = [
             ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
@@ -38,7 +39,7 @@ class EnterName extends Phaser.Scene {
         var cursor = { x: 0, y: 0 };
         var name = '';
 
-        var newHighScoreText = this.add.bitmapText(400, 65, 'arcade', 'NEW HIGH SCORE!').setTint(0xffff00);
+        var newHighScoreText = this.add.bitmapText(500, 65, 'arcade', 'NEW HIGH SCORE!').setTint(0xffff00);
         newHighScoreText.setOrigin(0.5);
 
         var skipText = this.add.bitmapText(500, 550, 'arcade', 'SKIP').setScale(0.75, 0.75);
@@ -54,21 +55,21 @@ class EnterName extends Phaser.Scene {
 
         var block = this.add.image(input.x - 260, input.y - 83, 'block').setOrigin(0);
 
-        var scoreLegend = this.add.bitmapText(150, 325, 'arcade', 'SCORE').setTint(0xff00ff);
-        var nameLegend = this.add.bitmapText(500, 325, 'arcade', 'NAME').setTint(0xff00ff);
+        var scoreLegend = this.add.bitmapText(250, 325, 'arcade', 'SCORE').setTint(0xff00ff);
+        var nameLegend = this.add.bitmapText(625, 325, 'arcade', 'NAME').setTint(0xff00ff);
 
-        var scoreText = this.add.bitmapText(150, 370, 'arcade', playerScore).setTint(0xffffff);
+        var scoreText = this.add.bitmapText(250, 370, 'arcade', playerScore).setTint(0xffffff);
 
-        var playerText = this.add.bitmapText(500, 370, 'arcade', name).setTint(0xff0000);
+        var playerText = this.add.bitmapText(625, 370, 'arcade', name).setTint(0xff0000);
 
         var invalidText = this.add.bitmapText(500, 472, 'arcade', 'PLEASE ENTER\nYOUR INITIALS!');
         invalidText.setOrigin(0.5);
         invalidText.visible = false;
+
         // skip text button
         skipText.on('pointerup', () => {
+
             startSound.play();
-            // this.scene.start('TitleScene');
-            // gameReset();
 
             // Refresh the page to restart the game
             location.reload();
@@ -104,7 +105,7 @@ class EnterName extends Phaser.Scene {
             block.y = input.y - 83 + (cy * 64);
 
             if (char === '<' && name.length > 0) {
-                //  Rub
+                //  Delete
                 name = name.substr(0, name.length - 1);
 
                 playerText.text = name;
@@ -112,6 +113,7 @@ class EnterName extends Phaser.Scene {
                 backspaceSFX.play();
             }
             else if (char === '>' && name.length > 0) {
+
                 //  Submit
                 completeEntrySFX.play();
 
@@ -131,6 +133,7 @@ class EnterName extends Phaser.Scene {
 
             }
             else if (name.length < 3) {
+                
                 // Add
                 // If player hits enter without entering a name, shake screen and play invalid entry sound.
                 if (char === '>') {

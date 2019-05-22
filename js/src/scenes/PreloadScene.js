@@ -10,13 +10,13 @@ class PreloadScene extends Phaser.Scene {
 
 
     preload() {
-        //preload scene assets
+        // preload scene assets
         this.createProgressbar(this.centerX(), this.centerY());
-        //this.add.image(this.centerX(), this.centerY(), 'logo');
         //TitleScene assets
         this.load.image('background_image', '../assets/images/startMenuBack.png');
         this.load.image('startButt', '../assets/sprites/startBtn.png'); // start button
         this.load.spritesheet('campFire', '../assets/sprites/campFireSprites.png', { frameWidth: 275, frameHeight: 400, endFrame: 8 });
+        
         //music
         this.load.audio('bg', ['assets/sounds/Title_Screen_1.mp3']);
         this.load.audio('water', ['assets/sounds/Tree_Extinguish1.mp3']);

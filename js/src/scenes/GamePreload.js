@@ -15,14 +15,12 @@ class GamePreload extends Phaser.Scene {
         /* -------- Sprites -------- */
         this.load.image('tree1', '../assets/sprites/Tree_3.png'); // Regular tree
         this.load.image('burntTree', '../assets/sprites/Burnt_Tree_3.png'); // Burnt tree
-        this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
+        //this.load.image('tiles', 'assets/sprites/grassTile2.png'); // Grass tile
         this.load.image("tilesDynamic", "assets/sprites/jungleTileSet.png"); //Object layer tiles
         this.load.image('mushroom', 'assets/sprites/mushroom.png'); //Easter egg tree
         this.load.image('deadShroom', 'assets/sprites/dead-mushroom.png'); //Easter egg burnt tree
         this.load.spritesheet("fireAnim1", "assets/sprites/fireAnimation64.png", { frameWidth: 64, frameHeight: 64, endFrame: 24 }); // first fire
         this.load.spritesheet("fireAnim2", "assets/sprites/fireAnimationNew.png", { frameWidth: 42, frameHeight: 64, endFrame: 11 }); // second fire
-        this.load.image("msgBox", "../assets/images/chatbox.png");
-        this.load.image("okBtn", "../assets/images/ok.png");
         this.load.image('pauseBtn', '../assets/sprites/pause.png'); // Sprite for the pause button
         this.load.image('pauseMenuBack', '../assets/images/newPauseMenu.png'); // Background for pause menu
         this.load.image('resumeBtn', '../assets/sprites/continueButton.png'); // Resume button for pause menu
@@ -37,11 +35,6 @@ class GamePreload extends Phaser.Scene {
         this.load.audio('marioMusic', ['assets/sounds/mario.mp3']);
         this.load.audio('chopTree', ['assets/sounds/chopTree.wav']);
 		this.load.audio('milestone', ['assets/sounds/successJingleSFX.wav']);
-
-        // Game Over Icon. Delete after proper game over screen implementation.
-        this.load.image('gameOverButton', 'https://pbs.twimg.com/profile_images/657603448553127936/D7T9j7Pk_400x400.png');
-        // this.load.image('pointsButton', 'https://cdn-images-1.medium.com/max/526/1*Ma5s4UBzPQXOmR3HbGue5Q.png');
-        // Delete above after proper game over screen implementation.
 
         this.load.image('gameOverBackground', '../assets/images/newGameOverBack.png');
         this.load.image('continueBtn', '../assets/sprites/continueButton.png');
@@ -61,7 +54,7 @@ class GamePreload extends Phaser.Scene {
     }
 
     createGameProgressbar(x, y) {
-        // size &amp; position
+        // size and position
         let width = 400;
         let height = 20;
         let xStart = x - width / 2;
@@ -88,8 +81,6 @@ class GamePreload extends Phaser.Scene {
 
         /**
          * Updates the progress bar.
-         * 
-         *  
          */
 
         let updateProgressbar = function (percentage) {

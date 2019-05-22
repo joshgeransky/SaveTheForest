@@ -17,10 +17,8 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
     msg.style.display = 'none';
     
 }
-        
 
 window.addEventListener("orientationchange", changeOrientation, false);
-
 
 function initialOrientation() {
 
@@ -53,7 +51,6 @@ function changeOrientation() {
         msg.style.display = 'none';
         header.style.display = 'none';
         scores.style.display = 'none';
-        console.log('landscape');
     }
 
     /* Portrait Mode */
@@ -63,7 +60,6 @@ function changeOrientation() {
         msg.style.display = 'block';
         header.style.display = 'block';
         scores.style.display = 'default';
-        console.log('portrait');
         
     }
 }
