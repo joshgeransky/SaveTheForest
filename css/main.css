@@ -11,6 +11,11 @@
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     line-height: 1;
+    
+}
+
+#heading {
+    padding-bottom: 10px;
 }
 
 /* Style the body */
@@ -106,25 +111,4 @@ tr:nth-child(even) {
 
 #orientationIcon {
     filter: invert(100%);
-}
-
-/* Media Query, Portrait */
-
-@media screen and (orientation: portrait) {
-    #game {
-        display: none;
-    }
-}
-
-/* Media Query, Landscape */
-
-@media screen and (orientation: landscape) {
-    /* Sets the game Div back into view when phone is landscape */
-    #game {
-        display: block;
-    }
-    /* Sets the message for notification out of view */
-    #msgLandscape {
-        display: none;
-    }
 }
