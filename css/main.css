@@ -91,7 +91,7 @@ tr:nth-child(even) {
 @media screen and (orientation: portrait) {
 
     #game {
-        display:none;
+        display: none;
     }
 }
 

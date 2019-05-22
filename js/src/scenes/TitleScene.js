@@ -6,6 +6,7 @@ class TitleScene extends Phaser.Scene {
 		this.scalingAmt = 1.0;
 	}
 	preload(){
+        
 	}
 	
 	create (){		
@@ -74,6 +75,15 @@ class TitleScene extends Phaser.Scene {
 		
 		// On start button press  
 		startBtn.on('pointerdown', startGame);
+        
+        
+        if (localStorage.getItem('loaded') != null) {
+            console.log('already loaded');
+        } else {
+            localStorage.setItem('loaded', 'true');
+            console.log('never loaded');
+            location.reload();
+        }
 
 	}
 }
