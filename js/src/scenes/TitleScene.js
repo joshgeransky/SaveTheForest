@@ -40,7 +40,6 @@ class TitleScene extends Phaser.Scene {
 		animCamp = this.anims.create(campAnimConfig);
 		spriteCamp = this.add.sprite(600, 450, 'campFire').setScale(0.5);
 
-		console.log(spriteCamp);
 
 		spriteCamp.anims.play('camping');
 
@@ -58,8 +57,6 @@ class TitleScene extends Phaser.Scene {
 
 			startSound.play();
             
-			console.log('From TitleScene to GamePreload');
-
 			this.scene.start('GamePreload');
 		}, this);
 

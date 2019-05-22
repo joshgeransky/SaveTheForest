@@ -50,7 +50,7 @@ var table = document.getElementById("scoreTable");
         innerTable += "</tr>";
 
       // Assigns final value in the table (ie the lowest high score value) to the highScoreMin variable.
-        highScoreMin = currentScore;
+      highScoreMin = currentScore;
 
     });
 

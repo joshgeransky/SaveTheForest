@@ -12,8 +12,6 @@ window.onload = function () {
 			game.scale.enterIncorrectOrientation.add(handleIncorrect);
 			game.scale.leaveIncorrectOrientation.add(handleCorrect);
 			game.load.image("portrait", "../assets/images/portrait.png");
-			//	game.load.image("center", "center.png");
-			//game.load.image("bottomright", "bottomright.png");
 		},
 		create: function () {
 			game.add.sprite(0, 0, "topleft");
@@ -25,7 +23,6 @@ window.onload = function () {
 	function handleIncorrect() {
 		if (!game.device.desktop) {
 			document.getElementById("game").style.display = "block";
-			console.log("handle incorrect");
 		}
 	}
 
@@ -37,12 +34,8 @@ window.onload = function () {
 				game.height = 640;
 				game.renderer.resize(game.width, game.height);
 
-				//game.state.start("Play");		
 			}
 			document.getElementById("game").style.display = "none";
 		}
 	}
-
-	//game.state.add("Play",play);
-	//game.state.start("Play");
 }
