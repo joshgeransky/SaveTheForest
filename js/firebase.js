@@ -30,7 +30,7 @@ var table = document.getElementById("scoreTable");
 
       highScoreCount = 0;
 
-      let innerTable = "<tr><th colspan='2'>HIGHSCORES</th></tr>"
+      let innerTable = "<tr><th colspan='2' id='titleHighScore'>HIGHSCORES</th></tr>"
 
       snap.forEach(function(snap) {
 

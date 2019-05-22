@@ -55,6 +55,7 @@ a.nav-item {
     font-size: 20pt;
 }
 
+/* Style for high score table */
 #scoreTable {
     margin: 20px auto;
     font-size: 25pt;
@@ -68,6 +69,10 @@ td {
 
 th {
     font-size: 30pt;
+}
+
+#titleHighScore {
+    text-align: center;
 }
 
 tr:nth-child(even) {
@@ -91,7 +96,7 @@ tr:nth-child(even) {
 @media screen and (orientation: portrait) {
 
     #game {
-        display:none;
+        display: none;
     }
 }
 
