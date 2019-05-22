@@ -15,43 +15,6 @@ class GameScene extends Phaser.Scene {
     // Creation function
     create() {
 
-        //Temporary game over trigger and point addition system.
-
-        //**************** DELETE BELOW AFTER IMPLEMENTATION ****************
-        /*var gameOverButton = this.add.sprite(550, 50, 'gameOverButton').setInteractive().setScale(0.25, 0.25);
-
-        gameOverButton.setDepth(500);
-
-        gameOverButton.on('pointerdown', (pointer) => {
-			
-			//stop mario music if in mario mode
-			if (marioed) {
-				
-			marioMusic.stop();
-			} else {
-				
-			//stop game music and play the game over music
-            gameMusic.stop();
-			}
-				
-			gameOverSound.play();
-            this.scene.start("GameOverScene");
-        }); */
-
-		/**
-		var pointIcon = this.add.sprite(450, 50, 'pointsButton').setInteractive().setScale(0.2, 0.2);
-
-        pointIcon.setDepth(500);
-
-        pointIcon.on('pointerdown', (pointer) => {
-
-            playerScore += 10;
-            scoreCounter.setText(scoreTitle + playerScore);
-            
-        })
-		*/
-        //**************** DELETE ABOVE AFTER IMPLEMENTATION ****************
-
         // Configure the first fire animation
         var configFire1 = {
             key: "burn1",
@@ -187,6 +150,7 @@ class GameScene extends Phaser.Scene {
                 'In 2018, the total cost of wildfire suppression was $615 million.' //20 
                 ];
         */
+		
         //to shuffle the facts array
         function shuffle(array) {
             var currentIndex = array.length, temporaryValue, randomIndex;
@@ -215,7 +179,6 @@ class GameScene extends Phaser.Scene {
         // Create the boundaries of the game
         var bounds = new Phaser.Geom.Rectangle(20, 45, 970, 520);
 
-
         // Configure the first fire animation
         this.anims.create(configFire1);
 
@@ -231,13 +194,8 @@ class GameScene extends Phaser.Scene {
             fontFamily: 'VT323',
             color: '#ffffff',
             display: 'block',
-            //align center does not work...
-            //align: 'center', 
             backgroundColor: 'black',
         });
-
-        //textHolder.setOrigin(0.5);
-        //textHolder.setX(200);
 
         //hides it from view before any facts are shown
         textHolder.visible = false;
@@ -266,13 +224,14 @@ class GameScene extends Phaser.Scene {
         resumeBtn.on('pointerout', revertColor);
         quitBtn.on('pointerout', revertColor);
 
-
         pauseBtn.on('pointerdown', function () {
 
             pauseBack.visible = true;
             gameMusic.pause();
             fireSound.pause();
-
+			if (marioed) {
+				marioMusic.pause();
+			}
             isPaused = true;
 
             quitBtn.visible = true;
@@ -284,7 +243,11 @@ class GameScene extends Phaser.Scene {
 
             isPaused = false;
             pauseBack.visible = false;
+			if (marioed) {
+				marioMusic.resume();
+			} else {
             gameMusic.resume();
+			}
             fireSound.resume();
             resumeBtn.visible = false;
             quitBtn.visible = false;
@@ -299,18 +262,6 @@ class GameScene extends Phaser.Scene {
             this.scene.start("GameOverScene");
 
         });
-
-        /**
-            //**************** DELETE BELOW AFTER IMPLEMENTATION ****************
-            var saveIcon = this.add.sprite(500, 50, 'save').setInteractive().setScale(0.25, 0.25);
-    
-            saveIcon.setDepth(500);
-    
-            saveIcon.on('pointerdown', (pointer) => {
-    
-            this.scene.start("GameOverScene");
-            })
-            */
     }
 
     // Update function, repeats indefinitely
@@ -337,12 +288,12 @@ class GameScene extends Phaser.Scene {
 			}
 		
 			//shows tool tip only when the random is not a 3 and there's been a burnt tree
-			//ran can't be 3 because it will override a fact resulting in the fact not being displayed
-			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && firstFireExtinguished && removedTreeCount == 0) {
+			//ran can't be 2 because it will override a fact resulting in the fact not being displayed
+			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && !readingInfo) {
 				toolTip(th);
 				burntTreeCounter++;
 				console.log("should be reading tool tip");
-			}	
+			}
 		
 			// When a fire is clicked
 			this.input.on('gameobjectdown', function(pointer, fire) {
@@ -373,7 +324,7 @@ class GameScene extends Phaser.Scene {
 				loop: false // Do not loop, the update function loops by itself
 			});
 		
-			/** Mario Easter Egg */
+			/** Easter Egg */
 			var mKey = this.input.keyboard.addKey('M');
 		
 			if (mKey.isDown && !marioed) {
@@ -451,7 +402,6 @@ function createScene(th, bounds) {
             // Makes fire on the tree
             fire = th.add.sprite(treeArr[i].x, treeArr[i].y, 'fireAnim1').setName('Fire' + i);
             fire.setInteractive({ cursor: 'url(assets/sprites/cursor2.cur), pointer' });
-
 
             // Animate the fire
             fire.anims.play("burn1");
@@ -582,7 +532,6 @@ function startFires(th) {
             console.log("random is: " + ran);
 
             /**Informational text is printed and removed from here: */
-			
 			//stopping the fire tutorial from popping up more than once
 			if(firstFireExtinguished){
 				firstFire = false;
@@ -596,8 +545,8 @@ function startFires(th) {
 				textHolder.setText("Click on a fire to extinguish it.                                                                        				            ");
 				th.children.bringToTop(textHolder);
 				console.log("should be showing tutorial on fires");
+				readingInfo = true;
 			}
-			
 			
             //sets text blank after a new fire pops up if a burnt tree has not showed up yet or recieving trophy
             if (readingToolTip == false && clickedBurntTree == 0 && !firstBurntTree && !trophyStatus) {
@@ -653,7 +602,7 @@ function startFires(th) {
             currentFireCount++;
 			
             // Print the fire count to console (for testing purposes)
-            console.log('FireCount ' + fireCount);
+            console.log('current fires for gameover: ' + currentFireCount);
 
             // Determine how long until the next fire should pop up
             detStage();
@@ -1022,7 +971,10 @@ function removeTree(th, b, f) {
 
                 // Make the dead mushroom disappear
                 b.visible = false;
-
+				
+				//play chopping sound
+				chopTreeSound.play();
+				
                 // Increase the count of removed trees/shrooms
                 removedTreeCount++;
 
@@ -1075,9 +1027,4 @@ function changeColor() {
 //changes color of start button back to normal
 function revertColor() {
     this.clearTint();
-}
-
-// Function to destroy sprites, currently unused
-function destroySprite(sprite) {
-    sprite.destroy();
 }
