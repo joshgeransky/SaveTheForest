@@ -46,14 +46,17 @@ class GamePreload extends Phaser.Scene {
         this.scene.start('GameScene');
     }
 
+    //Get the game screen's center for the x coordinates
     centerX() {
         return this.sys.game.config.width / 2;
     }
 
+    //Get the game screen's center for the y coordinates
     centerY() {
         return this.sys.game.config.height / 2;
     }
 
+    //Creates the progress bar
     createGameProgressbar(x, y) {
         // size and position
         let width = 400;
@@ -80,10 +83,7 @@ class GamePreload extends Phaser.Scene {
 
         let progressbar = this.add.graphics();
 
-        /**
-         * Updates the progress bar.
-         */
-
+        /* Updates the progress bar */
         let updateProgressbar = function (percentage) {
             progressbar.clear();
             progressbar.fillStyle(0x42f450, 1);
