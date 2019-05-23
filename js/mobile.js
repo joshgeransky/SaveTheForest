@@ -2,7 +2,7 @@ let gameDiv = document.getElementById('game');
 let msg = document.getElementById('msgLandscape');
 let header = document.getElementById('heading');
 let scores = document.getElementById('scoreTable');
-let body = document.getElementByTagName('BODY')[0];
+let body = document.getElementsByTagName('BODY')[0];
 
 
 /* ----- Check if on a mobile device ----- */
