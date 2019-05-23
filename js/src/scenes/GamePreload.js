@@ -89,9 +89,11 @@ class GamePreload extends Phaser.Scene {
             progressbar.fillStyle(0x42f450, 1);
             progressbar.fillRect(xStart, yStart, percentage * width, height);
         };
-
+		
+		//progress bar 
         this.load.on('progress', updateProgressbar);
-
+		
+		//shows title screen when loading is complete
         this.load.once('complete', function () {
 
             this.load.off('progress', updateProgressbar);

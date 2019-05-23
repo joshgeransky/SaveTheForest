@@ -144,7 +144,8 @@ class GameScene extends Phaser.Scene {
             }
             return array;
         }
-
+		
+		//rearrange array
         shuffle(facts);
 
         // Set the camera location
@@ -163,6 +164,7 @@ class GameScene extends Phaser.Scene {
         // Create score counter
         scoreCounter = this.add.text(70, 15, scoreTitle + playerScore, { fontSize: '24pt', fontFamily: 'VT323', fill: 'white', });
 		
+		// creates a text holder for informational text
         textHolder = this.add.text(0, 580, "default");
         textHolder.setStyle({
             fontSize: '16pt',
@@ -178,7 +180,7 @@ class GameScene extends Phaser.Scene {
         // Create the entire scene
         createScene(this, bounds);
 	    
-	this.children.bringToTop(scoreCounter);
+		this.children.bringToTop(scoreCounter);
 
         pauseBtn = this.add.sprite(35, 35, 'pauseBtn').setInteractive().setScale(0.75);
 
@@ -330,7 +332,8 @@ class GameScene extends Phaser.Scene {
 					deadShroom.visible = false;
 					deadShroom.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
 				}        
-			}
+			} 
+			/**Game Over condition */
 		} else if (currentFireCount > gameOverTrees) {
 				gameOver(this);
 			}			

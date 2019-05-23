@@ -21,6 +21,7 @@ class EnterName extends Phaser.Scene {
             delay: 0
         }
 
+		/**Sounds */
         var invalidSFX = this.sound.add('invalidEntry', invalidSFXConfig);
         var backspaceSFX = this.sound.add('backspace', invalidSFXConfig);
         var newHighScoreSFX = this.sound.add('newHighScore', invalidSFXConfig);
@@ -35,9 +36,11 @@ class EnterName extends Phaser.Scene {
             ['U', 'V', 'W', 'X', 'Y', 'Z', '.', '-', '<', '>']
         ];
         
+		//player's mouse
         var cursor = { x: 0, y: 0 };
         var name = '';
-
+		
+		//All text, inputs
         var newHighScoreText = this.add.bitmapText(500, 65, 'arcade', 'NEW HIGH SCORE!').setTint(0xffff00);
         newHighScoreText.setOrigin(0.5);
 
@@ -73,7 +76,8 @@ class EnterName extends Phaser.Scene {
             // Refresh the page to restart the game
             location.reload();
         })
-
+		
+		//selects letter and moves it
         input.on('pointermove', function (pointer, x, y) {
 
             var cx = Phaser.Math.Snap.Floor(x, 52, 0, true);
@@ -89,6 +93,7 @@ class EnterName extends Phaser.Scene {
 
         }, this);
 
+		//input actual character into database
         input.on('pointerup', function (pointer, x, y) {
 
             var cx = Phaser.Math.Snap.Floor(x, 52, 0, true);
