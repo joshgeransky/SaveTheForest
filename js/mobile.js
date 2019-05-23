@@ -37,7 +37,7 @@ function initialOrientation() {
         gameDiv.style.display = 'none';
         msg.style.display = 'block';
         header.style.display = 'block';
-        scores.style.display = 'default';
+        scores.style.display = 'table';
         
     }
 }
@@ -59,7 +59,7 @@ function changeOrientation() {
         gameDiv.style.display = 'none';
         msg.style.display = 'block';
         header.style.display = 'block';
-        scores.style.display = 'block';
+        scores.style.display = "table";
         
     }
 }
