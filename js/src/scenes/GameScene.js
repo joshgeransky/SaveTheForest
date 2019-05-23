@@ -699,11 +699,17 @@ function detStage() {
     } else if (fireCount > 100) {
         stageDelay = 400;
         
-    } else if (fireCount > 200) {
+    } else if (fireCount > 200 && fireCount <= 500) {
         stageDelay = 200;
         
-    } else if (fireCount > 500) {
+    } else if (fireCount > 500 && fireCount <= 800) {
         stageDelay = 100;
+        
+    } else if (fireCount > 800 && fireCount <= 1200) {
+        stageDelay = 50;
+        
+    } else if (fireCount > 1200) {
+        stageDelay = 10;
     
     } else {
         stageDelay = 5000;
