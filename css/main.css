@@ -102,7 +102,7 @@ tr:nth-child(even) {
 }
 
 /* Media Query for desktop */
-@media (min-height: 400px) and (max-width: 1200px) {
+@media (min-height: 420px) and (max-width: 1200px) {
   body {
     height: auto !important;
   }
