@@ -11,20 +11,20 @@ class TitleScene extends Phaser.Scene {
 
 	create() {
         
-		//music
+		//Music
 		titleMusic = this.sound.add('bg', musicConfig);
 		titleMusic.play(musicConfig);
 
 		let background = this.add.sprite(0, 0, 'background_image');
 		background.setOrigin(0, 0);
         
-		// Create title text
+		//Create title text
 		titleText = this.add.text(120, 70, 'Save the Forest', { fontSize: '128px', fill: 'white', fontFamily: 'VT323' });
 		
-		//workaround for score text not showing up properly
+		//Workaround for score text not showing up properly
 		titleText.visible = false;
 
-		// Campfire animations setup
+		//Campfire animations setup
 		let campAnimConfig = {
 			key: 'camping',
 			frames: this.anims.generateFrameNumbers('campFire', {
@@ -36,18 +36,18 @@ class TitleScene extends Phaser.Scene {
 			repeat: -1
 		};
 
-		//creating and adding the campfire sprite to title page
+		//Creating and adding the campfire sprite to title page
 		animCamp = this.anims.create(campAnimConfig);
 		spriteCamp = this.add.sprite(600, 450, 'campFire').setScale(0.5);
 
 
 		spriteCamp.anims.play('camping');
 
-		// Create start buttons
+		//Create start buttons
 		startBtn = this.add.sprite(500, 300, 'startButt').setInteractive();
 		startSound = this.sound.add('startPlay', waterConfig);
 
-		/**** Start button functionality ****/
+		/* Start button functionality */
 		startBtn.on('pointerover', changeColor);
 
 		startBtn.on('pointerout', revertColor);
