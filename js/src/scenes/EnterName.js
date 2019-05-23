@@ -1,3 +1,5 @@
+
+
 class EnterName extends Phaser.Scene {
     constructor() {
         super({
@@ -11,6 +13,7 @@ class EnterName extends Phaser.Scene {
     }
 
     create() {
+
         var invalidSFXConfig = {
             mute: false,
             volume: 0.4,
@@ -26,6 +29,16 @@ class EnterName extends Phaser.Scene {
         var backspaceSFX = this.sound.add('backspace', invalidSFXConfig);
         var newHighScoreSFX = this.sound.add('newHighScore', invalidSFXConfig);
         var completeEntrySFX = this.sound.add('completeEntry', invalidSFXConfig);
+
+        // Words which the user may not enter for their username.
+        var bannedWords = ["ASS", "DIK", "DIC", "FUK", "FCK", "FUC", "FUQ", "FUX", "NIG", "NGR", "SHT", "CNT",
+            "KNT", "KKK", "POO", "PEE", "PIS", "COC", "COK", "COQ", "KOC", "KOK", "COX", "TIT", "JIZ",
+            "FAG", "CUM", "HOR", "KUM", "SAK", "SAC", "SUC", "SUK", "SUX", "SEX", "WTF", "BS", "FAP", "HEL",
+            "BJ", "DAM", "SAQ", "SUQ", "FK", "HOE", "HO", "QOQ", "QOC", "QOK", "KOQ", "JAP", "GAY", "NUT", "NIP",
+            "VAJ", "VAG", "YID", "JEW", "BUT", "TIP", "CUC", "CUK", "CUQ", "CUX", "KUC", "KUK", "KUQ", "KUX",
+            "QUC", "QUK", "QUQ", "QUX", "JIS", "BS.", "BS-", ".BS", "-BS", "B.S", "B-S", ".BJ", "-BJ", "BJ.",
+            "BJ-", "B.J", ".FK", "-FK", "FK.", "FK-", "F.K", "F-K", ".FC", "-FC", "FC", "FC-", "F.C", "F.K",
+            ".HO", "-HO", "HO.", "HO-", "H.O", "H-O", "WOR", "DIX"];
 
         newHighScoreSFX.play();
 
@@ -67,6 +80,10 @@ class EnterName extends Phaser.Scene {
         var invalidText = this.add.bitmapText(500, 472, 'arcade', 'PLEASE ENTER\nYOUR INITIALS!');
         invalidText.setOrigin(0.5);
         invalidText.visible = false;
+
+        var bannedText = this.add.bitmapText(500, 485, 'arcade', "SOMETHING APPROPRIATE PLEASE!");
+        bannedText.setOrigin(0.5);
+        bannedText.visible = false;
 
         // skip text button
         skipText.on('pointerup', () => {
@@ -118,23 +135,34 @@ class EnterName extends Phaser.Scene {
             else if (char === '>' && name.length > 0) {
 
                 //  Submit
-                completeEntrySFX.play();
 
-                var saveData = {
-                    name: name,
-                    metrics: {
-                        count: playerScore * -1
+                console.log(isBannedWord(bannedWords, name));
+
+                if (isBannedWord(bannedWords, name)) {
+                    this.cameras.main.shake(475, 0.013, 0.4);
+                    invalidSFX.play();
+                    invalidText.visible = false;
+                    bannedText.visible = true;
+                } else {
+                
+                    completeEntrySFX.play();
+
+                    var saveData = {
+                        name: name,
+                        metrics: {
+                            count: playerScore * -1
+                        }
                     }
-                }
 
-                $('#scoreTable').empty();
+                    $('#scoreTable').empty();
         
-                ref.push(saveData);
+                    ref.push(saveData);
 
 
-                location.reload();
+                    location.reload();
+                    }
 
-            }
+                }
             else if (name.length < 3) {
                 
                 // Add
@@ -143,6 +171,7 @@ class EnterName extends Phaser.Scene {
 
                     this.cameras.main.shake(475, 0.013, 0.4);
                     invalidSFX.play();
+                    bannedText.visible = false;
                     invalidText.visible = true;
 
                 } else if (char === '<') {
@@ -165,4 +194,7 @@ class EnterName extends Phaser.Scene {
 
 }
 
+function isBannedWord(bannedWords, name) {
+    return bannedWords.indexOf(name) > -1;
+}
 
