@@ -4,7 +4,6 @@ let header = document.getElementById('heading');
 let scores = document.getElementById('scoreTable');
 let body = document.getElementsByTagName('BODY')[0];
 
-
 /* ----- Check if on a mobile device ----- */
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     
@@ -22,8 +21,6 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 window.addEventListener("orientationchange", changeOrientation, false);
 
 function initialOrientation() {
-    
-    body.style.height = '100%';
 
     /* Landscape Mode */
     if (window.matchMedia("(orientation: landscape)").matches) {
@@ -62,7 +59,7 @@ function changeOrientation() {
         gameDiv.style.display = 'none';
         msg.style.display = 'block';
         header.style.display = 'block';
-        scores.style.display = 'default';
+        scores.style.display = 'block';
         
     }
 }

@@ -1,7 +1,7 @@
 // Variable holding initial game configuration
 var config = {
     type: Phaser.AUTO,
-    width: 100,
+    width: 1000,
     height: 600,
     parent: 'game',
 

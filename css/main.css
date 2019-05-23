@@ -11,14 +11,6 @@
     line-height: 1;
 }
 
-body {
-    height: auto !important;
-}
-
-#heading {
-    padding-bottom: 0px;
-}
-
 /* Style the body */
 #bodyGeneral {
     background-color: #262626;
@@ -39,6 +31,8 @@ body {
     image-rendering: pixelated;
     /* Chrome 41 */
     margin: 0;
+    
+/*    height: auto !important;*/
 }
 
 /* Style for nav bar title */
@@ -105,4 +99,11 @@ tr:nth-child(even) {
 /* Style the landscape icon */
 #orientationIcon {
     filter: invert(100%);
+}
+
+/* Media Query for desktop */
+@media (min-height: 400px) and (max-width: 1200px) {
+  body {
+    height: auto !important;
+  }
 }
