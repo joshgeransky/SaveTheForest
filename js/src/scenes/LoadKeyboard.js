@@ -8,10 +8,10 @@ class LoadKeyboard extends Phaser.Scene {
 
     preload() {
         
-         //preload scene assets
+         //Preload scene assets
          this.createGameProgressbar(this.centerX(), this.centerY());
 
-         //loads assets for keyboard
+         //Loads assets for keyboard
          this.load.image('block', 'assets/input/block.png');
          this.load.image('rub', 'assets/input/rub.png');
          this.load.image('end', 'assets/input/end.png');
@@ -25,21 +25,25 @@ class LoadKeyboard extends Phaser.Scene {
     create() {
         this.scene.start('EnterName');
     }
+    //Gets the middle of the x coordinates for the game screen
     centerX() {
         return this.sys.game.config.width / 2;
     }
 
+    //Gets the middle of the y coordinates for the game screen
     centerY() {
         return this.sys.game.config.height / 2;
     }
+
+    //Creates the progress bar
     createGameProgressbar(x, y) {
-        // size and position
+        //Size and position
         let width = 400;
         let height = 20;
         let xStart = x - width / 2;
         let yStart = y - height / 2;
 
-        // border size
+        //Border size
         let borderOffset = 2;
 
         let borderRect = new Phaser.Geom.Rectangle(
@@ -58,10 +62,7 @@ class LoadKeyboard extends Phaser.Scene {
 
         let progressbar = this.add.graphics();
 
-        /**
-         * Updates the progress bar.
-         */
-
+        /* Updates the progress bar */
         let updateProgressbar = function (percentage) {
             progressbar.clear();
             progressbar.fillStyle(0x42f450, 1);
