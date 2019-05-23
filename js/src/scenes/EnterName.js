@@ -136,8 +136,6 @@ class EnterName extends Phaser.Scene {
 
                 //  Submit
 
-                console.log(isBannedWord(bannedWords, name));
-
                 if (isBannedWord(bannedWords, name)) {
                     this.cameras.main.shake(475, 0.013, 0.4);
                     invalidSFX.play();
