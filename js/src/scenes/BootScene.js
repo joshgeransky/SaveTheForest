@@ -10,6 +10,7 @@ class BootScene extends Phaser.Scene {
 
 	}
 	create(){
+		//game cursor
 		this.input.setDefaultCursor('url(assets/sprites/blueWeird.cur), pointer');
 		this.scene.start('PreloadScene');
 	}

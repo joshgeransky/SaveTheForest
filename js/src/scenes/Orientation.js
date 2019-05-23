@@ -19,13 +19,15 @@ window.onload = function () {
 			game.add.sprite(game.width, game.height, "bottomright").anchor.set(1, 1);
 		}
 	}
-
+	
+	//when game is played on mobile/screen is too small
 	function handleIncorrect() {
 		if (!game.device.desktop) {
 			document.getElementById("game").style.display = "block";
 		}
 	}
-
+	
+	//playing on pc/computer
 	function handleCorrect() {
 		if (!game.device.desktop) {
 			if (firstRunLandscape) {
