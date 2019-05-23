@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Save the Forest!</title>
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+        <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
 
-<head>
-    <meta charset="utf-8">
-    <title>Save the Forest!</title>
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/404.css">
+    </head>
 
-    <link rel="stylesheet" type="text/css" href="css/404.css">
-</head>
+    <body>
 
-<body>
+        <div id="container">
 
+            <!-- <img src="assets/images/gameOverGrey.jpeg"> -->
+            <div id="image404"><img src="assets/images/404transparent.png" id="doom"></div>
+            <div>
+                <h1>Oh no! The page you are looking for does not exist. </h1>
+            </div>
+            <div>
+                <p>Click this button to start saving the forest!</p>
+            </div>
+            <div>
+                <button onclick="window.location.href = 'index.html';" id="escapeButton">Play</button>
+            </div>
 
-    <div id="container">
-
-        <!-- <img src="assets/images/gameOverGrey.jpeg"> -->
-        <div id="image404"><img src="assets/images/404transparent.png" id="doom"></div>
-        <div>
-            <h1>Oh no! The page you are looking for does not exist. </h1>
         </div>
-        <div>
-            <p>Click this button to start saving the forest!</p>
-        </div>
-        <div><button onclick="window.location.href = 'index.html';" id="escapeButton">Play</button></div>
-
-    </div>
-
-</body>
-
-
+    </body>
 
 </html>

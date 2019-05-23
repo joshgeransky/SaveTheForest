@@ -22,7 +22,6 @@ class EnterName extends Phaser.Scene {
         }
 
 		/**Sounds */
-
         var invalidSFX = this.sound.add('invalidEntry', invalidSFXConfig);
         var backspaceSFX = this.sound.add('backspace', invalidSFXConfig);
         var newHighScoreSFX = this.sound.add('newHighScore', invalidSFXConfig);
@@ -77,7 +76,6 @@ class EnterName extends Phaser.Scene {
             // Refresh the page to restart the game
             location.reload();
         })
-
 		
 		//selects letter and moves it
         input.on('pointermove', function (pointer, x, y) {
