@@ -1,8 +1,7 @@
 /* Import Google fonts */
-
 @import url('https://fonts.googleapis.com/css?family=Teko|VT323');
-/* Style the content (cards) of the learn page */
 
+/* Style the content (cards) of the learn page */
 .learn-content {
   font-family: 'Teko', sans-serif;
   text-align: center;
@@ -10,14 +9,12 @@
 }
 
 /* Style for the container that holds the carousel */
-
 #carouselFireFacts {
   font-family: 'Teko', sans-serif;
   font-size: 32pt;
 }
 
 /*Style for text in the carousel */
-
 .carousel-caption {
   transform: translateY(-50%);
   bottom: 0;
@@ -25,7 +22,6 @@
 }
 
 /*Style for the images in the carousel */
-
 .carousel-inner {
   height: 70vh;
 }
@@ -60,13 +56,11 @@
 }
 
 /* Style for caption in the carousel */
-
 .carousel-caption {
   text-shadow: 2px 2px 2px #262626;
 }
 
 /*Style for card links */
-
 .myLinks {
   color: black;
 }
@@ -76,14 +70,12 @@
 }
 
 /* Style for card */
-
 .card-columns {
   margin: 10pt;
   color: black;
 }
 
 /* Style for cards on hover */
-
 .card:hover {
   box-shadow: rgba(43, 153, 41) 0px 5px 25px;
   transform: translate3d(0px, -1px, 0px);

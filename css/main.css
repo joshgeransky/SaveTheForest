@@ -1,9 +1,7 @@
 /* Import Google fonts */
-
 @import url('https://fonts.googleapis.com/css?family=Teko|VT323');
+
 /* Style the entire header */
-
-
 .header {
     overflow: hidden;
     background-color: #0f0f0f;
@@ -11,9 +9,7 @@
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     line-height: 1;
-    
 }
-
 
 body {
     height: auto !important;
@@ -24,7 +20,6 @@ body {
 }
 
 /* Style the body */
-
 #bodyGeneral {
     background-color: #262626;
     color: white;
@@ -47,13 +42,11 @@ body {
 }
 
 /* Style for nav bar title */
-
 a.navbar-brand {
     font-size: 40pt;
 }
 
 /* Style for links in the nav bar */
-
 a.nav-item {
     font-size: 18pt;
 }
@@ -67,14 +60,12 @@ a.nav-item {
 }
 
 /* Style for high scores */
-
 .score {
     text-align: center;
     font-size: 36pt;
 }
 
 /* Style the footer class */
-
 .footer {
     font-size: 20pt;
 }
@@ -105,7 +96,6 @@ tr:nth-child(even) {
 }
 
 /* Style the message for prompting landscape */
-
 #msgLandscape {
     width: 100%;
     height: auto;
@@ -113,7 +103,6 @@ tr:nth-child(even) {
 }
 
 /* Style the landscape icon */
-
 #orientationIcon {
     filter: invert(100%);
 }

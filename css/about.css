@@ -1,15 +1,13 @@
 /* Import Google fonts */
-
 @import url('https://fonts.googleapis.com/css?family=Teko|VT323');
-/* Style the about-image class */
 
+/* Style the about-image class */
 .about-image {
     text-align: center;
     padding-top: 5px;
 }
 
 /* Style the image within the about-image div */
-
 .about-image img {
     width: 100%;
     max-height: 400px;
@@ -18,7 +16,6 @@
 }
 
 /* Style the accordion that holds the drop down */
-
 .accordion {
     margin-top: 15pt;
     margin-left: 10pt;
@@ -26,7 +23,6 @@
 }
 
 /* Style the drop down title */
-
 #titleOne {
     width: 100%;
     color: black;
@@ -60,7 +56,6 @@
 }
 
 /* Style the image in the cards for the drop down */
-
 img.card-img {
     min-width: 100%;
     min-height: 10%;
@@ -70,7 +65,6 @@ img.card-img {
 }
 
 /* Style the body of the cards for the drop down */
-
 div.card-body {
     min-width: 100%;
     min-height: 100%;
@@ -78,26 +72,22 @@ div.card-body {
 }
 
 /* Style the text in the cards for the drop down */
-
 .card-body p {
     font-size: 14pt;
 }
 
 /* Make the drop down glow on hover */
-
 .card:hover {
     box-shadow: rgba(43, 153, 41) 0px 5px 25px;
 }
 
 /* Style for about page title */
-
 .page-title {
     margin-top: 15pt;
     text-align: center;
 }
 
 /* Style for about page footer */
-
 .footer {
     margin-top: 15pt;
     margin-bottom: 15pt;
