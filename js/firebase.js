@@ -18,7 +18,7 @@ var highScoreMin = 0;
 // The number of high score places currently being displayed.
 var highScoreCount;
 // The maximum number of places the high score table will display.
-var highScorePlaces = 5;
+var highScorePlaces = 10;
 
 function loaded() {
 
