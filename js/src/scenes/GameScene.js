@@ -298,7 +298,7 @@ class GameScene extends Phaser.Scene {
 			}
 			
 			//shows tool tip only when there's been a burnt tree, burnt tree hasnt been clicked, and not reading other info
-			if (firstBurntTree && burntTreeCounter == 0 && clickedBurntTree == 0 && !readingInfo && !readingTutorial) {
+			if (firstBurntTree && burntTreeCounter == 0 && clickedBurntTree == 0 && !readingInfo && !readingTutorial && !trophyStatus) {
 				toolTip(th);
 				burntTreeCounter++;
 			}
@@ -556,7 +556,7 @@ function startFires(th) {
 			
             //sets text blank after a new fire pops up if a burnt tree has not showed up yet or recieving trophy
             if (readingToolTip == false && clickedBurntTree == 0 && !firstBurntTree && !trophyStatus) {
-                if (everyTwo == 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
+                if (everyTwo >= 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
 					setBlank();
 					everyTwo = 0; //reset
 					readingInfo = false; 
@@ -565,16 +565,20 @@ function startFires(th) {
 
             //sets text blank after a new fire pops up and player is not reading the tool tip or recieving trophy
             if (readingToolTip == false && clickedBurntTree >= 1 && !trophyStatus) {
-                if (everyTwo == 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
+                if (everyTwo >= 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
 					setBlank();
 					everyTwo = 0; //reset
 					readingInfo = false;
                 }
             }
 			
+			console.log("facts length is: " + factsLength);
+			console.log("everytwo is: " + everyTwo);
+			
 			//setting last fact blank after 2 fires
-			if(factsLength == 0 && everyTwo >= 2) {
+			if(factsLength == -1) {
 				setBlank();
+				console.log("setting last fact blank after 2 fires" + everyTwo);
 			}
 			
 			if(ran == 2 && firstBurntTree && clickedBurntTree == 0) {
@@ -591,11 +595,12 @@ function startFires(th) {
 				
                 //displays text
                 updateInfo(th);
+				
             }
 
             //to control facts showing up for 2 fires
             //only do this when there are still facts to be displayed
-            if (readingInfo && factsLength >= 0 && !trophyStatus) {
+            if (readingInfo && factsLength >= -1 && !trophyStatus) {
                 everyTwo++;
 				console.log("everytwo increased is: " + everyTwo);
             }
@@ -763,6 +768,7 @@ function updateInfo(th) {
     //display the fact and move to next index
     textHolder.setText(facts[factsLength]);
     th.children.bringToTop(textHolder);
+	console.log("fact is: " + facts[factsLength]);
     factsLength -= 1;
 }
 
