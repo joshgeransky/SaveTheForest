@@ -571,14 +571,10 @@ function startFires(th) {
 					readingInfo = false;
                 }
             }
-			
-			console.log("facts length is: " + factsLength);
-			console.log("everytwo is: " + everyTwo);
-			
+	
 			//setting last fact blank after 2 fires
 			if(factsLength == -1) {
 				setBlank();
-				console.log("setting last fact blank after 2 fires" + everyTwo);
 			}
 			
 			if(ran == 2 && firstBurntTree && clickedBurntTree == 0) {
@@ -602,7 +598,6 @@ function startFires(th) {
             //only do this when there are still facts to be displayed
             if (readingInfo && factsLength >= -1 && !trophyStatus) {
                 everyTwo++;
-				console.log("everytwo increased is: " + everyTwo);
             }
 			/**To here. */
 			   
@@ -768,7 +763,6 @@ function updateInfo(th) {
     //display the fact and move to next index
     textHolder.setText(facts[factsLength]);
     th.children.bringToTop(textHolder);
-	console.log("fact is: " + facts[factsLength]);
     factsLength -= 1;
 }
 
