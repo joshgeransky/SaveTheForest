@@ -125,31 +125,6 @@ class GameScene extends Phaser.Scene {
             'Large fires can cause a fire whirl - a whirlwind composed of wind and fire.                                                                            ', //19
             'In 2018, the total cost of wildfire suppression was $615 million.                                                                        				' //20 
         ];
-
-        /**uncomment this if you want to try centering the text, milestone text will have to be centered as well
-        facts = [
-                'A typical year has over 9,000 forest fires in Canada.', //1
-                'An average of 2.5 million hectares of trees are burned in a year.', //2
-                'The smoke released by the fire can cause health problems.', //3
-                'Forest fires can burn from a rate of 0.5 km/h to 6 km/h or more.', //4
-                'In Canada, two-thirds of all forest fires are caused by humans.', //5
-                'Wildfires need fuel, oxygen, and heat to ignite and burn.', //6
-                'On average, 40% of wildfires in British Columbia were started by humans.', //7
-                'Human caused wildfires attribute to: cigarettes, campfires, engines/vehicles, and more.', //8
-                'Never leave a fire unattended before leaving the campsite.', //9
-                'Call 911, a local fire department, or the park service if you notice smoke or fire.', //10
-                'Never discard smoking materials from moving cars or park grounds.', //11
-                'All wildfires in British Columbia are investigated for its origin and cause.', //12
-                'Wildfires usually occur in the summer season from May to September.', //13
-                'The smoke from BC\'s 2018 wildfires spread from across Canada to as far as Ireland.', //14
-                'Firebreaks are areas with no fuel materials that help slow forest fires.', //15
-                'Large wildfires can even change the weather of the surrounding area.', //16
-                'Aircrafts can be used to drop water or fire retardant chemicals onto wildfires.', //17
-                'Crown fires are a type of wildfire that spread from tree top to tree top.', //18
-                'Large fires can cause a fire whirl - a whirlwind composed of wind and fire.', //19
-                'In 2018, the total cost of wildfire suppression was $615 million.' //20 
-                ];
-        */
 		
         //to shuffle the facts array
         function shuffle(array) {
