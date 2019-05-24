@@ -125,7 +125,7 @@ class GameScene extends Phaser.Scene {
             'Large fires can cause a fire whirl - a whirlwind composed of wind and fire.                                                                            ', //19
             'In 2018, the total cost of wildfire suppression was $615 million.                                                                        				' //20 
         ];
-
+		
         //to shuffle the facts array
         function shuffle(array) {
             var currentIndex = array.length, temporaryValue, randomIndex;
@@ -144,8 +144,7 @@ class GameScene extends Phaser.Scene {
             }
             return array;
         }
-		
-		//rearrange array
+
         shuffle(facts);
 
         // Set the camera location
@@ -164,7 +163,6 @@ class GameScene extends Phaser.Scene {
         // Create score counter
         scoreCounter = this.add.text(70, 15, scoreTitle + playerScore, { fontSize: '24pt', fontFamily: 'VT323', fill: 'white', });
 		
-		// creates a text holder for informational text
         textHolder = this.add.text(0, 580, "default");
         textHolder.setStyle({
             fontSize: '16pt',
@@ -180,7 +178,7 @@ class GameScene extends Phaser.Scene {
         // Create the entire scene
         createScene(this, bounds);
 	    
-		this.children.bringToTop(scoreCounter);
+	this.children.bringToTop(scoreCounter);
 
         pauseBtn = this.add.sprite(35, 35, 'pauseBtn').setInteractive().setScale(0.75);
 
@@ -263,13 +261,22 @@ class GameScene extends Phaser.Scene {
 				//all the trophy logic is done in there
 				determineTrophy(th);
 			}
-		
-			//shows tool tip only when the random is not a 3 and there's been a burnt tree
-			//ran can't be 2 because it will override a fact resulting in the fact not being displayed
-			if (firstBurntTree && burntTreeCounter == 0 && ran != 2 && !readingInfo) {
+			
+			//force a fact to not show up when there's a burnt tree
+			if(ran == 2 && firstBurntTree && clickedBurntTree == 0) {
+				ran = 1;
+			}
+			
+			//force fact to disappear after 2 durations
+			if(everyTwo == 3 && firstBurntTree && clickedBurntTree == 0) {
+				readingInfo = false;
+			}
+			
+			//shows tool tip only when there's been a burnt tree, burnt tree hasnt been clicked, and not reading other info
+			if (firstBurntTree && burntTreeCounter == 0 && clickedBurntTree == 0 && !readingInfo && !readingTutorial && !trophyStatus) {
 				toolTip(th);
 				burntTreeCounter++;
-			}	
+			}
 		
 			// When a fire is clicked
 			this.input.on('gameobjectdown', function(pointer, fire) {
@@ -332,8 +339,7 @@ class GameScene extends Phaser.Scene {
 					deadShroom.visible = false;
 					deadShroom.setInteractive({ cursor: 'url(assets/sprites/saw.cur), pointer' });
 				}        
-			} 
-			/**Game Over condition */
+			}
 		} else if (currentFireCount > gameOverTrees) {
 				gameOver(this);
 			}			
@@ -520,32 +526,36 @@ function startFires(th) {
                 textHolder.visible = true;	
 				textHolder.setText("Click on a fire to extinguish it.                                                                        				            ");
 				th.children.bringToTop(textHolder);
-				readingInfo = true;
+				readingTutorial = true;
 			}
 			
             //sets text blank after a new fire pops up if a burnt tree has not showed up yet or recieving trophy
             if (readingToolTip == false && clickedBurntTree == 0 && !firstBurntTree && !trophyStatus) {
-                if (everyTwo == 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
+                if (everyTwo >= 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
 					setBlank();
 					everyTwo = 0; //reset
-					readingInfo = false;
+					readingInfo = false; 
 				}
             }
 
             //sets text blank after a new fire pops up and player is not reading the tool tip or recieving trophy
             if (readingToolTip == false && clickedBurntTree >= 1 && !trophyStatus) {
-                if (firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
+                if (everyTwo >= 2 && firstFireExtinguished) { //it will remove text at the start of the third fire (2 fires duration)
 					setBlank();
 					everyTwo = 0; //reset
 					readingInfo = false;
                 }
             }
-
-            //re-roll random if a burnt tree is there and random is 2 so the fact index doesnt get overwritten
-            while (ran == 2 && clickedBurntTree == 0 && firstBurntTree && trophyStatus) {
-                ran = 1;
-            }		
-
+	
+			//setting last fact blank after 2 fires
+			if(factsLength == -1) {
+				setBlank();
+			}
+			
+			if(ran == 2 && firstBurntTree && clickedBurntTree == 0) {
+				ran = 1;
+			}
+			
             //1 in 2 chance of a fact popping up,
             //stops trying to display facts after all facts are displayed
             //and not while displaying a trophy
@@ -553,15 +563,15 @@ function startFires(th) {
 
                 //textHolder is initially not displayed
                 textHolder.visible = true;
-
-
+				
                 //displays text
                 updateInfo(th);
+				
             }
 
             //to control facts showing up for 2 fires
             //only do this when there are still facts to be displayed
-            if (readingInfo && factsLength >= 0) {
+            if (readingInfo && factsLength >= -1 && !trophyStatus) {
                 everyTwo++;
             }
 			/**To here. */
@@ -585,7 +595,6 @@ function startFires(th) {
 //determines which trophy to show
 //and how long it stays for
 function determineTrophy(th) {
-
     if (playerScore >= 100 && !trophyTenFin) {
         textHolder.setText("You have saved 10 trees!                                                                                                                                     ");
         th.children.bringToTop(textHolder);
@@ -595,14 +604,11 @@ function determineTrophy(th) {
             setBlank();
             trophyStatus = false;
             trophyTenFin = true; //do not show this announcement anymore
-			readingInfo = false;
         } else if (playerScore > 130) { //trophy was passed due to the user not clicking on a burnt tree
             trophyStatus = false;
             trophyTenFin = true;
-			readingInfo = false;
             if (!readingToolTip) {
                 setBlank();
-				readingInfo = false;
             }
         }
     }
@@ -611,7 +617,6 @@ function determineTrophy(th) {
         textHolder.setText("You have saved 20 trees, keep going!                                                                                                                                     ");
         th.children.bringToTop(textHolder);
         trophyStatus = true;
-		readingInfo = false;
 
         if (playerScore == 230) { //3 trees after
             setBlank();
@@ -622,7 +627,6 @@ function determineTrophy(th) {
             trophyTwentyFin = true;
             if (!readingToolTip) {
                 setBlank();
-				readingInfo = false;
             }
         }
     }
@@ -631,19 +635,15 @@ function determineTrophy(th) {
 		textHolder.setText("Amazing, you have saved 50 trees!                                                                                                                                     ");
 		th.children.bringToTop(textHolder);
 		trophyStatus = true;
-		readingInfo = false;
 		if(playerScore == 550) { //5 trees after
 			setBlank();
 			trophyStatus = false;
 			trophyFiftyFin = true; //do not show this announcement anymore
-			readingInfo = false;
 		} else if (playerScore > 550) { //trophy was passed due to the user not clicking on a burnt tree
             trophyStatus = false;
             trophyFiftyFin = true;
-			readingInfo = false;
             if (!readingToolTip) {
                 setBlank();
-				readingInfo = false;
             }
         }
 	}
@@ -652,20 +652,16 @@ function determineTrophy(th) {
         textHolder.setText("Congratulations, you have saved 100 trees and counting!                                                                                                                                     ");
         th.children.bringToTop(textHolder);
         trophyStatus = true;
-		readingInfo = false;
 
         if (playerScore == 1100) { //10 trees after 
             setBlank();
             trophyStatus = false;
             trophyHunFin = true; //do not show this announcement anymore
-			readingInfo = false;
         } else if (playerScore > 1100) { //trophy was passed due to the user not clicking on a burnt tree
             trophyStatus = false;
             trophyHunFin = true;
-			readingInfo = false;
             if (!readingToolTip) {
                 setBlank();
-				readingInfo = false;
             }
         }
     }
@@ -710,7 +706,7 @@ function detStage() {
         
     } else if (fireCount > 1200) {
         stageDelay = 10;
-    
+
     } else {
         stageDelay = 5000;
     }
@@ -738,7 +734,6 @@ function toolTip(th) {
 
 //function to update the text holding the informational facts
 function updateInfo(th) {
-
     readingInfo = true;
     //display the fact and move to next index
     textHolder.setText(facts[factsLength]);
@@ -775,7 +770,7 @@ function extinguishFire(f, th) {
 			if(firstFire) {
 				setBlank();
 				//no longer reading text
-				readingInfo = false;
+				readingTutorial = false;
 			}
 			
 			//only get points if you are not reading the tool tip
@@ -902,7 +897,7 @@ function removeTree(th, b, f) {
 				clickedBurntTree += 1;
 				
 				//removes text when user clicks on a burnt tree
-				if (clickedBurntTree == 1 && !readingToolTip && !readingInfo) {
+				if (clickedBurntTree == 1 && !readingToolTip && !readingInfo && !readingTutorial) {
 					setBlank();
 				}
 			}

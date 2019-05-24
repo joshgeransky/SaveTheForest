@@ -72,6 +72,7 @@ var everyTwo = 0; //info facts should stay for at least 2 fire durations
 var readingInfo = false; //whether the info facts are displayed or not
 var firstFire = true; //whether or not the first fire has appeared
 var firstFireExtinguished = false; //whether the first fire has been extinguished
+var readingTutorial = false; //whether the tutorial for fires is showing
 
 //designates milestones for every 100, 200, 500, 1000 points
 //not using the odd scores for now (spams when the pace of the game is fast)
